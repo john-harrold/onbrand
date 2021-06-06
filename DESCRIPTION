@@ -25,6 +25,7 @@ Imports:
   rlang,
   yaml
 Suggests: 
-    knitr, 
-    rmarkdown,
-    testthat
+  knitr, 
+  markdown,
+  rmarkdown,
+  testthat
