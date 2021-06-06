@@ -20,11 +20,13 @@
 #' \item{msgs} Vector of messages indicating any errors that were encountered
 #'}
 #'@examples
-#'obnd = read_template(template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
-#'                     mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+#'obnd = read_template(
+#'       template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
+#'       mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
 #'
-#'obnd = read_template(template = file.path(system.file(package="onbrand"), "templates", "report.docx"),
-#'                     mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+#'obnd = read_template(
+#'       template = file.path(system.file(package="onbrand"), "templates", "report.docx"),
+#'       mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
 #'
 read_template = function(template    = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
                          mapping     = file.path(system.file(package="onbrand"), "templates", "report.yaml"),

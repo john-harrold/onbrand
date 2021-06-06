@@ -68,8 +68,9 @@ Similarly, if the \code{content_type} is defined as \code{list}, you
 cannot use a \code{text} type.
 }
 \examples{
-obnd = read_template(template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
-                     mapping = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+obnd = read_template(
+      template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
+      mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
 
 obnd = report_add_slide(obnd,
  template = "content_text", 

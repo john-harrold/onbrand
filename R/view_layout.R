@@ -64,7 +64,7 @@ view_layout = function(template    = file.path(system.file(package="onbrand"), "
 
       # Removing any slides that are present in the file
       while(length(rpt)>0){
-        rpt <- remove_slide(rpt, 1)
+        rpt <- officer::remove_slide(rpt, 1)
       }
       
       # Pulling out all of the layouts stored in the template

@@ -11,8 +11,9 @@
 #'@return onbrand object with template previews added and any messages passed
 #'along
 #'@examples
-#' obnd = read_template(template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
-#'                       mapping = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+#' obnd = read_template(
+#'    template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
+#'    mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
 #' obnd = preview_template(obnd)
 #' # JMH add Word example
 preview_template = function(obnd, verbose=TRUE){

@@ -36,10 +36,12 @@ that information, checks to make sure the mapping information is correct and
 then returns an onbrand object.
 }
 \examples{
-obnd = read_template(template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
-                    mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+obnd = read_template(
+      template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
+      mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
 
-obnd = read_template(template = file.path(system.file(package="onbrand"), "templates", "report.docx"),
-                    mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+obnd = read_template(
+      template = file.path(system.file(package="onbrand"), "templates", "report.docx"),
+      mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
 
 }

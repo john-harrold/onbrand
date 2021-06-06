@@ -1,6 +1,3 @@
-
-#-----------------------------------------------------------
-#fetch_report_format
 #'@export
 #'@title Fetch The Specified Report Formatting Information
 #'@description Returns a list the default font format for the report element

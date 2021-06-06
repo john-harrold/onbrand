@@ -58,8 +58,9 @@
 #'@seealso \code{\link{add_pptx_ph_content}}
 #'
 #'@examples
-#'obnd = read_template(template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
-#'                      mapping = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+#'obnd = read_template(
+#'       template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
+#'       mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
 #'
 #'obnd = report_add_slide(obnd,
 #'  template = "content_text", 

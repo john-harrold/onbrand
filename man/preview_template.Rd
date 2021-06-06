@@ -22,8 +22,9 @@ Takes an onbrand object with a loaded template and populates
 the template with the elements from the mapping file.
 }
 \examples{
-obnd = read_template(template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
-                      mapping = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+obnd = read_template(
+   template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
+   mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
 obnd = preview_template(obnd)
 # JMH add Word example
 }
