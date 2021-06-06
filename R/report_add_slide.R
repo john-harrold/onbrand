@@ -141,25 +141,19 @@ report_add_slide = function (obnd,
   #-------
   # If all that above checks out then we add the reporting elements
   if(isgood){
-
-    # Pulling the report out of the obnd object to make working with things
-    # easier
-    tmprpt = obnd[["rpt"]]
-
     # First we add the new slide according to the specified template
-    tmprpt = officer::add_slide(x      = tmprpt, 
+    obnd[["rpt"]] = officer::add_slide(x      = obnd[["rpt"]],
                        layout = template,
                        master = obnd[["meta"]][["rpptx"]][["master"]])
       
     # Now we walk through each specified placeholder and add it
     for(phname in names(elements)){
-      tmprpt = add_pptx_ph_content(rpt = tmprpt,
+      obnd = add_pptx_ph_content(obnd = obnd,
                  content      = elements[[phname]][["content"]], 
                  content_type = elements[[phname]][["type"]], 
-                 ph_label     = td[[phname]][["ph_label"]])
+                 ph_label     = td[[phname]][["ph_label"]],
+                 verbose      = verbose)
     }
-    # putting the report back in the obnd object
-    obnd[["rpt"]] = tmprpt
   }
   #-------
   # If errors were encountered we make sure that the state of the reporting

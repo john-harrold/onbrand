@@ -2,55 +2,58 @@
 #'@title Fetch The Specified Report Formatting Information
 #'@description Returns a list the default font format for the report element
 #'
-#'@param cfg ubiquity system object    
-#'@param rptname report name initialized with \code{system_report_init}
-#'@param element report element to fetch: for Word reports it can be 
-#' "default" (default),       "Normal",        "Code",  "TOC",          
-#' "Heading_1",  "Heading_2", "Heading_3", "Table", "Table_Labels",
-#' "Table_Caption", "Figure",  and  "Figure_Caption"
+#'@param obnd onbrand report object
+#'@param format_name Name of report format to fetch; this is defined in the md_def
+#'section for the given report type (\code{"default"})
 #'
-#'@return list of current parameter gauesses
-fetch_report_format <- function(cfg, rptname="default", element="Default"){
+#'@return list containing the following elements
+#'\itemize{
+#'\item{isgood} Boolean variable indicating success or failure
+#'\item{msgs} Vector of messages
+#'\item{format_details} List containing the format details for the specified
+#'foramt_name
+#'}
+#'@examples
+#' obnd = read_template(template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
+#'                       mapping = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+#' 
+#' fr = fetch_report_format(obnd)
+fetch_report_format <- function(obnd, format_name="default", verbose=TRUE){
 
-default_format = NULL
-isgood = TRUE
+  isgood         = TRUE
+  msgs           = c()
+  format_details = NULL
 
-if(cfg[["reporting"]][["enabled"]]){
-  if(element %in% names(cfg[["reporting"]][["reports"]][[rptname]][["meta"]][["md_def"]])){
-    default_format = cfg[["reporting"]][["reports"]][[rptname]][["meta"]][["md_def"]][[element]]
-  } else if(!(rptname %in% names(cfg[["reporting"]][["reports"]]))){
+  if(!obnd[["isgood"]]){
     isgood = FALSE
-    vp(cfg, paste("Error: The report name >", rptname,"< not found", sep=""))
-  } else if(!(element %in% names(cfg[["reporting"]][["reports"]][[rptname]][["meta"]][["md_def"]]))){
-    isgood = FALSE
-    vp(cfg, paste("Error: The report element >", element,"< not found", sep=""))
-  } 
-} else {
-  isgood = FALSE
-  vp(cfg, "Error: Reporting not enabled")
-}
-
-# If we failed to get the report element formatting for the rptname we try to
-# pull a default ubiquity format:
-if(!isgood){
-  # First we try the word format
-  if(element %in% names(cfg[["reporting"]][["meta_docx"]][["md_def"]])){
-    default_format = cfg[["reporting"]][["meta_docx"]][["md_def"]][[element]]
-    vp(cfg, paste("Returning default format for Word element >", element,"< for ubiquity default document", sep=""))
-  }else if(element %in% names(cfg[["reporting"]][["meta_pptx"]][["md_def"]])){
-  # Then we try the powerpoint format
-    default_format = cfg[["reporting"]][["meta_pptx"]][["md_def"]][[element]]
-    vp(cfg, paste("Returning default format for PowerPoint element >", element,"< for ubiquity default document", sep=""))
-
-  } else {
-    vp(cfg, paste("Unable to find formatting for element >", element,"< in either Word or Powerpoint default ubiquity documents", sep=""))
-    vp(cfg, "Returning NULL")
+    msgs = c(msgs, "Bad onbrand object supplied")
   }
-  vp(cfg, "fetch_report_format()")
-}
+
+  if(obnd[["rpttype"]] == "PowerPoint"){
+    meta_section = "rpptx"
+  } else if(obnd[["rpttype"]] == "Word"){
+    meta_section = "rdocx"
+  }
+
+  # This should contain all the markdown defaults for the current report type
+  md_def = obnd[["meta"]][[meta_section]][["md_def"]]
+
+  if(format_name %in% names(md_def)){
+    format_details = md_def[[format_name]]
+  } else {
+    msgs = c(msgs, paste0("The format_name >", format_name, "< was not found in the "))
+    msgs = c(msgs, paste0(obnd[["rpttype"]], " section >", meta_section, "< of the mapping file:"))
+    msgs = c(msgs, paste0("  ", obnd[["mapping"]]))
+  }
+
+  # Dumping the messages if verbose is turned on:
+  if(verbose & !is.null(msgs)){
+    message(paste(msgs, collapse="\n"))
+  }
 
 
   res = list(isgood         = isgood,
-             default_format = default_format)
+             msgs           =  msgs,
+             format_detials = format_details)
 res}
 

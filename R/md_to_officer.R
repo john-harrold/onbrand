@@ -4,8 +4,8 @@
 #'@param str     string containing Markdown can contain the following elements:
 #' \itemize{
 #'  \item paragraph:   two or more new lines creates a paragraph
-#'  \item bold:        can be either \code{"*text in bold*"} or \code{"_text in bold_"}
-#'  \item italics:     can be either \code{"**text in italics**"} or \code{"__text in italics__"}
+#'  \item bold:        can be either \code{"**text in bold**"} or \code{"__text in bold__"}
+#'  \item italics:     can be either \code{"*text in italics*"} or \code{"_text in italics_"}
 #'  \item subscript:   \code{"Normal~subscript~"} 
 #'  \item superscript: \code{"Normal^superscript^"} 
 #'  \item color:       \code{"<color:red>red text</color>"} 
@@ -59,11 +59,11 @@ pgraphs = unlist(base::strsplit(str, split="(\r\n|\r|\n){2,}"))
 
 
 md_info = data.frame(
-  md_name = c( "subscript",         "superscript",     "bold_us",  "bold_st",     "italic",            "color",                     "shading_color",                     "font_family"             ),
-  pattern = c( "~.+?~",             "\\^.+?\\^",       "_.+?_",    "\\*.+?\\*",   "\\%\\%.+?\\%\\%",   "<color:\\S+?>.+?</color>",  "<shade:\\S+?>.+?</shade>",          "<ff:\\S+?>.+?</ff>"      ), 
-  start   = c( "~",                 "\\^",             "_",        "\\*",         "\\%\\%",            "<color:\\S+?>",             "<shade:\\S+?>",                     "<ff:\\S+?>"              ),
-  end     = c( "~",                 "\\^",             "_",        "\\*",         "\\%\\%",            "</color>",                  "</shade>",                          "</ff>"                   ),
-  prop    = c( "vertical.align",    "vertical.align",  "bold",     "bold",        "italic",            "color",                     "shading_color",                     "font.family"             ))
+  md_name = c( "subscript",       "superscript",     "italic_us",  "italic_st",   "bold",              "color",                     "shading_color",                     "font_family"             ),
+  pattern = c( "~.+?~",           "\\^.+?\\^",       "_.+?_",      "\\*.+?\\*",   "\\%\\%.+?\\%\\%",   "<color:\\S+?>.+?</color>",  "<shade:\\S+?>.+?</shade>",          "<ff:\\S+?>.+?</ff>"      ), 
+  start   = c( "~",               "\\^",             "_",          "\\*",         "\\%\\%",            "<color:\\S+?>",             "<shade:\\S+?>",                     "<ff:\\S+?>"              ),
+  end     = c( "~",               "\\^",             "_",          "\\*",         "\\%\\%",            "</color>",                  "</shade>",                          "</ff>"                   ),
+  prop    = c( "vertical.align",  "vertical.align",  "italic",     "italic",      "bold",              "color",                     "shading_color",                     "font.family"             ))
 
 
 pos_start = c()
@@ -227,16 +227,16 @@ pgraphs_parse = list()
           md_prop  = as.character(md_info[md_info$md_name == md_name, ]$prop)
       
           # Setting properties based on the type of markdown selected
-          if(md_name == "bold_st" | md_name == "bold_us"){
-            tmp_props = c(tmp_props, "bold = TRUE")
-            # subtracting the default value
-            tmp_def_props[["bold"]] = NULL
-          }
-      
-          if(md_name == "italic"){
+          if(md_name == "italic_st" | md_name == "italic_us"){
             tmp_props = c(tmp_props, "italic = TRUE")
             # subtracting the default value
             tmp_def_props[["italic"]] = NULL
+          }
+      
+          if(md_name == "bold"){
+            tmp_props = c(tmp_props, "bold = TRUE")
+            # subtracting the default value
+            tmp_def_props[["bold"]] = NULL
           }
       
           if(md_name == "superscript"){

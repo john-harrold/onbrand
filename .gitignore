@@ -5,3 +5,5 @@
 .Rbuildignore
 onbrand.Rproj
 tmp/
+vignettes/*.R
+vignettes/*.html

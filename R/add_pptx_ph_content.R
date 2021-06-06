@@ -2,11 +2,13 @@
 #'@title Populate Placeholder In Officer Report
 #'@description Places content in a PowerPoint placeholder for a given Officer document.
 #'
-#'@param rpt officer pptx object
+#'@param obnd onbrand report object
 #'@param content_type string indicating the content type 
 #'@param content   content
-#'@param type      placeholder type (\code{"body"})
 #'@param ph_label  placeholder location (text)
+#'@param verbose Boolean variable when set to TRUE (default) messages will be
+#'displayed on the terminal; Messages will be included in the returned onbrand
+#'object. 
 #'
 #'@return officer pptx object with the content added
 #'
@@ -39,7 +41,10 @@
 #'  }
 #'
 #'@seealso \code{\link{view_layout}}
-add_pptx_ph_content = function(rpt,content_type, content, ph_label){
+add_pptx_ph_content = function(obnd,content_type, content, ph_label, verbose=TRUE){
+
+    # Pulling the report out to make accessing it easier
+    rpt = obnd[["rpt"]]
 
     if(content_type == "text"){
       rpt = officer::ph_with(x=rpt,  location=officer::ph_location_label(ph_label=ph_label), value=content) 
@@ -146,21 +151,20 @@ add_pptx_ph_content = function(rpt,content_type, content, ph_label){
       # Processing markdown
       if(!is.null(header_format)){
         if(header_format == "md"){
-     #-------
-     # JMH fix this fetch_report_format thing
-     #    # Pulling out the default format for the Table element
-     #    default_format_table = system_fetch_report_format(cfg, rptname=rptname, element="Table_Labels")
-     #
-     #    for(cname in names(content[["table"]])){
-     #      # For each column name we run the header text through the markdown
-     #      # conversion to produce the as_paragraph output:
-     #      ft = flextable::compose(ft,
-     #                        j     = cname,                                                    
-     #                        part  = "header",                                                          
-     #                        value = md_to_oo(strs= header_list[[cname]], default_format=default_format_table)[["oo"]])
-     #    }
-     # /JMH
-     #-------
+          # Pulling out the default format for the Table element
+          ff_res               = fetch_report_format(obnd, format_name="Table_Labels", verbose=verbose)
+
+          # the actual format details:
+          default_format_table = ff_res[["format_details"]]
+      
+          for(cname in names(content[["table"]])){
+            # For each column name we run the header text through the markdown
+            # conversion to produce the as_paragraph output:
+            ft = flextable::compose(ft,
+                              j     = cname,                                                    
+                              part  = "header",                                                          
+                              value = md_to_oo(strs= header_list[[cname]], default_format=default_format_table)[["oo"]])
+          }
         }
       }
       #-------
@@ -187,4 +191,8 @@ add_pptx_ph_content = function(rpt,content_type, content, ph_label){
     else if(content_type == "flextable_object"){
       rpt = officer::ph_with(x=rpt,  location=officer::ph_location_label(ph_label=ph_label), value=content) 
     }
-return(rpt)}
+
+    # Pulling the report back in the obnd object
+    obnd[["rpt"]] = rpt
+
+return(obnd)}
