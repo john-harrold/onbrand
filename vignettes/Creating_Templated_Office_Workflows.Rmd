@@ -1,0 +1,20 @@
+---
+title: "Creating Templated Office Workflows"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Creating Templated Office Workflows}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+The ``officer`` package is used to generate all of the underlying PowerPoint and Word documents. 
+
+## PowerPoint
+Text

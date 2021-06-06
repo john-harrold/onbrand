@@ -1,0 +1,18 @@
+---
+title: "Custom Office Templates"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Custom Office Templates}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+## PowerPoint
+Text
