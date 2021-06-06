@@ -4,6 +4,8 @@
 #'
 #'@param obnd onbrand report object
 #'@param format_name Name of report format to fetch; this is defined in the md_def
+#'@param verbose Boolean variable when set to TRUE (default) messages will be
+#'displayed on the terminal; Messages will be included in the returned list.
 #'section for the given report type (\code{"default"})
 #'
 #'@return list containing the following elements
@@ -14,8 +16,9 @@
 #'foramt_name
 #'}
 #'@examples
-#' obnd = read_template(template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
-#'                       mapping = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+#' obnd = read_template(
+#'        template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
+#'         mapping = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
 #' 
 #' fr = fetch_report_format(obnd)
 fetch_report_format <- function(obnd, format_name="default", verbose=TRUE){

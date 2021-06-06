@@ -15,8 +15,8 @@ md_to_officer(
 \item{str}{string containing Markdown can contain the following elements:
 \itemize{
  \item paragraph:   two or more new lines creates a paragraph
- \item bold:        can be either \code{"*text in bold*"} or \code{"_text in bold_"}
- \item italics:     can be either \code{"**text in italics**"} or \code{"__text in italics__"}
+ \item bold:        can be either \code{"**text in bold**"} or \code{"__text in bold__"}
+ \item italics:     can be either \code{"*text in italics*"} or \code{"_text in italics_"}
  \item subscript:   \code{"Normal~subscript~"} 
  \item superscript: \code{"Normal^superscript^"} 
  \item color:       \code{"<color:red>red text</color>"} 

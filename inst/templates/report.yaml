@@ -213,7 +213,6 @@ rdocx:
       font.family:            Calibri (Headings)
       vertical.align:         baseline
       shading.color:          transparent
-# JMH look into this:
     Table:
       color:                 black
       font.size:             12

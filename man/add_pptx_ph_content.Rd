@@ -4,10 +4,10 @@
 \alias{add_pptx_ph_content}
 \title{Populate Placeholder In Officer Report}
 \usage{
-add_pptx_ph_content(rpt, content_type, content, ph_label)
+add_pptx_ph_content(obnd, content_type, content, ph_label, verbose = TRUE)
 }
 \arguments{
-\item{rpt}{officer pptx object}
+\item{obnd}{onbrand report object}
 
 \item{content_type}{string indicating the content type}
 
@@ -15,7 +15,9 @@ add_pptx_ph_content(rpt, content_type, content, ph_label)
 
 \item{ph_label}{placeholder location (text)}
 
-\item{type}{placeholder type (\code{"body"})}
+\item{verbose}{Boolean variable when set to TRUE (default) messages will be
+displayed on the terminal; Messages will be included in the returned onbrand
+object.}
 }
 \value{
 officer pptx object with the content added

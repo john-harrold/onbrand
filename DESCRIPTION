@@ -16,10 +16,13 @@ LazyData: FALSE
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 Imports:
+  dplyr,
   flextable,
   ggplot2,
   magrittr,
   officer (>= 0.3.7),
+  stringr,
+  rlang,
   yaml
 Suggests: 
     knitr, 

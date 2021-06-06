@@ -4,21 +4,33 @@
 \alias{fetch_report_format}
 \title{Fetch The Specified Report Formatting Information}
 \usage{
-fetch_report_format(cfg, rptname = "default", element = "Default")
+fetch_report_format(obnd, format_name = "default", verbose = TRUE)
 }
 \arguments{
-\item{cfg}{ubiquity system object}
+\item{obnd}{onbrand report object}
 
-\item{rptname}{report name initialized with \code{system_report_init}}
+\item{format_name}{Name of report format to fetch; this is defined in the md_def}
 
-\item{element}{report element to fetch: for Word reports it can be 
-"default" (default),       "Normal",        "Code",  "TOC",          
-"Heading_1",  "Heading_2", "Heading_3", "Table", "Table_Labels",
-"Table_Caption", "Figure",  and  "Figure_Caption"}
+\item{verbose}{Boolean variable when set to TRUE (default) messages will be
+displayed on the terminal; Messages will be included in the returned list.
+section for the given report type (\code{"default"})}
 }
 \value{
-list of current parameter gauesses
+list containing the following elements
+\itemize{
+\item{isgood} Boolean variable indicating success or failure
+\item{msgs} Vector of messages
+\item{format_details} List containing the format details for the specified
+foramt_name
+}
 }
 \description{
 Returns a list the default font format for the report element
+}
+\examples{
+obnd = read_template(
+       template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
+        mapping = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+
+fr = fetch_report_format(obnd)
 }

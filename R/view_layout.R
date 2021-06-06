@@ -8,7 +8,10 @@
 #'@importFrom officer footers_replace_all_text headers_replace_all_text layout_properties layout_summary ph_location_type
 #'@importFrom officer ph_location_label ph_with read_pptx read_docx shortcuts  slip_in_seqfield slip_in_text
 #'@importFrom officer styles_info unordered_list
+#'@importFrom stringr str_locate_all
+#'@importFrom dplyr filter
 #'@importFrom yaml read_yaml
+#'@importFrom rlang .data
 
 #'@export
 #'@title Generate Annotated Layout for Report Templates

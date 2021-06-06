@@ -113,7 +113,7 @@ read_template = function(template    = file.path(system.file(package="onbrand"),
         for(ph in phs){
           phele = meta[['rpptx']][["templates"]][[lay_found]][[ph]]
 
-          tmplp = dplyr::filter(lp, ph_label == phele[["ph_label"]])
+          tmplp = dplyr::filter(lp, .data[["ph_label"]] == phele[["ph_label"]])
 
           if(!(nrow(tmplp) == 1)){
             isgood = FALSE
