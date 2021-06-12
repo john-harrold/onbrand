@@ -63,6 +63,7 @@ preview_template = function(obnd, verbose=TRUE){
       }
     } else if(rpttype == "Word"){
       # JMH add word stuff here
+     browser() 
     }
   }
     

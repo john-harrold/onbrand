@@ -8,7 +8,7 @@
 #'@param mapping Name of yaml file with configuration information
 #'@param verbose Boolean variable when set to TRUE (default) messages will be
 #'displayed on the terminal; Messages will be included in the returned onbrand
-#'object. 
+#'object.
 #'
 #'@return onbrand object which is a list with the following elements:
 #' \itemize{
@@ -39,6 +39,8 @@ read_template = function(template    = file.path(system.file(package="onbrand"),
   isgood  = fr[["isgood"]]
   msgs    = fr[["msgs"]]
   rpttype = fr[["rpttype"]]
+  rptobj  = fr[["rptobj"]]
+  rptext  = fr[["rptext"]]
 
 
   # these are required styles and their defaults
@@ -62,7 +64,7 @@ read_template = function(template    = file.path(system.file(package="onbrand"),
                   "      font.family:           Helvetica",
                   "      vertical.align:        baseline",
                   "      shading.color:         transparent"))
-  
+
 
   # Reading in the yaml file:
   if(file.exists(mapping)){
@@ -185,6 +187,8 @@ read_template = function(template    = file.path(system.file(package="onbrand"),
   res = list(isgood = isgood,
              rpt    = rpt,
              rpttype= rpttype,
+             rptext = rptext,
+             rptobj = rptobj,
              mapping= mapping,
              msgs   = msgs,
              meta   = meta)

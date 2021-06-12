@@ -1,6 +1,6 @@
 #'@export
 #'@title Populate Placeholder In Officer Report
-#'@description Places content in a PowerPoint placeholder for a given Officer document.
+#'@description Places content in a PowerPoint placeholder for a given officer document.
 #'
 #'@param obnd onbrand report object
 #'@param content_type string indicating the content type 

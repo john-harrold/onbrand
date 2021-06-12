@@ -1,6 +1,6 @@
 #'@export
 #'@title Parse Markdown for Officer
-#'@description Parses text in Markdown format and returns fpar and as_paragraph command strings to be used with Officer
+#'@description Parses text in Markdown format and returns fpar and as_paragraph command strings to be used with officer
 #'@param str     string containing Markdown can contain the following elements:
 #' \itemize{
 #'  \item paragraph:   two or more new lines creates a paragraph
