@@ -57,5 +57,5 @@ elements:
 }
 }
 \description{
-Parses text in Markdown format and returns fpar and as_paragraph command strings to be used with Officer
+Parses text in Markdown format and returns fpar and as_paragraph command strings to be used with officer
 }

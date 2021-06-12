@@ -7,12 +7,146 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+
+# Colors used in graphics to describe different elements
+c_orange = "ffa500ff"
+c_green  = "44aa00ff"
+c_blue   = "0000ffff"
+c_purple = "7137c8ff"
+
+ex_yaml = "tree colors:
+  roots:
+    - white 
+    - brown
+  trunk:
+    branches:
+      leaves:  green
+      flowers: red
+    bark: brown"
+ex_yaml_tmpfile =  tempfile(fileext=".yaml")
+fileConn<-file(ex_yaml_tmpfile)
+writeLines(ex_yaml, fileConn)
+close(fileConn)
+
+ex_yaml_read = yaml::read_yaml(ex_yaml_tmpfile)
 ```
 
 ## Introduction
 
+The main purpose of onbrand is to create an abstraction layer that allows for the same reporting workflow to be used with different template documents. In order to do this, the abstraction information needs to be provided in a ``yaml`` configuration file. The process will be detailed below, but at a high level it involves the following steps:
+
+1. Create your office template (PowerPoint or Word) with the necessary elements. For PowerPoint this involves creating slide masters with the layouts you intend to use. For Word you will need to create a document with the styles and table formats appropriate for your reporting. 
+2. Use the ``view_layout`` function to create a layout file for your template. This will creatte documents that contain examples of each slide (for PowerPoint) or style/table format (for Word) in the file.
+3. Next you will need to create a ``yaml`` mapping file to provide the necessary abstraction layer. This is done by using the files produced by ``view_layout()`` to map names used internally by the document to short human-readable names.
+4. Lastly you will want to test your mapping file with ``preview_template``
+
+The following sections describe this process in detail for both Word and PowerPoint documents. Before you get started, you should copy the examples into your current working directory. We'll use these below:
+
+```{r, eval=FALSE}
+library(onbrand)
+file.copy(system.file(package="onbrand","examples","example.pptx"), ".", overwrite = TRUE)
+file.copy(system.file(package="onbrand","examples","example.docx"), ".", overwrite = TRUE)
+file.copy(system.file(package="onbrand","examples","example.yaml"), ".", overwrite = TRUE)
+```
+
+This will create the following files:
+
+- ``example.pptx`` - example PowerPoint template
+- ``example.docx`` - example Word template
+- ``example.yaml`` - example ``yaml`` mapping file (shown at the bottom)
+
+### Mapping and the ``yaml`` file format
+
+Before we start discussing how to create templates we need to talk a little bit
+about the ``yaml`` file format. If you already understand this, then you can
+skip ahead to the sections on PowerPoint or Word. If you are unfamiliar, it is
+used here as a method for describing information in a hierarchical manner using
+key/value pairs. Consider the following example where the colors of different
+parts of a tree are listed in a hierarchy based on where they are on the tree:
+
+```{r echo=FALSE, comment='', message=TRUE, eval=TRUE}
+cat(readLines(ex_yaml_tmpfile) , sep="\n")
+```
+
+This file lays out key/value pairs based on the formatting of the file. The key is followed by a colon and a space `: `. And the value follows the space. If the value also has a colon then it's a key for a nested value. The main key here is ``tree colors``, and for this there are two values: `roots` and `trunk`. The hierarchy comes from the spacing. Both `roots` and `trunk` are indented two spaces. Both of these values (`roots` and `trunk`) are also keys themselves because they end with a colon. The color values associated with roots are `white` and `brown`. The `trunk` can have `branches` and `bark`. Those are values of the key `trunk`,  again because the `branches` and `bark` are indented two more spaces than `trunk`. There is more that can go into a `yaml` file, but this should be enough to help you understand how to create mapping files for `onbrand`.
+
 ## PowerPoint
+
+The first thing you do is create a PowerPoint template with slide masters for the different layouts you want to use. In this example we just have two slide masters: a title slide and a slide with two columns of information. When you make slide masters make sure you give them descriptive names. These names will be used to refer to them within scripts. As you create placeholders in slide masters, PowerPoint will assign names to those placeholders. You need to create an annotated slide deck that will reveal the names assigned to the placeholders. You do this with the ``view_layout`` function:
+
+```{r eval=FALSE}
+library(onbrand)
+vlres = view_layout(template    = "example.pptx", 
+                    output_file = "example_layout.pptx")
+```
+
+This will create the file `example_layout.pptx`. There will be a slide for each master in the template. One each slide the name of the master will be indicated by the layout in the upper right corner. Each placeholder will be shown and is identified by the placeholder label (`ph_label`).  In the yaml file there will be a key for mapping PowerPoint templates. This key is called `rpptx` and it will have three values which are also keys:
+
+- `master` - Holds the slide master
+- `templates` - Has an element for each master you want to use in the template
+- `md_def` - Default formatting for when the markdown content type is being used
+
+### Mapping PowerPoint masters
+
+Within the hierarchy of `rpptx: templates:` there is a value for each master. This is the value of the layout for each master. In this example the first master has a layout called `title` and the second master layout is called `two_col`. For each laout you need to add a value for each placeholder you want to use. The key you give for that placeholder is the name you want to use when referencing that placholder at the scripting level. Each placholder will have two value pairs below it. The `ph_label` maps to the ph_label from the annotated layout. The `content_type` should be either `text` or `list` depending on whether the placeholder contains text or list data. The figure below shows how the annotated layout relates to the `yaml` mapping file.
+
+```{r, echo=FALSE, fig.cap="Relationship between slide master names, placeholders, and content type and yaml mapping elements", out.width = '600px'}
+knitr::include_graphics(system.file(package="onbrand", "graphics", "example_layout_yaml_pptx.png"))
+```
+
+**Note: You only have to define mapping information for slide masters you want to access in R. You can have as many masters defined in the template as you want and only use a small subset in R.**
+
+### Defining markdown defaults
+
+Now you need to define the defaults for rendering components with markdown. For this you need to create elements in the following hierarchy:
+```
+rpptx:
+  md_def:
+    default:      
+      color:                 black
+      font.size:             12
+      bold:                  TRUE
+      italic:                FALSE
+      underlined:            FALSE
+      font.family:           Helvetica
+      vertical.align:        baseline
+      shading.color:         transparent
+    Table_Labels:
+      color:                 black
+      font.size:             12
+      bold:                  TRUE
+      italic:                FALSE
+      underlined:            FALSE
+      font.family:           Helvetica
+      vertical.align:        baseline
+      shading.color:         transparent
+```
+
+For PowerPoint templates you need to define to sections: `default` and `Table_Labels`. The `default` is used when rendering general markdown text. The `Table_Labels` is used when markdown is present in table elements like headers. For each of these you need to define the different aspects of fonts. If you're unsure, just leave them with the defaults above. 
+
+### Testing and Previewing your template
+
+In R you can read your template by supplying the template and mapping file names:
+
+```{r eval=FALSE}
+ obnd = read_template(template = "example.pptx", 
+                      mapping  = "example.yaml")
+```
+
+When a template is read, there will be checks for basic errors. Look for messages in the console to help you debug any issues you may have. Now you can test the template by using `preview_template()`. Save the obnd file and view it to make sure the mappings are what you expect.
+
+```{r eval=FALSE}
+obnd = preview_template(obnd)
+save_report(obnd, "example_preview.pptx")
+```
+
+## Word
 Text
+
+## Maping file
+```{r echo=FALSE, comment='', message=TRUE, eval=TRUE}
+cat(readLines(file.path(system.file(package="onbrand"), "examples", "example.yaml")) , sep="\n")
+```

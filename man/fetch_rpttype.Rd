@@ -4,17 +4,20 @@
 \alias{fetch_rpttype}
 \title{Determines Type of Report Template}
 \usage{
-fetch_rpttype(
-  template = file.path(system.file(package = "onbrand"), "templates", "report.pptx")
-)
+fetch_rpttype(template = NULL, verbose = TRUE)
 }
 \arguments{
 \item{template}{Name of PowerPoint or Word file}
+
+\item{verbose}{Boolean variable when set to TRUE (default) messages will be
+displayed on the terminal; Messages will be included in the returned list.}
 }
 \value{
 List with the following elements
 \itemize{
 \item{rpttype} Either Word, PowerPoint or Unknown
+\item{rptext}  Either docx, pptx, or Unknown
+\item{rptobj}  Either rdocx, rpptx, or Unknown
 \item{isgood} Boolean variable indicating success or failure
 \item{msgs} Vector of messages
 }

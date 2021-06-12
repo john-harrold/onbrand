@@ -10,11 +10,216 @@ vignette: >
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(onbrand)
 ```
 
 ## Introduction
 
-The ``officer`` package is used to generate all of the underlying PowerPoint and Word documents. 
+The ``officer`` package is used to generate all of the underlying PowerPoint and Word documents. This purpose of `onbrand` is to provide an abstraction layer for the functions of ``officer``. This involves providing a consistent customizable method to interact with templates as well as a form of markdown to control the formatting of text. 
+
+This vignette focuses on how to construct workflows using templates. To create your own template see the "Custom Office Templates" vignette. Here we will use the internal templates embedded in the package. For each document type you will need a template file (e.g. PowerPoint or Word document), and a mapping file (`yaml` document). The mapping file can contain information for both PowerPoint and Word templates. The built in mapping file for this example is show at the bottom of the vignette. 
 
 ## PowerPoint
-Text
+
+### Loading your presentation template
+
+To create a new new `onbrand` object for a PowerPoint document you need to use `read_template()`. This requires that you  supply the path to your PowerPoint document and the mapping file. This example points to files within the `onbrand` package:
+
+```{r}
+obnd = read_template(
+       template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
+       mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+```
+
+### Adding content
+
+
+The mapping file below, and any mapping file you create, should use names for slide masters and placeholders that are descriptive. Once you've read a template into an `onbrand` object, you can add content using `report_add_slide()`. The following will add a slide using the templated `title_slide` layout. The content of the placeholders for that slide is specified using the `elements` argument. This is a list with placeholder names taken from the mapping file. For each placeholder you need to specify the content and the type of content: 
+
+```{r}
+obnd = report_add_slide(obnd,
+  template = "title_slide",
+  elements = list(
+     title     = list( content = "Onbrand PowerPoint Example",
+                       type    = "text"),
+     sub_title = list( content = "Workflow Abstraction",
+                       type    = "text")))
+```
+
+For a detailed description of the different types of content and the expected format see the help for the `add_pptx_ph_content()` function. Briefly you can specify the following content types:
+
+- `"text"` - a string of text (only possible when the type in the mapping file is text)
+- `"list"` - list of information (only possible when the type in the mapping file is list)
+- `"imagefile"` - string containing the path to an image file 
+- `"ggplot"` -  a ggplot object
+- `"table"` - list containing table content and other options
+- `"flextable"` - list containing flextable content and other options
+- `"flextable_object"` - user-defined flextable object
+
+#### Lists
+
+The previous example showed how to add text content. Note that `text` type can only be used with placeholders where `text` is the type specified in the mapping file. The way lists are created is by defining a vector with paired content of the format `c("indent level", "content", "indent level", "content)`. Where `indent level` indicates a numeric value starting at 1. So we could define the following list content:
+
+```{r}
+bl = c("1", "This is first level bullet",
+       "2", "sub-bullet",
+       "3", "sub-sub-bullet",
+       "1", "Another first level bullet")
+```
+
+That content can then be added to any placeholder that has `list` as the type in the mapping file:
+
+```{r}
+obnd = report_add_slide(obnd,
+  template = "content_list",
+  elements = list(
+     title        = list( content = "Adding List Content",
+                          type    = "text"),
+     content_body = list( content = bl,
+                          type    = "list")))
+```
+
+#### Figures
+
+Figures can be added in two ways: either being read in from an image file (e.g. a png) or as a ggplot object. Generally the ggplot object is preferred as it will size automatically according to the dimensions of the placeholder. First lets create some images:
+
+```{r}
+library(ggplot2)
+p = ggplot() + annotate("text", x=0, y=0, label = "picture example")
+imgfile = tempfile(pattern="image", fileext=".png")
+ggsave(filename=imgfile, plot=p, height=5.15, width=9, units="in")
+```
+
+So now the variable `p` contains the ggplot object and `imgfile` is a character variable pointing to a png file containing that image. 
+
+```{r}
+obnd = report_add_slide(obnd,
+  template = "two_content_header_text",
+  elements = list(
+     title                = list(content  = "Adding Images Content",
+                                 type     = "text"),
+     content_left_header  = list(content  ="ggplot object",
+                                 type     = "text"),
+     content_left         = list(content  = p,
+                                 type     = "ggplot"),
+     content_right_header = list(content  ="image file",
+                                 type     = "text"),
+     content_right        = list(content  = imgfile,
+                                 type     = "imagefile")))
+```
+
+
+#### Tables
+
+Table can be supplied in three different ways, each provding increasing level of control over the output:
+
+- `table` - This expects a list with table data and other attributes and uses the underlying tables in PowerPoint
+- `flextable` - This is a list similar to the `table` above but insted of using the PowerPoint tables, the table is created using the `flextable` package.
+- `flextable_object` - This allows you to create a flextable on your own and use it directly. 
+
+Lets start by creating a simple data frame:
+
+```{r}
+tdf =    data.frame(Parameters = c("Length", "Width", "Height"),
+                    Values     = 1:3,
+                    Units      = c("m", "m", "m") )
+```
+
+Using the `table` content type, we just need to provide a list with an element called `table` that contains the data frame. You can add list elements to display header information as well. See the help for `add_pptx_ph_content()` for details.
+
+```{r}
+tab_cont = list(table = tdf)
+obnd = report_add_slide(obnd,
+  template = "content_text", 
+  elements = list(
+     title         = list( content      = "Tables",
+                           type         = "text"),
+     sub_title     = list( content      = "Creating PowerPoint Table",
+                           type         = "text"),
+     content_body  = list( content      = tab_cont,
+                           type         = "table")))
+```
+
+Sometimes you may want to have a little more control over the tabular output. The `flextable` type can be used for this. What it does is it allows you to supply the data and inforamtion about the flextable to be created, and it will create the flextable for you. 
+
+```{r}
+tab_ft = list(table         = tdf,
+              header_format = "md",
+              header_top    = list(Parameters = "Name^2^",
+                                   Values     = "*Value*",
+                                   Units      = "**Units**"),
+              cwidth        = 0.8,
+              table_autofit = TRUE,
+              table_theme   = "theme_zebra")
+```
+
+Here we are specifying that we want the header format of the table to be rendered as markdown `"md"` and we're specfyign that the top header (there can be top, middle and bottom) should be overwritten (for more on formatting with markdown see the markdown section below). Next we specify some other details like the column width. Again the help for `add_pptx_ph_content()` should cover the details of the list elements that can be supplied.
+
+Alternatively you can create a flextable object directly using the `flextable` package. There is an enormous amount of flexibility in the `flextable` package. Some of these can be seen in the Word examples below, but you should see the documentation for that package to get a feel for what is possible.
+
+```{r}
+tab_fto = flextable::flextable(tdf)                      
+```
+
+You can then add these (flextable list: `tab_ft`, flextable object: `tab_fto`) to any of the placeholders on a slide:
+
+```{r}
+obnd = report_add_slide(obnd,
+  template = "two_content_header_text",
+  elements = list(
+     title                 = list( content      = "Tables",
+                                   type         = "text"),
+     sub_title             = list( content      = "flextables can be created in two ways",
+                                   type         = "text"),
+     content_left_header   = list( content      = 'using "flextable"',
+                                   type         = "text"),
+     content_left          = list( content      = tab_ft,
+                                   type         = "flextable"),
+     content_right_header  = list( content      = 'using "flextable_objecct"',
+                                   type         = "text"),
+     content_right         = list( content      = tab_fto,
+                                   type         = "text")))
+```
+
+### Saving presentations 
+
+Once you are done adding content you can save the presentation to a file:
+
+```{r}
+save_report(obnd, tempfile(fileext = ".pptx"))
+```
+
+Which should look something like this:
+
+```{r, echo=FALSE, fig.cap="Relationship between slide master names, placeholders, and content type and yaml mapping elements", out.width = '600px'}
+knitr::include_graphics(system.file(package="onbrand", "graphics", "ppt_workflow_output.png"))
+```
+
+
+## Word
+
+```{r}
+obnd = read_template(
+       template = file.path(system.file(package="onbrand"), "templates", "report.docx"),
+       mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+```
+
+## Formatting with markdown
+
+In `officer` you can change formatting in text using `fpar` and `as_pargraph`. There are situations where this is less than ideal. For example if you want to take formatted user input from a Shiny app, it may not be practical to have them supply code this way. 
+
+To make formatting a little easier, `onbrand` provides the ability to use markdown. This can be seen above in flextable objects for PowerPoint content and general content for Word. For a list of allowed markdown see the help for `md_to_officer()`. 
+
+If you want to use the markdown functionality outside of `onbrand` you can use the two functions:
+
+- `md_to_officer` - This function will take the markdown text and convert that into strings of text containing officer commands in `fpar` and `as_paragraph` commands. You simply need to use the `eval` command to execute them.
+- `md_to_oo` - A function that wraps around `md_to_officer` and returns the `as_paragraph` result.
+
+## Accessing the `officer` object directly
+
+JMH
+
+# Maping file
+```{r echo=FALSE, comment='', message=TRUE, eval=TRUE}
+cat(readLines(file.path(system.file(package="onbrand"), "templates", "report.yaml")) , sep="\n")
+```
