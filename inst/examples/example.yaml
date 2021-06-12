@@ -1,0 +1,157 @@
+rpptx:
+  master: Office Theme
+  templates:
+    title:
+      title:
+        ph_label:     Title 1
+        content_type: text
+      sub_title:
+        ph_label:     Subtitle 2
+        content_type: text
+    two_col:
+      title:
+        ph_label:     Title 1
+        content_type: text
+      left_content:
+        ph_label:     Content Placeholder 2
+        content_type: text
+      right_content:
+        ph_label:     Content Placeholder 3
+        content_type: text
+  md_def:
+    default:      
+      color:                 black
+      font.size:             12
+      bold:                  TRUE
+      italic:                FALSE
+      underlined:            FALSE
+      font.family:           Helvetica
+      vertical.align:        baseline
+      shading.color:         transparent
+    Table_Labels:
+      color:                 black
+      font.size:             12
+      bold:                  TRUE
+      italic:                FALSE
+      underlined:            FALSE
+      font.family:           Helvetica
+      vertical.align:        baseline
+      shading.color:         transparent
+rdocx:
+  styles:
+    Normal:                   Normal
+    Code:                     Code
+    TOC:                      toc 1
+    Heading_1:                heading 1
+    Heading_2:                heading 2
+    Heading_3:                heading 3
+    Table:                    Table Grid
+    Table_Caption:            table title
+    Figure_Caption:           graphic title
+  formatting:
+    Table_Caption_Location:   top
+    Figure_Caption_Location:  bottom
+    Figure_Width:             6.0
+    Figure_Height:            5.0
+  md_def:
+    # For each style above you need a default specification here. You will
+    # also need the 'default' specification, generally just a copy of Normal
+    default:
+      color:                  black
+      font.size:              12
+      bold:                   FALSE
+      italic:                 FALSE
+      underlined:             FALSE
+      font.family:            Cambria (Body)
+      vertical.align:         baseline
+      shading.color:          transparent
+    Table_Labels:
+      color:                 black
+      font.size:             12
+      bold:                  TRUE
+      italic:                FALSE
+      underlined:            FALSE
+      font.family:           Helvetica
+      vertical.align:        baseline
+      shading.color:         transparent
+    Normal:
+      color:                  black
+      font.size:              12
+      bold:                   FALSE
+      italic:                 FALSE
+      underlined:             FALSE
+      font.family:            Cambria (Body)
+      vertical.align:         baseline
+      shading.color:          transparent
+    Code:
+      color:                  black
+      font.size:              12
+      bold:                   FALSE
+      italic:                 FALSE
+      underlined:             FALSE
+      font.family:            Courier
+      vertical.align:         baseline
+      shading.color:          transparent
+    TOC:
+      color:                  black
+      font.size:              12
+      bold:                   FALSE
+      italic:                 FALSE
+      underlined:             FALSE
+      font.family:            Courier
+      vertical.align:         baseline
+      shading.color:          transparent
+    Heading_1:
+      color:                  black
+      font.size:              16
+      bold:                   TRUE
+      italic:                 FALSE
+      underlined:             FALSE
+      font.family:            Calibri (Headings)
+      vertical.align:         baseline
+      shading.color:          transparent
+    Heading_2:
+      color:                  black
+      font.size:              13
+      bold:                   TRUE
+      italic:                 FALSE
+      underlined:             FALSE
+      font.family:            Calibri (Headings)
+      vertical.align:         baseline
+      shading.color:          transparent
+    Heading_3:
+      color:                  black
+      font.size:              12
+      bold:                   TRUE
+      italic:                 FALSE
+      underlined:             FALSE
+      font.family:            Calibri (Headings)
+      vertical.align:         baseline
+      shading.color:          transparent
+    Table:
+      color:                 black
+      font.size:             12
+      bold:                  FALSE
+      italic:                FALSE
+      underlined:            FALSE
+      font.family:           Helvetica
+      vertical.align:        baseline
+      shading.color:         transparent
+    Table_Caption:
+      color:                 black
+      font.size:             12
+      bold:                  TRUE
+      italic:                TRUE
+      underlined:            FALSE
+      font.family:           Cambria (Body)
+      vertical.align:        baseline
+      shading.color:         transparent
+    Figure_Caption:
+      color:                 black
+      font.size:             12
+      bold:                  TRUE
+      italic:                TRUE
+      underlined:            FALSE
+      font.family:           Cambria (Body)
+      vertical.align:        baseline
+      shading.color:         transparent
