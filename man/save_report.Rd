@@ -34,5 +34,10 @@ obnd = read_template(
 
 save_report(obnd, tempfile(fileext = ".pptx"))
 
+obnd = read_template(
+      template = file.path(system.file(package="onbrand"), "templates", "report.docx"),
+      mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+
+save_report(obnd, tempfile(fileext = ".docx"))
 
 }

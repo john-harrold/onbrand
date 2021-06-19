@@ -180,7 +180,7 @@ read_template = function(template    = file.path(system.file(package="onbrand"),
           # Here we define the styles locally in terms of the user specified names
           for(def_style in names(req_doc_defs)){
             Word_style      = meta[["rdocx"]][["styles"]][[meta[["rdocx"]][["doc_def"]][[def_style]]]]
-            Word_style_type = dplyr::filter(lay_sum, style_name == Word_style)[["style_type"]]
+            Word_style_type = dplyr::filter(lay_sum, .data[["style_name"]] == Word_style)[["style_type"]]
             allowed_style_types = req_doc_defs[[def_style]]
             # If the word style type is not in the allowed types we flag it
             if(!(Word_style_type %in% allowed_style_types)){

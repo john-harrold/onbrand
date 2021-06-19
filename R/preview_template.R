@@ -83,7 +83,7 @@ preview_template = function(obnd, verbose=TRUE){
        # Style name used in the document:
        docx_style = template_styles[[user_style]]
        # type of style using Word docx terminology
-       docx_type   = dplyr::filter(lay_sum, style_name == docx_style)[["style_type"]]
+       docx_type   = dplyr::filter(lay_sum, .data[["style_name"]] == docx_style)[["style_type"]]
 
        tmp_text = paste0(user_style, " (onbrand name):", docx_style, " (Word name)")
        tab_example = data.frame( Number = c(1,2,3,4),

@@ -191,6 +191,7 @@ obnd = report_add_doc_content(obnd,
  content  = list(ft=tab_fto,
                  caption  = "Flextable object created by the user."))
 
-
+# Saving the report output
+save_report(obnd, tempfile(fileext = ".docx"))
 
 }

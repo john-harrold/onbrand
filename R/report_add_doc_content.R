@@ -249,7 +249,7 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
           # Style name used in the doc template:
           docx_style = template_styles[[style]]
           # # type of style using Word docx terminology
-          docx_type   = dplyr::filter(lay_sum, style_name == docx_style)[["style_type"]]
+          docx_type   = dplyr::filter(lay_sum, .data[["style_name"]] == docx_style)[["style_type"]]
 
           # Now we compare the docx_type against those allowed for the current
           # content type:
@@ -330,7 +330,7 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
           }
         }
         if(type == "ggplot"){
-          if(!is.ggplot(content[["image"]])){
+          if(!ggplot2::is.ggplot(content[["image"]])){
             msgs = c(msgs, paste("The image data found in >content$image< is not a ggplot object",sep=""))
             isgood = FALSE
           }
