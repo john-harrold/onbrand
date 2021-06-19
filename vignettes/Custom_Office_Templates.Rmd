@@ -1,8 +1,8 @@
 ---
-title: "Custom Office Templates"
+title: "Custom Templates"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Custom Office Templates}
+  %\VignetteIndexEntry{Custom Templates}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -71,7 +71,7 @@ parts of a tree are listed in a hierarchy based on where they are on the tree:
 cat(readLines(ex_yaml_tmpfile) , sep="\n")
 ```
 
-This file lays out key/value pairs based on the formatting of the file. The key is followed by a colon and a space `: `. And the value follows the space. If the value also has a colon then it's a key for a nested value. The main key here is ``tree colors``, and for this there are two values: `roots` and `trunk`. The hierarchy comes from the spacing. Both `roots` and `trunk` are indented two spaces. Both of these values (`roots` and `trunk`) are also keys themselves because they end with a colon. The color values associated with roots are `white` and `brown`. The `trunk` can have `branches` and `bark`. Those are values of the key `trunk`,  again because the `branches` and `bark` are indented two more spaces than `trunk`. There is more that can go into a `yaml` file, but this should be enough to help you understand how to create mapping files for `onbrand`.
+This file lays out key/value pairs based on the formatting of the file. The key is followed by a colon and a space (`: `).  And the value follows the space.  If you have multiple values you can list those below the key (see below about spacing). If the value also has a colon then it's a key for a nested value. The main key here is ``tree colors``, and for this there are two values: `roots` and `trunk`. The hierarchy comes from the spacing. Both `roots` and `trunk` are indented two spaces. Both of these values (`roots` and `trunk`) are also keys themselves because they end with a colon. The color values associated with roots are `white` and `brown`. The `trunk` can have `branches` and `bark`. Those are values of the key `trunk`,  again because the `branches` and `bark` are indented two more spaces than `trunk`. There is more that can go into a `yaml` file, but this should be enough to help you understand how to create mapping files for `onbrand`.
 
 ## PowerPoint
 
@@ -83,25 +83,25 @@ vlres = view_layout(template    = "example.pptx",
                     output_file = "example_layout.pptx")
 ```
 
-This will create the file `example_layout.pptx`. There will be a slide for each master in the template. One each slide the name of the master will be indicated by the layout in the upper right corner. Each placeholder will be shown and is identified by the placeholder label (`ph_label`).  In the yaml file there will be a key for mapping PowerPoint templates. This key is called `rpptx` and it will have three values which are also keys:
+This will create the file `example_layout.pptx`. There will be a slide for each master in the template. On each slide the name of the master will be indicated by the layout in the upper right corner. Each placeholder will be shown and is identified by the placeholder label (`ph_label`).  In the yaml file there will be a key for mapping PowerPoint templates. This key is called `rpptx` and it will have three values which are also keys:
 
-- `master` - Holds the slide master
+- `master` - Holds the name of the slide master
 - `templates` - Has an element for each master you want to use in the template
-- `md_def` - Default formatting for when the markdown content type is being used
+- `md_def` - Default formatting for when markdown formatting is being used
 
 ### Mapping PowerPoint masters
 
-Within the hierarchy of `rpptx: templates:` there is a value for each master. This is the value of the layout for each master. In this example the first master has a layout called `title` and the second master layout is called `two_col`. For each laout you need to add a value for each placeholder you want to use. The key you give for that placeholder is the name you want to use when referencing that placholder at the scripting level. Each placholder will have two value pairs below it. The `ph_label` maps to the ph_label from the annotated layout. The `content_type` should be either `text` or `list` depending on whether the placeholder contains text or list data. The figure below shows how the annotated layout relates to the `yaml` mapping file.
+Within the hierarchy of `rpptx: templates:` there is a value for each master. This is the value of the layout for each master. In this example the first master has a layout called `title` and the second master layout is called `two_col`. For each layout you need to add a value for each placeholder you want to use. *The key you give for that placeholder is the name you want to use when referencing that placeholder at the scripting level.* Each placholder will have two value pairs below it. The `ph_label` maps to the ph_label from the annotated layout. The `content_type` should be either `text` or `list` depending on whether the placeholder contains text or list data. The figure below shows how the annotated layout relates to the `yaml` mapping file.
 
 ```{r, echo=FALSE, fig.cap="Relationship between slide master names, placeholders, and content type and yaml mapping elements", out.width = '600px'}
 knitr::include_graphics(system.file(package="onbrand", "graphics", "example_layout_yaml_pptx.png"))
 ```
 
-**Note: You only have to define mapping information for slide masters you want to access in R. You can have as many masters defined in the template as you want and only use a small subset in R.**
+**Note: You only have to define mapping information for slide masters you want to access in R. You can have as many masters defined in the template as you want and only use a subset in R.**
 
 ### Defining markdown defaults
 
-Now you need to define the defaults for rendering components with markdown. For this you need to create elements in the following hierarchy:
+Now you need to define the defaults for rendering components with markdown (see the Workflow vignette for more information on how this is used). For this you need to create elements in the following hierarchy:
 ```
 rpptx:
   md_def:
@@ -125,7 +125,7 @@ rpptx:
       shading.color:         transparent
 ```
 
-For PowerPoint templates you need to define to sections: `default` and `Table_Labels`. The `default` is used when rendering general markdown text. The `Table_Labels` is used when markdown is present in table elements like headers. For each of these you need to define the different aspects of fonts. If you're unsure, just leave them with the defaults above. 
+For PowerPoint templates you need to define the sections: `default` and `Table_Labels`. The `default` is used when rendering general markdown text. The `Table_Labels` is used when markdown is present in table elements like headers. For each of these you need to define the different aspects of fonts. If you're unsure, just leave them with the defaults above. 
 
 ### Testing and Previewing your template
 
@@ -144,7 +144,116 @@ save_report(obnd, "example_preview.pptx")
 ```
 
 ## Word
-Text
+
+You should begin with an empty Word document that has the styles you want to use defined. In the example here there is one paragraph style and one table style. You can also put placeholders in the document. For example if you wanted to use this template for reports, and you wanted to have "Report NNNN", where NNNN is the report number, in the right header. You could put "Report ===RPTNUM===" in the right header. [Note: if you type the text into Word. This is because while a string may appear to be a contiguous in Word, it may not be so in the underlying XML code. To ensure the string is contiguous you should type the placeholder text into a text editor, copy and paste it into template Word.]. To view all of the styles in the document you can use the `view_layout()` function here as well:
+
+```{r eval=FALSE}
+library(onbrand)
+vlres = view_layout(template    = "example.docx", 
+                    output_file = "example_layout.docx")
+```
+
+This will produce a word document that looks something like this:
+
+```{r, echo=FALSE, fig.cap="Word layout examples.", out.width = '600px'}
+knitr::include_graphics(system.file(package="onbrand", "graphics", "example_layout_docx.png"))
+```
+
+For each paragraph, character and table style, it will show the name and what that style looks like. You can use this when you define elements in you yaml mapping file. In the yaml file there will be a key for mapping Word templates an that key is called `rdocx`. In that document there will be 
+
+- `styles` Mapping of all the styles in the Word document you want to use to the style name in the Word document
+- `doc_def` Associating style names you've defined in the `styles` section with default values for the report
+- `formatting` General formatting options for the document
+- `md_def` Default formatting for styles when markdown is being used
+
+The following sections will walk you through each of these elements in the yaml mapping file.
+
+### `styles`
+
+In this section you will list key/value pairs that represent the name of the style you want to use in R and the style name used in Word. In the example here we have the following styles defined:
+```
+  styles:
+    Plain_Text:               Normal
+    Default_Table:            Normal Table
+    Table_Caption:            Normal        
+    Figure_Caption:           Normal
+```
+
+So fo example the `Normal` style is defined in Word, but I'm going to call it `Plain_Text` in the workflows I develop. **Note: The functions of onbrand require you define at least two styles: one paragraph style and one table style.**
+
+### `doc_def`
+
+This section is where the default style mappings are defined. These are key value pars. The keys are required by onbrand, so you have to have an entry for each of thes. The values are the onbrand style names defined in the `styles` section. So in this example if you insert a Word table (`Table`) it will be formatted according to the onbrand style name `Default_Table`.
+
+```
+  doc_def:                     
+    Text:                     Plain_Text 
+    Table:                    Default_Table 
+    Table_Caption:            Table_Caption
+    Figure_Caption:           Figure_Caption
+```
+
+### `formatting`
+
+Basic document formatting s specified here. The `*Caption_Location` keys indicate if captions should be above (`top`) or below (`bottom`) the reporting element. The `*Pre` and `*Post` elements control how numbering is shown in captions. For example the third dable would look like: `Table 3.`. And the default figure widths and heights are specified here in inches. 
+
+```
+  formatting:
+    Table_Caption_Location:    top
+    Table_Caption_Label_Pre:   "Table "
+    Table_Caption_Label_Post:  ". "
+    Figure_Caption_Location:   bottom
+    Figure_Caption_Label_Pre:  "Figure " 
+    Figure_Caption_Label_Post: ". "
+    Figure_Width:              6.0
+    Figure_Height:             5.0
+```
+
+### `md_def`
+
+These elements contain the default values used when markdown formatting is used. For this section you will need entries for `default` and `Table_Labels` as well as an entry for each style defined in the `styles` section.  The `default` is used when rendering general markdown text. The `Table_Labels` is used when markdown is present in table elements like headers. What you can do is open up the styles in Word and make sure that each sytle element (fontsize, bold, etc) matches what is in Word. 
+
+### Testing the new template
+
+Once you're done you can test the template. First read in the template and look at the console for any messages. If you see any issues displayed try to address those. 
+```{r eval=FALSE}
+ obnd = read_template(template = "example.docx", 
+                      mapping  = "example.yaml")
+```
+
+If there are no problems you can use `preview_template()` to create an annotated file showing the onbrand mapping names and the Word names with the style applied to visually check the mapping. 
+
+```{r eval=FALSE}
+obnd = preview_template(obnd)
+save_report(obnd, "example_preview.docx")
+```
+
+## Switching Templates
+
+The goal of onbrand is to allow users to easily switch between organizational document templates without changing the actual reporting workflow. This is accomplished through the yaml file. First make a copy of your yaml file for the new templates. Then you need to modify this copy as described below:
+
+### PowerPoint
+
+If you want to change to a new PowerPoint template you need to do the following:
+
+- Create slide masters with the same layout names
+- Create the layouts with the same elements as your previous template
+- Use `view_layout()` on the new template to get a mapping for the new placeholders
+- Edit the new yaml file to to update the master field, ph_label fields, and the md_def field.
+- Confirm the new template is behaving as expected using `preview_template()`
+
+### Word
+
+If you want to change to a new Word template you need to do the following:
+
+- Create a document with the same types of styles in your mapping file
+- Use `view_layout()` on the new template to get a mapping for the new styles
+- Edit the new yaml file to to update the `styles` section to the new names used in Word (keeping the onbrand style names the same)
+- Confirm the new template is behaving as expected using `preview_template()`
+
+### Using a new template
+
+Once you have a new template and mapping file you can then use those at the top level of your reporting workflow when calling `read_template()` and that should be it. 
 
 ## Maping file
 ```{r echo=FALSE, comment='', message=TRUE, eval=TRUE}

@@ -27,3 +27,6 @@ md_to_officer, evals the as_paragraph field from the first paragraph
 returned, evals that result and returns the object from the as_paragraph
 command.
 }
+\examples{
+res = md_to_oo("Be **bold**")
+}

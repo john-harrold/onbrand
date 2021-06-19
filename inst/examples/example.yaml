@@ -39,23 +39,25 @@ rpptx:
       shading.color:         transparent
 rdocx:
   styles:
-    Normal:                   Normal
-    Code:                     Code
-    TOC:                      toc 1
-    Heading_1:                heading 1
-    Heading_2:                heading 2
-    Heading_3:                heading 3
-    Table:                    Table Grid
-    Table_Caption:            table title
-    Figure_Caption:           graphic title
+    Plain_Text:               Normal
+    Default_Table:            Normal Table
+    Table_Caption:            Normal
+    Figure_Caption:           Normal
+  doc_def:                     
+    Text:                     Plain_Text 
+    Table:                    Default_Table 
+    Table_Caption:            Table_Caption
+    Figure_Caption:           Figure_Caption
   formatting:
-    Table_Caption_Location:   top
-    Figure_Caption_Location:  bottom
-    Figure_Width:             6.0
-    Figure_Height:            5.0
+    Table_Caption_Location:    top
+    Table_Caption_Label_Pre:   "Table "
+    Table_Caption_Label_Post:  ". "
+    Figure_Caption_Location:   bottom
+    Figure_Caption_Label_Pre:  "Figure " 
+    Figure_Caption_Label_Post: ". "
+    Figure_Width:              6.0
+    Figure_Height:             5.0
   md_def:
-    # For each style above you need a default specification here. You will
-    # also need the 'default' specification, generally just a copy of Normal
     default:
       color:                  black
       font.size:              12
@@ -74,7 +76,7 @@ rdocx:
       font.family:           Helvetica
       vertical.align:        baseline
       shading.color:         transparent
-    Normal:
+    Plain_Text:
       color:                  black
       font.size:              12
       bold:                   FALSE
@@ -83,52 +85,7 @@ rdocx:
       font.family:            Cambria (Body)
       vertical.align:         baseline
       shading.color:          transparent
-    Code:
-      color:                  black
-      font.size:              12
-      bold:                   FALSE
-      italic:                 FALSE
-      underlined:             FALSE
-      font.family:            Courier
-      vertical.align:         baseline
-      shading.color:          transparent
-    TOC:
-      color:                  black
-      font.size:              12
-      bold:                   FALSE
-      italic:                 FALSE
-      underlined:             FALSE
-      font.family:            Courier
-      vertical.align:         baseline
-      shading.color:          transparent
-    Heading_1:
-      color:                  black
-      font.size:              16
-      bold:                   TRUE
-      italic:                 FALSE
-      underlined:             FALSE
-      font.family:            Calibri (Headings)
-      vertical.align:         baseline
-      shading.color:          transparent
-    Heading_2:
-      color:                  black
-      font.size:              13
-      bold:                   TRUE
-      italic:                 FALSE
-      underlined:             FALSE
-      font.family:            Calibri (Headings)
-      vertical.align:         baseline
-      shading.color:          transparent
-    Heading_3:
-      color:                  black
-      font.size:              12
-      bold:                   TRUE
-      italic:                 FALSE
-      underlined:             FALSE
-      font.family:            Calibri (Headings)
-      vertical.align:         baseline
-      shading.color:          transparent
-    Table:
+    Default_Table:
       color:                 black
       font.size:             12
       bold:                  FALSE

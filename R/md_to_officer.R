@@ -41,6 +41,10 @@
 #'   myas_para = eval(parse(text=pgparse$pgraph_1$as_paragraph_cmd))
 #'  }
 #'}
+#'@examples 
+#'res              = md_to_officer("Be **bold**!")
+#'fpar_obj         = eval(parse(text=res$pgraph_1$fpar_cmd))
+#'as_paragraph_obj = eval(parse(text=res$pgraph_1$as_paragraph_cmd))
 md_to_officer = function(str,
      default_format = list( 
         color          = "black",
@@ -346,9 +350,9 @@ pgraphs_parse = list()
   for(tmpele in pele){
     if(fpar_cmd != ""){
      fpar_cmd = paste(fpar_cmd, ',\n') }
-    fpar_cmd = paste(fpar_cmd, 'ftext("', tmpele$text, '", ', tmpele$props_cmd, ')', sep="")
+    fpar_cmd = paste(fpar_cmd, 'officer::ftext("', tmpele$text, '", ', tmpele$props_cmd, ')', sep="")
   }
-  fpar_cmd = paste("fpar(", fpar_cmd, ")", sep="")
+  fpar_cmd = paste("officer::fpar(", fpar_cmd, ")", sep="")
 
   as_paragraph_cmd = ""
   for(tmpele in pele){

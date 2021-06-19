@@ -14,6 +14,8 @@
 #'  \item \code{as_par_cmd} as_paragraph generated code from md_to_officer
 #'  \item \code{oo}         as_paragraph officer object resulting from running the as_par_cmd code
 #'}
+#'@examples
+#'res = md_to_oo("Be **bold**")
 md_to_oo     = function(strs,default_format=NULL){
 
   isgood     = TRUE
@@ -30,15 +32,11 @@ md_to_oo     = function(strs,default_format=NULL){
       str = " " 
     }
 
-
     if(is.null(default_format)){
       mdres = md_to_officer(str)
     } else {
       mdres = md_to_officer(str, default_format)
     }
-    
-    
-    
     
     # Checking to make sure we got what we needed from the md_to_officer command
     # above

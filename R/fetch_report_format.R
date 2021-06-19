@@ -49,6 +49,11 @@ fetch_report_format <- function(obnd, format_name="default", verbose=TRUE){
     msgs = c(msgs, paste0("  ", obnd[["mapping"]]))
   }
 
+  if(!isgood){
+    obnd[["isgood"]] = FALSE
+    msgs = c(msgs, "fetch_report_format()")
+  }
+
   # Dumping the messages if verbose is turned on:
   if(verbose & !is.null(msgs)){
     message(paste(msgs, collapse="\n"))

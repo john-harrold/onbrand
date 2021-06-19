@@ -22,6 +22,11 @@
 #'
 #' save_report(obnd, tempfile(fileext = ".pptx"))
 #'
+#'obnd = read_template(
+#'       template = file.path(system.file(package="onbrand"), "templates", "report.docx"),
+#'       mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+#'
+#' save_report(obnd, tempfile(fileext = ".docx"))
 #'
 save_report  = function (obnd,
                          output_file = NULL,
@@ -52,14 +57,64 @@ save_report  = function (obnd,
     # Making sure the file extensions match
     if(fr[["rptext"]] != obnd[["rptext"]]){
       isgood = FALSE
-      msgs = c(msgs, paste0("The output_file type >", fr[["rpttype"]], "< dose not match the report " ))
+      msgs = c(msgs, paste0("The output_file type >", fr[["rpttype"]], "< does not match the report " ))
       msgs = c(msgs, paste0("found in the supplied onbrand object >", obnd[["rpttype"]], "<." ))
       msgs = c(msgs, paste0("You must supply an output file with a >.", obnd[["rptext"]], "< file extension." ))
     }
   }
 
+
   # If we pass all the checks above we save the file
   if(isgood){
+    #-------
+    # Applying any placeholders
+    if(rpttype == "Word"){
+      if("placeholders" %in% names(obnd)){
+        # Looping through each placeholder
+        for(phn in names(obnd[["placeholders"]])){
+          # Here we pull out the value (phv) and locatio (phl) of each
+          # placeholder:
+          pht = paste("===",phn,"===", sep="")
+          phv = obnd[["placeholders"]][[phn]][["value"]]
+          phl = obnd[["placeholders"]][[phn]][["location"]]
+          if(phl == "body"){
+            obnd[["rpt"]] = officer::body_replace_all_text(
+                 old_value      = pht,
+                 new_value      = phv ,
+                 fixed          = TRUE,
+                 only_at_cursor = FALSE,
+                 warn           = FALSE,
+                 x              = obnd[["rpt"]]
+                 )
+          }
+          if(phl == "header"){
+            obnd[["rpt"]] = officer::headers_replace_all_text(
+                 old_value      = pht,
+                 new_value      = phv ,
+                 fixed          = TRUE,
+                 only_at_cursor = FALSE,
+                 warn           = FALSE,
+                 x              = obnd[["rpt"]]
+                 )
+          }
+          if(phl == "footer"){
+            obnd[["rpt"]] = officer::footers_replace_all_text(
+                 old_value      = pht,
+                 new_value      = phv ,
+                 fixed          = TRUE,
+                 only_at_cursor = FALSE,
+                 warn           = FALSE,
+                 x              = obnd[["rpt"]]
+                 )
+          }
+        }
+      #-------
+      # JMH Cross-referencing substitution should go here
+      #-------
+      }
+
+    }
+    #-------
     print(obnd[["rpt"]], output_file)
   }
 

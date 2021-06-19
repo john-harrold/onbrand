@@ -124,20 +124,29 @@ rpptx:
       shading.color:         transparent
 rdocx:
   styles:
-    Normal:                   Normal
-    Code:                     Code
-    TOC:                      toc 1
-    Heading_1:                heading 1
-    Heading_2:                heading 2
-    Heading_3:                heading 3
-    Table:                    Table Grid
-    Table_Caption:            table title
-    Figure_Caption:           graphic title
+    Normal:                    Normal
+    Code:                      Code
+    TOC:                       toc 1
+    Heading_1:                 heading 1
+    Heading_2:                 heading 2
+    Heading_3:                 heading 3
+    Table:                     Table Grid
+    Table_Caption:             table title
+    Figure_Caption:            graphic title
+  doc_def:                     
+    Text:                      Normal
+    Table:                     Table 
+    Table_Caption:             Table_Caption
+    Figure_Caption:            Figure_Caption
   formatting:
-    Table_Caption_Location:   top
-    Figure_Caption_Location:  bottom
-    Figure_Width:             6.0
-    Figure_Height:            5.0
+    Table_Caption_Location:    top
+    Table_Caption_Label_Pre:   "Table "
+    Table_Caption_Label_Post:  ". "
+    Figure_Caption_Location:   bottom
+    Figure_Caption_Label_Pre:  "Figure " 
+    Figure_Caption_Label_Post: ". "
+    Figure_Width:              6.0
+    Figure_Height:             5.0
   md_def:
     # For each style above you need a default specification here. You will
     # also need the 'default' specification, generally just a copy of Normal

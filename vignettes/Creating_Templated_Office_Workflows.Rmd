@@ -1,16 +1,18 @@
 ---
-title: "Creating Templated Office Workflows"
+title: "Templated Workflows"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Creating Templated Office Workflows}
+  %\VignetteIndexEntry{Templated Workflows}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(onbrand)
+library(officer)
+library(magrittr)
+library(flextable)
 ```
 
 ## Introduction
@@ -32,7 +34,6 @@ obnd = read_template(
 ```
 
 ### Adding content
-
 
 The mapping file below, and any mapping file you create, should use names for slide masters and placeholders that are descriptive. Once you've read a template into an `onbrand` object, you can add content using `report_add_slide()`. The following will add a slide using the templated `title_slide` layout. The content of the placeholders for that slide is specified using the `elements` argument. This is a list with placeholder names taken from the mapping file. For each placeholder you need to specify the content and the type of content: 
 
@@ -90,7 +91,7 @@ imgfile = tempfile(pattern="image", fileext=".png")
 ggsave(filename=imgfile, plot=p, height=5.15, width=9, units="in")
 ```
 
-So now the variable `p` contains the ggplot object and `imgfile` is a character variable pointing to a png file containing that image. 
+So now the object`p` contains the ggplot object and `imgfile` is a character object pointing to a png file containing that image. 
 
 ```{r}
 obnd = report_add_slide(obnd,
@@ -111,10 +112,10 @@ obnd = report_add_slide(obnd,
 
 #### Tables
 
-Table can be supplied in three different ways, each provding increasing level of control over the output:
+Tables can be supplied in three different ways, each providing increasing level of control over the output:
 
-- `table` - This expects a list with table data and other attributes and uses the underlying tables in PowerPoint
-- `flextable` - This is a list similar to the `table` above but insted of using the PowerPoint tables, the table is created using the `flextable` package.
+- `table` - This expects a list with the tabular  data and other attributes. It uses the underlying tables in PowerPoint to make the tables. 
+- `flextable` - This is a list similar to the `table` above, but instead of using the PowerPoint tables, the table is created using the `flextable` package.
 - `flextable_object` - This allows you to create a flextable on your own and use it directly. 
 
 Lets start by creating a simple data frame:
@@ -158,7 +159,7 @@ Here we are specifying that we want the header format of the table to be rendere
 Alternatively you can create a flextable object directly using the `flextable` package. There is an enormous amount of flexibility in the `flextable` package. Some of these can be seen in the Word examples below, but you should see the documentation for that package to get a feel for what is possible.
 
 ```{r}
-tab_fto = flextable::flextable(tdf)                      
+tab_fto = flextable(tdf)                      
 ```
 
 You can then add these (flextable list: `tab_ft`, flextable object: `tab_fto`) to any of the placeholders on a slide:
@@ -191,35 +192,389 @@ save_report(obnd, tempfile(fileext = ".pptx"))
 
 Which should look something like this:
 
-```{r, echo=FALSE, fig.cap="Relationship between slide master names, placeholders, and content type and yaml mapping elements", out.width = '600px'}
+```{r, echo=FALSE, fig.cap="Example PowerPoint output for workflow above.", out.width = '600px'}
 knitr::include_graphics(system.file(package="onbrand", "graphics", "ppt_workflow_output.png"))
 ```
 
 
 ## Word
 
+### Loading your Word template
+
+The `read_template()` function is also used to create a new `onbrand` object for a Word report. This requires that you  supply the path to your Word template and the mapping file. This example points to files within the `onbrand` package:
+
+
 ```{r}
 obnd = read_template(
-       template = file.path(system.file(package="onbrand"), "templates", "report.docx"),
-       mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+  template = file.path(system.file(package="onbrand"), "templates", "report.docx"),
+  mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
 ```
 
-## Formatting with markdown
+### Adding content
+
+Word report content is added using the ``report_add_doc_content()`` function. This expects the user to identify the ``type`` of content being supplied. At a high level the following types of content can be added:
+
+- `"break"` - page break
+- `"toc"` - table of contents
+- `"ph"` - text content to substitute for placeholders in the document
+placeholder content 
+- `"text"` - a string of text (only possible when the type in the mapping file is text)
+- `"imagefile"` - string containing the path to an image file 
+- `"ggplot"` -  a ggplot object
+- `"table"` - list containing table content and other options
+- `"flextable"` - list containing flextable content and other options
+- `"flextable_object"` - user-defined flextable object
+
+Similar to adding PowerPoint content, you must also supply a list containing the content and information about the content. Examples of each of these will be provided in the sections below. However you should see the help for  ``report_add_doc_content()`` to get a detailed explanation of the format of ``content``.  
+
+### Text
+
+The content type ``"text"`` is the most straight forward way to add content to a Word document, and the ``content`` is a list that has three possible elements. The only one required is the ``text`` element. If you just want to add text in the default format (doc_def in the yaml mapping file), then this is all you need to do:
+
+```{r}
+obnd = report_add_doc_content(obnd,
+  type     = "text",
+  content  = list(text="Text with no style specified will use the doc_def text format."))
+```
+
+#### Styles
+
+Alternatively you can specify any style defined in the `yaml` mapping file by adding a ``style`` element to the content list. This shows how to create multi level headers:
+
+```{r}
+obnd = report_add_doc_content(obnd,
+  type     = "text",
+  content  = list(text  ="First level header",
+                  style = "Heading_1"))
+obnd = report_add_doc_content(obnd,
+  type     = "text",
+  content  = list(text  ="Second level header",
+                  style = "Heading_2"))
+obnd = report_add_doc_content(obnd,
+  type     = "text",
+  content  = list(text  ="Third level header",
+                  style = "Heading_3"))
+```
+
+#### Formats
+
+The other element you may want to control is the format of the content. In the previous examples you just needed to provide character data, but there are three possible formats you can use:
+
+- ``"text"`` - character string (previous examples)
+- ``"fpar"`` - fpar object from ``officer``
+- ``"md"`` - character string with markdown to be rendered (see the section on markdown below)
+
+The following provide example ``"fpar"`` and ``"md"`` formats
+
+```{r}
+fpartext = fpar(
+ftext("Formatted text can be created using the ", prop=NULL),
+ftext("fpar ", prop=fp_text(color="green")),
+ftext("command from the officer package.", prop=NULL))
+
+obnd = report_add_doc_content(obnd,
+  type     = "text",
+  content  = list(text   = fpartext, 
+                  format = "fpar",
+                  style  = "Normal"))
+
+mdtext = "Formatted text can be created using **<color:green>markdown</color>** formatting"
+obnd = report_add_doc_content(obnd,
+  type     = "text",
+  content  = list(text   = mdtext,
+                  format = "md",
+                  style  = "Normal"))
+```
+
+### Figures
+
+Similar to the PowerPoint example above we're going to create some figures. Both an image file (`imgfile`) and a ggplot object (`p`):
+```{r}
+p = ggplot() + annotate("text", x=0, y=0, label = "picture example")
+imgfile = tempfile(pattern="image", fileext=".png")
+ggsave(filename=imgfile, plot=p, height=5.15, width=9, units="in")
+```
+
+We can add these by specyfing the appropriate content type. The content list can contain different information. Typically you would either specify the image file or ggplot object as well as a caption:
+
+```{r}
+obnd = report_add_doc_content(obnd,
+  type     = "imagefile",
+  content  = list(image   = imgfile,
+                  caption = "This is an example of an image from a file."))
+```
+
+```{r}
+obnd = report_add_doc_content(obnd,
+  type     = "ggplot",
+  content  = list(image   = p,
+                  caption = "This is an example of an image from a ggplot object."))
+```
+
+### Tables
+
+Tables in Word are similar to the tables in PowerPoint. The table type can be either `table`, `flextable`, or `flextable_object`. Lets look this data frame to see how to use each of these:
+```{r}
+tdf =    data.frame(Parameters = c("Length", "Width", "Height"),
+                    Values     = 1:3,
+                    Units      = c("m", "m", "m") )
+```
+
+To insert a native Word table, you would use the `table` type and the content is just a list with an element named `table` that has the value of a dataframe. As with figures, the content list can have an optional caption as well. 
+
+```{r}
+tab_cont = list(table   = tdf,
+                caption = "Word Table.")
+obnd = report_add_doc_content(obnd,
+  type     = "table",
+  content  = tab_cont)
+```
+
+Flextables can be used with the `flextable` type and information like headers, header formatting, etc can be passed along. Onbrand will then construct the flextable for you. 
+
+```{r}
+tab_ft = list(table         = tdf,
+              header_format = "md",
+              header_top    = list(Parameters = "Name^2^",
+                                   Values     = "*Value*",
+                                   Units      = "**Units**"),
+              cwidth        = 0.8,
+              table_autofit = TRUE,
+              caption       = "Flextable from onbrand abstraction",
+              table_theme   = "theme_zebra")
+obnd = report_add_doc_content(obnd,
+  type     = "flextable",
+  content  = tab_ft)   
+```
+
+Lastly, to have the most control over the table you can construct a flextable yourself and pass that along in the content.
+
+```{r}
+tab_fto = flextable(tdf)                      
+obnd = report_add_doc_content(obnd,
+  type     = "flextable_object",
+  content  = list(ft=tab_fto,
+                  caption  = "Flextable object created by the user."))
+```
+
+### Formatting sections
+
+Section formatting, chaging the page orientation and/or the number of columns, is controlled using the ``"section"`` content type. It may seem a bit counter intuitive but sections apply to the content added **since the last** section type specification. So now lets try the following:
+
+- Add a landscape figure
+- Add two column text   
+- Add more content in portrait 
+
+To change formatting we need to close out the current section by inserting a portrait section type: 
+
+```{r}
+obnd = report_add_doc_content(obnd,
+     type     = "section",
+     content  = list(section_type  ="portrait"))
+```
+
+Then we add the content we want in landscape mode:
+
+```{r}
+obnd = report_add_doc_content(obnd,
+  type     = "ggplot",
+  content  = list(image   = p,
+                  height  = 2.5,
+                  width   = 9,
+                  caption = "This is a landscape figure."))
+```
+
+Now we tell the underlying report to apply landscape formatting to everything that has been added since the portrait section type:
+
+```{r}
+
+obnd = report_add_doc_content(obnd,
+  type     = "section",
+  content  = list(section_type  ="landscape",
+                  height        = 8,
+                  width         = 10))
+ 
+```
+
+Now we want to add the text for the two column format:
+
+```{r}
+obnd = report_add_doc_content(obnd,
+  type     = "text",
+  content  = list(text    = paste(rep("Some two column text. ", 200), collapse=" ")))
+
+```
+
+Now we insert a section indicating that we want to change the section to multiple columns. The number of columns is inferred from the number of elements in the `widths` argument:
+
+```{r}
+obnd = report_add_doc_content(obnd,
+  type     = "section",
+  content  = list(section_type  ="columns",
+                  widths        = c(3,3)))
+
+```
+
+We can now add content but don't forget to set the insert a portrait section at the end just before you save the document.
+
+```{r}
+obnd = report_add_doc_content(obnd,
+  type          = "text",
+  content       = list(text    = "Back to regular portrait"))
+```
+
+### Placeholder text
+
+When generating reporting workflows it can be helpful to have placeholder text in the report that is populated based on the specifics of that report. To add placeholders you can use the `"ph"` content type. A placeholder is a unique string of text surrounded by === and ===. If the placeholder is in your template document, it may not work correctly if you type the text into Word. This is because while a string may appear to be a contiguous in Word, it may not be so in the underlying XML code. To ensure the string is contiguous you should type the placeholder text into a text editor, copy and paste it into template word. 
+
+The placeholder can be in the document template itself or in the text you've added. In this example the text `===BODYPHEXAMPLE===` was in the content added above. That will be replaced with the text ``placeholder text in the body``. 
+
+
+```{r}
+obnd = report_add_doc_content(obnd,
+  type     = "ph",
+  content  = list(name     = "BODYPHEXAMPLE",
+                  value    = "placeholder text in the body",
+                  location = "body"))
+```
+
+You can have the placeholders in the body as in the previous example and also in the headers and footers of the document. In these examples the `===FOOTERLEFT===` and `===HEADERLEFT===` placeholders are found in the template itself. 
+
+```{r}
+obnd = report_add_doc_content(obnd,
+  type     = "ph",
+  content  = list(name     = "FOOTERLEFT",
+                  value    = "Footer Placeholder",
+                  location = "footer"))
+obnd = report_add_doc_content(obnd,
+  type     = "ph",
+  content  = list(name     = "HEADERLEFT",
+                  value    = "Header Placeholder",
+                  location = "header"))
+```
+
+Headers are applied when the doucment is saved and can be added at any time to the onbrand report object.
+
+### Formatting sections (again)
+
+Recall up above that we were in a multi-column page format, but we wanted to return to the default portrait single column format. We added text but before we save the file we need to tell the document to apply the new section type:
+
+```{r}
+obnd = report_add_doc_content(obnd,
+  type     = "section",
+  content  = list(section_type  ="portrait"))
+```
+
+**Note that if you don't alter the page format/layout from the document default, then you do not need to add any section content.**
+
+### Saving the Word report 
+
+Once you are done adding content you can save the report to a file with the ``save_report()`` function as well:
+
+```{r}
+save_report(obnd, tempfile(fileext = ".docx"))
+```
+
+The output from the example above should look like this:
+
+```{r, echo=FALSE, fig.cap="Example Word output for workflow above.", out.width = '600px'}
+knitr::include_graphics(system.file(package="onbrand", "graphics", "doc_workflow_output.png"))
+```
+## Formatting with Markdown
 
 In `officer` you can change formatting in text using `fpar` and `as_pargraph`. There are situations where this is less than ideal. For example if you want to take formatted user input from a Shiny app, it may not be practical to have them supply code this way. 
 
-To make formatting a little easier, `onbrand` provides the ability to use markdown. This can be seen above in flextable objects for PowerPoint content and general content for Word. For a list of allowed markdown see the help for `md_to_officer()`. 
+To make formatting a little easier, `onbrand` provides the ability to use markdown. This can be seen above in flextable objects for PowerPoint content and with text, captions in Word. For a list of allowed markdown formatting see the help for `md_to_officer()`. 
 
 If you want to use the markdown functionality outside of `onbrand` you can use the two functions:
 
 - `md_to_officer` - This function will take the markdown text and convert that into strings of text containing officer commands in `fpar` and `as_paragraph` commands. You simply need to use the `eval` command to execute them.
 - `md_to_oo` - A function that wraps around `md_to_officer` and returns the `as_paragraph` result.
 
-## Accessing the `officer` object directly
+### Using ``md_to_oo`` to format 
 
-JMH
+First lets start with data. Here we have dimensional data listed as a mean and variance:
 
-# Maping file
+```{r}
+data = data.frame(property = c("mean",   "variance"),
+                  length     = c(200,      0.13),
+                  width      = c(12,       0.05),
+                  area       = c(240,      0.11),
+                  volume     = c(1200,     0.32))
+
+```
+
+Now lets create a flextable object with a header that shows the property being reportged on one line and the units on the line below:
+
+```{r}
+header = list(property = c("",             ""),
+              length   = c("Length",       "cm"),
+              width    = c("Wdith",        "cm"),
+              area     = c("Area",         "cm2"),
+              volume   = c("Volume",       "cm3"))
+
+ft = flextable::flextable(data)                     %>% 
+     flextable::delete_part(part = "header")        %>%
+     flextable::add_header(values =as.list(header)) %>%
+     flextable::theme_zebra()
+```
+
+That flextable currently looks like this:
+
+```{r echo=FALSE}
+htmltools_value(ft)
+```
+
+Now we may want to customize some things. For example we may want to use exponents on the units and represent the mean and variance with $\mu$ and $\sigma^2$. First we need to create lists with the default value for the table labels (i.e. the header) and the table body. The markdown will create deviations from these defaults. You can look at the help for `md_to_oo` to get the appropriate list format. Here we're just pulling them out of the onbrand object using `fetch_md_def()`.
+
+```{r}
+dft      = fetch_md_def(obnd, style="Table_Labels")$md_def
+dft_body = fetch_md_def(obnd, style="Table")$md_def
+```
+
+Now we can use the flextable `compose` function to walk through the table and overwrite the defaults that were set when the flextable was created:
+
+```{r}
+ft = ft %>%
+  compose(j     = "area",
+          part  = "header", 
+          value = c(md_to_oo("Area", dft)$oo, md_to_oo("cm^2^", dft)$oo))   %>%
+  compose(j     = "volume", 
+          part  = "header",
+          value = c(md_to_oo("Volume", dft)$oo, md_to_oo("cm^3^", dft)$oo)) %>%
+  compose(j     = "property", 
+          i     = match("mean", data$property),                        
+          part  = "body",  
+          value = c(md_to_oo("**<ff:symbol>m</ff>**", dft_body)$oo))    %>%
+  compose(j     = "property",
+          i     = match("variance", data$property), 
+          part  = "body",                                                     
+          value = c(md_to_oo("**<ff:symbol>s</ff>**^**2**^", dft_body)$oo))
+```
+
+Now the flextable object looks like this:
+
+```{r echo=FALSE}
+htmltools_value(ft)
+```
+
+**Note that the Greek symbols are not rendered correctly here but will be rendered correctly in Word.**
+
+## Accessing the `officer` Object Directly
+
+Sometimes you need more control over creating a report, and you may want to use the officer commands directly. To do this you can use the function `fetch_officer_object()`` to pull out the officer object from the onbrand object:
+
+```{r echo=FALSE}
+rpt = fetch_officer_object(obnd)$rpt
+```
+
+Now you can use any officer command you wish on the `rpt` object. And when you're done you can put the object back into the onbrand object using `set_officer_object()`:
+
+```{r echo=FALSE}
+obnd = set_officer_object(obnd, rpt)
+```
+
+## Maping File
 ```{r echo=FALSE, comment='', message=TRUE, eval=TRUE}
 cat(readLines(file.path(system.file(package="onbrand"), "templates", "report.yaml")) , sep="\n")
 ```

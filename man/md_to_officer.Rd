@@ -59,3 +59,8 @@ elements:
 \description{
 Parses text in Markdown format and returns fpar and as_paragraph command strings to be used with officer
 }
+\examples{
+res              = md_to_officer("Be **bold**!")
+fpar_obj         = eval(parse(text=res$pgraph_1$fpar_cmd))
+as_paragraph_obj = eval(parse(text=res$pgraph_1$as_paragraph_cmd))
+}

@@ -25,6 +25,8 @@ onbrand object which is a list with the following elements:
 \item{isgood} Boolean variable indicating the current state of the object
 \item{rpt} Officer object containing the initialized report
 \item{rpttype} Type of report (either PowerPoint or Word)
+\item{key_table} Empty (NULL) mapping table for tracking cross referencing (Word only)
+\item{placeholders} Empty list to hold placeholder substitution text (Word only)
 \item{meta} Metadata read in from the yaml file
 \item{mapping} Mapping yaml file
 \item{msgs} Vector of messages indicating any errors that were encountered

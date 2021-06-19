@@ -6,7 +6,7 @@
 #'@param obnd onbrand report object
 #'@param verbose Boolean variable when set to TRUE (default) messages will be
 #'displayed on the terminal; Messages will be included in the returned onbrand
-#'object. 
+#'object.
 #'
 #'@return onbrand object with template previews added and any messages passed
 #'along
@@ -15,7 +15,11 @@
 #'    template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
 #'    mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
 #' obnd = preview_template(obnd)
-#' # JMH add Word example
+#'
+#' obnd = read_template(
+#'    template = file.path(system.file(package="onbrand"), "templates", "report.docx"),
+#'    mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+#' obnd = preview_template(obnd)
 preview_template = function(obnd, verbose=TRUE){
 
   isgood  = TRUE
@@ -40,7 +44,7 @@ preview_template = function(obnd, verbose=TRUE){
         phs = names(obnd[["meta"]][["rpptx"]][["templates"]][[template]])
         # Now we build out the element list
         for(ph in phs){
-          
+
           tmp_text = paste0(ph, ":", obnd[["meta"]][["rpptx"]][["templates"]][[template]][[ph]][["ph_label"]])
 
           # If we're processing a title then we add the template as well
@@ -59,14 +63,47 @@ preview_template = function(obnd, verbose=TRUE){
         # Now adding a slide with each element on it
         obnd = report_add_slide(obnd,
           template = template,
-          elements = elements)
+          elements = elements,
+          verbose  = verbose)
+
+        msgs = c(msgs, obnd[["msgs"]])
       }
     } else if(rpttype == "Word"){
-      # JMH add word stuff here
-     browser() 
+     # Walking through each style and adding content for that style
+
+     # Pulling a summary of the layouts out of the officer object
+     lay_sum = officer::styles_info(obnd[["rpt"]])
+
+     # pulling out the template styles specified in the mapping file
+     template_styles = obnd[["meta"]][["rdocx"]][["styles"]]
+
+     # Walking through and adding content for each style to annotate
+     # the user specified style name/actual style used.
+     for(user_style in names(template_styles)){
+       # Style name used in the document:
+       docx_style = template_styles[[user_style]]
+       # type of style using Word docx terminology
+       docx_type   = dplyr::filter(lay_sum, style_name == docx_style)[["style_type"]]
+
+       tmp_text = paste0(user_style, " (onbrand name):", docx_style, " (Word name)")
+       tab_example = data.frame( Number = c(1,2,3,4),
+                                 Text   = "Here")
+
+       # Depending on the docx type we add either text or tabular content
+       if(docx_type %in% c("paragraph", "charcter")){
+         obnd = report_add_doc_content(obnd,
+                    type     = "text",
+                    content  = list(text=tmp_text, style=user_style),
+                    verbose  = verbose)
+         msgs = c(msgs, obnd[["msgs"]])
+       }
+       if(docx_type %in% c("table")){
+        obnd[["rpt"]] = officer::body_add_par(  x=obnd[["rpt"]], value=tmp_text)
+        obnd[["rpt"]] = officer::body_add_table(x=obnd[["rpt"]], value=tab_example, style = docx_style)
+       }
+      }
     }
   }
-    
 
   #-------
   # If errors were encountered we make sure that the state of the reporting
@@ -84,6 +121,6 @@ preview_template = function(obnd, verbose=TRUE){
 
   # Passing the messages along in the onbrand object
   obnd[["msgs"]] = msgs
-  
+
 obnd}
 

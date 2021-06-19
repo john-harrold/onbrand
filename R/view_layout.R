@@ -47,7 +47,7 @@ view_layout = function(template    = file.path(system.file(package="onbrand"), "
   rpttype = fr[["rpttype"]]
 
 
-  # Making sure the output_file was defined
+  # Making sure the output_file is defined
   if(isgood){
     if(is.null(output_file)){
       if(rpttype  == "PowerPoint"){
@@ -69,17 +69,17 @@ view_layout = function(template    = file.path(system.file(package="onbrand"), "
       while(length(rpt)>0){
         rpt <- officer::remove_slide(rpt, 1)
       }
-      
+
       # Pulling out all of the layouts stored in the template
       lay_sum <- layout_summary(rpt)
-      
+
       # Looping through each layout
       for(lidx in seq_len(nrow(lay_sum))){
         # Pulling out the layout properties
         layout <- lay_sum[lidx, 1]
         master <- lay_sum[lidx, 2]
         lp <- layout_properties ( x = rpt, layout = layout, master = master)
-      
+
         # Adding a slide for the current layout
         rpt   <- add_slide(x=rpt, layout = layout, master = master)
         size  <- officer::slide_size(rpt)
@@ -90,7 +90,7 @@ view_layout = function(template    = file.path(system.file(package="onbrand"), "
         rpt <- ph_with(x = rpt, value = fpar_, ph_label = "layout_ph",
                        location = officer::ph_location(left = 0, top = -0.5, width = size$width, height = 1,
                                               bg = "transparent", newlabel = "layout_ph"))
-      
+
         # Blank slides have nothing
         if(length(lp[,1] > 0)){
           # Now we go through each placholder
@@ -98,8 +98,8 @@ view_layout = function(template    = file.path(system.file(package="onbrand"), "
             textstr <- paste("type=", lp$type[pidx], ", index=", lp$id[pidx], ", ph_label=",lp$ph_label[pidx])
             #rpt <- ph_with(x=rpt,  value = textstr, location = ph_location_label(type = lp$type[pidx], ph_label = lp$ph_label[pidx]))
 
-            rpt <- officer::ph_with(x=rpt,  value = textstr, location=officer::ph_location_label(ph_label=lp$ph_label[pidx])) 
-            
+            rpt <- officer::ph_with(x=rpt,  value = textstr, location=officer::ph_location_label(ph_label=lp$ph_label[pidx]))
+
           }
         }
       }
