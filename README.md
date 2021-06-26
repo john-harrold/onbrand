@@ -9,14 +9,18 @@
 <!-- badges: end -->
 
 The `officer` package provides extensive methods for accessing,
-creating, and modifying Word and PowerPoint documents. These methods
-require accessing placeholder and style information that is document
-specific. In order to switch between document templates, it is necessary
-to change these references within the reporting code. The purpose of
-`onbrand` is to provide an abstraction layer where template details can
-be mapped to human-readable names. Scripts can be written using these
-human-readable names, and different templates can be used by providing
-the mapping information in a template-specific yaml file.
+creating, and modifying both Word and PowerPoint documents. These
+methods require obtaining document specific placeholder and style
+information. In order to switch between document templates, it is
+necessary to change these references within the reporting code. The
+purpose of `onbrand` is to provide an abstraction layer where template
+details are mapped to human-readable names.
+
+These human-readable names combined with the mapping information - in a
+template-specific yaml file - provides a systematic method to script
+support for different templates. Which means, the same workflow will
+support multiple templates. Which makes your life easier and, thus,
+makes the world a little better place.
 
 ## Installation
 
@@ -33,3 +37,13 @@ And the development version from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("john-harrold/onbrand")
 ```
+
+## Getting Started
+
+Onbrand is packaged with two Vignettes, we recommend starting with the
+first vignette:
+
+1.  Custom\_Office\_Templates  
+2.  Creating\_Templated\_Office\_Workflows
+
+*insert code chunk*
