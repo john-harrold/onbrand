@@ -89,7 +89,7 @@ This section provides a detailed walk-through for each of the three steps in the
 
 A quick note about terminology.  A slide master is the top slide in a hierarchy of slides that stores information about the theme and slide layouts of a presentation, including the background, color, fonts, effects, placeholder sizes, and positioning. The slide master is the largest slide image at the top of the slide thumbnail list.
 
-```{r, echo=FALSE, fig.cap="PowerPoint Slide Master Hierarchy", out.width = '600px'}
+```{r, echo=FALSE, fig.cap="PowerPoint Slide Master Hierarchy", out.width = '250px'}
 knitr::include_graphics(system.file(package="onbrand", "graphics", "example_layout_ppt_master.png"))
 ```
 
@@ -124,9 +124,9 @@ Within the hierarchy of `rpptx: templates:` there is a value for each slide layo
 
 > _Remember the tip in Step 1 about names?  The name you provided becomes the key to reference the placeholders on the slide in your code._ 
 
-Notice, the ``example.yaml`` doesn't contain all of the placeholders for either slide in the ``example_layout.pptx`` (annotated layout).  **This is because...(I know why on the date and slide number), but why one the footer?**
+Notice, the ``example.yaml`` doesn't contain all of the placeholders for either slide in the ``example_layout.pptx``.  This is because those elements were inherited from the master slide and are not unique to either of the slide layouts.
 
-In the ``yaml``, each placeholder will have two value pairs below it.  For example, the placeholder `sub_title` in slide layout `title` has both `ph_label` and `content_type`.  The `ph_label` maps to the _ph\_label_ from the annotated layout (in the example_layout.pptx). The `content_type` should be either `text` or `list` depending on whether the placeholder contains text or list data. Tables in PowerPoint will be rendered using another method (more on that in the next section).  
+In the ``yaml``, each placeholder will have two value pairs below it.  For example, the placeholder `sub_title` in slide layout `title` has both `ph_label` and `content_type`.  The `ph_label` maps to the _ph\_label_ from the annotated layout (in the ``example_layout.pptx``). The `content_type` should be either `text` or `list` depending on whether the placeholder contains text or list data. Tables in PowerPoint will be rendered using another method (see ref_ppt_tables).  
 
 The figure below shows how the annotated layout relates to the `yaml` mapping file.
 
@@ -183,11 +183,23 @@ obnd = preview_template(obnd)
 save_report(obnd, "example_preview.pptx")
 ```
 
-If there are no errors, then you are finished.  Otherwise, double check to ensure you followed the guidance above.
+That's it.  You have completed the PowerPoint example and used ``onbrand`` to create an abstraction layer for use in your own efforts.  Keep in mind, this is a very straightforward example.  Depending on the complexity of the template, the annotated slide deck, generated using ``onbrand::view_layout()``, will probably not look nearly as clean.  All of the placeholders will be there; they may not be formatted as nicely.  Expect to have to find the annotations you are interested in using in your mapping.
 
 ## Word
 
-You should begin with an empty Word document that has the styles you want to use defined. In the example here there is one paragraph style and one table style. You can also put placeholders in the document. For example if you wanted to use this template for reports, and you wanted to have "Report NNNN", where NNNN is the report number, in the right header. You could put "Report ===RPTNUM===" in the right header. [Note: if you type the text into Word. This is because while a string may appear to be a contiguous in Word, it may not be so in the underlying XML code. To ensure the string is contiguous you should type the placeholder text into a text editor, copy and paste it into template Word.]. To view all of the styles in the document you can use the `view_layout()` function here as well:
+This section provides a detailed walk-through for each of the three steps in the Introduction.  Once again, we recommend everyone walk through this process at least once. In fact, we assume you have already worked through the PowerPoint section.  If you have not and don't feel very comfortable with abstraction layers and yaml syntax, then you might want to walk through that section first.
+
+Another quick note about terminology.  All Word documents, even a blank document, start from a template. Where PowerPoint templates are more closely tied to specific slide layouts, Word templates are files that help you design documents.  They contain content and design elements (referred to as _content blocks_ or _styles_) to use as a starting point when creating a document.  All the formatting is complete; you simply add what you want to them.  
+
+### Step 1: Read the Word document  
+
+To create your custom abstraction layer for Word, you start by reading in an **empty** Word document saved from the template you are using.  This empty Word document should have all the styles defined and contain all the placeholders you want to use. In the ``example.docx`` there is one paragraph style and one table style. 
+
+not sure:  
+
+>You can also put placeholders in the document. For example if you wanted to use this template for reports, and you wanted to have "Report NNNN", where NNNN is the report number, in the right header. You could put "Report ===RPTNUM===" in the right header. [Note: if you type the text into Word. This is because while a string may appear to be a contiguous in Word, it may not be so in the underlying XML code. To ensure the string is contiguous you should type the placeholder text into a text editor, copy and paste it into template Word.]. 
+
+To view all of the styles in the document you can use the `view_layout()` function here as well:
 
 ```{r eval=FALSE}
 library(onbrand)
@@ -195,24 +207,28 @@ vlres = view_layout(template    = "example.docx",
                     output_file = "example_layout.docx")
 ```
 
-This will produce a word document that looks something like this:
+This will produce a word document, ``example_layout.docx`` that looks something like this:
 
-```{r, echo=FALSE, fig.cap="Word layout examples.", out.width = '600px'}
+```{r, echo=FALSE, fig.cap="Word layout example.", out.width = '600px'}
 knitr::include_graphics(system.file(package="onbrand", "graphics", "example_layout_docx.png"))
 ```
 
-For each paragraph, character and table style, it will show the name and what that style looks like. You can use this when you define elements in you yaml mapping file. In the yaml file there will be a key for mapping Word templates an that key is called `rdocx`. In that document there will be 
+### Step 2: Create the Word Mapping  
 
-- `styles` Mapping of all the styles in the Word document you want to use to the style name in the Word document
-- `doc_def` Associating style names you've defined in the `styles` section with default values for the report
-- `formatting` General formatting options for the document
-- `md_def` Default formatting for styles when markdown is being used
+For each paragraph, character, and table style, ``example_layout.docx`` displays the name and what that style looks like. You can use this when you define elements in your ``yaml`` mapping file. The process is very similar to that in the PowerPoint section above so we will not go into as much detail this time.  
 
-The following sections will walk you through each of these elements in the yaml mapping file.
+In the ``example.yaml`` file copied over from earlier, there will be a key for mapping Word templates (rows 40-115. That key is called ``rdocx`` and will have the following values: 
 
-### `styles`
+- ``styles`` - maps user-generated (_keys_) for each content block to their respective Word style_name (_values_)
+- ``doc_def`` - maps the  _keys_ defined in the ``styles`` section to their default values for the report
+- ``formatting`` - general formatting options for the document
+- ``md_def`` - default formatting for styles when markdown is being used
 
-In this section you will list key/value pairs that represent the name of the style you want to use in R and the style name used in Word. In the example here we have the following styles defined:
+The following sections will walk you through each of these elements in the ``example.yaml`` mapping file.
+
+#### `styles`
+
+This section contains ``onbrand`` to Word mappings as key/value pairs.  The keys represent the name of the content block you want to use in your R code.  The values, generated by ``onbrand::view_layout()`` and found in ``example_layout.docx``, represent the style_name used by Word. In our example, we have the following styles defined:
 ```
   styles:
     Plain_Text:               Normal
@@ -221,11 +237,11 @@ In this section you will list key/value pairs that represent the name of the sty
     Figure_Caption:           Normal
 ```
 
-So fo example the `Normal` style is defined in Word, but I'm going to call it `Plain_Text` in the workflows I develop. **Note: The functions of onbrand require you define at least two styles: one paragraph style and one table style.**
+So, for example, the `Normal` style is defined in Word, but I'm going to call it `Plain_Text` in the workflows I develop. **Note: The functions of ``onbrand`` require you define at least two styles: one paragraph style and one table style.**
 
-### `doc_def`
+#### `doc_def`
 
-This section is where the default style mappings are defined. These are key value pars. The keys are required by onbrand, so you have to have an entry for each of thes. The values are the onbrand style names defined in the `styles` section. So in this example if you insert a Word table (`Table`) it will be formatted according to the onbrand style name `Default_Table`.
+This section contains the default style mappings as key/value pairs. The keys are required by ``onbrand``, so you have to have an entry for each of them. The values are the user-generated (_keys_) from the `styles` section. So, in this example if you want to insert a Word table (`Table`) in the document you are going to generate, the table will be formatted according to the ``onbrand`` style name `Default_Table`.
 
 ```
   doc_def:                     
@@ -235,9 +251,9 @@ This section is where the default style mappings are defined. These are key valu
     Figure_Caption:           Figure_Caption
 ```
 
-### `formatting`
+#### `formatting`
 
-Basic document formatting s specified here. The `*Caption_Location` keys indicate if captions should be above (`top`) or below (`bottom`) the reporting element. The `*Pre` and `*Post` elements control how numbering is shown in captions. For example the third dable would look like: `Table 3.`. And the default figure widths and heights are specified here in inches. 
+Basic document formatting is specified under this key in the ``yaml`` file. The `*_Caption_Location` keys indicate whether captions should be above (`top`) or below (`bottom`) the reporting element. The `*_Pre` and `*_Post` elements control how numbering is displayed in captions. For example the third table would look like: `Table 3.`. Lastly, the default figure width and height are specified here in inches. 
 
 ```
   formatting:
@@ -251,51 +267,58 @@ Basic document formatting s specified here. The `*Caption_Location` keys indicat
     Figure_Height:             5.0
 ```
 
-### `md_def`
+#### `md_def`
 
-These elements contain the default values used when markdown formatting is used. For this section you will need entries for `default` and `Table_Labels` as well as an entry for each style defined in the `styles` section.  The `default` is used when rendering general markdown text. The `Table_Labels` is used when markdown is present in table elements like headers. What you can do is open up the styles in Word and make sure that each sytle element (fontsize, bold, etc) matches what is in Word. 
+These elements contain the default values used when markdown formatting is used. For this section, you will need entries for `default` and `Table_Labels` as well as an entry for each style defined in the `styles` section.  The `default` is used when rendering general markdown text. The `Table_Labels` is used when markdown is present in table elements like headers. 
 
-### Testing the new template
+**Tip** It's a good idea to open up the styles in Word and make sure that each style element (fontsize, bold, etc) matches what is in your Word document. 
 
-Once you're done you can test the template. First read in the template and look at the console for any messages. If you see any issues displayed try to address those. 
+### Step 3: Testing and Previewing your template
+
+Once you're done creating your abstraction layer (i.e., mapping), you can test the template. In R you can read your template by supplying the template and mapping file names:
+
 ```{r eval=FALSE}
  obnd = read_template(template = "example.docx", 
                       mapping  = "example.yaml")
 ```
 
-If there are no problems you can use `preview_template()` to create an annotated file showing the onbrand mapping names and the Word names with the style applied to visually check the mapping. 
+If there are no problems you can use ``onbrand::preview_template()`` create an annotated file showing the ``onbrand`` names mapped to the Word names with the style applied. **Tip** Save the ``obnd`` file and view it to make sure the mappings are what you expect.
 
 ```{r eval=FALSE}
 obnd = preview_template(obnd)
 save_report(obnd, "example_preview.docx")
 ```
 
+Once again, that's it.  You have completed the Word example and used ``onbrand`` to create an abstraction layer for use in your own efforts.  Again, this is a very straightforward example.  Word templates can also become fairly complex, fairly quickly.  Luckily, you only have to do it once per template now!
+
 ## Switching Templates
 
-The goal of onbrand is to allow users to easily switch between organizational document templates without changing the actual reporting workflow. This is accomplished through the yaml file. First make a copy of your yaml file for the new templates. Then you need to modify this copy as described below:
+The goal of ``onbrand`` is to allow users to easily switch between organizational document templates without changing the actual reporting workflow. This is accomplished through the ``yaml`` file (i.e., the abstraction layer). 
+
+First, make a copy of your ``yaml`` file for the new templates. Then, modify the copy as described below:
 
 ### PowerPoint
 
 If you want to change to a new PowerPoint template you need to do the following:
 
-- Create slide masters with the same layout names
+- Under the Master, create slide layouts with the same names
 - Create the layouts with the same elements as your previous template
-- Use `view_layout()` on the new template to get a mapping for the new placeholders
-- Edit the new yaml file to to update the master field, ph_label fields, and the md_def field.
-- Confirm the new template is behaving as expected using `preview_template()`
+- Use ``onbrand::view_layout()`` on the new template to get a mapping for the new placeholders
+- Edit the new ``yaml`` file to update the master field, ph_label fields, and the md_def field.
+- Confirm the new template is behaving as expected using ``onbrand::preview_template()``
 
 ### Word
 
 If you want to change to a new Word template you need to do the following:
 
 - Create a document with the same types of styles in your mapping file
-- Use `view_layout()` on the new template to get a mapping for the new styles
-- Edit the new yaml file to to update the `styles` section to the new names used in Word (keeping the onbrand style names the same)
-- Confirm the new template is behaving as expected using `preview_template()`
+- Use ``onbrand::view_layout()`` on the new template to get a mapping for the new styles
+- Edit the new ``yaml`` file to update the `styles` section to the new names used in Word (keeping the ``onbrand`` style names the same)
+- Confirm the new template is behaving as expected using ``onbrand::preview_template()``
 
-### Using a new template
+### Using your new template
 
-Once you have a new template and mapping file you can then use those at the top level of your reporting workflow when calling `read_template()` and that should be it. 
+Once you have a new template and mapping file you can then use those at the top level of your reporting workflow when calling ``onbrand::read_template()`` and that should be it. To learn more about reporting workflows, walk through the second vignette: _Creating Templated Office Workflows_.
 
 ## Maping file
 ```{r echo=FALSE, comment='', message=TRUE, eval=TRUE}
