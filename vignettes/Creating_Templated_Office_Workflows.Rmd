@@ -582,7 +582,7 @@ dff = st$dff
 
 ## Accessing the `officer` Object Directly
 
-Sometimes you need more control over creating a report, and you may want to use the officer commands directly. To do this you can use the function `fetch_officer_object()`` to pull out the officer object from the onbrand object:
+Sometimes you need more control over creating a report, and you may want to use the officer commands directly. To do this you can use the function `fetch_officer_object()` to pull out the officer object from the onbrand object:
 
 ```{r echo=FALSE}
 rpt = fetch_officer_object(obnd)$rpt
