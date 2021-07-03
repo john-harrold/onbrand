@@ -6,13 +6,16 @@
 \usage{
 view_layout(
   template = file.path(system.file(package = "onbrand"), "templates", "report.pptx"),
-  output_file = NULL
+  output_file = NULL,
+  verbose = TRUE
 )
 }
 \arguments{
 \item{template}{Name of PowerPoint or Word file to annotate (defaults to included PoerPoint template)}
 
 \item{output_file}{name of file to place the annotated layout information, set to \code{NULL} and it will generate a file named layout with the appropriate extension}
+
+\item{verbose}{Boolean variable when set to TRUE (default) messages will be}
 }
 \value{
 List with the following elements

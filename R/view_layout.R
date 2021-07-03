@@ -3,12 +3,12 @@
 #'@importFrom flextable regulartable set_header_labels theme_alafoli theme_box theme_tron_legacy
 #'@importFrom flextable theme_vanilla theme_booktabs theme_tron theme_vader theme_zebra
 #'@importFrom magrittr "%>%"
-#'@importFrom officer add_slide annotate_base body_add_break body_add_fpar body_add_par body_add_gg body_add_img
+#'@importFrom officer add_slide annotate_base body_add_break block_caption body_add_caption body_add_fpar body_add_par body_add_gg body_add_img
 #'@importFrom officer body_add_table body_add_toc body_bookmark body_end_section_continuous
 #'@importFrom officer body_end_section_landscape body_end_section_portrait body_replace_all_text external_img
-#'@importFrom officer footers_replace_all_text headers_replace_all_text layout_properties layout_summary ph_location_type
+#'@importFrom officer footers_replace_all_text fpar ftext headers_replace_all_text layout_properties layout_summary ph_location_type
 #'@importFrom officer ph_location_label ph_with read_pptx read_docx shortcuts  slip_in_seqfield slip_in_text
-#'@importFrom officer styles_info unordered_list
+#'@importFrom officer run_autonum styles_info unordered_list
 #'@importFrom stringr str_locate_all
 #'@importFrom dplyr filter
 #'@importFrom yaml read_yaml
@@ -25,6 +25,7 @@
 #'
 #'@param template Name of PowerPoint or Word file to annotate (defaults to included PoerPoint template)
 #'@param output_file name of file to place the annotated layout information, set to \code{NULL} and it will generate a file named layout with the appropriate extension
+#'@param verbose Boolean variable when set to TRUE (default) messages will be
 #'
 #'@return List with the following elements
 #' \itemize{
@@ -39,10 +40,11 @@
 #'view_layout(template = file.path(system.file(package="onbrand"), "templates", "report.docx"),
 #'            output_file   = file.path(tempdir(), "layout.docx"))
 view_layout = function(template    = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
-                       output_file = NULL){
+                       output_file = NULL,
+                       verbose     = TRUE){
   rpt    = NULL
 
-  fr = fetch_rpttype(template=template)
+  fr = fetch_rpttype(template=template, verbose=verbose)
   isgood  = fr[["isgood"]]
   msgs    = fr[["msgs"]]
   rpttype = fr[["rpttype"]]
@@ -62,6 +64,9 @@ view_layout = function(template    = file.path(system.file(package="onbrand"), "
 
     # Dumping PowerPoint layout
     if(rpttype  == "PowerPoint"){
+      # Flag for detecting placeholder repeats
+      ph_repeats = FALSE
+        
       # Getting the annotated report
       #rpt = officer::annotate_base(path=template, output_file=NULL)
       rpt <- read_pptx(path=template)
@@ -97,12 +102,21 @@ view_layout = function(template    = file.path(system.file(package="onbrand"), "
           # Now we go through each placholder
           for(pidx in seq_len(nrow(lp))){
             textstr <- paste("type=", lp$type[pidx], ", index=", lp$id[pidx], ", ph_label=",lp$ph_label[pidx])
-            #rpt <- ph_with(x=rpt,  value = textstr, location = ph_location_label(type = lp$type[pidx], ph_label = lp$ph_label[pidx]))
 
-            rpt <- officer::ph_with(x=rpt,  value = textstr, location=officer::ph_location_label(ph_label=lp$ph_label[pidx]))
-
+            if(nrow(lp[lp$ph_label == lp$ph_label[pidx],]) == 1){
+              rpt <- officer::ph_with(x=rpt,  value = textstr, location=officer::ph_location_label(ph_label=lp$ph_label[pidx]))
+            } else {
+              ph_repeats = TRUE
+              msgs       = c(msgs, paste0("In layout >", layout, "<, the placeholder >",lp$ph_label[pidx],"< is used more than once."))
+            }
           }
         }
+      }
+
+      # If placehoder repeats were detected we adda  general message
+      if(ph_repeats){
+         msgs  = c(msgs, paste0("In one or more slides a placeholder name was repeated."))
+         msgs  = c(msgs, paste0("This placeholder will be unavailable for reporting."))
       }
     }
 
@@ -153,11 +167,16 @@ view_layout = function(template    = file.path(system.file(package="onbrand"), "
     msgs = c(msgs, paste0("Annotated layout: ", output_file))
     msgs = c(msgs, "--------------------------------")
     }
-#
-#
+ 
+ 
   if(!isgood){
     msgs = c(msgs, "view_layout()")
     msgs = c(msgs, "Layout not generated.")
+  }
+
+  # Dumping the messages if verbose is turned on:
+  if(verbose & !is.null(msgs)){
+    message(paste(msgs, collapse="\n"))
   }
   res = list(isgood = isgood,
              rpt    = rpt,

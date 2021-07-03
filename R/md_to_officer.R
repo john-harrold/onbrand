@@ -31,7 +31,8 @@
 #' \itemize{
 #'  \item \code{locs} Dataframe showing the locations of markdown elements in the current paragraph
 #'  \item \code{pele} These are the individual parsed paragraph elements
-#'  \item \code{fpar_cmd} String containing the fpar_cmd that can be run using
+#'  \item \code{ftext_cmd} String containing the ftext commands.
+#'  \item \code{fpar_cmd} String containing the fpar commands that can be run using
 #'  \code{eval} to return the output of \code{fpar}. For example: 
 #' \preformatted{
 #'   myfpar = eval(parse(text=pgparse$pgraph_1$fpar_cmd))
@@ -346,13 +347,13 @@ pgraphs_parse = list()
     }
 
 
-  fpar_cmd = ""
+  ftext_cmd = ""
   for(tmpele in pele){
-    if(fpar_cmd != ""){
-     fpar_cmd = paste(fpar_cmd, ',\n') }
-    fpar_cmd = paste(fpar_cmd, 'officer::ftext("', tmpele$text, '", ', tmpele$props_cmd, ')', sep="")
+    if(ftext_cmd != ""){
+     ftext_cmd = paste(ftext_cmd, ',\n') }
+    ftext_cmd = paste(ftext_cmd, 'officer::ftext("', tmpele$text, '", ', tmpele$props_cmd, ')', sep="")
   }
-  fpar_cmd = paste("officer::fpar(", fpar_cmd, ")", sep="")
+  fpar_cmd = paste("officer::fpar(", ftext_cmd, ")", sep="")
 
   as_paragraph_cmd = ""
   for(tmpele in pele){
@@ -367,6 +368,7 @@ pgraphs_parse = list()
   pgraphs_parse[[paste("pgraph_", pgraph_idx, sep="")]]$pele              = pele
   pgraphs_parse[[paste("pgraph_", pgraph_idx, sep="")]]$locs              = locs
   pgraphs_parse[[paste("pgraph_", pgraph_idx, sep="")]]$md_visual         = md_visual
+  pgraphs_parse[[paste("pgraph_", pgraph_idx, sep="")]]$ftext_cmd         = ftext_cmd
   pgraphs_parse[[paste("pgraph_", pgraph_idx, sep="")]]$fpar_cmd          = fpar_cmd
   pgraphs_parse[[paste("pgraph_", pgraph_idx, sep="")]]$as_paragraph_cmd  = as_paragraph_cmd
 

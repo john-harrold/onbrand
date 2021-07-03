@@ -9,7 +9,7 @@ save_report(obnd, output_file = NULL, verbose = TRUE)
 \arguments{
 \item{obnd}{onbrand report object}
 
-\item{output_file}{name of file to place the annotated layout information, set to \code{NULL} and it will generate a file named layout with the appropriate extension}
+\item{output_file}{File name to save the report.}
 
 \item{verbose}{Boolean variable when set to TRUE (default) messages will be
 displayed on the terminal; Messages will be included in the returned onbrand
@@ -19,7 +19,6 @@ object.}
 List with the following elements
 \itemize{
 \item{isgood} Boolean variable indicating success or failure
-\item{rpt} Officer with the annotated layout
 \item{msgs} Vector of messages
 }
 }

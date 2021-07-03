@@ -3,7 +3,7 @@
 #'@description Saves report in onbrand object to the specified file.
 #'
 #'@param obnd onbrand report object
-#'@param output_file name of file to place the annotated layout information, set to \code{NULL} and it will generate a file named layout with the appropriate extension
+#'@param output_file File name to save the report. 
 #'@param verbose Boolean variable when set to TRUE (default) messages will be
 #'displayed on the terminal; Messages will be included in the returned onbrand
 #'object.
@@ -11,7 +11,6 @@
 #'@return List with the following elements
 #' \itemize{
 #' \item{isgood} Boolean variable indicating success or failure
-#' \item{rpt} Officer with the annotated layout
 #' \item{msgs} Vector of messages
 #'}
 #'@examples
@@ -129,4 +128,8 @@ save_report  = function (obnd,
   if(verbose & !is.null(msgs)){
     message(paste(msgs, collapse="\n"))
   }
-}
+
+
+  res = list(isgood = isgood,
+             msgs   = msgs)
+res}

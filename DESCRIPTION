@@ -5,7 +5,10 @@ Version: 1.0.0
 Authors@R: c(person("John", "Harrold", 
                      role    = c("aut", "cre"),
                      email   = "john.m.harrold@gmail.com",
-                     comment = c(ORCID="0000-0003-2052-4373")))
+                     comment = c(ORCID="0000-0003-2052-4373")),
+             person("Bryan", "Smith", 
+                     role    = c("aut"),
+                     email   = "r.bryan.smith@gmail.com "))
 Maintainer: John Harrold <john.m.harrold@gmail.com> 
 Description: Automated reporting in Word and PowerPoint  can require  customization for each organizational template.  Onbrand adds standard  reporting functions and an abstraction  layer to facilitate automated  reporting workflows that can be replicated across different organizational templates.
 URL: https://github.com/john-harrold/onbrand

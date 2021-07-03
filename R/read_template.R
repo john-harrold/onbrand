@@ -171,48 +171,52 @@ read_template = function(template    = file.path(system.file(package="onbrand"),
                           "Table"              = c("table"),
                           "Table_Caption"      = c("paragraph", "character"),
                           "Figure_Caption"     = c("paragraph", "character"))
-      # First we make sure that the expected defaults were specified:
-      if(all(names(req_doc_defs) %in% names(meta[["rdocx"]][["doc_def"]]) )){
-        # Now we make sure those specified defaults are actual styles:
-        def_styles = as.vector(unlist(meta[["rdocx"]][["doc_def"]]))
-        if(all(def_styles %in% names(meta[["rdocx"]][["styles"]]))){
-          # Checking the default styles to make sure they are the correct type:
-          # Here we define the styles locally in terms of the user specified names
-          for(def_style in names(req_doc_defs)){
-            Word_style      = meta[["rdocx"]][["styles"]][[meta[["rdocx"]][["doc_def"]][[def_style]]]]
-            Word_style_type = dplyr::filter(lay_sum, .data[["style_name"]] == Word_style)[["style_type"]]
-            allowed_style_types = req_doc_defs[[def_style]]
-            # If the word style type is not in the allowed types we flag it
-            if(!(Word_style_type %in% allowed_style_types)){
-              isgood = FALSE
-              msgs = c(msgs, "The requred document style default (doc_def) is the wrong type.")
-              msgs = c(msgs, paste0("  default:      ", def_style))
-              msgs = c(msgs, paste0("  style:        ", Word_style))
-              msgs = c(msgs, paste0("  style type:   ", Word_style_type))
-              msgs = c(msgs, paste0("  allowed types ", paste(allowed_style_types, collapse=", ")))
+      if(isgood){
+        # First we make sure that the expected defaults were specified:
+        if(all(names(req_doc_defs) %in% names(meta[["rdocx"]][["doc_def"]]) )){
+          # Now we make sure those specified defaults are actual styles:
+          def_styles = as.vector(unlist(meta[["rdocx"]][["doc_def"]]))
+          if(all(def_styles %in% names(meta[["rdocx"]][["styles"]]))){
+            # Checking the default styles to make sure they are the correct type:
+            # Here we define the styles locally in terms of the user specified names
+            for(def_style in names(req_doc_defs)){
+              Word_style      = meta[["rdocx"]][["styles"]][[meta[["rdocx"]][["doc_def"]][[def_style]]]]
+              Word_style_type = dplyr::filter(lay_sum, .data[["style_name"]] == Word_style)[["style_type"]]
+              allowed_style_types = req_doc_defs[[def_style]]
+              if(Word_style == "Table Caption"){
+                  browser()
+              }
+              # If the word style type is not in the allowed types we flag it
+              if(!(Word_style_type %in% allowed_style_types)){
+                isgood = FALSE
+                msgs = c(msgs, "The requred document style default (doc_def) is the wrong type.")
+                msgs = c(msgs, paste0("  default:      ", def_style))
+                msgs = c(msgs, paste0("  style:        ", Word_style))
+                msgs = c(msgs, paste0("  style type:   ", Word_style_type))
+                msgs = c(msgs, paste0("  allowed types ", paste(allowed_style_types, collapse=", ")))
+              }
             }
+          } else {
+            isgood = FALSE
+            msgs = c(msgs, "Default user styles in doc_def are present that have not been defined in styles.")
+            msgs = c(msgs, "Please check the following values specified in doc_def")
+            msgs = c(msgs, paste0("  ", paste(def_styles[!(def_styles %in% names(meta[["rdocx"]][["styles"]]))], collapse=", ")))
           }
         } else {
           isgood = FALSE
-          msgs = c(msgs, "Default user styles in doc_def are present that have not been defined in styles.")
-          msgs = c(msgs, "Please check the following values specified in doc_def")
-          msgs = c(msgs, paste0("  ", paste(def_styles[!(def_styles %in% names(meta[["rdocx"]][["styles"]]))], collapse=", ")))
+          msgs = c(msgs, "In doc_def you must specify default styles to be used.")
+          msgs = c(msgs, "The following default styles were not specified:")
+          msgs = c(msgs, paste0("  ", paste(req_doc_defs[!(req_doc_defs %in% names(meta[["rdocx"]][["doc_def"]]))], collapse=", ")))
         }
-      } else {
-        isgood = FALSE
-        msgs = c(msgs, "In doc_def you must specify default styles to be used.")
-        msgs = c(msgs, "The following default styles were not specified:")
-        msgs = c(msgs, paste0("  ", paste(req_doc_defs[!(req_doc_defs %in% names(meta[["rdocx"]][["doc_def"]]))], collapse=", ")))
-      }
-
-      # Now we're checking all of the meta_styles to ensure there is a md_def
-      # entry as well
-      if(!all(names(meta[["rdocx"]][["styles"]])  %in% names(meta[["rdocx"]][["md_def"]]))){
-        isgood = FALSE
-        msgs = c(msgs, "The following styles were specified but no md_def entries were found")
-        msgs = c(msgs, paste(
-           names(meta[["rdocx"]][["styles"]])[!(names(meta[["rdocx"]][["styles"]])  %in% names(meta[["rdocx"]][["md_def"]]))],
-           collapse=", "))
+        # Now we're checking all of the meta_styles to ensure there is a md_def
+        # entry as well
+        if(!all(names(meta[["rdocx"]][["styles"]])  %in% names(meta[["rdocx"]][["md_def"]]))){
+          isgood = FALSE
+          msgs = c(msgs, "The following styles were specified but no md_def entries were found")
+          msgs = c(msgs, paste(
+             names(meta[["rdocx"]][["styles"]])[!(names(meta[["rdocx"]][["styles"]])  %in% names(meta[["rdocx"]][["md_def"]]))],
+             collapse=", "))
+          }
         }
       }
     }

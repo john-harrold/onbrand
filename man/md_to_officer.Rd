@@ -45,7 +45,8 @@ elements:
 \itemize{
  \item \code{locs} Dataframe showing the locations of markdown elements in the current paragraph
  \item \code{pele} These are the individual parsed paragraph elements
- \item \code{fpar_cmd} String containing the fpar_cmd that can be run using
+ \item \code{ftext_cmd} String containing the ftext commands.
+ \item \code{fpar_cmd} String containing the fpar commands that can be run using
  \code{eval} to return the output of \code{fpar}. For example: 
 \preformatted{
   myfpar = eval(parse(text=pgparse$pgraph_1$fpar_cmd))

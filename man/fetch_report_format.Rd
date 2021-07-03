@@ -21,11 +21,11 @@ list containing the following elements
 \item{isgood} Boolean variable indicating success or failure
 \item{msgs} Vector of messages
 \item{format_details} List containing the format details for the specified
-foramt_name
+format_name
 }
 }
 \description{
-Returns a list the default font format for the report element
+Returns a list of the default font format for the report element
 }
 \examples{
 obnd = read_template(

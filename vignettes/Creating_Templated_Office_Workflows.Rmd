@@ -14,8 +14,7 @@ library(officer)
 library(magrittr)
 library(flextable)
 ```
-
-## Introduction
+# Introduction  <img src="`r system.file(package="onbrand", "graphics", "onbrand_hex.png")`" align="right" height="138.5" border="0px" />  
 
 The ``officer`` package is used to generate all of the underlying PowerPoint and Word documents. This purpose of `onbrand` is to provide an abstraction layer for the functions of ``officer``. This involves providing a consistent customizable method to interact with templates as well as a form of markdown to control the formatting of text. 
 
@@ -196,6 +195,13 @@ Which should look something like this:
 knitr::include_graphics(system.file(package="onbrand", "graphics", "ppt_workflow_output.png"))
 ```
 
+### Accessing the PowerPoint mapping information
+
+If you do not want to use the interfaces above for creating slides but would like to use the named mapping information in a more traditional `officer` workflow you can use the function `fph`. After you've loaded the onbrand object above (`obnd`) you can then pull out the placeholder label from PowerPoint for any named placeholder in a template layout specified in the yaml mapping file. For example if we wanted the placeholder label for the `content_left_header` in the `two_content_header_text` layout we would use the following:
+
+```{r}
+ph = fph(obnd, "two_content_header_text", "content_left_header")$pl
+```
 
 ## Word
 
@@ -560,6 +566,20 @@ htmltools_value(ft)
 
 **Note that the Greek symbols are not rendered correctly here but will be rendered correctly in Word.**
 
+### Accessing the Word mapping information
+
+As with the PowerPoint interface, you can also access the named Word mapping directly. This is done through the `fst` function. With the onbrand objected loaded (`obnd`) you can supply an onbrand style name and pull out the Word style name (`wsn`) and the default font format (`dff`):
+
+```{r}
+st = fst(obnd, "Heading_3")
+
+#Word style name
+wsn = st$wsn
+
+# Default font format
+dff = st$dff
+```
+
 ## Accessing the `officer` Object Directly
 
 Sometimes you need more control over creating a report, and you may want to use the officer commands directly. To do this you can use the function `fetch_officer_object()`` to pull out the officer object from the onbrand object:
@@ -567,6 +587,8 @@ Sometimes you need more control over creating a report, and you may want to use 
 ```{r echo=FALSE}
 rpt = fetch_officer_object(obnd)$rpt
 ```
+
+If you want to access the placeholders in PowerPoint you can use the `fph` function described above. Similarly in Word you can use the `fst` function discussed in the Word section to fetch style information.
 
 Now you can use any officer command you wish on the `rpt` object. And when you're done you can put the object back into the onbrand object using `set_officer_object()`:
 

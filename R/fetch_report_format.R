@@ -1,6 +1,6 @@
 #'@export
 #'@title Fetch The Specified Report Formatting Information
-#'@description Returns a list the default font format for the report element
+#'@description Returns a list of the default font format for the report element
 #'
 #'@param obnd onbrand report object
 #'@param format_name Name of report format to fetch; this is defined in the md_def
@@ -13,7 +13,7 @@
 #'\item{isgood} Boolean variable indicating success or failure
 #'\item{msgs} Vector of messages
 #'\item{format_details} List containing the format details for the specified
-#'foramt_name
+#'format_name
 #'}
 #'@examples
 #' obnd = read_template(

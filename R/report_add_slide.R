@@ -133,7 +133,7 @@ report_add_slide = function (obnd,
     }  else {
       isgood = FALSE
       msgs = c(msgs, paste0("The slide template >", template, "< was not found"))
-      msgs = c(msgs, paste0("In the mapping file."))
+      msgs = c(msgs, paste0("in the mapping file."))
     }
   }
 
@@ -160,6 +160,7 @@ report_add_slide = function (obnd,
   # object is set to false
   if(!isgood){
     obnd[["isgood"]] = FALSE
+    msgs = c(msgs, "Unable to add slide to presentation, see above for details.")
     msgs = c(msgs, paste0("mapping file: ", obnd[["mapping"]]))
     msgs = c(msgs, "report_add_slide()")
   }

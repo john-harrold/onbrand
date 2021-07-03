@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# onbrand
+# onbrand <img src="inst/graphics/onbrand_logo.png" align="right" height="138.5" />
 
 <!-- badges: start -->
 
@@ -18,13 +18,13 @@ details are mapped to human-readable names.
 
 These human-readable names combined with the mapping information - in a
 template-specific yaml file - provides a systematic method to script
-support for different templates. Which means, the same workflow will
-support multiple templates. Which makes your life easier and, thus,
-makes the world a little better place.
+support for different Word of PowerPoint templates. Which means, the
+same workflow will support multiple outputs. Which makes your life
+easier and, thus, makes the world a little better place.
 
 ## Installation
 
-You can install the released version of onbrand from
+You can install the released version of `onbrand` from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
@@ -40,10 +40,11 @@ devtools::install_github("john-harrold/onbrand")
 
 ## Getting Started
 
-Onbrand is packaged with two Vignettes, we recommend starting with the
-first vignette:
+`onbrand` is packaged with two Vignettes:
 
 1.  Custom\_Office\_Templates  
 2.  Creating\_Templated\_Office\_Workflows
 
+These vignettes contain everything you need to walk through the basics.
+We recommend starting with the first vignette:  
 *insert code chunk*

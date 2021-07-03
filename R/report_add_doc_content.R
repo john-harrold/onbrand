@@ -185,6 +185,7 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
   ref_key = NULL
   msgs    = c()
   style   = NULL
+  caption = NULL
 
   if(type == "break"){
    content = list()
@@ -357,7 +358,7 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
       if("key" %in% names(content) & !is.null(content[["caption"]])){
         # JMH probably wrap this up in a funciton where you check for key names,
         # see if the same key has been used already, etc.
-        ref_key = paste("ubr_", content[["key"]], sep="")
+        ref_key = paste("obnd_", content[["key"]], sep="")
         # Adding reference to the key table
         onbd[["key_table"]] =
           rbind(
@@ -396,10 +397,16 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
      }
      Caption_Location   = obnd[["meta"]][["rdocx"]][["formatting"]][["Figure_Caption_Location"]]
      Caption_Style      = obnd[["meta"]][["rdocx"]][["doc_def"]][["Figure_Caption"]]
-     Caption_Ref_str    = paste('obnd[["rpt"]] = officer::slip_in_seqfield(obnd[["rpt"]], str = "SEQ Figure \\\\@ arabic", style = "Default Paragraph Font", pos = "before")', sep="")
      Caption_Label_Pre  = obnd[["meta"]][["rdocx"]][["formatting"]][["Figure_Caption_Label_Pre"]]
      Caption_Label_Post = obnd[["meta"]][["rdocx"]][["formatting"]][["Figure_Caption_Label_Post"]]
      Caption_Style_docx = obnd[["meta"]][["rdocx"]][["styles"]][[Caption_Style]]
+
+     
+     # Creating the Figure X 
+     run_num = officer::run_autonum(seq_id     = "fig", 
+                                    pre_label  = Caption_Label_Pre, 
+                                    post_label = Caption_Label_Post, 
+                                    bkm        = ref_key)
    }
 
    #-------
@@ -407,11 +414,38 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
    if(type == "table" | type == "flextable" | type=="flextable_object"){
      Caption_Location   = obnd[["meta"]][["rdocx"]][["formatting"]][["Table_Caption_Location"]]
      Caption_Style      = obnd[["meta"]][["rdocx"]][["doc_def"]][["Table_Caption"]]
-     Caption_Ref_str    = paste('obnd[["rpt"]] = officer::slip_in_seqfield(obnd[["rpt"]], str = "SEQ Table \\\\@ arabic", style = "Default Paragraph Font", pos = "before")', sep="")
      Caption_Label_Pre  = obnd[["meta"]][["rdocx"]][["formatting"]][["Table_Caption_Label_Pre"]]
      Caption_Label_Post = obnd[["meta"]][["rdocx"]][["formatting"]][["Table_Caption_Label_Post"]]
      Caption_Style_docx = obnd[["meta"]][["rdocx"]][["styles"]][[Caption_Style]]
+
+     # Creating the Table X 
+     run_num = officer::run_autonum(seq_id     = "tab", 
+                                    pre_label  = Caption_Label_Pre, 
+                                    post_label = Caption_Label_Post, 
+                                    bkm        = ref_key)
+
    }
+
+   # Creating the caption block based on the caption format:
+   # this will define the object 'caption' that can be inserted
+   # below based on whether it should be below or above the table/figure
+   if(!is.null(content[["caption"]])){
+     if(Caption_Format == "text"){
+       caption = officer::block_caption(content[["caption"]], style = Caption_Style_docx, autonum = run_num )
+     } else if(Caption_Format == "fpar"){
+       caption = officer::fpar(autonum=run_num, content[["text"]], style=Caption_Style_docx)
+     } else if(Caption_Format == "md"){
+       mdout = md_to_officer(content[["caption"]])
+       ftall = c("autonum=run_num")
+       for(pgraph in mdout){
+         ftall = c(ftall, pgraph[["ftext_cmd"]], 'officer::ftext(" ")')
+       }
+       fp_cmd  = paste0("officer::fpar(",paste(ftall, collapse = ", "), ")")
+       caption = eval(parse(text=fp_cmd)) 
+     }
+   }
+
+
    if(type == "table"){
      header    = TRUE
      if('header' %in% names(content)){
@@ -424,7 +458,7 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
    }
    #-------
    if(type == "flextable"){
-     # These are the default table options
+     # These are the default flextable options
      # and they can be over written by specifying
      # the same fields of the content list
      header_top              = NULL
@@ -535,23 +569,10 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
     # Adding caption to the top of the object
     if(!is.null(content[["caption"]]) & Caption_Location == "top"){
       if(Caption_Format == "text"){
-        obnd[["rpt"]] = officer::body_add_par(obnd[["rpt"]], content[["caption"]], style=Caption_Style_docx)
-      } else if(Caption_Format == "fpar"){
-        obnd[["rpt"]] = officer::body_add_fpar(obnd[["rpt"]], value=content[["text"]], style=Caption_Style_docx)
-      } else if(Caption_Format == "md"){
-        mdout = md_to_officer(content[["caption"]])
-        for(pgraph in mdout){
-          obnd[["rpt"]] = officer::body_add_fpar(obnd[["rpt"]], value=eval(parse(text=pgraph[["fpar_cmd"]])), style=Caption_Style_docx)
-        }
+        obnd[["rpt"]] = officer::body_add_caption(obnd[["rpt"]], caption)
+      } else {
+        obnd[["rpt"]] = officer::body_add_fpar(obnd[["rpt"]], caption)
       }
-
-      # Appending the Figure X and Table X
-      obnd[["rpt"]] = officer::slip_in_text(obnd[["rpt"]], str = Caption_Label_Post, style = "Default Paragraph Font", pos = "before")
-      eval(parse(text=Caption_Ref_str))
-      # If a key has been defined we add that here
-      if(!is.null(ref_key)){
-         obnd[["rpt"]] = officer::body_bookmark(obnd[["rpt"]], ref_key) }
-      obnd[["rpt"]] = officer::slip_in_text(obnd[["rpt"]], str = Caption_Label_Pre, style = "Default Paragraph Font", pos = "before")
     }
 
     # Adding the image/table
@@ -573,23 +594,10 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
     # Adding caption to the bottom of the object
     if(!is.null(content[["caption"]]) & Caption_Location == "bottom"){
       if(Caption_Format == "text"){
-        obnd[["rpt"]] = officer::body_add_par(obnd[["rpt"]], content[["caption"]], style=Caption_Style_docx)
-      } else if(Caption_Format == "fpar"){
-        obnd[["rpt"]] = officer::body_add_fpar(obnd[["rpt"]], value=content[["text"]], style=Caption_Style_docx)
-      } else if(Caption_Format == "md"){
-        mdout = md_to_officer(content[["caption"]])
-        for(pgraph in mdout){
-          obnd[["rpt"]] = officer::body_add_fpar(obnd[["rpt"]], value=eval(parse(text=pgraph[["fpar_cmd"]])), style=Caption_Style_docx)
-        }
+        obnd[["rpt"]] = officer::body_add_caption(obnd[["rpt"]], caption)
+      } else {
+        obnd[["rpt"]] = officer::body_add_fpar(obnd[["rpt"]], caption)
       }
-
-      # Appending the Figure X and Table X
-      obnd[["rpt"]] = officer::slip_in_text(obnd[["rpt"]], str = Caption_Label_Post, style = "Default Paragraph Font", pos = "before")
-      eval(parse(text=Caption_Ref_str))
-      # If a key has been defined we add that here
-      if(!is.null(ref_key)){
-         obnd[["rpt"]] = officer::body_bookmark(obnd[["rpt"]], ref_key) }
-      obnd[["rpt"]] = officer::slip_in_text(obnd[["rpt"]], str = Caption_Label_Pre, style = "Default Paragraph Font", pos = "before")
     }
     #------
     if(type == "text"){
@@ -678,8 +686,10 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
 
 
   if(!isgood){
-    msgs = c(msgs, "report_add_doc_content() ")
     msgs = c(msgs, "Unable to add content to document, see above for details")
+    msgs = c(msgs, paste0("mapping file: ", obnd[["mapping"]]))
+    msgs = c(msgs, "report_add_doc_content() ")
+    obnd[["isgood"]] = isgood 
   }
 
   # Dumping the messages if verbose is turned on:
