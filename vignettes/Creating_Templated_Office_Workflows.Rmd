@@ -33,7 +33,7 @@ ex_yaml_read = yaml::read_yaml(ex_yaml_tmpfile)
 ```
 
 
-## Introduction
+# Introduction <img src="`r system.file(package="onbrand", "graphics", "onbrand_hex.png")`" align="right" height="138.5" border="0px" />
 
 The ``officer`` package is used to generate all of the underlying PowerPoint and Word documents. The purpose of `onbrand` is to provide an abstraction layer (or mapping) for the functions in ``officer`` in order to allow the same reporting workflow to be used with different template documents. This involves providing a consistent customizable method to interact with templates as well as a form of markdown to control the formatting of text. 
 

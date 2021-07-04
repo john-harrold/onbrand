@@ -35,7 +35,7 @@ close(fileConn)
 ex_yaml_read = yaml::read_yaml(ex_yaml_tmpfile)
 ```
 
-## Introduction
+# Introduction <img src="`r system.file(package="onbrand", "graphics", "onbrand_hex.png")`" align="right" height="138.5" border="0px" />
 
 The main purpose of ``onbrand`` is to create an abstraction layer that allows for the same reporting workflow to be used with different template documents. In order to do this, the abstraction information (or mapping) needs to be provided in a ``yaml`` configuration file. The process will be detailed below, but at a high level it involves the following steps:
 
