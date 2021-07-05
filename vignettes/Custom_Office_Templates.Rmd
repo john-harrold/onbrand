@@ -35,9 +35,9 @@ close(fileConn)
 ex_yaml_read = yaml::read_yaml(ex_yaml_tmpfile)
 ```
 
-# Introduction  <img src="`r system.file(package="onbrand", "graphics", "onbrand_hex.png")`" align="right" height="138.5" border="0px" />  
+# Introduction <img src="`r system.file(package="onbrand", "graphics", "onbrand_hex.png")`" align="right" height="138.5" border="0px" />
 
-The main purpose of ``onbrand`` is to create an abstraction layer that allows for the same reporting workflow to be used with different template documents. In order to do this, the abstraction information needs to be provided in a ``yaml`` configuration file. The process will be detailed below, but at a high level it involves the following steps:
+The main purpose of ``onbrand`` is to create an abstraction layer that allows for the same reporting workflow to be used with different template documents. In order to do this, the abstraction information (or mapping) needs to be provided in a ``yaml`` configuration file. The process will be detailed below, but at a high level it involves the following steps:
 
 1. Read in a template using the function: ``onbrand::view_layout()``  
 2. Use the resulting files to create the mapping (saved as a ``.yaml``)
@@ -195,9 +195,7 @@ Another quick note about terminology.  All Word documents, even a blank document
 
 To create your custom abstraction layer for Word, you start by reading in an **empty** Word document saved from the template you are using.  This empty Word document should have all the styles defined and contain all the placeholders you want to use. In the ``example.docx`` there is one paragraph style and one table style. 
 
-not sure:  
-
->You can also put placeholders in the document. For example if you wanted to use this template for reports, and you wanted to have "Report NNNN", where NNNN is the report number, in the right header. You could put "Report ===RPTNUM===" in the right header. [Note: if you type the text into Word. This is because while a string may appear to be a contiguous in Word, it may not be so in the underlying XML code. To ensure the string is contiguous you should type the placeholder text into a text editor, copy and paste it into template Word.]. 
+_side note_: ``onbrand`` additionally supports using placeholders in the document. For example, if you wanted to use this template for reports, and you wanted to have "Report NNNN", where NNNN is the report number, in the right header. Then place a text placeholder, e.g., "Report ===RPTNUM===", in the right header.  This placeholder will be referenced in your code; the _Creating Templated Office Workflows Vignette_ has more details.  Note: Do not type this placeholder text directly into the word document.  Cut and paste the text into the word document from a real text editor.  Word is not a text editor, so while the text string may appear to be contiguous, it may not be so in the underlying XML code. 
 
 To view all of the styles in the document you can use the `view_layout()` function here as well:
 
@@ -278,8 +276,8 @@ These elements contain the default values used when markdown formatting is used.
 Once you're done creating your abstraction layer (i.e., mapping), you can test the template. In R you can read your template by supplying the template and mapping file names:
 
 ```{r eval=FALSE}
- obnd = read_template(template = "example.docx", 
-                      mapping  = "example.yaml")
+obnd = read_template(template = "example.docx", 
+                     mapping  = "example.yaml")
 ```
 
 If there are no problems you can use ``onbrand::preview_template()`` create an annotated file showing the ``onbrand`` names mapped to the Word names with the style applied. **Tip** Save the ``obnd`` file and view it to make sure the mappings are what you expect.
@@ -290,6 +288,8 @@ save_report(obnd, "example_preview.docx")
 ```
 
 Once again, that's it.  You have completed the Word example and used ``onbrand`` to create an abstraction layer for use in your own efforts.  Again, this is a very straightforward example.  Word templates can also become fairly complex, fairly quickly.  Luckily, you only have to do it once per template now!
+
+**Tip** Now that you have walked-through this example, the best way to learn about Word templates - is to change something and walk through the steps again.  In the example file, we are using the base word document template.  After running through the steps below.  You can add additional _styles_ to the document by opening the styles pane, selecting the appropriate style, and saving (with a new name to easily see the difference).  Similarly, You can also select a new _theme_ and new style set in the design tab. Then rerun ``onbrand::view_layout()`` and see what's changed.
 
 ## Switching Templates
 
