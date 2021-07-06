@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# onbrand <img src="inst/graphics/onbrand_logo.png" align="right" height="138.5" />
+# onbrand <img src="man/figures/onbrand_logo.png" align="right" height="138.5" />
 
 <!-- badges: start -->
 
@@ -35,16 +35,21 @@ And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("john-harrold/onbrand")
+devtools::install_github("john-harrold/onbrand",
+              force           = TRUE,
+              build           = TRUE, 
+              build_vignettes = TRUE)
 ```
 
 ## Getting Started
 
-Browse through the [pkgdown
-documentation](https://john-harrold.github.io/onbrand/) and check out
+Browse through the
+[documentation](https://john-harrold.github.io/onbrand/) and check out
 the vignettes:
 
-1.  Custom Templates
-2.  Templated Workflows
+1.  [Custom
+    Templates](https://john-harrold.github.io/onbrand/articles/Custom_Office_Templates.html)
+2.  [Templated
+    Workflows](https://john-harrold.github.io/onbrand/articles/Creating_Templated_Office_Workflows.html)
 
 These vignettes contain everything you need to walk through the basics.

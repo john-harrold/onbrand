@@ -30,21 +30,26 @@ writeLines(ex_yaml, fileConn)
 close(fileConn)
 
 ex_yaml_read = yaml::read_yaml(ex_yaml_tmpfile)
+
+if_onbrand_hex_png           = system.file(package="onbrand","figures","onbrand_hex.png")
+if_ppt_workflow_output_png   = system.file(package="onbrand","figures","ppt_workflow_output.png")
+if_doc_workflow_output_png   = system.file(package="onbrand","figures","doc_workflow_output.png")
+b64_onbrand_hex_png          = knitrdata::data_encode(if_onbrand_hex_png         , encoding="base64")
+b64_ppt_workflow_output_png  = knitrdata::data_encode(if_ppt_workflow_output_png , encoding="base64")
+b64_doc_workflow_output_png  = knitrdata::data_encode(if_doc_workflow_output_png , encoding="base64")
 ```
 
-
-# Introduction <img src="`r system.file(package="onbrand", "graphics", "onbrand_hex.png")`" align="right" height="138.5" border="0px" />
+# Introduction <img src="data:image/png;base64,`r b64_onbrand_hex_png`" align="right" height="138.5" border="0px" />
 
 The ``officer`` package is used to generate all of the underlying PowerPoint and Word documents. The purpose of `onbrand` is to provide an abstraction layer (or mapping) for the functions in ``officer`` in order to allow the same reporting workflow to be used with different template documents. This involves providing a consistent customizable method to interact with templates as well as a form of markdown to control the formatting of text. 
 
 We recommend you complete the _Custom Office Templates Vignette_ prior to walking through this template. This vignette focuses on how to construct workflows using templates. Here we will use the internal templates embedded in ``onbrand``. If you want to copy them locally you can use the following commands:
 
-```
+``` r
 file.copy(system.file(package="onbrand"), "templates", "report.pptx"), "report.pptx")
 file.copy(system.file(package="onbrand"), "templates", "report.docx"), "report.docx")
 file.copy(system.file(package="onbrand"), "templates", "report.yaml"), "report.yaml")
 ```
-
 ## PowerPoint
 
 ### Loading your presentation template
@@ -230,9 +235,7 @@ save_report(obnd, tempfile(fileext=".pptx")
 
 Which should look something like this:
 
-```{r, echo=FALSE, fig.cap="Example PowerPoint output for workflow above.", out.width = '600px'}
-knitr::include_graphics(system.file(package="onbrand", "graphics", "ppt_workflow_output.png"))
-```
+![Example PowerPoint output for workflow above.](data:image/png;base64,`r b64_ppt_workflow_output_png`){width=600px}
 
 ### Accessing the PowerPoint mapping information
 
@@ -527,9 +530,7 @@ save_report(obnd, tempfile(fileext=".docx")
 
 The output from the example above should look like this:
 
-```{r, echo=FALSE, fig.cap="Example Word output for workflow above.", out.width = '600px'}
-knitr::include_graphics(system.file(package="onbrand", "graphics", "doc_workflow_output.png"))
-```
+![Example Word output for workflow above.](data:image/png;base64,`r b64_doc_workflow_output_png`){width=600px}
 
 ## Formatting with Markdown
 
