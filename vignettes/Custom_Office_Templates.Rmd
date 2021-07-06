@@ -35,7 +35,7 @@ close(fileConn)
 ex_yaml_read = yaml::read_yaml(ex_yaml_tmpfile)
 ```
 
-# Introduction <img src="`r system.file(package="onbrand", "graphics", "onbrand_hex.png")`" align="right" height="138.5" border="0px" />
+# Introduction <img src="`r file.path(package=".","figures","onbrand_hex.png")`" align="right" height="138.5" border="0px" />
 
 The main purpose of ``onbrand`` is to create an abstraction layer that allows for the same reporting workflow to be used with different template documents. In order to do this, the abstraction information (or mapping) needs to be provided in a ``yaml`` configuration file. The process will be detailed below, but at a high level it involves the following steps:
 
@@ -90,7 +90,7 @@ This section provides a detailed walk-through for each of the three steps in the
 A quick note about terminology.  A slide master is the top slide in a hierarchy of slides that stores information about the theme and slide layouts of a presentation, including the background, color, fonts, effects, placeholder sizes, and positioning. The slide master is the largest slide image at the top of the slide thumbnail list.
 
 ```{r, echo=FALSE, fig.cap="PowerPoint Slide Master Hierarchy", out.width = '350px'}
-knitr::include_graphics(system.file(package="onbrand", "graphics", "example_layout_ppt_master.png"))
+knitr::include_graphics(file.path(".","figures","example_layout_ppt_master.png"))
 ```
 
 ### Step 1: Read the PowerPoint Template  
@@ -131,7 +131,7 @@ In the ``yaml``, each placeholder will have two value pairs below it.  For examp
 The figure below shows how the annotated layout relates to the `yaml` mapping file.
 
 ```{r, echo=FALSE, fig.cap="Relationship between slide master names, placeholders, and content type and yaml mapping elements", out.width = '600px'}
-knitr::include_graphics(system.file(package="onbrand", "graphics", "example_layout_yaml_pptx.png"))
+knitr::include_graphics(file.path(".","figures","example_layout_yaml_pptx.png"))
 ```
 
 **Note:** You only have to define mapping information for the slide layouts under a master you want to access in R. You can have as many masters defined in the template as you want and only use a subset in R.
@@ -210,7 +210,7 @@ vlres = view_layout(template    = "example.docx",
 This will produce a word document, ``example_layout.docx`` that looks something like this:
 
 ```{r, echo=FALSE, fig.cap="Word layout example.", out.width = '600px'}
-knitr::include_graphics(system.file(package="onbrand", "graphics", "example_layout_docx.png"))
+knitr::include_graphics(file.path(".","figures","example_layout_docx.png"))
 ```
 
 ### Step 2: Create the Word Mapping  
