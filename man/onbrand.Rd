@@ -16,4 +16,9 @@ reporting work flows across Word and PowerPoint templates.
 \author{
 \strong{Maintainer}: John Harrold \email{john.m.harrold@gmail.com} (\href{https://orcid.org/0000-0003-2052-4373}{ORCID})
 
+Authors:
+\itemize{
+  \item Bryan Smith \email{r.bryan.smith@gmail.com }
+}
+
 }

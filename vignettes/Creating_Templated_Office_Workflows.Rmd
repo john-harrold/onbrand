@@ -37,7 +37,13 @@ ex_yaml_read = yaml::read_yaml(ex_yaml_tmpfile)
 
 The ``officer`` package is used to generate all of the underlying PowerPoint and Word documents. The purpose of `onbrand` is to provide an abstraction layer (or mapping) for the functions in ``officer`` in order to allow the same reporting workflow to be used with different template documents. This involves providing a consistent customizable method to interact with templates as well as a form of markdown to control the formatting of text. 
 
-We recommend you complete the _Custom Office Templates Vignette_ prior to walking through this template. This vignette focuses on how to construct workflows using templates. Here we will use the internal templates embedded in ``onbrand``.  If you want to copy them locally, modify the code snippet in the _Custom Office Templates Vignette_.
+We recommend you complete the _Custom Office Templates Vignette_ prior to walking through this template. This vignette focuses on how to construct workflows using templates. Here we will use the internal templates embedded in ``onbrand``. If you want to copy them locally you can use the following commands:
+
+```
+file.copy(system.file(package="onbrand"), "templates", "report.pptx"), "report.pptx")
+file.copy(system.file(package="onbrand"), "templates", "report.docx"), "report.docx")
+file.copy(system.file(package="onbrand"), "templates", "report.yaml"), "report.yaml")
+```
 
 ## PowerPoint
 
@@ -93,7 +99,7 @@ bl = c("1", "This is first level bullet",
        "1", "Another first level bullet")
 ```
 
-The list `b1` can then be added to the _content_ value of any placeholder with `list` as the type in the mapping file:
+The list `bl` can then be added to the _content_ value of any placeholder with `list` as the type in the mapping file:
 
 ```{r}
 obnd = report_add_slide(obnd,
@@ -138,8 +144,6 @@ obnd = report_add_slide(obnd,
      content_right        = list(content  = imgfile,
                                  type     = "imagefile")))
 ```
-
-A fair number of R packages can save output to image files. Including a slide layout for images in your abstraction layer can be quite the useful feature / work-around.
 
 #### Tables
 
@@ -210,15 +214,18 @@ obnd = report_add_slide(obnd,
      content_right_header  = list( content      = 'using "flextable_objecct"',
                                    type         = "text"),
      content_right         = list( content      = tab_fto,
-                                   type         = "text")))
+                                   type         = "flextable_object")))
 ```
 
 ### Saving presentations 
 
 Once you are done adding content you can save the presentation to a file:
 
-```{r}
+``` r
 save_report(obnd, "vignette_presentation.pptx")
+```
+```{r, eval=FALSE, echo=FALSE}
+save_report(obnd, tempfile(fileext=".pptx")
 ```
 
 Which should look something like this:
@@ -227,6 +234,13 @@ Which should look something like this:
 knitr::include_graphics(system.file(package="onbrand", "graphics", "ppt_workflow_output.png"))
 ```
 
+### Accessing the PowerPoint mapping information
+
+If you do not want to use the interfaces above for creating slides but would like to use the named mapping information in a more traditional `officer` workflow you can use the function `fph`. After you've loaded the onbrand object above (`obnd`) you can then pull out the placeholder label from PowerPoint for any named placeholder in a template layout specified in the yaml mapping file. For example if we wanted the placeholder label for the `content_left_header` in the `two_content_header_text` layout we would use the following:
+
+```{r}
+ph = fph(obnd, "two_content_header_text", "content_left_header")$pl
+```
 
 ## Word
 
@@ -247,8 +261,8 @@ Word report content is added using the ``onbrand::report_add_doc_content()`` fun
 
 - `"break"` - page break
 - `"toc"` - table of contents
-- `"ph"` - text content to substitute for placeholders in the document placeholder content 
-- `"text"` - a string of text (only possible when the type in the mapping file is text)
+- `"ph"` - text content to substitute for placeholders in the document
+- `"text"` - text supplied as either character string, markdown or the result of `fpar` statements
 - `"imagefile"` - string containing the path to an image file 
 - `"ggplot"` -  a ggplot object
 - `"table"` - list containing table content and other options
@@ -259,7 +273,7 @@ Similar to adding PowerPoint content, you must also supply a list containing the
 
 ### Text
 
-The content type ``"text"`` is the most straight forward way to add content to a Word document, and the ``content`` is a list that has three possible elements. The only one required is the ``text`` element. If you just want to add text in the default format (_doc\_def_ in the `yaml` mapping file), then this is all you need to do:
+The content type ``"text"`` is the most straight forward way to add content to a Word document, and the ``content`` is a list that has three possible elements. The only one required is the ``text`` element. If you just want to add text in the default format (`doc_def` in the `yaml` mapping file), then this is all you need to do:
 
 ```{r}
 obnd = report_add_doc_content(obnd,
@@ -345,7 +359,7 @@ obnd = report_add_doc_content(obnd,
 
 ### Tables
 
-Tables in Word are similar to the tables in PowerPoint. The table type can be either `table`, `flextable`, or `flextable_object`. Lets look this data frame to see how to use each of these:
+Tables in Word are similar to the tables in PowerPoint. The table type can be either `table`, `flextable`, or `flextable_object`. Lets look at this data frame to see how to use each of these:
 ```{r}
 tdf =    data.frame(Parameters = c("Length", "Width", "Height"),
                     Values     = 1:3,
@@ -395,7 +409,7 @@ Section formatting, changing the page orientation and/or the number of columns, 
 
 - Add a landscape figure
 - Add two column text   
-- Add more content in portrait 
+- Add more content in portrait orientation
 
 To change formatting we need to close out the current section by inserting a portrait section type: 
 
@@ -433,7 +447,7 @@ Now we want to add the text for the two column format:
 ```{r}
 obnd = report_add_doc_content(obnd,
   type     = "text",
-  content  = list(text    = paste(rep("Some two column text. ", 200), collapse=" ")))
+  content  = list(text    = paste(rep("Some two column text.", 200), collapse=" ")))
 
 ```
 
@@ -503,8 +517,12 @@ obnd = report_add_doc_content(obnd,
 
 Once you are done adding content you can save the report to a file with the ``save_report()`` function as well:
 
-```{r}
+``` r
 save_report(obnd, "vignette_report.docx")
+```
+
+```{r, eval=FALSE, echo=FALSE}
+save_report(obnd, tempfile(fileext=".docx")
 ```
 
 The output from the example above should look like this:
@@ -596,11 +614,24 @@ htmltools_value(ft)
 **Note that the Greek symbols are not rendered correctly here but will be rendered correctly in the document.**
 
 To include the newly formatted table in the ``onbrand`` object, you use the same method as before:
-```
+
+``` r
 obnd = report_add_doc_content(obnd,
   type     = "flextable_object",
   content  = list(ft=tab_fto,
                   caption  = "Flextable object with custom Markdown - created by the user."))
+```
+
+### Accessing the Word mapping information
+
+As with the PowerPoint interface, you can also access the named Word mapping directly. This is done through the `fst` function. With the onbrand objected loaded (`obnd`) you can supply an onbrand style name and pull out the Word style name (`wsn`) and the default font format (`dff`):
+
+```{r}
+st = fst(obnd, "Heading_3")
+#Word style name
+wsn = st$wsn
+# Default font format
+dff = st$dff
 ```
 
 

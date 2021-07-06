@@ -73,13 +73,13 @@ This example lays out ``key: value`` pairs based on the formatting of the file. 
 - If you have multiple values you can list those below the key (see below about spacing).  
 - If the value also has a colon then it's a key for a nested value. 
 
-The main key in the example above is ``tree colors``.  This key has three values: `roots`, `trunk`, and `crown`. One for each section of a Tree.  The hierarchy comes from the indentation. Each of the main sections of Tree are indented two spaces.  Each of these values (`roots`, `trunk`, and `crown`) are also keys themselves because they end with both a colon and a space - and are followed by still more values.
+The main key in the example above is ``tree colors``.  This key has three values: `roots`, `trunk`, and `crown`. One for each section of a tree.  The hierarchy comes from the indentation. Each of the main sections of a tree are indented two spaces.  Each of these values (`roots`, `trunk`, and `crown`) are also keys themselves because they end with both a colon and a space - and are followed by still more values.
 
 The color values associated with roots are `white` and `brown`. The `root` hierarchy is complete.  
 
 The `trunk` has value `bark`.  But, because `bark` is also indented two spaces and is followed by both a colon and a space, it is also a key with value `brown`. Which completes the `trunk` hierarchy.
 
-The value ``crown`` is indented two spaces and followed by both a space and a colon.  Hence, ``crown`` is a key with value ``branches``.  Again, ``branches`` is indented and followed by both a color and a space.  Then, ``branches`` is also a key with values: ``leaves`` and ``flowers``.  Each of these are also indented and followed by by both a colon and a space.  So, key ``leaves`` has value ``green``. Similarly, key ``flowers`` has value ``red``.  This completes the `crown` hierarchy. 
+The value ``crown`` is indented two spaces and followed by both a colon and a space.  Hence, ``crown`` is a key with value ``branches``.  Again, ``branches`` is indented and followed by both a colon and a space.  Then, ``branches`` is also a key with values: ``leaves`` and ``flowers``.  Each of these are also indented and followed by by both a colon and a space.  So the key ``leaves`` has value ``green``. Similarly, key ``flowers`` has value ``red``.  This completes the `crown` hierarchy. 
 
 There is more that can go into a `yaml` file, but this should be enough to help you understand how to create mapping files for `onbrand`.  For more details see (yaml.org)[yaml.org].
 
@@ -89,7 +89,7 @@ This section provides a detailed walk-through for each of the three steps in the
 
 A quick note about terminology.  A slide master is the top slide in a hierarchy of slides that stores information about the theme and slide layouts of a presentation, including the background, color, fonts, effects, placeholder sizes, and positioning. The slide master is the largest slide image at the top of the slide thumbnail list.
 
-```{r, echo=FALSE, fig.cap="PowerPoint Slide Master Hierarchy", out.width = '250px'}
+```{r, echo=FALSE, fig.cap="PowerPoint Slide Master Hierarchy", out.width = '350px'}
 knitr::include_graphics(system.file(package="onbrand", "graphics", "example_layout_ppt_master.png"))
 ```
 
@@ -126,7 +126,7 @@ Within the hierarchy of `rpptx: templates:` there is a value for each slide layo
 
 Notice, the ``example.yaml`` doesn't contain all of the placeholders for either slide in the ``example_layout.pptx``.  This is because those elements were inherited from the master slide and are not unique to either of the slide layouts.
 
-In the ``yaml``, each placeholder will have two value pairs below it.  For example, the placeholder `sub_title` in slide layout `title` has both `ph_label` and `content_type`.  The `ph_label` maps to the _ph\_label_ from the annotated layout (in the ``example_layout.pptx``). The `content_type` should be either `text` or `list` depending on whether the placeholder contains text or list data. Tables in PowerPoint will be rendered using another method (see ref_ppt_tables).  
+In the ``yaml``, each placeholder will have two value pairs below it.  For example, the placeholder `sub_title` in slide layout `title` has both `ph_label` and `content_type`.  The `ph_label` maps to the _ph\_label_ from the annotated layout (in the ``example_layout.pptx``). The `content_type` should be either `text` or `list` depending on whether the placeholder contains text or list data. 
 
 The figure below shows how the annotated layout relates to the `yaml` mapping file.
 
@@ -134,7 +134,7 @@ The figure below shows how the annotated layout relates to the `yaml` mapping fi
 knitr::include_graphics(system.file(package="onbrand", "graphics", "example_layout_yaml_pptx.png"))
 ```
 
-**Note: You only have to define mapping information for the slide layouts under a master you want to access in R. You can have as many masters defined in the template as you want and only use a subset in R.**
+**Note:** You only have to define mapping information for the slide layouts under a master you want to access in R. You can have as many masters defined in the template as you want and only use a subset in R.
 
 
 ### Defining markdown defaults
@@ -176,14 +176,14 @@ In R you can read your template by supplying the template and mapping file names
 
 When a template is read, ``onbrand`` will check for basic errors. Look for messages in the console to help you debug any issues you may have. 
 
-After reading in the template, you can test the template using ``onbrand::preview_template()``. **Tip** Save the `obnd` file and view it to make sure the mappings are what you expect.
+After reading in the template, you can test the template using ``onbrand::preview_template()``. **Tip** Save the `obnd` report to a file and view it to make sure the mappings are what you expect.
 
 ```{r eval=FALSE}
 obnd = preview_template(obnd)
 save_report(obnd, "example_preview.pptx")
 ```
 
-That's it.  You have completed the PowerPoint example and used ``onbrand`` to create an abstraction layer for use in your own efforts.  Keep in mind, this is a very straightforward example.  Depending on the complexity of the template, the annotated slide deck, generated using ``onbrand::view_layout()``, will probably not look nearly as clean.  All of the placeholders will be there; they may not be formatted as nicely.  Expect to have to find the annotations you are interested in using in your mapping.
+That's it.  You have completed the PowerPoint example and used ``onbrand`` to create an abstraction layer for use in your own efforts.  Keep in mind, this is a very straightforward example.  Depending on the complexity of the template the annotated slide deck generated using ``onbrand::view_layout()`` will probably not look nearly as clean.  All of the placeholders will be there; they may not be formatted as nicely.  Expect to have to find the annotations you are interested in using in your mapping.
 
 ## Word
 
@@ -193,11 +193,13 @@ Another quick note about terminology.  All Word documents, even a blank document
 
 ### Step 1: Read the Word document  
 
-To create your custom abstraction layer for Word, you start by reading in an **empty** Word document saved from the template you are using.  This empty Word document should have all the styles defined and contain all the placeholders you want to use. In the ``example.docx`` there is one paragraph style and one table style. 
+To create your custom abstraction layer for Word, you start by reading in a Word document saved from the template you are using.  This Word document should have all the styles defined and contain all the placeholders you want to use. In the ``example.docx`` there is one paragraph style and one table style. 
 
-_side note_: ``onbrand`` additionally supports using placeholders in the document. For example, if you wanted to use this template for reports, and you wanted to have "Report NNNN", where NNNN is the report number, in the right header. Then place a text placeholder, e.g., "Report ===RPTNUM===", in the right header.  This placeholder will be referenced in your code; the _Creating Templated Office Workflows Vignette_ has more details.  Note: Do not type this placeholder text directly into the word document.  Cut and paste the text into the word document from a real text editor.  Word is not a text editor, so while the text string may appear to be contiguous, it may not be so in the underlying XML code. 
+Placeholder can be used in documents. For example, if you wanted to use this template for reports, and you wanted to have "Report NNNN", where NNNN is the report number, in the right header. Then place a text placeholder, e.g., "Report ===RPTNUM===", in the right header.  This placeholder will be referenced in your code; the _Creating Templated Office Workflows Vignette_ has more details.  
 
-To view all of the styles in the document you can use the `view_layout()` function here as well:
+**Note:** Do not type this placeholder text directly into the Word document. Cut and paste the text into the Word document from a text editor.  Word is not a text editor, so while the text string may appear to be contiguous, it may not be so in the underlying XML code. 
+
+To view all of the styles in the document you can use the `onbrand::view_layout()` function here as well:
 
 ```{r eval=FALSE}
 library(onbrand)
@@ -215,7 +217,7 @@ knitr::include_graphics(system.file(package="onbrand", "graphics", "example_layo
 
 For each paragraph, character, and table style, ``example_layout.docx`` displays the name and what that style looks like. You can use this when you define elements in your ``yaml`` mapping file. The process is very similar to that in the PowerPoint section above so we will not go into as much detail this time.  
 
-In the ``example.yaml`` file copied over from earlier, there will be a key for mapping Word templates (rows 40-115. That key is called ``rdocx`` and will have the following values: 
+In the ``example.yaml`` file copied over from earlier, there will be a key for mapping Word templates. That key is called ``rdocx`` and will have the following values: 
 
 - ``styles`` - maps user-generated (_keys_) for each content block to their respective Word style_name (_values_)
 - ``doc_def`` - maps the  _keys_ defined in the ``styles`` section to their default values for the report
@@ -226,7 +228,7 @@ The following sections will walk you through each of these elements in the ``exa
 
 #### `styles`
 
-This section contains ``onbrand`` to Word mappings as key/value pairs.  The keys represent the name of the content block you want to use in your R code.  The values, generated by ``onbrand::view_layout()`` and found in ``example_layout.docx``, represent the style_name used by Word. In our example, we have the following styles defined:
+This section contains ``onbrand`` to Word mappings as key/value pairs.  The keys represent the name of the content block you want to use in your R code.  The values, generated by ``onbrand::view_layout()`` and found in ``example_layout.docx``, represent the style name used by Word. In our example, we have the following styles defined:
 ```
   styles:
     Plain_Text:               Normal
@@ -235,7 +237,7 @@ This section contains ``onbrand`` to Word mappings as key/value pairs.  The keys
     Figure_Caption:           Normal
 ```
 
-So, for example, the `Normal` style is defined in Word, but I'm going to call it `Plain_Text` in the workflows I develop. **Note: The functions of ``onbrand`` require you define at least two styles: one paragraph style and one table style.**
+So, for example, the `Normal` style is defined in Word, but I'm going to call it `Plain_Text` in the workflows I develop. **Note:** The functions of ``onbrand`` require you define at least two styles: one paragraph style and one table style.
 
 #### `doc_def`
 
@@ -280,7 +282,7 @@ obnd = read_template(template = "example.docx",
                      mapping  = "example.yaml")
 ```
 
-If there are no problems you can use ``onbrand::preview_template()`` create an annotated file showing the ``onbrand`` names mapped to the Word names with the style applied. **Tip** Save the ``obnd`` file and view it to make sure the mappings are what you expect.
+If there are no problems you can use ``onbrand::preview_template()`` create an annotated file showing the ``onbrand`` names mapped to the Word names with the style applied. **Tip** Save the ``obnd`` report to a file and view it to make sure the mappings are what you expect.
 
 ```{r eval=FALSE}
 obnd = preview_template(obnd)
@@ -289,7 +291,7 @@ save_report(obnd, "example_preview.docx")
 
 Once again, that's it.  You have completed the Word example and used ``onbrand`` to create an abstraction layer for use in your own efforts.  Again, this is a very straightforward example.  Word templates can also become fairly complex, fairly quickly.  Luckily, you only have to do it once per template now!
 
-**Tip** Now that you have walked-through this example, the best way to learn about Word templates - is to change something and walk through the steps again.  In the example file, we are using the base word document template.  After running through the steps below.  You can add additional _styles_ to the document by opening the styles pane, selecting the appropriate style, and saving (with a new name to easily see the difference).  Similarly, You can also select a new _theme_ and new style set in the design tab. Then rerun ``onbrand::view_layout()`` and see what's changed.
+**Tip** Now that you have walked-through this example, the best way to learn about Word templates is to change something and walk through the steps again. In the example file, we are using the base word document template.  After running through the steps below.  You can add additional _styles_ to the document by opening the styles pane, selecting the appropriate style, and saving (with a new name to easily see the difference).  Similarly, You can also select a new _theme_ and new style set in the design tab. Then rerun ``onbrand::view_layout()`` and see what's changed.
 
 ## Switching Templates
 

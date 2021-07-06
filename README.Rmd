@@ -41,8 +41,7 @@ devtools::install_github("john-harrold/onbrand")
 
 ``onbrand`` is packaged with two Vignettes: 
 
-1. Custom\_Office\_Templates  
-2. Creating\_Templated\_Office\_Workflows  
+1. Custom Templates
+2. Templated Workflows
 
-These vignettes contain everything you need to walk through the basics. We recommend starting with the first vignette:  
-_insert code chunk_
+These vignettes contain everything you need to walk through the basics. 
