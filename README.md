@@ -40,7 +40,9 @@ devtools::install_github("john-harrold/onbrand")
 
 ## Getting Started
 
-`onbrand` is packaged with two Vignettes:
+Browse through the [pkgdown
+documentation](https://john-harrold.github.io/onbrand/) and check out
+the vignettes:
 
 1.  Custom Templates
 2.  Templated Workflows
