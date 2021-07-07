@@ -98,15 +98,18 @@
 <p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"john-harrold/onbrand"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"john-harrold/onbrand"</span>,
+              force           <span class="op">=</span> <span class="cn">TRUE</span>,
+              build           <span class="op">=</span> <span class="cn">TRUE</span>, 
+              build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="getting-started" class="section level2">
 <h2 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting Started</h2>
-<p>Browse through the <a href="https://john-harrold.github.io/onbrand/">pkgdown documentation</a> and check out the vignettes:</p>
+<p>Browse through the <a href="https://john-harrold.github.io/onbrand/">documentation</a> and check out the vignettes:</p>
 <ol>
-<li>Custom Templates</li>
-<li>Templated Workflows</li>
+<li><a href="https://john-harrold.github.io/onbrand/articles/Custom_Office_Templates.html">Custom Templates</a></li>
+<li><a href="https://john-harrold.github.io/onbrand/articles/Creating_Templated_Office_Workflows.html">Templated Workflows</a></li>
 </ol>
 <p>These vignettes contain everything you need to walk through the basics.</p>
 </div>
