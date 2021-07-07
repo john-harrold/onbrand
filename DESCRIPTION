@@ -29,6 +29,7 @@ Imports:
   yaml
 Suggests: 
   knitr, 
+  knitrdata,
   markdown,
   rmarkdown,
   testthat

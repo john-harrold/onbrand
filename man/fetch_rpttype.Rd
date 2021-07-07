@@ -26,6 +26,7 @@ List with the following elements
 Based on the file extension for a template
 }
 \examples{
-fetch_rpttype(template= file.path(system.file(package="onbrand"), "templates", "report.pptx"))
+rpttype = fetch_rpttype(template=
+  file.path(system.file(package="onbrand"), "templates", "report.pptx"))
 
 }

@@ -34,9 +34,11 @@ each slide master for a PowerPoint template or each paragraph and table
 style for a Word template.
 }
 \examples{
-view_layout(template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
-           output_file   = file.path(tempdir(), "layout.pptx"))
+lpptx = view_layout(
+     template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
+     output_file   = file.path(tempdir(), "layout.pptx"))
 
-view_layout(template = file.path(system.file(package="onbrand"), "templates", "report.docx"),
-           output_file   = file.path(tempdir(), "layout.docx"))
+ldocx = view_layout(
+     template = file.path(system.file(package="onbrand"), "templates", "report.docx"),
+     output_file   = file.path(tempdir(), "layout.docx"))
 }

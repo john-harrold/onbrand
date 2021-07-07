@@ -15,7 +15,8 @@
 #' \item{msgs} Vector of messages
 #'}
 #'@examples
-#' fetch_rpttype(template= file.path(system.file(package="onbrand"), "templates", "report.pptx"))
+#' rpttype = fetch_rpttype(template=
+#'   file.path(system.file(package="onbrand"), "templates", "report.pptx"))
 #'
 fetch_rpttype = function(template= NULL, verbose=TRUE){
 

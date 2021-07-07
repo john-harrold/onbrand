@@ -1,0 +1,39 @@
+reference:
+- title: "Custom Templates"
+  desc: "Creating and testing yaml mapping files for custom templates"
+- contents:
+  - view_layout
+  - read_template
+  - preview_template
+  - save_report
+- title: "PowerPoint"
+  desc: "Workflow for creating presentations"
+- contents:
+  - read_template
+  - add_pptx_ph_content
+  - report_add_slide
+  - save_report
+  - fph
+- title: "Word"
+  desc: "Workflow for creating written reports"
+- contents:
+  - read_template
+  - report_add_doc_content
+  - save_report
+  - fst
+- title: "Markdown"
+  desc: "Converting markdown to officer"
+- contents:
+  - md_to_officer
+  - md_to_oo
+  - fetch_md_def
+- title: "Officer Objects"
+  desc: "Using officer directly to modify reports"
+- contents:
+  - fetch_officer_object
+  - set_officer_object
+- title: "Miscellanious"
+  desc: "Converting markdown to officer"
+- contents:
+  - fetch_rpttype
+  - fetch_report_format

@@ -34,11 +34,13 @@
 #' \item{msgs} Vector of messages
 #'}
 #'@examples
-#'view_layout(template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
-#'            output_file   = file.path(tempdir(), "layout.pptx"))
+#'lpptx = view_layout(
+#'      template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
+#'      output_file   = file.path(tempdir(), "layout.pptx"))
 #'
-#'view_layout(template = file.path(system.file(package="onbrand"), "templates", "report.docx"),
-#'            output_file   = file.path(tempdir(), "layout.docx"))
+#'ldocx = view_layout(
+#'      template = file.path(system.file(package="onbrand"), "templates", "report.docx"),
+#'      output_file   = file.path(tempdir(), "layout.docx"))
 view_layout = function(template    = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
                        output_file = NULL,
                        verbose     = TRUE){
@@ -66,7 +68,7 @@ view_layout = function(template    = file.path(system.file(package="onbrand"), "
     if(rpttype  == "PowerPoint"){
       # Flag for detecting placeholder repeats
       ph_repeats = FALSE
-        
+
       # Getting the annotated report
       #rpt = officer::annotate_base(path=template, output_file=NULL)
       rpt <- read_pptx(path=template)
@@ -167,8 +169,8 @@ view_layout = function(template    = file.path(system.file(package="onbrand"), "
     msgs = c(msgs, paste0("Annotated layout: ", output_file))
     msgs = c(msgs, "--------------------------------")
     }
- 
- 
+
+
   if(!isgood){
     msgs = c(msgs, "view_layout()")
     msgs = c(msgs, "Layout not generated.")
