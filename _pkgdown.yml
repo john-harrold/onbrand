@@ -24,9 +24,9 @@ reference:
 - title: "Markdown"
   desc: "Converting markdown to officer"
 - contents:
+  - fetch_md_def
   - md_to_officer
   - md_to_oo
-  - fetch_md_def
 - title: "Officer Objects"
   desc: "Using officer directly to modify reports"
 - contents:

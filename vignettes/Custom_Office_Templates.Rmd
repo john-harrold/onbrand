@@ -103,7 +103,7 @@ A quick note about terminology.  A slide master is the top slide in a hierarchy 
 
 ![PowerPoint Slide Master Hierarchy.](data:image/png;base64,`r b64_example_layout_ppt_master_png`){width=400px}
 
-### Step 1: Read the PowerPoint Template  
+### Step 1: Read the PowerPoint template  
 
 To create your custom abstraction layer for PowerPoint, you start by reading in your master template.  If you don't already have one, create a PowerPoint template master slide with slide layouts for each of the different layouts you want to use. In this example, we have the ``Office Theme`` Master Slide with two slide layouts:
 
@@ -122,7 +122,7 @@ vlres = view_layout(template    = "example.pptx",
 
 This will create the file `example_layout.pptx`. It contains a slide for each slide layout (``title`` & ``two_col``) under the master (``Office Theme``) in the input template file (``example.pptx``). On each slide, the names of both the slide layout and slide master will be indicated in the upper right corner. Each placeholder within the slide layout will be shown and is identified by the placeholder label (`ph_label`).  For each placeholder within each slide layout under a slide master, ``onbrand::view_layout()`` produces three pieces of information: `ph_label`, `type`, and `index`.  Notice, there are plenty of duplicate placeholder names. 
 
-### Step 2: Create the PowerPoint Mapping
+### Step 2: Create the PowerPoint mapping
 
 Before we get to the mapping, take a moment to locate and open the ``example.yaml`` file we copied over at the start of this vignette. In the yaml file there will be a key for mapping PowerPoint templates (rows 1-39 in the file). This key is called `rpptx` and it will have three values (_which are also keys_):
 
@@ -173,7 +173,7 @@ rpptx:
 
 For PowerPoint templates you need to define the sections: `default` and `Table_Labels`. The `default` is used when rendering general markdown text. The `Table_Labels` is used when markdown is present in table elements like headers. For each of these you need to define the different aspects of fonts. If you're unsure, just leave them with the defaults above. 
 
-### Step 3: Testing and Previewing your template
+### Step 3: Testing and previewing your template
 
 In R you can read your template by supplying the template and mapping file names:
 
@@ -219,7 +219,7 @@ This will produce a word document, ``example_layout.docx`` that looks something 
 
 ![Word layout example.](data:image/png;base64,`r b64_example_layout_docx_png`){width=600px}
 
-### Step 2: Create the Word Mapping  
+### Step 2: Create the Word mapping  
 
 For each paragraph, character, and table style, ``example_layout.docx`` displays the name and what that style looks like. You can use this when you define elements in your ``yaml`` mapping file. The process is very similar to that in the PowerPoint section above so we will not go into as much detail this time.  
 
@@ -279,7 +279,7 @@ These elements contain the default values used when markdown formatting is used.
 
 **Tip** It's a good idea to open up the styles in Word and make sure that each style element (fontsize, bold, etc) matches what is in your Word document. 
 
-### Step 3: Testing and Previewing your template
+### Step 3: Testing and previewing your template
 
 Once you're done creating your abstraction layer (i.e., mapping), you can test the template. In R you can read your template by supplying the template and mapping file names:
 
@@ -299,7 +299,7 @@ Once again, that's it.  You have completed the Word example and used ``onbrand``
 
 **Tip** Now that you have walked-through this example, the best way to learn about Word templates is to change something and walk through the steps again. In the example file, we are using the base word document template.  After running through the steps below.  You can add additional _styles_ to the document by opening the styles pane, selecting the appropriate style, and saving (with a new name to easily see the difference).  Similarly, You can also select a new _theme_ and new style set in the design tab. Then rerun ``onbrand::view_layout()`` and see what's changed.
 
-## Switching Templates
+## Switching templates
 
 The goal of ``onbrand`` is to allow users to easily switch between organizational document templates without changing the actual reporting workflow. This is accomplished through the ``yaml`` file (i.e., the abstraction layer). 
 

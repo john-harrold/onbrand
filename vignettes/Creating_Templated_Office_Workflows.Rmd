@@ -532,7 +532,7 @@ The output from the example above should look like this:
 
 ![Example Word output for workflow above.](data:image/png;base64,`r b64_doc_workflow_output_png`){width=600px}
 
-## Formatting with Markdown
+## Formatting with markdown
 
 In `officer` you can change formatting in text using `fpar` and `as_pargraph`. There are situations where this is less than ideal. For example if you want to take formatted user input from a Shiny app, it may not be practical to have them supply code this way. 
 
@@ -636,7 +636,7 @@ dff = st$dff
 ```
 
 
-## Accessing the `officer` Object Directly
+## Accessing the `officer` object directly
 
 Sometimes you need more control over creating a report, and you may want to use the officer commands directly. To do this you can use the function `fetch_officer_object()`` to pull out the officer object from the onbrand object:
 
@@ -650,7 +650,7 @@ Now you can use any officer command you wish on the `rpt` object. And when you'r
 obnd = set_officer_object(obnd, rpt)
 ```
 
-## Maping File
+## Maping file
 ```{r echo=FALSE, comment='', message=TRUE, eval=TRUE}
 cat(readLines(file.path(system.file(package="onbrand"), "templates", "report.yaml")) , sep="\n")
 ```
