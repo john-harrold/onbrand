@@ -4,9 +4,5 @@ pkgdown_sha: ~
 articles:
   Creating_Templated_Office_Workflows: Creating_Templated_Office_Workflows.html
   Custom_Office_Templates: Custom_Office_Templates.html
-<<<<<<< HEAD
-last_built: 2021-07-06T20:25Z
-=======
-last_built: 2021-07-06T04:00Z
->>>>>>> d2fa0f7c25c3f028b754ea4f6aad91fa667f2f26
+last_built: 2021-07-07T01:17Z
 

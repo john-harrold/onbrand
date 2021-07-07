@@ -39,11 +39,7 @@ b64_ppt_workflow_output_png  = knitrdata::data_encode(if_ppt_workflow_output_png
 b64_doc_workflow_output_png  = knitrdata::data_encode(if_doc_workflow_output_png , encoding="base64")
 ```
 
-<<<<<<< HEAD
 # Introduction <img src="data:image/png;base64,`r b64_onbrand_hex_png`" align="right" height="138.5" border="0px" />
-=======
-# Introduction <img src="`r file.path(".","figures","onbrand_hex.png")`" align="right" height="138.5" border="0px" />
->>>>>>> d2fa0f7c25c3f028b754ea4f6aad91fa667f2f26
 
 The ``officer`` package is used to generate all of the underlying PowerPoint and Word documents. The purpose of `onbrand` is to provide an abstraction layer (or mapping) for the functions in ``officer`` in order to allow the same reporting workflow to be used with different template documents. This involves providing a consistent customizable method to interact with templates as well as a form of markdown to control the formatting of text. 
 
@@ -239,13 +235,7 @@ save_report(obnd, tempfile(fileext=".pptx")
 
 Which should look something like this:
 
-<<<<<<< HEAD
 ![Example PowerPoint output for workflow above.](data:image/png;base64,`r b64_ppt_workflow_output_png`){width=600px}
-=======
-```{r, echo=FALSE, fig.cap="Example PowerPoint output for workflow above.", out.width = '600px'}
-knitr::include_graphics(file.path(package=".","figures", "ppt_workflow_output.png"))
-```
->>>>>>> d2fa0f7c25c3f028b754ea4f6aad91fa667f2f26
 
 ### Accessing the PowerPoint mapping information
 
@@ -540,13 +530,7 @@ save_report(obnd, tempfile(fileext=".docx")
 
 The output from the example above should look like this:
 
-<<<<<<< HEAD
 ![Example Word output for workflow above.](data:image/png;base64,`r b64_doc_workflow_output_png`){width=600px}
-=======
-```{r, echo=FALSE, fig.cap="Example Word output for workflow above.", out.width = '600px'}
-knitr::include_graphics(file.path(package=".","figures","doc_workflow_output.png"))
-```
->>>>>>> d2fa0f7c25c3f028b754ea4f6aad91fa667f2f26
 
 ## Formatting with Markdown
 
