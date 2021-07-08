@@ -8,11 +8,11 @@
 #'
 #'@return List with the following elements
 #' \itemize{
-#' \item{rpttype} Either Word, PowerPoint or Unknown
-#' \item{rptext}  Either docx, pptx, or Unknown
-#' \item{rptobj}  Either rdocx, rpptx, or Unknown
-#' \item{isgood} Boolean variable indicating success or failure
-#' \item{msgs} Vector of messages
+#' \item{rpttype}: Either Word, PowerPoint or Unknown
+#' \item{rptext}: Either docx, pptx, or Unknown
+#' \item{rptobj}: Either rdocx, rpptx, or Unknown
+#' \item{isgood}: Boolean variable indicating success or failure
+#' \item{msgs}: Vector of messages
 #'}
 #'@examples
 #' rpttype = fetch_rpttype(template=

@@ -11,9 +11,9 @@
 #'
 #'@return list with the following elements
 #' \itemize{
-#' \item{isgood} Boolean variable indicating success or failure
-#' \item{md_def} List with the default format for the specified style
-#' \item{msgs} Vector of messages
+#' \item{isgood}: Boolean variable indicating success or failure
+#' \item{md_def}: List with the default format for the specified style
+#' \item{msgs}: Vector of messages
 #'}
 #'@examples
 #' obnd = read_template(
@@ -47,7 +47,7 @@ fetch_md_def = function(obnd, style = "default", verbose=TRUE){
     obnd[["isgood"]] = FALSE
     msgs = c(msgs, "fetch_md_def()")
   }
-  
+
   # Dumping the messages if verbose is turned on:
   if(verbose & !is.null(msgs)){
     message(paste(msgs, collapse="\n"))

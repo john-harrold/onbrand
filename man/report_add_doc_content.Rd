@@ -18,7 +18,8 @@ displayed on the terminal; Messages will be included in the returned onbrand
 object.}
 }
 \value{
-onbrand object with the content added to the body
+onbrand object with the content added to the body or isgood set
+to FALSE with any messages in the msgs field.
 }
 \description{
 Appends content to the body of a Word document
@@ -133,12 +134,12 @@ ftext("command from the officer package.", prop=NULL))
 
 obnd = report_add_doc_content(obnd,
  type     = "text",
- content  = list(text   = fpartext, 
+ content  = list(text   = fpartext,
                  format = "fpar",
                  style  = "Normal"))
 
 # Text formatted with markdown
-mdtext = "Formatted text can be created using 
+mdtext = "Formatted text can be created using
 **<color:green>markdown</color>** formatting"
 obnd = report_add_doc_content(obnd,
  type     = "text",
@@ -185,7 +186,7 @@ type     = "table",
 content  = tab_cont)
 
 # flextable object
-tab_fto = flextable(tdf)                      
+tab_fto = flextable(tdf)
 obnd = report_add_doc_content(obnd,
  type     = "flextable_object",
  content  = list(ft=tab_fto,

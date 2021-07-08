@@ -91,7 +91,8 @@
 #'      \item \code{key} unique key for cross referencing e.g. "TAB_DATA" (\code{NULL})
 #'    }
 #'}
-#'@return onbrand object with the content added to the body
+#'@return onbrand object with the content added to the body or isgood set
+#'to FALSE with any messages in the msgs field.
 #'@examples
 #'
 #'# Read  Word template into an onbrand object
@@ -118,12 +119,12 @@
 #'
 #'obnd = report_add_doc_content(obnd,
 #'  type     = "text",
-#'  content  = list(text   = fpartext, 
+#'  content  = list(text   = fpartext,
 #'                  format = "fpar",
 #'                  style  = "Normal"))
 #'
 #'# Text formatted with markdown
-#'mdtext = "Formatted text can be created using 
+#'mdtext = "Formatted text can be created using
 #'**<color:green>markdown</color>** formatting"
 #'obnd = report_add_doc_content(obnd,
 #'  type     = "text",
@@ -170,7 +171,7 @@
 #'content  = tab_cont)
 #'
 #'# flextable object
-#'tab_fto = flextable(tdf)                      
+#'tab_fto = flextable(tdf)
 #'obnd = report_add_doc_content(obnd,
 #'  type     = "flextable_object",
 #'  content  = list(ft=tab_fto,
@@ -295,7 +296,7 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
           # checking the section type
           if("section_type" %in% names(content)){
             if(content[["section_type"]] %in% allowed_section_types){
-              # Placeholder in case any other tests need to be run for sections. 
+              # Placeholder in case any other tests need to be run for sections.
             } else {
               isgood = FALSE
               msgs = c(msgs, paste0("The section type >", content[["section_type"]], "< was not recognized."))
@@ -401,11 +402,11 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
      Caption_Label_Post = obnd[["meta"]][["rdocx"]][["formatting"]][["Figure_Caption_Label_Post"]]
      Caption_Style_docx = obnd[["meta"]][["rdocx"]][["styles"]][[Caption_Style]]
 
-     
-     # Creating the Figure X 
-     run_num = officer::run_autonum(seq_id     = "fig", 
-                                    pre_label  = Caption_Label_Pre, 
-                                    post_label = Caption_Label_Post, 
+
+     # Creating the Figure X
+     run_num = officer::run_autonum(seq_id     = "fig",
+                                    pre_label  = Caption_Label_Pre,
+                                    post_label = Caption_Label_Post,
                                     bkm        = ref_key)
    }
 
@@ -418,10 +419,10 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
      Caption_Label_Post = obnd[["meta"]][["rdocx"]][["formatting"]][["Table_Caption_Label_Post"]]
      Caption_Style_docx = obnd[["meta"]][["rdocx"]][["styles"]][[Caption_Style]]
 
-     # Creating the Table X 
-     run_num = officer::run_autonum(seq_id     = "tab", 
-                                    pre_label  = Caption_Label_Pre, 
-                                    post_label = Caption_Label_Post, 
+     # Creating the Table X
+     run_num = officer::run_autonum(seq_id     = "tab",
+                                    pre_label  = Caption_Label_Pre,
+                                    post_label = Caption_Label_Post,
                                     bkm        = ref_key)
 
    }
@@ -441,7 +442,7 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
          ftall = c(ftall, pgraph[["ftext_cmd"]], 'officer::ftext(" ")')
        }
        fp_cmd  = paste0("officer::fpar(",paste(ftall, collapse = ", "), ")")
-       caption = eval(parse(text=fp_cmd)) 
+       caption = eval(parse(text=fp_cmd))
      }
    }
 
@@ -633,7 +634,7 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
 
     # Adding sections
     if(type == "section"){
-      # Different section types allow different arguments, here we just 
+      # Different section types allow different arguments, here we just
       # explicitly define them:
       allowed_args = list(
          continuous           = c(),
@@ -689,7 +690,7 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
     msgs = c(msgs, "Unable to add content to document, see above for details")
     msgs = c(msgs, paste0("mapping file: ", obnd[["mapping"]]))
     msgs = c(msgs, "report_add_doc_content() ")
-    obnd[["isgood"]] = isgood 
+    obnd[["isgood"]] = isgood
   }
 
   # Dumping the messages if verbose is turned on:

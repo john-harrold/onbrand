@@ -10,16 +10,16 @@
 #'
 #'@return list containing the following elements
 #'\itemize{
-#'\item{isgood} Boolean variable indicating success or failure
-#'\item{msgs} Vector of messages
-#'\item{format_details} List containing the format details for the specified
+#'\item{isgood}: Boolean variable indicating success or failure
+#'\item{msgs}: Vector of messages
+#'\item{format_details}: List containing the format details for the specified
 #'format_name
 #'}
 #'@examples
 #' obnd = read_template(
 #'        template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
 #'         mapping = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
-#' 
+#'
 #' fr = fetch_report_format(obnd)
 fetch_report_format <- function(obnd, format_name="default", verbose=TRUE){
 

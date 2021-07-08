@@ -18,9 +18,9 @@ section for the given report type (\code{"default"})}
 \value{
 list containing the following elements
 \itemize{
-\item{isgood} Boolean variable indicating success or failure
-\item{msgs} Vector of messages
-\item{format_details} List containing the format details for the specified
+\item{isgood}: Boolean variable indicating success or failure
+\item{msgs}: Vector of messages
+\item{format_details}: List containing the format details for the specified
 format_name
 }
 }

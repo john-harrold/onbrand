@@ -315,6 +315,8 @@ If you want to change to a new PowerPoint template you need to do the following:
 - Edit the new ``yaml`` file to update the master field, ph_label fields, and the md_def field.
 - Confirm the new template is behaving as expected using ``onbrand::preview_template()``
 
+**Note**: If you have a template where certain elements are missing you need to set the `ph_label` value to `NULL`. For example  you are changing to a new template that does not have subtitles, but the workflow does have these specified, then for each slide with a subtitle you will need to set that value to `NULL`.
+
 ### Word
 
 If you want to change to a new Word template you need to do the following:

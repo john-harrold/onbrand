@@ -2,7 +2,7 @@
 #'@title Extracts Officer Object From Onbrand Report Object
 #'@description If you need modify the onbrand report object directly with
 #'officer functions you can use this function to extract the report object
-#'from the onbrand object. 
+#'from the onbrand object.
 #'
 #'@param obnd onbrand report object
 #'@param verbose Boolean variable when set to TRUE (default) messages will be
@@ -11,9 +11,9 @@
 #'
 #'@return List with the following elements
 #' \itemize{
-#' \item{isgood} Boolean variable indicating success or failure
-#' \item{rpt} Officer object
-#' \item{msgs} Vector of messages
+#' \item{isgood}: Boolean variable indicating success or failure
+#' \item{rpt}: Officer object
+#' \item{msgs}: Vector of messages
 #'}
 #'@examples
 #'
@@ -41,7 +41,7 @@ fetch_officer_object  = function (obnd, verbose=TRUE){
     obnd[["isgood"]] = FALSE
     msgs = c(msgs, "fetch_officer_object()")
   }
-  
+
   # Dumping the messages if verbose is turned on:
   if(verbose & !is.null(msgs)){
     message(paste(msgs, collapse="\n"))

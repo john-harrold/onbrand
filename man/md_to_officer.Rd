@@ -17,16 +17,16 @@ md_to_officer(
  \item paragraph:   two or more new lines creates a paragraph
  \item bold:        can be either \code{"**text in bold**"} or \code{"__text in bold__"}
  \item italics:     can be either \code{"*text in italics*"} or \code{"_text in italics_"}
- \item subscript:   \code{"Normal~subscript~"} 
- \item superscript: \code{"Normal^superscript^"} 
- \item color:       \code{"<color:red>red text</color>"} 
- \item shade:       \code{"<shade:#33ff33>shading</shade>"} 
- \item font family: \code{"<ff:symbol>symbol</ff>"} 
+ \item subscript:   \code{"Normal~subscript~"}
+ \item superscript: \code{"Normal^superscript^"}
+ \item color:       \code{"<color:red>red text</color>"}
+ \item shade:       \code{"<shade:#33ff33>shading</shade>"}
+ \item font family: \code{"<ff:symbol>symbol</ff>"}
 }}
 
-\item{default_format}{list containing the default format for elements not defined with markdown default values. 
+\item{default_format}{list containing the default format for elements not defined with markdown default values.
 \preformatted{
-   default_format = list( 
+   default_format = list(
       color          = "black",
       font.size      = 12,
       bold           = FALSE,
@@ -43,15 +43,15 @@ content added to the body, each paragraph can be found in a numbered list
 element (e.g. \code{pgraph_1}, \code{pgraph_2}, etc) each with the following
 elements:
 \itemize{
- \item \code{locs} Dataframe showing the locations of markdown elements in the current paragraph
- \item \code{pele} These are the individual parsed paragraph elements
- \item \code{ftext_cmd} String containing the ftext commands.
- \item \code{fpar_cmd} String containing the fpar commands that can be run using
- \code{eval} to return the output of \code{fpar}. For example: 
+ \item{locs}: Dataframe showing the locations of markdown elements in the current paragraph
+ \item{pele}: These are the individual parsed paragraph elements
+ \item{ftext_cmd}: String containing the ftext commands.
+ \item{fpar_cmd}: String containing the fpar commands that can be run using
+ \code{eval} to return the output of \code{fpar}. For example:
 \preformatted{
   myfpar = eval(parse(text=pgparse$pgraph_1$fpar_cmd))
  }
- \item \code{as_paragraph_cmd} String containing the as_paragraph_cmd that can be run using
+ \item{as_paragraph_cmd}: String containing the as_paragraph_cmd that can be run using
 \preformatted{
   myas_para = eval(parse(text=pgparse$pgraph_1$as_paragraph_cmd))
  }

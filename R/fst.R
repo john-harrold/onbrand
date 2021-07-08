@@ -10,10 +10,10 @@
 #'
 #'@return List with the following elements
 #' \itemize{
-#' \item{wsn}    Word style name that corresponds to the specified onbrand style name (\code{osn})
-#' \item{dff}    Default font format for that style (the corresponding \code{md_def} section of the yaml file for that style)
-#' \item{isgood} Boolean variable indicating success or failure
-#' \item{msgs}   Vector of messages
+#' \item{wsn}:    Word style name that corresponds to the specified onbrand style name (\code{osn})
+#' \item{dff}:    Default font format for that style (the corresponding \code{md_def} section of the yaml file for that style)
+#' \item{isgood}: Boolean variable indicating success or failure
+#' \item{msgs}:   Vector of messages
 #'}
 #'@examples
 #'# Creating an onbrand object:

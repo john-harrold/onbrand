@@ -18,9 +18,9 @@ object.}
 \value{
 list with the following elements
 \itemize{
-\item{isgood} Boolean variable indicating success or failure
-\item{md_def} List with the default format for the specified style
-\item{msgs} Vector of messages
+\item{isgood}: Boolean variable indicating success or failure
+\item{md_def}: List with the default format for the specified style
+\item{msgs}: Vector of messages
 }
 }
 \description{

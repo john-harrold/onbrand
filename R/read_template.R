@@ -12,14 +12,14 @@
 #'
 #'@return onbrand object which is a list with the following elements:
 #' \itemize{
-#' \item{isgood} Boolean variable indicating the current state of the object
-#' \item{rpt} Officer object containing the initialized report
-#' \item{rpttype} Type of report (either PowerPoint or Word)
-#' \item{key_table} Empty (NULL) mapping table for tracking cross referencing (Word only)
-#' \item{placeholders} Empty list to hold placeholder substitution text (Word only)
-#' \item{meta} Metadata read in from the yaml file
-#' \item{mapping} Mapping yaml file
-#' \item{msgs} Vector of messages indicating any errors that were encountered
+#' \item{isgood}:       Boolean variable indicating the current state of the object
+#' \item{rpt}:          Officer object containing the initialized report
+#' \item{rpttype}:      Type of report (either PowerPoint or Word)
+#' \item{key_table}:    Empty (NULL) mapping table for tracking cross referencing (Word only)
+#' \item{placeholders}: Empty list to hold placeholder substitution text (Word only)
+#' \item{meta}:         Metadata read in from the yaml file
+#' \item{mapping}:      Mapping yaml file
+#' \item{msgs}:         Vector of messages indicating any errors that were encountered
 #'}
 #'@examples
 #'obnd = read_template(
@@ -99,6 +99,9 @@ read_template = function(template    = file.path(system.file(package="onbrand"),
       # pulling out the layout summary
       lay_sum = officer::layout_summary(rpt)
 
+      # JMH filter first by Master to make sure the correct master was specified:
+      # Include Master name in the message below
+
       # Checking to see if any layouts specified in the mapping file are
       # missing
       lay_meta = names(meta[["rpptx"]][["templates"]])
@@ -117,13 +120,16 @@ read_template = function(template    = file.path(system.file(package="onbrand"),
         for(ph in phs){
           phele = meta[['rpptx']][["templates"]][[lay_found]][[ph]]
 
-          tmplp = dplyr::filter(lp, .data[["ph_label"]] == phele[["ph_label"]])
-
-          if(!(nrow(tmplp) == 1)){
-            isgood = FALSE
-            msgs = c(msgs, "The following placeholder was not found:")
-            msgs = c(msgs, paste0("  Layout:      ", lay_found))
-            msgs = c(msgs, paste0("  Placeholder: ", ph))
+          # This template may not have each label defined, we skip the NULL
+          # values
+          if(!is.null(phele[["ph_label"]])){
+            tmplp = dplyr::filter(lp, .data[["ph_label"]] == phele[["ph_label"]])
+            if(!(nrow(tmplp) == 1)){
+              isgood = FALSE
+              msgs = c(msgs, "The following placeholder was not found:")
+              msgs = c(msgs, paste0("  Layout:      ", lay_found))
+              msgs = c(msgs, paste0("  Placeholder: ", ph))
+            }
           }
         }
       }

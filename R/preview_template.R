@@ -44,20 +44,22 @@ preview_template = function(obnd, verbose=TRUE){
         phs = names(obnd[["meta"]][["rpptx"]][["templates"]][[template]])
         # Now we build out the element list
         for(ph in phs){
+          # Skipping NULL (missing) placeholders
+          if(!is.null(obnd[["meta"]][["rpptx"]][["templates"]][[template]][[ph]][["ph_label"]])){
+            tmp_text = paste0(ph, ":", obnd[["meta"]][["rpptx"]][["templates"]][[template]][[ph]][["ph_label"]])
 
-          tmp_text = paste0(ph, ":", obnd[["meta"]][["rpptx"]][["templates"]][[template]][[ph]][["ph_label"]])
+            # If we're processing a title then we add the template as well
+            if(grepl("^title", ignore.case=TRUE, obnd[["meta"]][["rpptx"]][["templates"]][[template]][[ph]][["ph_label"]])){
+              tmp_text = paste0(template, "=", tmp_text)
+            }
 
-          # If we're processing a title then we add the template as well
-          if(grepl("^title", ignore.case=TRUE, obnd[["meta"]][["rpptx"]][["templates"]][[template]][[ph]][["ph_label"]])){
-            tmp_text = paste0(template, "=", tmp_text)
-          }
-
-          if(obnd[["meta"]][["rpptx"]][["templates"]][[template]][[ph]][["content_type"]] == "text"){
-            elements[[ph]] = list(content = tmp_text,
-                                  type     = "text")
-          } else {
-            elements[[ph]] = list(content = c("1", tmp_text),
-                                  type     = "list")
+            if(obnd[["meta"]][["rpptx"]][["templates"]][[template]][[ph]][["content_type"]] == "text"){
+              elements[[ph]] = list(content = tmp_text,
+                                    type     = "text")
+            } else {
+              elements[[ph]] = list(content = c("1", tmp_text),
+                                    type     = "list")
+            }
           }
         }
         # Now adding a slide with each element on it

@@ -11,10 +11,10 @@
 #'
 #'@return List with the following elements
 #' \itemize{
-#' \item{ph}      Placeholder label or \code{NULL} if failure  
-#' \item{type}    Placeholder content type in PowerPoint or \code{NULL} if failure  
-#' \item{isgood} Boolean variable indicating success or failure
-#' \item{msgs} Vector of messages
+#' \item{ph}:      Placeholder label or \code{NULL} if failure
+#' \item{type}:    Placeholder content type in PowerPoint or \code{NULL} if failure
+#' \item{isgood}: Boolean variable indicating success or failure
+#' \item{msgs}: Vector of messages
 #'}
 #'@examples
 #'# Creating an onbrand object:
@@ -30,7 +30,7 @@ fph = function(obnd,
                template = NULL,
                pn       = NULL,
                verbose  = TRUE){
-  
+
   isgood = TRUE
   msgs   = c()
   pl     = NULL
@@ -67,7 +67,7 @@ fph = function(obnd,
       } else {
         isgood = FALSE
         msgs = c(msgs, "No PowerPoint mapping information found in onbrand object")
-      } 
+      }
     } else {
       isgood = FALSE
       msgs = c(msgs, "No mapping information found in onbrand object")

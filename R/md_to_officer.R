@@ -6,15 +6,15 @@
 #'  \item paragraph:   two or more new lines creates a paragraph
 #'  \item bold:        can be either \code{"**text in bold**"} or \code{"__text in bold__"}
 #'  \item italics:     can be either \code{"*text in italics*"} or \code{"_text in italics_"}
-#'  \item subscript:   \code{"Normal~subscript~"} 
-#'  \item superscript: \code{"Normal^superscript^"} 
-#'  \item color:       \code{"<color:red>red text</color>"} 
-#'  \item shade:       \code{"<shade:#33ff33>shading</shade>"} 
-#'  \item font family: \code{"<ff:symbol>symbol</ff>"} 
+#'  \item subscript:   \code{"Normal~subscript~"}
+#'  \item superscript: \code{"Normal^superscript^"}
+#'  \item color:       \code{"<color:red>red text</color>"}
+#'  \item shade:       \code{"<shade:#33ff33>shading</shade>"}
+#'  \item font family: \code{"<ff:symbol>symbol</ff>"}
 #'}
-#'@param default_format  list containing the default format for elements not defined with markdown default values. 
+#'@param default_format  list containing the default format for elements not defined with markdown default values.
 #' \preformatted{
-#'    default_format = list( 
+#'    default_format = list(
 #'       color          = "black",
 #'       font.size      = 12,
 #'       bold           = FALSE,
@@ -29,25 +29,25 @@
 #' element (e.g. \code{pgraph_1}, \code{pgraph_2}, etc) each with the following
 #' elements:
 #' \itemize{
-#'  \item \code{locs} Dataframe showing the locations of markdown elements in the current paragraph
-#'  \item \code{pele} These are the individual parsed paragraph elements
-#'  \item \code{ftext_cmd} String containing the ftext commands.
-#'  \item \code{fpar_cmd} String containing the fpar commands that can be run using
-#'  \code{eval} to return the output of \code{fpar}. For example: 
+#'  \item{locs}: Dataframe showing the locations of markdown elements in the current paragraph
+#'  \item{pele}: These are the individual parsed paragraph elements
+#'  \item{ftext_cmd}: String containing the ftext commands.
+#'  \item{fpar_cmd}: String containing the fpar commands that can be run using
+#'  \code{eval} to return the output of \code{fpar}. For example:
 #' \preformatted{
 #'   myfpar = eval(parse(text=pgparse$pgraph_1$fpar_cmd))
 #'  }
-#'  \item \code{as_paragraph_cmd} String containing the as_paragraph_cmd that can be run using
+#'  \item{as_paragraph_cmd}: String containing the as_paragraph_cmd that can be run using
 #' \preformatted{
 #'   myas_para = eval(parse(text=pgparse$pgraph_1$as_paragraph_cmd))
 #'  }
 #'}
-#'@examples 
+#'@examples
 #'res              = md_to_officer("Be **bold**!")
 #'fpar_obj         = eval(parse(text=res$pgraph_1$fpar_cmd))
 #'as_paragraph_obj = eval(parse(text=res$pgraph_1$as_paragraph_cmd))
 md_to_officer = function(str,
-     default_format = list( 
+     default_format = list(
         color          = "black",
         font.size      = 12,
         bold           = FALSE,
@@ -65,7 +65,7 @@ pgraphs = unlist(base::strsplit(str, split="(\r\n|\r|\n){2,}"))
 
 md_info = data.frame(
   md_name = c( "subscript",       "superscript",     "italic_us",  "italic_st",   "bold",              "color",                     "shading_color",                     "font_family"             ),
-  pattern = c( "~.+?~",           "\\^.+?\\^",       "_.+?_",      "\\*.+?\\*",   "\\%\\%.+?\\%\\%",   "<color:\\S+?>.+?</color>",  "<shade:\\S+?>.+?</shade>",          "<ff:\\S+?>.+?</ff>"      ), 
+  pattern = c( "~.+?~",           "\\^.+?\\^",       "_.+?_",      "\\*.+?\\*",   "\\%\\%.+?\\%\\%",   "<color:\\S+?>.+?</color>",  "<shade:\\S+?>.+?</shade>",          "<ff:\\S+?>.+?</ff>"      ),
   start   = c( "~",               "\\^",             "_",          "\\*",         "\\%\\%",            "<color:\\S+?>",             "<shade:\\S+?>",                     "<ff:\\S+?>"              ),
   end     = c( "~",               "\\^",             "_",          "\\*",         "\\%\\%",            "</color>",                  "</shade>",                          "</ff>"                   ),
   prop    = c( "vertical.align",  "vertical.align",  "italic",     "italic",      "bold",              "color",                     "shading_color",                     "font.family"             ))
@@ -74,25 +74,25 @@ md_info = data.frame(
 pos_start = c()
 pos_stop  = c()
 
-# This is for chunks of text with no formatting. 
+# This is for chunks of text with no formatting.
 no_props_str = paste('officer::fp_text(bold = ', default_format[["bold"]],',',
-                         'font.size = ',         default_format[["font.size"]], ',', 
-                         'italic = ',            default_format[["italic"]], ',', 
-                         'underlined = ',        default_format[["underlined"]], ',', 
-                         'color = "',            default_format[["color"]], '",', 
-                         'shading.color = "',    default_format[["shading.color"]], '",', 
-                         'vertical.align = "',   default_format[["vertical.align"]], '",', 
+                         'font.size = ',         default_format[["font.size"]], ',',
+                         'italic = ',            default_format[["italic"]], ',',
+                         'underlined = ',        default_format[["underlined"]], ',',
+                         'color = "',            default_format[["color"]], '",',
+                         'shading.color = "',    default_format[["shading.color"]], '",',
+                         'vertical.align = "',   default_format[["vertical.align"]], '",',
                          'font.family = "',      default_format[["font.family"]],'")', sep = "")
 
 no_props     = officer::fp_text(
-        color          = default_format[["color"]], 
-        font.size      = default_format[["font.size"]], 
-        bold           = default_format[["bold"]], 
-        italic         = default_format[["italic"]], 
-        underlined     = default_format[["underlined"]], 
-        font.family    = default_format[["font.family"]], 
+        color          = default_format[["color"]],
+        font.size      = default_format[["font.size"]],
+        bold           = default_format[["bold"]],
+        italic         = default_format[["italic"]],
+        underlined     = default_format[["underlined"]],
+        font.family    = default_format[["font.family"]],
         vertical.align = default_format[["vertical.align"]],
-        shading.color  = default_format[["shading.color"]]) 
+        shading.color  = default_format[["shading.color"]])
 
 
 # Saving the parsed paragraphs
@@ -104,11 +104,11 @@ pgraphs_parse = list()
 
     # Removing all of the carriage returns in the paragraph:
     pgraph = gsub(pattern="(\r\n|\r|\n)", replacement=" ", pgraph_raw)
-  
+
     # Storing the locations of the markdown in the string
     locs      = NULL
 
-    # Visual id of md elements to debug finding stuff 
+    # Visual id of md elements to debug finding stuff
     md_visual = c()
 
     # Converting the ** to %% to make it easier to distinguish between bold and
@@ -128,8 +128,8 @@ pgraphs_parse = list()
       }
     }
 
-    
-    # if locs is NULL then no markdown elements were found in the current 
+
+    # if locs is NULL then no markdown elements were found in the current
     # current paragraph so we just raap that up
     if(is.null(locs)){
       pele     = list()
@@ -153,7 +153,7 @@ pgraphs_parse = list()
           }
         }
       }
-      
+
       # Pulling out the separate paragraph elements
       pele     = list()
       pele_idx = 1
@@ -161,13 +161,13 @@ pgraphs_parse = list()
       for(group in unique(locs$group)){
         # pulling out the markdown elements for that group
         gr_md   = locs[locs$group == group, ]
-      
+
         #----------
         # if we're dealing with the first group and it starts after the first
         # character then we add that first chunk of text
         if(group == 1 & gr_md[1, ]$start > 1){
           #pele_tmp = list(text = pgraph)
-          pele[[paste('p_', pele_idx, sep="")]] = 
+          pele[[paste('p_', pele_idx, sep="")]] =
                list(text      = substr(pgraph, start=1, stop=(gr_md$start-1)),
                     props     = c(no_props_str),
                     props_cmd = paste("prop=", no_props_str, sep=""))
@@ -179,13 +179,13 @@ pgraphs_parse = list()
         if(group > 1){
           # Previous group:
           gr_md_prev   = locs[locs$group == group-1, ]
-      
+
           # If there is more than 1 character difference between the last md
           # element from the previous group and the first of the current group
           # then we need to add that text
           if(gr_md[1, ]$start-gr_md_prev[1, ]$end > 1){
-            pele[[paste('p_', pele_idx, sep="")]] = 
-                       list(text      = substr(pgraph, 
+            pele[[paste('p_', pele_idx, sep="")]] =
+                       list(text      = substr(pgraph,
                                                start =(gr_md_prev[1, ]$end + 1),
                                                stop  =(gr_md[1, ]$start - 1)),
                             props     = c(no_props_str),
@@ -196,77 +196,77 @@ pgraphs_parse = list()
         #----------
         # Processing the markdown for a group
         # First we pull out the text from the inner most markdown element
-        md_text = substr(pgraph, 
+        md_text = substr(pgraph,
                          start =gr_md[nrow(gr_md), ]$start,
                          stop  =gr_md[nrow(gr_md), ]$end)
 
-        # now we strip off the beginning and ending of the markdown 
+        # now we strip off the beginning and ending of the markdown
         md_name  = gr_md[nrow(gr_md), ]$md_name
-      
+
         # patterns to strip off the beginning and end
         md_start = paste("^", as.character(md_info[md_info$md_name == md_name, ]$start), sep="")
         md_end   = paste(as.character(md_info[md_info$md_name == md_name, ]$end), "$", sep="")
-      
+
         # Stripping those patterns off
         md_text = sub(md_text, pattern=md_start, replacement="")
         md_text = sub(md_text, pattern=md_end, replacement="")
 
         if(group == 4){
         }
-      
+
         # Now we save the text:
-        pele[[paste('p_', pele_idx, sep="")]] = 
+        pele[[paste('p_', pele_idx, sep="")]] =
                    list(text      = md_text,
                         props     = no_props,
                         props_cmd = no_props)
-        
+
         # Making a copy of the format, these will be subtracted below as the
         # user defined formats are found:
         tmp_def_props = default_format
-      
+
         tmp_props = c()
         # Next we add the properties associated with the markdown
         for(md_name in (gr_md$md_name)){
           md_start = as.character(md_info[md_info$md_name == md_name, ]$start)
           md_end   = as.character(md_info[md_info$md_name == md_name, ]$end)
           md_prop  = as.character(md_info[md_info$md_name == md_name, ]$prop)
-      
+
           # Setting properties based on the type of markdown selected
           if(md_name == "italic_st" | md_name == "italic_us"){
             tmp_props = c(tmp_props, "italic = TRUE")
             # subtracting the default value
             tmp_def_props[["italic"]] = NULL
           }
-      
+
           if(md_name == "bold"){
             tmp_props = c(tmp_props, "bold = TRUE")
             # subtracting the default value
             tmp_def_props[["bold"]] = NULL
           }
-      
+
           if(md_name == "superscript"){
             tmp_props = c(tmp_props, 'vertical.align = "superscript"')
             # subtracting the default value
             tmp_def_props[["vertical.align"]] = NULL
           }
-      
+
           if(md_name == "subscript"){
             tmp_props = c(tmp_props, 'vertical.align = "subscript"')
             # subtracting the default value
             tmp_def_props[["vertical.align"]] = NULL
           }
-      
+
           if(md_name == "color"){
             # pulling out the color markdown text. It uses the first entry so
-            # the outer most. There shouldn't be more than one. 
-            md_text = substr(pgraph, 
+            # the outer most. There shouldn't be more than one.
+            md_text = substr(pgraph,
                              start = gr_md[gr_md$md_name == "color", ]$start[1],
                              stop  = gr_md[gr_md$md_name == "color", ]$end[1])
 
             #extracting the color
             color = stringr::str_extract(md_text, md_start)
-            color= gsub(color, pattern="<color:", replacement="") 
-            color= gsub(color, pattern=">", replacement="") 
+            color= gsub(color, pattern="<color:", replacement="")
+            color= gsub(color, pattern=">", replacement="")
 
             tmp_props = c(tmp_props, paste('color = "', color, '"', sep=""))
             # subtracting the default value
@@ -274,15 +274,15 @@ pgraphs_parse = list()
           }
           if(md_name == "shading_color"){
             # pulling out the color markdown text. It uses the first entry so
-            # the outer most. There shouldn't be more than one. 
-            md_text = substr(pgraph, 
+            # the outer most. There shouldn't be more than one.
+            md_text = substr(pgraph,
                              start = gr_md[gr_md$md_name == "shading_color", ]$start[1],
                              stop  = gr_md[gr_md$md_name == "shading_color", ]$end[1])
 
             #extracting the color
             color = stringr::str_extract(md_text, md_start)
-            color= gsub(color, pattern="<shade:", replacement="") 
-            color= gsub(color, pattern=">", replacement="") 
+            color= gsub(color, pattern="<shade:", replacement="")
+            color= gsub(color, pattern=">", replacement="")
 
             tmp_props = c(tmp_props, paste('shading.color = "', color, '"', sep=""))
             # subtracting the default value
@@ -290,14 +290,14 @@ pgraphs_parse = list()
           }
 
           if(md_name == "font_family"){
-            md_text = substr(pgraph, 
+            md_text = substr(pgraph,
                              start = gr_md[gr_md$md_name == "font_family", ]$start[1],
                              stop  = gr_md[gr_md$md_name == "font_family", ]$end[1])
 
             #extracting the font family
             ff = stringr::str_extract(md_text, md_start)
-            ff = gsub(ff, pattern="<ff:", replacement="") 
-            ff = gsub(ff, pattern=">", replacement="") 
+            ff = gsub(ff, pattern="<ff:", replacement="")
+            ff = gsub(ff, pattern=">", replacement="")
             tmp_props = c(tmp_props, paste('font.family = "', ff, '"', sep=""))
             # subtracting the default value
             tmp_def_props[["font.family"]] = NULL
@@ -313,12 +313,12 @@ pgraphs_parse = list()
         if("font.family"      %in% names(tmp_def_props)){ tmp_props = c(tmp_props, paste( 'font.family = "',    tmp_def_props[["font.family"]],   '"',  sep=""))}
         if("vertical.align"   %in% names(tmp_def_props)){ tmp_props = c(tmp_props, paste( 'vertical.align = "', tmp_def_props[["vertical.align"]], '"', sep=""))}
         if("shading.color"    %in% names(tmp_def_props)){ tmp_props = c(tmp_props, paste( 'shading.color = "',  tmp_def_props[["shading.color"]], '"',  sep=""))}
-      
+
         pele[[paste('p_', pele_idx, sep="")]]$props     = tmp_props
         pele[[paste('p_', pele_idx, sep="")]]$props_cmd = paste("prop=officer::fp_text(", paste(tmp_props, collapse=", "), ")", sep="")
-      
+
         pele_idx = pele_idx + 1
-      
+
         #----------
         # If we're at the last group and it doesn't go to the end we add the
         # last part as well
@@ -327,7 +327,7 @@ pgraphs_parse = list()
           text_end = substr(pgraph, start=(gr_md[1, ]$end+1), stop=nchar(pgraph))
           # If that string isn't empty we add a paragraph element for it
           if(text_end != ""){
-            pele[[paste('p_', pele_idx, sep="")]] = 
+            pele[[paste('p_', pele_idx, sep="")]] =
                        list(text      = text_end,
                             props     = c(no_props_str),
                             props_cmd = paste("prop=", no_props_str, sep=""))
@@ -336,7 +336,7 @@ pgraphs_parse = list()
         }
         #----------
       }
-      
+
       for(loc_idx in 1:nrow(locs)){
         tmpstr = paste(rep(" ", nchar(pgraph)), collapse="")
         tmpstr = paste(tmpstr, ":",  locs[loc_idx, ]$md_name, sep="")

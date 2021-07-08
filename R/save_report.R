@@ -3,15 +3,15 @@
 #'@description Saves report in onbrand object to the specified file.
 #'
 #'@param obnd onbrand report object
-#'@param output_file File name to save the report. 
+#'@param output_file File name to save the report.
 #'@param verbose Boolean variable when set to TRUE (default) messages will be
 #'displayed on the terminal; Messages will be included in the returned onbrand
 #'object.
 #'
 #'@return List with the following elements
 #' \itemize{
-#' \item{isgood} Boolean variable indicating success or failure
-#' \item{msgs} Vector of messages
+#' \item{isgood}: Boolean variable indicating success or failure
+#' \item{msgs}:   Vector of messages
 #'}
 #'@examples
 #'

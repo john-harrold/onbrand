@@ -33,7 +33,7 @@ reference:
   - fetch_officer_object
   - set_officer_object
 - title: "Miscellanious"
-  desc: "Converting markdown to officer"
+  desc: "Other useful functions"
 - contents:
   - fetch_rpttype
   - fetch_report_format

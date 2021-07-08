@@ -19,10 +19,10 @@ displayed on the terminal; Messages will be included in the returned list.}
 \value{
 List with the following elements
 \itemize{
-\item{ph}      Placeholder label or \code{NULL} if failure  
-\item{type}    Placeholder content type in PowerPoint or \code{NULL} if failure  
-\item{isgood} Boolean variable indicating success or failure
-\item{msgs} Vector of messages
+\item{ph}:      Placeholder label or \code{NULL} if failure
+\item{type}:    Placeholder content type in PowerPoint or \code{NULL} if failure
+\item{isgood}: Boolean variable indicating success or failure
+\item{msgs}: Vector of messages
 }
 }
 \description{

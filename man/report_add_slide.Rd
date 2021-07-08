@@ -21,7 +21,7 @@ displayed on the terminal; Messages will be included in the returned onbrand
 object.}
 }
 \value{
-onbrand report object with either the contenet added or isgood set
+onbrand report object with either the content added or isgood set
 to FALSE with any messages in the msgs field.
 }
 \description{
@@ -64,7 +64,7 @@ obnd = report_add_slide(obnd,
 See the function \code{\link{add_pptx_ph_content}} for a list of
 allowed values for \code{type}. Note that if mapping defines the
 \code{content_type} as \code{text}, you cannot use a \code{list} type.
-Similarly, if the \code{content_type} is defined as \code{list}, you 
+Similarly, if the \code{content_type} is defined as \code{list}, you
 cannot use a \code{text} type.
 }
 \examples{
@@ -73,7 +73,7 @@ obnd = read_template(
       mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
 
 obnd = report_add_slide(obnd,
- template = "content_text", 
+ template = "content_text",
  elements = list(
     title         = list( content      = "Text Example",
                           type         = "text"),

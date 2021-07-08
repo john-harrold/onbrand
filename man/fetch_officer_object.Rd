@@ -16,9 +16,9 @@ object.}
 \value{
 List with the following elements
 \itemize{
-\item{isgood} Boolean variable indicating success or failure
-\item{rpt} Officer object
-\item{msgs} Vector of messages
+\item{isgood}: Boolean variable indicating success or failure
+\item{rpt}: Officer object
+\item{msgs}: Vector of messages
 }
 }
 \description{

@@ -20,9 +20,9 @@ view_layout(
 \value{
 List with the following elements
 \itemize{
-\item{isgood} Boolean variable indicating success or failure
-\item{rpt} Officer with the annotated layout
-\item{msgs} Vector of messages
+\item{isgood}: Boolean variable indicating success or failure
+\item{rpt}: Officer with the annotated layout
+\item{msgs}: Vector of messages
 }
 }
 \description{
