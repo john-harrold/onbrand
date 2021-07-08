@@ -106,7 +106,7 @@
 </ol>
 <p>The following sections describe this process in detail for both Word and PowerPoint documents. Before you get started, copy the provided examples into your current working directory. To do so, use the following code:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/john-harrold/onbrand">onbrand</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://john-harrold.github.io/onbrand/">onbrand</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/files.html">file.copy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span>,<span class="st">"examples"</span>,<span class="st">"example.pptx"</span><span class="op">)</span>, <span class="st">"."</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/files.html">file.copy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span>,<span class="st">"examples"</span>,<span class="st">"example.docx"</span><span class="op">)</span>, <span class="st">"."</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/files.html">file.copy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span>,<span class="st">"examples"</span>,<span class="st">"example.yaml"</span><span class="op">)</span>, <span class="st">"."</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
@@ -167,7 +167,7 @@
 <p><strong>Tip</strong> When you make slide layouts under a master, give each of them a descriptive name that will be easy to use when you are coding later. These names will be used to refer to them within scripts.</p>
 <p>PowerPoint assigns read-only names to every placeholder within each slide layout. To reveal those read-only names, create an annotated slide deck using the <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> function:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/john-harrold/onbrand">onbrand</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://john-harrold.github.io/onbrand/">onbrand</a></span><span class="op">)</span>
 <span class="va">vlres</span> <span class="op">=</span> <span class="fu"><a href="../reference/view_layout.html">view_layout</a></span><span class="op">(</span>template    <span class="op">=</span> <span class="st">"example.pptx"</span>, 
                     output_file <span class="op">=</span> <span class="st">"example_layout.pptx"</span><span class="op">)</span></code></pre></div>
 <p>This will create the file <code>example_layout.pptx</code>. It contains a slide for each slide layout (<code>title</code> &amp; <code>two_col</code>) under the master (<code>Office Theme</code>) in the input template file (<code>example.pptx</code>). On each slide, the names of both the slide layout and slide master will be indicated in the upper right corner. Each placeholder within the slide layout will be shown and is identified by the placeholder label (<code>ph_label</code>). For each placeholder within each slide layout under a slide master, <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> produces three pieces of information: <code>ph_label</code>, <code>type</code>, and <code>index</code>. Notice, there are plenty of duplicate placeholder names.</p>
@@ -250,7 +250,7 @@
 <p><strong>Note:</strong> Do not type this placeholder text directly into the Word document. Cut and paste the text into the Word document from a text editor. Word is not a text editor, so while the text string may appear to be contiguous, it may not be so in the underlying XML code.</p>
 <p>To view all of the styles in the document you can use the <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> function here as well:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/john-harrold/onbrand">onbrand</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://john-harrold.github.io/onbrand/">onbrand</a></span><span class="op">)</span>
 <span class="va">vlres</span> <span class="op">=</span> <span class="fu"><a href="../reference/view_layout.html">view_layout</a></span><span class="op">(</span>template    <span class="op">=</span> <span class="st">"example.docx"</span>, 
                     output_file <span class="op">=</span> <span class="st">"example_layout.docx"</span><span class="op">)</span></code></pre></div>
 <p>This will produce a word document, <code>example_layout.docx</code> that looks something like this:</p>
@@ -352,6 +352,7 @@
 <li>Confirm the new template is behaving as expected using <code><a href="../reference/preview_template.html">onbrand::preview_template()</a></code>
 </li>
 </ul>
+<p><strong>Note</strong>: If you have a template where certain elements are missing you need to set the <code>ph_label</code> value to <code>NULL</code>. For example you are changing to a new template that does not have subtitles, but the workflow does have these specified, then for each slide with a subtitle you will need to set that value to <code>NULL</code>.</p>
 </div>
 <div id="word-1" class="section level3">
 <h3 class="hasAnchor">
