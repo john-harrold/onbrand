@@ -1,3 +1,6 @@
+template:
+  params:
+    bootswatch: united
 reference:
 - title: "Custom Templates"
   desc: "Creating and testing yaml mapping files for custom templates"
@@ -37,3 +40,16 @@ reference:
 - contents:
   - fetch_rpttype
   - fetch_report_format
+navbar:
+  left:
+  - text: Tutorials
+    icon: fas fa-chalkboard-teacher
+    menu:
+        - text: "Getting Started"
+        - text: "Custom Office Templates"
+          href: articles/Custom_Office_templates.html
+        - text: "Templated Reporting Workflows in PowerPoint and Word"
+          href: articles/Creating_Templated_Office_Workflows.html
+  - text: "Functions"
+    icon: fas fa-hat-wizard
+    href: reference/index.html

@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/john-harrold/onbrand/workflows/R-CMD-check/badge.svg)](https://github.com/john-harrold/onbrand/actions)
+[![CRAN
+checks](https://cranchecks.info/badges/summary/onbrand)](https://cran.r-project.org/web/checks/check_results_onbrand.html)
 <!-- badges: end -->
 
 The `officer` package provides extensive methods for accessing,
