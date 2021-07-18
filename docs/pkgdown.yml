@@ -1,8 +1,8 @@
 pandoc: 2.11.2
-pkgdown: 1.6.1
-pkgdown_sha: ~
+pkgdown: 1.6.1.9001
+pkgdown_sha: c810991e9e9ff5868e8689c103100445bfeb3599
 articles:
   Creating_Templated_Office_Workflows: Creating_Templated_Office_Workflows.html
   Custom_Office_Templates: Custom_Office_Templates.html
-last_built: 2021-07-17T14:15Z
+last_built: 2021-07-17T20:31Z
 

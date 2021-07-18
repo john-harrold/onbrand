@@ -45,6 +45,8 @@
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -55,10 +57,18 @@
 <![endif]-->
 
 
+<!-- dependencies from examples -->
+
+
+  
+
+  
 
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -133,12 +143,12 @@
     <p>Parses text in Markdown format and returns fpar and as_paragraph command strings to be used with officer</p>
     </div>
 
-    <pre class="usage"><span class='fu'>md_to_officer</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>md_to_officer</span><span class='op'>(</span>
   <span class='va'>str</span>,
   default_format <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"black"</span>, font.size <span class='op'>=</span> <span class='fl'>12</span>, bold <span class='op'>=</span> <span class='cn'>FALSE</span>, italic <span class='op'>=</span> <span class='cn'>FALSE</span>,
     underlined <span class='op'>=</span> <span class='cn'>FALSE</span>, font.family <span class='op'>=</span> <span class='st'>"Cambria (Body)"</span>, vertical.align <span class='op'>=</span> <span class='st'>"baseline"</span>,
     shading.color <span class='op'>=</span> <span class='st'>"transparent"</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,7 +168,7 @@
     </tr>
     <tr>
       <th>default_format</th>
-      <td><p>list containing the default format for elements not defined with markdown default values.</p><pre>
+      <td><p>list containing the default format for elements not defined with markdown default values.</p><pre class='sourceCode r'><code>
    <span class='va'>default_format</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
       color          <span class='op'>=</span> <span class='st'>"black"</span>,
       font.size      <span class='op'>=</span> <span class='fl'>12</span>,
@@ -168,7 +178,7 @@
       font.family    <span class='op'>=</span> <span class='st'>"Cambria (Body)"</span>,
       vertical.align <span class='op'>=</span> <span class='st'>"baseline"</span>,
       shading.color  <span class='op'>=</span> <span class='st'>"transparent"</span><span class='op'>)</span>
-</pre></td>
+</code></pre></td>
     </tr>
     </table>
 
@@ -182,20 +192,20 @@ elements:</p><ul>
 <li><p>pele: These are the individual parsed paragraph elements</p></li>
 <li><p>ftext_cmd: String containing the ftext commands.</p></li>
 <li><p>fpar_cmd: String containing the fpar commands that can be run using
- <code>eval</code> to return the output of <code>fpar</code>. For example:</p><pre>
+ <code>eval</code> to return the output of <code>fpar</code>. For example:</p><pre class='sourceCode r'><code>
   <span class='va'>myfpar</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/eval.html'>eval</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/parse.html'>parse</a></span><span class='op'>(</span>text<span class='op'>=</span><span class='va'>pgparse</span><span class='op'>$</span><span class='va'>pgraph_1</span><span class='op'>$</span><span class='va'>fpar_cmd</span><span class='op'>)</span><span class='op'>)</span>
- </pre></li>
-<li><p>as_paragraph_cmd: String containing the as_paragraph_cmd that can be run using</p><pre>
+ </code></pre></li>
+<li><p>as_paragraph_cmd: String containing the as_paragraph_cmd that can be run using</p><pre class='sourceCode r'><code>
   <span class='va'>myas_para</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/eval.html'>eval</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/parse.html'>parse</a></span><span class='op'>(</span>text<span class='op'>=</span><span class='va'>pgparse</span><span class='op'>$</span><span class='va'>pgraph_1</span><span class='op'>$</span><span class='va'>as_paragraph_cmd</span><span class='op'>)</span><span class='op'>)</span>
- </pre></li>
+ </code></pre></li>
 </ul>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>res</span>              <span class='op'>=</span> <span class='fu'>md_to_officer</span><span class='op'>(</span><span class='st'>"Be **bold**!"</span><span class='op'>)</span>
-<span class='va'>fpar_obj</span>         <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/eval.html'>eval</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/parse.html'>parse</a></span><span class='op'>(</span>text<span class='op'>=</span><span class='va'>res</span><span class='op'>$</span><span class='va'>pgraph_1</span><span class='op'>$</span><span class='va'>fpar_cmd</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>as_paragraph_obj</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/eval.html'>eval</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/parse.html'>parse</a></span><span class='op'>(</span>text<span class='op'>=</span><span class='va'>res</span><span class='op'>$</span><span class='va'>pgraph_1</span><span class='op'>$</span><span class='va'>as_paragraph_cmd</span><span class='op'>)</span><span class='op'>)</span>
-</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='va'>res</span>              <span class='op'>=</span> <span class='fu'>md_to_officer</span><span class='op'>(</span><span class='st'>"Be **bold**!"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>fpar_obj</span>         <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/eval.html'>eval</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/parse.html'>parse</a></span><span class='op'>(</span>text<span class='op'>=</span><span class='va'>res</span><span class='op'>$</span><span class='va'>pgraph_1</span><span class='op'>$</span><span class='va'>fpar_cmd</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>as_paragraph_obj</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/eval.html'>eval</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/parse.html'>parse</a></span><span class='op'>(</span>text<span class='op'>=</span><span class='va'>res</span><span class='op'>$</span><span class='va'>pgraph_1</span><span class='op'>$</span><span class='va'>as_paragraph_cmd</span><span class='op'>)</span><span class='op'>)</span></span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -207,11 +217,11 @@ elements:</p><ul>
 
       <footer>
       <div class="copyright">
-  <p>Developed by John Harrold, Bryan Smith.</p>
+  <p><p>Developed by John Harrold, Bryan Smith.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -219,6 +229,8 @@ elements:</p><ul>
 
   
 
+
+  
 
   </body>
 </html>
