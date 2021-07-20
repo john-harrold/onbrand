@@ -46,12 +46,10 @@ navbar:
     icon: fas fa-chalkboard-teacher
     menu:
         - text: "--------------------------"
-        - text: "Getting Started"
         - text: "Custom Office Templates"
-          href: /articles/Custom_Office_templates.html
+          href: articles/Custom_Office_Templates.html
         - text: "Templated Reporting Workflows in PowerPoint and Word"
-          href: /articles/Creating_Templated_Office_Workflows.html
-        - text: "--------------------------"
+          href: articles/Creating_Templated_Office_Workflows.html
   - text: "Functions"
     icon: fas fa-hat-wizard
     href: reference/index.html
