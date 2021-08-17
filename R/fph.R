@@ -80,7 +80,7 @@ fph = function(obnd,
   # If errors were encountered we make sure that the state of the reporting
   # object is set to false
   if(!isgood){
-    msgs = c(msgs, "fph()")
+    msgs = c(msgs, "onbrand::fph()")
   }
   # Dumping the messages if verbose is turned on:
   if(verbose & !is.null(msgs)){

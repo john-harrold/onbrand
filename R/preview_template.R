@@ -113,7 +113,7 @@ preview_template = function(obnd, verbose=TRUE){
   if(!isgood){
     obnd[["isgood"]] = FALSE
     msgs = c(msgs, paste0("mapping file: ", obnd[["mapping"]]))
-    msgs = c(msgs, "report_add_slide()")
+    msgs = c(msgs, "onbrand::preview_template()")
   }
 
   # Dumping the messages if verbose is turned on:

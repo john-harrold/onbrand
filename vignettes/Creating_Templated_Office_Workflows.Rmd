@@ -238,7 +238,14 @@ Which should look something like this:
 
 ### Accessing the PowerPoint mapping information
 
-If you do not want to use the interfaces above for creating slides but would like to use the named mapping information in a more traditional `officer` workflow you can use the function `fph`. After you've loaded the onbrand object above (`obnd`) you can then pull out the placeholder label from PowerPoint for any named placeholder in a template layout specified in the yaml mapping file. For example if we wanted the placeholder label for the `content_left_header` in the `two_content_header_text` layout we would use the following:
+Sometimes it can be difficult to remember the template and placeholder names from the mapping file. You and use the `onbrand::template_details` function to show this information for the current `onbrand` object.
+
+```{r, message=TRUE}
+details = template_details(obnd) 
+```
+
+
+If you do not want to use the interfaces above for creating slides but would like to use the named mapping information in a more traditional `officer` workflow you can use the function `fph`. After you've loaded the `onbrand` object above (`obnd`) you can then pull out the placeholder label from PowerPoint for any named placeholder in a template layout specified in the yaml mapping file. For example if we wanted the placeholder label for the `content_left_header` in the `two_content_header_text` layout we would use the following:
 
 ```{r}
 ph = fph(obnd, "two_content_header_text", "content_left_header")$pl
@@ -624,7 +631,13 @@ obnd = report_add_doc_content(obnd,
 
 ### Accessing the Word mapping information
 
-As with the PowerPoint interface, you can also access the named Word mapping directly. This is done through the `fst` function. With the onbrand objected loaded (`obnd`) you can supply an onbrand style name and pull out the Word style name (`wsn`) and the default font format (`dff`):
+It can also be useful to quickly access the `onbrand` style names. You can use the same `onbrand::template_details` function to display the current styles available to you:
+
+```{r, message=TRUE}
+details = template_details(obnd) 
+```
+
+As with the PowerPoint interface, you can also access the named Word mapping directly. This is done through the `fst` function. With the `onbrand` objected loaded (`obnd`) you can supply an `onbrand` style name and pull out the Word style name (`wsn`) and the default font format (`dff`):
 
 ```{r}
 st = fst(obnd, "Heading_3")
@@ -637,13 +650,13 @@ dff = st$dff
 
 ## Accessing the `officer` object directly
 
-Sometimes you need more control over creating a report, and you may want to use the officer commands directly. To do this you can use the function `fetch_officer_object()`` to pull out the officer object from the onbrand object:
+Sometimes you need more control over creating a report, and you may want to use the officer commands directly. To do this you can use the function `fetch_officer_object()`` to pull out the officer object from the `onbrand` object:
 
 ```{r echo=FALSE}
 rpt = fetch_officer_object(obnd)$rpt
 ```
 
-Now you can use any officer command you wish on the `rpt` object. And when you're done you can put the object back into the onbrand object using `set_officer_object()`:
+Now you can use any officer command you wish on the `rpt` object. And when you're done you can put the object back into the `onbrand` object using `set_officer_object()`:
 
 ```{r echo=FALSE}
 obnd = set_officer_object(obnd, rpt)

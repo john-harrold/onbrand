@@ -168,7 +168,7 @@ report_add_slide = function (obnd,
     obnd[["isgood"]] = FALSE
     msgs = c(msgs, "Unable to add slide to presentation, see above for details.")
     msgs = c(msgs, paste0("mapping file: ", obnd[["mapping"]]))
-    msgs = c(msgs, "report_add_slide()")
+    msgs = c(msgs, "onbrand::report_add_slide()")
   }
 
   # Dumping the messages if verbose is turned on:

@@ -45,7 +45,7 @@ fetch_md_def = function(obnd, style = "default", verbose=TRUE){
 
   if(!isgood){
     obnd[["isgood"]] = FALSE
-    msgs = c(msgs, "fetch_md_def()")
+    msgs = c(msgs, "onbrand::fetch_md_def()")
   }
 
   # Dumping the messages if verbose is turned on:

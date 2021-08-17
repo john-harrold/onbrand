@@ -48,7 +48,7 @@ set_officer_object  = function (obnd, rpt = NULL, verbose=TRUE){
 
   if(!isgood){
     obnd[["isgood"]] = FALSE
-    msgs = c(msgs, "set_officer_object()")
+    msgs = c(msgs, "onbrand::set_officer_object()")
   }
   
   # Dumping the messages if verbose is turned on:

@@ -57,7 +57,7 @@ md_to_oo     = function(strs,default_format=NULL){
     }
 
     if(!isgood){
-       msgs = c(msgs, "md_to_oo()", "Unable to evaluate markdown, see above for details")
+       msgs = c(msgs, "onbrand::md_to_oo()", "Unable to evaluate markdown, see above for details")
     }
 
     # Appending the temp officer object to the vector of officer objects

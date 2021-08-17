@@ -189,9 +189,9 @@ read_template = function(template    = file.path(system.file(package="onbrand"),
               Word_style      = meta[["rdocx"]][["styles"]][[meta[["rdocx"]][["doc_def"]][[def_style]]]]
               Word_style_type = dplyr::filter(lay_sum, .data[["style_name"]] == Word_style)[["style_type"]]
               allowed_style_types = req_doc_defs[[def_style]]
-              if(Word_style == "Table Caption"){
-                  browser()
-              }
+              # if(Word_style == "Table Caption"){
+              #     browser()
+              # }
               # If the word style type is not in the allowed types we flag it
               if(!(Word_style_type %in% allowed_style_types)){
                 isgood = FALSE
@@ -228,7 +228,7 @@ read_template = function(template    = file.path(system.file(package="onbrand"),
     }
 
   if(!isgood){
-    msgs = c(msgs, "read_template()")
+    msgs = c(msgs, "onbrand::read_template()")
   }
   # Dumping the messages if verbose is turned on:
   if(verbose & !is.null(msgs)){

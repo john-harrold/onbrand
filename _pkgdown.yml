@@ -5,10 +5,11 @@ reference:
 - title: "Custom Templates"
   desc: "Creating and testing yaml mapping files for custom templates"
 - contents:
-  - view_layout
   - read_template
+  - view_layout
   - preview_template
   - save_report
+  - template_details
 - title: "PowerPoint"
   desc: "Workflow for creating presentations"
 - contents:
@@ -16,6 +17,7 @@ reference:
   - add_pptx_ph_content
   - report_add_slide
   - save_report
+  - template_details
   - fph
 - title: "Word"
   desc: "Workflow for creating written reports"
@@ -23,6 +25,7 @@ reference:
   - read_template
   - report_add_doc_content
   - save_report
+  - template_details
   - fst
 - title: "Markdown"
   desc: "Converting markdown to officer"
@@ -53,3 +56,6 @@ navbar:
   - text: "Functions"
     icon: fas fa-hat-wizard
     href: reference/index.html
+  - text: "News"
+    icon: fas fa-rss
+    href: news/index.html

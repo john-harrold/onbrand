@@ -121,7 +121,7 @@ save_report  = function (obnd,
   # object is set to false
   if(!isgood){
     obnd[["isgood"]] = FALSE
-    msgs = c(msgs, "save_report()")
+    msgs = c(msgs, "onbrand::save_report()")
   }
 
   # Dumping the messages if verbose is turned on:

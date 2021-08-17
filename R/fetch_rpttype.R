@@ -45,7 +45,7 @@ fetch_rpttype = function(template= NULL, verbose=TRUE){
   }
 
   if(!isgood){
-    msgs = c(msgs, "fetch_rpttype()")
+    msgs = c(msgs, "onbrand::fetch_rpttype()")
   }
 
   # Dumping the messages if verbose is turned on:

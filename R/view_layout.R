@@ -172,8 +172,8 @@ view_layout = function(template    = file.path(system.file(package="onbrand"), "
 
 
   if(!isgood){
-    msgs = c(msgs, "view_layout()")
     msgs = c(msgs, "Layout not generated.")
+    msgs = c(msgs, "onbrand::view_layout()")
   }
 
   # Dumping the messages if verbose is turned on:

@@ -39,7 +39,7 @@ fetch_officer_object  = function (obnd, verbose=TRUE){
 
   if(!isgood){
     obnd[["isgood"]] = FALSE
-    msgs = c(msgs, "fetch_officer_object()")
+    msgs = c(msgs, "onbrand::fetch_officer_object()")
   }
 
   # Dumping the messages if verbose is turned on:

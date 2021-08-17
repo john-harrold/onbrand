@@ -689,7 +689,7 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
   if(!isgood){
     msgs = c(msgs, "Unable to add content to document, see above for details")
     msgs = c(msgs, paste0("mapping file: ", obnd[["mapping"]]))
-    msgs = c(msgs, "report_add_doc_content() ")
+    msgs = c(msgs, "onbrand::report_add_doc_content() ")
     obnd[["isgood"]] = isgood
   }
 

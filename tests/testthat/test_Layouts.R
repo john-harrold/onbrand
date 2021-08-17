@@ -15,6 +15,24 @@ obnd = preview_template(obnd)
 
 expect_true(obnd[["isgood"]])})
 
+test_that("Word Preview",{
+obnd = read_template(template = file.path(system.file(package="onbrand"), "templates", "report.docx"),
+                     mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+obnd = preview_template(obnd)
 
-# JMH add Word Preview
+expect_true(obnd[["isgood"]])})
+
+
+test_that("PowerPoint Template Details",{
+obnd = read_template(template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
+                      mapping = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+deets = template_details(obnd)
+expect_true(deets[["isgood"]])})
+
+
+test_that("Word Template Details",{
+obnd = read_template(template = file.path(system.file(package="onbrand"), "templates", "report.docx"),
+                      mapping = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
+deets = template_details(obnd)
+expect_true(deets[["isgood"]])})
 
