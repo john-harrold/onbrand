@@ -1,12 +1,16 @@
-# `onbrand` Changelog
+# onbrand 1.0.1       
 
-## 2021.08.XX
-* updated messages to include package 
+## Changes
+
+* updated diagnostic messages to include package name
+
 * added NEWS.md
+
 * Added the function `template_details` 
   * Provide onbrand names for template elements
   * Created tests
   * Updated vignettes 
 
-## 2021.07.12 
-### onbrand 1.0.0 initial release up on CRAN
+# onbrand 1.0.0 
+
+* Submitted to CRAN
