@@ -45,13 +45,12 @@ devtools::install_github("john-harrold/onbrand",
 
 ## Getting Started
 
-Browse through the
-[documentation](https://john-harrold.github.io/onbrand/) and check out
-the vignettes:
+Browse through the [documentation](https://onbrand.ubiquity.tools/) and
+check out the vignettes:
 
 1.  [Custom
-    Templates](https://john-harrold.github.io/onbrand/articles/Custom_Office_Templates.html)
+    Templates](https://onbrand.ubiquity.tools/articles/Custom_Office_Templates.html)
 2.  [Templated
-    Workflows](https://john-harrold.github.io/onbrand/articles/Creating_Templated_Office_Workflows.html)
+    Workflows](https://onbrand.ubiquity.tools/articles/Creating_Templated_Office_Workflows.html)
 
 These vignettes contain everything you need to walk through the basics.
