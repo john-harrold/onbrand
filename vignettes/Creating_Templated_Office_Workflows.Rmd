@@ -538,6 +538,24 @@ The output from the example above should look like this:
 
 ![Example Word output for workflow above.](doc_workflow_output.png){width=600px}
 
+### Accessing the Word mapping information
+
+It can also be useful to quickly access the `onbrand` style names. You can use the same `onbrand::template_details` function to display the current styles available to you:
+
+```{r, message=TRUE}
+details = template_details(obnd) 
+```
+
+As with the PowerPoint interface, you can also access the named Word mapping directly. This is done through the `fst` function. With the `onbrand` objected loaded (`obnd`) you can supply an `onbrand` style name and pull out the Word style name (`wsn`) and the default font format (`dff`):
+
+```{r}
+st = fst(obnd, "Heading_3")
+#Word style name
+wsn = st$wsn
+# Default font format
+dff = st$dff
+```
+
 ## Formatting with markdown
 
 In `officer` you can change formatting in text using `fpar` and `as_pargraph`. There are situations where this is less than ideal. For example if you want to take formatted user input from a Shiny app, it may not be practical to have them supply code this way. 
@@ -628,25 +646,6 @@ obnd = report_add_doc_content(obnd,
   content  = list(ft=tab_fto,
                   caption  = "Flextable object with custom Markdown - created by the user."))
 ```
-
-### Accessing the Word mapping information
-
-It can also be useful to quickly access the `onbrand` style names. You can use the same `onbrand::template_details` function to display the current styles available to you:
-
-```{r, message=TRUE}
-details = template_details(obnd) 
-```
-
-As with the PowerPoint interface, you can also access the named Word mapping directly. This is done through the `fst` function. With the `onbrand` objected loaded (`obnd`) you can supply an `onbrand` style name and pull out the Word style name (`wsn`) and the default font format (`dff`):
-
-```{r}
-st = fst(obnd, "Heading_3")
-#Word style name
-wsn = st$wsn
-# Default font format
-dff = st$dff
-```
-
 
 ## Accessing the `officer` object directly
 

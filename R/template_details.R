@@ -1,10 +1,10 @@
 #'@export
-#'@title Generate Details about Template Mapping
+#'@title Show Template Details for `onbrand` Object
 #'@description  Takes an onbrand object with a loaded template and displays
 #'details about the template. For PowerPoint this contains the template names
 #'and elements present for that template. For Word it will contain defined
 #'text and table styles. This information can be displayed in the console,
-#'returned as text or formatted for use in RMarkdown documentation. 
+#'returned as text or formatted for use in RMarkdown documentation.
 #'
 #'@param obnd onbrand report object
 #'@param verbose Boolean variable when set to TRUE (default) messages will be
@@ -65,7 +65,7 @@ template_details = function(obnd, verbose=TRUE){
           # Text details
           d_txt = c(d_txt, paste0("  > ",ph, " (", content_type, ")"))
           # Dataframe details:
-          d_df = rbind(d_df, 
+          d_df = rbind(d_df,
              data.frame(template=template,
                         ph      = ph,
                         ct      = content_type))
@@ -87,7 +87,7 @@ template_details = function(obnd, verbose=TRUE){
     } else if(rpttype == "Word"){
       # pulling out the template styles specified in the mapping file
       template_styles = obnd[["meta"]][["rdocx"]][["styles"]]
-      
+
       # Pulling a summary of the layouts out of the officer object
       lay_sum = officer::styles_info(obnd[["rpt"]])
 
@@ -143,10 +143,10 @@ template_details = function(obnd, verbose=TRUE){
     message(paste(d_txt, collapse="\n"))
   }
 
-  res = list( 
+  res = list(
           msgs    = msgs,
           rpttype = rpttype,
-          text    = d_txt,
+          txt     = d_txt,
           df      = d_df,
           ft      = d_ft,
           isgood  = isgood

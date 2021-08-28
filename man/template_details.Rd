@@ -2,7 +2,7 @@
 % Please edit documentation in R/template_details.R
 \name{template_details}
 \alias{template_details}
-\title{Generate Details about Template Mapping}
+\title{Show Template Details for `onbrand` Object}
 \usage{
 template_details(obnd, verbose = TRUE)
 }
@@ -18,9 +18,9 @@ list with the following elements:
 \itemize{
  \item{rpttype}:      Type of report (either PowerPoint or Word)
  \item{msgs}:         Vector of messages with details or any errors that were encountered
- \item{txt}:          Vector of tempalte details in text format
- \item{df}:           Vector of tempalte details in a dataframe
- \item{ft}:           Vector of tempalte details in flextable format
+ \item{txt}:          Vector of template details in text format
+ \item{df}:           Vector of template details in a dataframe
+ \item{ft}:           Vector of template details in flextable format
  \item{isgood}:       Boolean variable indicating the current state of the object
 }
 }
@@ -28,7 +28,7 @@ list with the following elements:
 Takes an onbrand object with a loaded template and displays
 details about the template. For PowerPoint this contains the template names
 and elements present for that template. For Word it will contain defined
-text and table styles. This informaiton can be displayed in the console,
+text and table styles. This information can be displayed in the console,
 returned as text or formatted for use in RMarkdown documentation.
 }
 \examples{
