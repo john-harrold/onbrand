@@ -238,6 +238,7 @@ This section contains ``onbrand`` to Word mappings as key/value pairs.  The keys
     Default_Table:            Normal Table
     Table_Caption:            Normal        
     Figure_Caption:           Normal
+    Notes:                    Normal
 ```
 
 So, for example, the `Normal` style is defined in Word, but I'm going to call it `Plain_Text` in the workflows I develop. **Note:** The functions of ``onbrand`` require you define at least two styles: one paragraph style and one table style.
@@ -252,6 +253,7 @@ This section contains the default style mappings as key/value pairs. The keys ar
     Table:                    Default_Table 
     Table_Caption:            Table_Caption
     Figure_Caption:           Figure_Caption
+    Notes:                    Notes
 ```
 
 #### `formatting`

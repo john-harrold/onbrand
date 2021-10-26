@@ -9,10 +9,11 @@
 #'object.
 #'
 #'@details
-#' For each \code{content} type listed below the different \code{content} outlined is expected. Text
+#' For each \code{content} types listed below the different \code{content} outlined is expected. Text
 #' can be specified in different formats: \code{"text"} indicates plain text,
 #' \code{"fpar"} is formatted text defined by the \code{fpar} command from the
-#' \code{officer} package, and \code{"md"} is text formatted in markdown
+#' \code{officer} package, \code{"ftext"} is alist of formatted text defined
+#' by the \code{ftext} command, and \code{"md"} is text formatted in markdown
 #' format (\code{?md_to_officer} for markdown details).
 #'
 #' \itemize{
@@ -47,7 +48,9 @@
 #'   \itemize{
 #'      \item \code{image} string containing path to image file
 #'      \item \code{caption} caption of the image (\code{NULL})
-#'      \item \code{caption_format} string containing the format, either \code{"text"}, \code{"fpar"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
+#'      \item \code{caption_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
+#'      \item \code{notes} notes to add under the image  (\code{NULL})
+#'      \item \code{notes_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
 #'      \item \code{key} unique key for cross referencing e.g. "FIG_DATA" (\code{NULL})
 #'      \item \code{height} height of the image (\code{NULL})
 #'      \item \code{width} width of the image (\code{NULL})
@@ -56,7 +59,9 @@
 #'   \itemize{
 #'      \item \code{image} ggplot object
 #'      \item \code{caption} caption of the image (\code{NULL})
-#'      \item \code{caption_format} string containing the format, either \code{"text"}, \code{"fpar"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
+#'      \item \code{caption_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
+#'      \item \code{notes} notes to add under the image  (\code{NULL})
+#'      \item \code{notes_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
 #'      \item \code{key} unique key for cross referencing e.g. "FIG_DATA" (\code{NULL})
 #'      \item \code{height} height of the image (\code{NULL})
 #'      \item \code{width} width of the image (\code{NULL})
@@ -66,7 +71,9 @@
 #'      \item \code{table} data frame containing the tabular data
 #'      \item \code{"style"} string containing the style to use (default \code{NULL} will use the \code{doc_def}, \code{Table} style)
 #'      \item \code{caption} caption of the table (\code{NULL})
-#'      \item \code{caption_format} string containing the format, either \code{"text"}, \code{"fpar"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
+#'      \item \code{caption_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
+#'      \item \code{notes} notes to add under the image  (\code{NULL})
+#'      \item \code{notes_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
 #'      \item \code{key} unique key for cross referencing e.g. "TAB_DATA" (\code{NULL})
 #'      \item \code{header} Boolean variable to control displaying the header (\code{TRUE})
 #'      \item \code{first_row} Boolean variable to indicate that the first row contains header information (\code{TRUE})
@@ -75,7 +82,9 @@
 #'   \itemize{
 #'      \item \code{table} data frame containing the tabular data
 #'      \item \code{caption} caption of the table (\code{NULL})
-#'      \item \code{caption_format} string containing the format, either \code{"text"}, \code{"fpar"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
+#'      \item \code{caption_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
+#'      \item \code{notes} notes to add under the image  (\code{NULL})
+#'      \item \code{notes_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
 #'      \item \code{key} unique key for cross referencing e.g. "TAB_DATA" (\code{NULL})
 #'      \item \code{header_top}, \code{header_middle}, \code{header_bottom} (\code{NULL}) a list with the same names as the data frame names containing the tabular data and values with the header text to show in the table
 #'      \item \code{header_format} string containing the format, either \code{"text"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
@@ -88,6 +97,9 @@
 #'   \itemize{
 #'      \item \code{ft} flextable object
 #'      \item \code{caption} caption of the table (\code{NULL})
+#'      \item \code{caption_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
+#'      \item \code{notes} notes to add under the image  (\code{NULL})
+#'      \item \code{notes_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
 #'      \item \code{key} unique key for cross referencing e.g. "TAB_DATA" (\code{NULL})
 #'    }
 #'}
@@ -182,11 +194,16 @@
 #'
 report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
 
-  isgood  = TRUE
-  ref_key = NULL
-  msgs    = c()
-  style   = NULL
-  caption = NULL
+  isgood       = TRUE
+  ref_key      = NULL
+  msgs         = c()
+  style        = NULL
+  caption      = NULL
+
+  # Boolean variable used to indicate if the refrence key (used with figures
+  # and tables) has been used before. If not normal captionining will be used.
+  # Otherwise the previous figure or table number will be recycled.
+  ref_key_used = FALSE
 
   if(type == "break"){
    content = list()
@@ -357,32 +374,40 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
       # Checking reference keys. These only make sense if there is a caption
       # otherwise there is no number to reference:
       if("key" %in% names(content) & !is.null(content[["caption"]])){
-        # JMH probably wrap this up in a funciton where you check for key names,
-        # see if the same key has been used already, etc.
-        ref_key = paste("obnd_", content[["key"]], sep="")
-        # Adding reference to the key table
-        onbd[["key_table"]] =
-          rbind(
-            onbd[["key_table"]],
-            data.frame(user_key     = content[["key"]],
-                       internal_key = ref_key,
-                       seq_text     = paste0(' REF ',  ref_key, ' \\h '),
-                       ref_text     = paste0("<REF:", content[["key"]], ">")))
+        ref_key = content[["key"]]
+        # If the reference key is in the key table we set
+        # the ref_key_used to true
+        if(ref_key %in% obnd[["key_table"]][["internal_key"]]){
+          ref_key_used = TRUE
+        } else {
+          # Otherwise we the reference to the key table
+          obnd[["key_table"]] =
+            rbind(
+              obnd[["key_table"]],
+              data.frame(user_key     = content[["key"]],
+                         internal_key = ref_key,
+                         seq_text     = paste0(' REF ',  ref_key, ' \\h '),
+                         ref_text     = paste0("<REF:", content[["key"]], ">")))
+        }
       }
     }
   }
 
-
-
-
  # If all the checks have passed we add the content
  if(isgood){
-
    Caption_Location = "none"
    Caption_Format  = "text"
+   Notes_Format    = "text"
    if("caption_format" %in% names(content)){
      Caption_Format = content[["caption_format"]]
    }
+   if("notes_format" %in% names(content)){
+     Notes_Format = content[["notes_format"]]
+   }
+
+   Notes_Style          = obnd[["meta"]][["rdocx"]][["doc_def"]][["Notes"]]
+   Notes_Style_docx     = obnd[["meta"]][["rdocx"]][["styles"]][[Notes_Style]]
+   Notes_Style_md_def   = fetch_md_def(obnd, Notes_Style)$md_def
 
    #------
    # Figure options
@@ -396,34 +421,43 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
      if("height" %in% names(content)){
        Figure_Height = content[["height"]]
      }
-     Caption_Location   = obnd[["meta"]][["rdocx"]][["formatting"]][["Figure_Caption_Location"]]
-     Caption_Style      = obnd[["meta"]][["rdocx"]][["doc_def"]][["Figure_Caption"]]
-     Caption_Label_Pre  = obnd[["meta"]][["rdocx"]][["formatting"]][["Figure_Caption_Label_Pre"]]
-     Caption_Label_Post = obnd[["meta"]][["rdocx"]][["formatting"]][["Figure_Caption_Label_Post"]]
-     Caption_Style_docx = obnd[["meta"]][["rdocx"]][["styles"]][[Caption_Style]]
-
+     Caption_Location     = obnd[["meta"]][["rdocx"]][["formatting"]][["Figure_Caption_Location"]]
+     Caption_Style        = obnd[["meta"]][["rdocx"]][["doc_def"]][["Figure_Caption"]]
+     Caption_Label_Pre    = obnd[["meta"]][["rdocx"]][["formatting"]][["Figure_Caption_Label_Pre"]]
+     Caption_Label_Post   = obnd[["meta"]][["rdocx"]][["formatting"]][["Figure_Caption_Label_Post"]]
+     Caption_Style_docx   = obnd[["meta"]][["rdocx"]][["styles"]][[Caption_Style]]
+     Caption_Style_md_def = fetch_md_def(obnd, Caption_Style)$md_def
 
      # Creating the Figure X
-     run_num = officer::run_autonum(seq_id     = "fig",
-                                    pre_label  = Caption_Label_Pre,
-                                    post_label = Caption_Label_Post,
-                                    bkm        = ref_key)
+     if(ref_key_used){
+       run_num = NULL
+     } else {
+       run_num = officer::run_autonum(seq_id     = "fig",
+                                      pre_label  = Caption_Label_Pre,
+                                      post_label = Caption_Label_Post,
+                                      bkm        = ref_key)
+     }
    }
 
    #-------
    # Table options
    if(type == "table" | type == "flextable" | type=="flextable_object"){
-     Caption_Location   = obnd[["meta"]][["rdocx"]][["formatting"]][["Table_Caption_Location"]]
-     Caption_Style      = obnd[["meta"]][["rdocx"]][["doc_def"]][["Table_Caption"]]
-     Caption_Label_Pre  = obnd[["meta"]][["rdocx"]][["formatting"]][["Table_Caption_Label_Pre"]]
-     Caption_Label_Post = obnd[["meta"]][["rdocx"]][["formatting"]][["Table_Caption_Label_Post"]]
-     Caption_Style_docx = obnd[["meta"]][["rdocx"]][["styles"]][[Caption_Style]]
+     Caption_Location     = obnd[["meta"]][["rdocx"]][["formatting"]][["Table_Caption_Location"]]
+     Caption_Style        = obnd[["meta"]][["rdocx"]][["doc_def"]][["Table_Caption"]]
+     Caption_Label_Pre    = obnd[["meta"]][["rdocx"]][["formatting"]][["Table_Caption_Label_Pre"]]
+     Caption_Label_Post   = obnd[["meta"]][["rdocx"]][["formatting"]][["Table_Caption_Label_Post"]]
+     Caption_Style_docx   = obnd[["meta"]][["rdocx"]][["styles"]][[Caption_Style]]
+     Caption_Style_md_def = fetch_md_def(obnd, Caption_Style)$md_def
 
      # Creating the Table X
-     run_num = officer::run_autonum(seq_id     = "tab",
-                                    pre_label  = Caption_Label_Pre,
-                                    post_label = Caption_Label_Post,
-                                    bkm        = ref_key)
+     if(ref_key_used){
+       run_num = NULL
+     } else {
+       run_num = officer::run_autonum(seq_id     = "tab",
+                                      pre_label  = Caption_Label_Pre,
+                                      post_label = Caption_Label_Post,
+                                      bkm        = ref_key)
+     }
 
    }
 
@@ -432,12 +466,37 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
    # below based on whether it should be below or above the table/figure
    if(!is.null(content[["caption"]])){
      if(Caption_Format == "text"){
-       caption = officer::block_caption(content[["caption"]], style = Caption_Style_docx, autonum = run_num )
-     } else if(Caption_Format == "fpar"){
-       caption = officer::fpar(autonum=run_num, content[["text"]], style=Caption_Style_docx)
+       if(ref_key_used){
+         caption = officer::fpar(Caption_Label_Pre,
+                                 officer::run_reference(ref_key),
+                                 Caption_Label_Post,
+                                 content[["caption"]])
+       } else {
+         caption = officer::block_caption(content[["caption"]], style = Caption_Style_docx, autonum = run_num )
+       }
+     } else if(Caption_Format == "ftext"){
+       fpargs = paste(paste('content[["caption"]][[', 1:length(content[["caption"]]), ']]'), collapse=",")
+       # Prepending the table/figure label and number
+       if(ref_key_used){
+         fpargs = paste("Caption_Label_Pre,", 
+                        "officer::run_reference(ref_key),",
+                        "Caption_Label_Post,",
+                        fpargs)
+       } else {
+         fpargs = paste("autonum=run_num,", fpargs)
+       }
+       fp_cmd  = paste0("officer::fpar(",fpargs,")")
+       caption = eval(parse(text=fp_cmd))
      } else if(Caption_Format == "md"){
-       mdout = md_to_officer(content[["caption"]])
-       ftall = c("autonum=run_num")
+       mdout = md_to_officer(content[["caption"]], default_format=Caption_Style_md_def)
+       # Prepending the table/figure label and number
+       if(ref_key_used){
+         ftall  = c("Caption_Label_Pre", 
+                    "officer::run_reference(ref_key)",
+                    "Caption_Label_Post")
+       } else {
+         ftall = c("autonum=run_num")
+       }
        for(pgraph in mdout){
          ftall = c(ftall, pgraph[["ftext_cmd"]], 'officer::ftext(" ")')
        }
@@ -570,8 +629,16 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
     # Adding caption to the top of the object
     if(!is.null(content[["caption"]]) & Caption_Location == "top"){
       if(Caption_Format == "text"){
-        obnd[["rpt"]] = officer::body_add_caption(obnd[["rpt"]], caption)
+        if(ref_key_used){
+          # If the ref_key_used we just add an fpar
+          obnd[["rpt"]] = officer::body_add_fpar(obnd[["rpt"]], caption, style=Caption_Style_docx)
+        } else {
+          # Otherwise we create a new caption
+          obnd[["rpt"]] = officer::body_add_caption(obnd[["rpt"]], caption)
+        }
       } else {
+        # The "md" is evalued above as an fpar object so that should be all
+        # that's left
         obnd[["rpt"]] = officer::body_add_fpar(obnd[["rpt"]], caption)
       }
     }
@@ -592,12 +659,42 @@ report_add_doc_content = function(obnd,  type=NULL, content=NULL, verbose=TRUE){
       obnd[["rpt"]] = flextable::body_add_flextable(x = obnd[["rpt"]], value = ft)
     }
 
+    # Adding notes JMH
+   if(!is.null(content[["notes"]])){
+     if(Notes_Format == "text"){
+       obnd[["rpt"]] = officer::body_add_par(obnd[["rpt"]], content[["notes"]], style=Notes_Style)
+     } else if(Notes_Format == "ftext"){
+       fpargs = paste(paste('content[["notes"]][[', 1:length(content[["notes"]]), ']]'), collapse=",")
+       fp_cmd  = paste0("officer::fpar(",fpargs,")")
+       fp_res = eval(parse(text=fp_cmd))
+       obnd[["rpt"]] = officer::body_add_fpar(obnd[["rpt"]], fp_res, style=Notes_Style)
+     } else if(Notes_Format == "md"){
+       mdout = md_to_officer(content[["notes"]], default_format=Notes_Style_md_def)
+       ftall = c()
+       for(pgraph in mdout){
+         ftall = c(ftall, pgraph[["ftext_cmd"]], 'officer::ftext(" ")')
+       }
+       fp_cmd  = paste0("officer::fpar(",paste(ftall, collapse = ", "), ")")
+       fp_notes = eval(parse(text=fp_cmd))
+
+       obnd[["rpt"]] = officer::body_add_fpar(obnd[["rpt"]], fp_notes,  style=Notes_Style_docx)
+     }
+   }
+
     # Adding caption to the bottom of the object
     if(!is.null(content[["caption"]]) & Caption_Location == "bottom"){
       if(Caption_Format == "text"){
-        obnd[["rpt"]] = officer::body_add_caption(obnd[["rpt"]], caption)
+        if(ref_key_used){
+          # If the ref_key_used we just add an fpar
+          obnd[["rpt"]] = officer::body_add_fpar(obnd[["rpt"]], caption, style=Caption_Style_docx)
+        } else {
+          # Otherwise we create a new caption
+          obnd[["rpt"]] = officer::body_add_caption(obnd[["rpt"]], caption)
+        }
       } else {
-        obnd[["rpt"]] = officer::body_add_fpar(obnd[["rpt"]], caption)
+        # The "md" is evalued above as an fpar object so that should be all
+        # that's left
+        obnd[["rpt"]] = officer::body_add_fpar(obnd[["rpt"]], caption, style=Caption_Style_docx)
       }
     }
     #------

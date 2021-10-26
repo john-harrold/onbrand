@@ -43,12 +43,12 @@ ex_yaml_read = yaml::read_yaml(ex_yaml_tmpfile)
 
 The ``officer`` package is used to generate all of the underlying PowerPoint and Word documents. The purpose of `onbrand` is to provide an abstraction layer (or mapping) for the functions in ``officer`` in order to allow the same reporting workflow to be used with different template documents. This involves providing a consistent customizable method to interact with templates as well as a form of markdown to control the formatting of text. 
 
-We recommend you complete the _Custom Office Templates Vignette_ prior to walking through this template. This vignette focuses on how to construct workflows using templates. Here we will use the internal templates embedded in ``onbrand``. If you want to copy them locally you can use the following commands:
+If you want to use your own Office templates, we recommend you see the _Custom Office Templates Vignette_. This vignette focuses on how to construct workflows using templates. Here we will use the internal templates embedded in ``onbrand``. If you want to copy them locally you can use the following commands:
 
 ``` r
-file.copy(system.file(package="onbrand"), "templates", "report.pptx"), "report.pptx")
-file.copy(system.file(package="onbrand"), "templates", "report.docx"), "report.docx")
-file.copy(system.file(package="onbrand"), "templates", "report.yaml"), "report.yaml")
+file.copy(system.file(package="onbrand", "templates", "report.pptx"), "report.pptx")
+file.copy(system.file(package="onbrand", "templates", "report.docx"), "report.docx")
+file.copy(system.file(package="onbrand", "templates", "report.yaml"), "report.yaml")
 ```
 ## PowerPoint
 
@@ -271,7 +271,7 @@ Word report content is added using the ``onbrand::report_add_doc_content()`` fun
 - `"break"` - page break
 - `"toc"` - table of contents
 - `"ph"` - text content to substitute for placeholders in the document
-- `"text"` - text supplied as either character string, markdown or the result of `fpar` statements
+- `"text"` - text supplied as either character string, markdown or the result of `officer::fpar()` statements
 - `"imagefile"` - string containing the path to an image file 
 - `"ggplot"` -  a ggplot object
 - `"table"` - list containing table content and other options
@@ -314,8 +314,9 @@ obnd = report_add_doc_content(obnd,
 The other element you may want to control is the format of the content. In the previous examples you just needed to provide character data, but there are three possible formats you can use:
 
 - ``"text"`` - character string (previous examples)
-- ``"fpar"`` - fpar object from ``officer``
 - ``"md"`` - character string with markdown to be rendered (see the section on markdown below)
+- ``"fpar"`` - `officer::fpar()` object from ``officer`` (used with paragraph text)
+- ``"ftext"`` - list of `officer::ftext()` objects  ``officer`` (used with captions and notes for figures and tables)
 
 The following provide example ``"fpar"`` and ``"md"`` formats
 
@@ -339,6 +340,7 @@ obnd = report_add_doc_content(obnd,
   content  = list(text   = mdtext,
                   format = "md",
                   style  = "Normal"))
+
 ```
 
 ### Figures
@@ -522,6 +524,40 @@ obnd = report_add_doc_content(obnd,
 
 **Note that if you don't alter the page format/layout from the document default, then you do not need to add any section content.**
 
+### Multi-page figures and tables
+
+Some figures and tables need to span multiple pages. If you have a large `flextable` it will do that automatically. However it may be more desirable to have a caption on each page with the figure or table. To accomplish this, using a figure as an example you need to create a separate figure for each page. For each figure you will need to provide the *same* key value. The first figure with that key will be assigned a figure number and the other figures with that key will have the same number that references the first. 
+
+```{r}
+obnd = report_add_doc_content(obnd,
+  type     = "ggplot",
+  content  = list(image           = p,
+                  notes_format    = "text",
+                  key             = "ex_fig_text",
+                  notes           = "This figure shows how to use text captions _and_ notes",
+                  caption_format  = "text",
+                  caption         = "Multi-page figure (page 1)"))
+
+obnd = report_add_doc_content(obnd,
+  type     = "break",
+  content  = NULL)
+
+obnd = report_add_doc_content(obnd,
+  type     = "ggplot",
+  content  = list(image           = p,
+                  notes_format    = "text",
+                  key             = "ex_fig_text",
+                  notes           = "This figure shows how to use text captions _and_ notes",
+                  caption_format  = "text",
+                  caption         = "Multi-page figure (page 2)"))
+```
+
+### Cross referencing figures and tables
+
+When figures and tables are created above each content list has an optional key. In the example from the last section we created the key `"ex_fig_text"`. To reference in the word document you have two options. You can construct your content using onbrand markdown. Then you simply need to use the `ref` tag: `<ref:ex_fig_text>` and the figure number will be replaced when the document is built. You can also use the `officer::fpar()` function to construct content. Then you would use the officer command `officer::run_reference()` and the figure key to insert the figure number. 
+
+JMH
+
 ### Saving the Word report 
 
 Once you are done adding content you can save the report to a file with the ``save_report()`` function as well:
@@ -531,12 +567,12 @@ save_report(obnd, "vignette_report.docx")
 ```
 
 ```{r, eval=FALSE, echo=FALSE}
-save_report(obnd, tempfile(fileext=".docx")
+save_report(obnd, tempfile(fileext=".docx"))
 ```
 
 The output from the example above should look like this:
 
-![Example Word output for workflow above.](doc_workflow_output.png){width=600px}
+![Example Word output for workflow above.](doc_workflow_output.png){width=700px}
 
 ### Accessing the Word mapping information
 

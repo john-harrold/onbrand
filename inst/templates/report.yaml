@@ -125,6 +125,7 @@ rpptx:
 rdocx:
   styles:
     Normal:                    Normal
+    Notes:                     Notes
     Code:                      Code
     TOC:                       toc 1
     Heading_1:                 heading 1
@@ -138,6 +139,7 @@ rdocx:
     Table:                     Table
     Table_Caption:             Table_Caption
     Figure_Caption:            Figure_Caption
+    Notes:                     Notes
   formatting:
     Table_Caption_Location:    top
     Table_Caption_Label_Pre:   "Table "
@@ -168,6 +170,15 @@ rdocx:
       font.family:           Helvetica
       vertical.align:        baseline
       shading.color:         transparent
+    Notes:
+      color:                  black
+      font.size:              10
+      bold:                   FALSE
+      italic:                 FALSE
+      underlined:             FALSE
+      font.family:            Cambria (Body)
+      vertical.align:         baseline
+      shading.color:          transparent
     Normal:
       color:                  black
       font.size:              12

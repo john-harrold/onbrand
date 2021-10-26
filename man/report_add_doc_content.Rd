@@ -25,10 +25,11 @@ to FALSE with any messages in the msgs field.
 Appends content to the body of a Word document
 }
 \details{
-For each \code{content} type listed below the different \code{content} outlined is expected. Text
+For each \code{content} types listed below the different \code{content} outlined is expected. Text
 can be specified in different formats: \code{"text"} indicates plain text,
 \code{"fpar"} is formatted text defined by the \code{fpar} command from the
-\code{officer} package, and \code{"md"} is text formatted in markdown
+\code{officer} package, \code{"ftext"} is alist of formatted text defined
+by the \code{ftext} command, and \code{"md"} is text formatted in markdown
 format (\code{?md_to_officer} for markdown details).
 
 \itemize{
@@ -63,7 +64,9 @@ format (\code{?md_to_officer} for markdown details).
   \itemize{
      \item \code{image} string containing path to image file
      \item \code{caption} caption of the image (\code{NULL})
-     \item \code{caption_format} string containing the format, either \code{"text"}, \code{"fpar"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
+     \item \code{caption_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
+     \item \code{notes} notes to add under the image  (\code{NULL})
+     \item \code{notes_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
      \item \code{key} unique key for cross referencing e.g. "FIG_DATA" (\code{NULL})
      \item \code{height} height of the image (\code{NULL})
      \item \code{width} width of the image (\code{NULL})
@@ -72,7 +75,9 @@ format (\code{?md_to_officer} for markdown details).
   \itemize{
      \item \code{image} ggplot object
      \item \code{caption} caption of the image (\code{NULL})
-     \item \code{caption_format} string containing the format, either \code{"text"}, \code{"fpar"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
+     \item \code{caption_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
+     \item \code{notes} notes to add under the image  (\code{NULL})
+     \item \code{notes_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
      \item \code{key} unique key for cross referencing e.g. "FIG_DATA" (\code{NULL})
      \item \code{height} height of the image (\code{NULL})
      \item \code{width} width of the image (\code{NULL})
@@ -82,7 +87,9 @@ format (\code{?md_to_officer} for markdown details).
      \item \code{table} data frame containing the tabular data
      \item \code{"style"} string containing the style to use (default \code{NULL} will use the \code{doc_def}, \code{Table} style)
      \item \code{caption} caption of the table (\code{NULL})
-     \item \code{caption_format} string containing the format, either \code{"text"}, \code{"fpar"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
+     \item \code{caption_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
+     \item \code{notes} notes to add under the image  (\code{NULL})
+     \item \code{notes_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
      \item \code{key} unique key for cross referencing e.g. "TAB_DATA" (\code{NULL})
      \item \code{header} Boolean variable to control displaying the header (\code{TRUE})
      \item \code{first_row} Boolean variable to indicate that the first row contains header information (\code{TRUE})
@@ -91,7 +98,9 @@ format (\code{?md_to_officer} for markdown details).
   \itemize{
      \item \code{table} data frame containing the tabular data
      \item \code{caption} caption of the table (\code{NULL})
-     \item \code{caption_format} string containing the format, either \code{"text"}, \code{"fpar"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
+     \item \code{caption_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
+     \item \code{notes} notes to add under the image  (\code{NULL})
+     \item \code{notes_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
      \item \code{key} unique key for cross referencing e.g. "TAB_DATA" (\code{NULL})
      \item \code{header_top}, \code{header_middle}, \code{header_bottom} (\code{NULL}) a list with the same names as the data frame names containing the tabular data and values with the header text to show in the table
      \item \code{header_format} string containing the format, either \code{"text"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
@@ -104,6 +113,9 @@ format (\code{?md_to_officer} for markdown details).
   \itemize{
      \item \code{ft} flextable object
      \item \code{caption} caption of the table (\code{NULL})
+     \item \code{caption_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
+     \item \code{notes} notes to add under the image  (\code{NULL})
+     \item \code{notes_format} string containing the format, either \code{"text"}, \code{"ftext"}, or \code{"md"} (default \code{NULL} assumes \code{"text"} format)
      \item \code{key} unique key for cross referencing e.g. "TAB_DATA" (\code{NULL})
    }
 }

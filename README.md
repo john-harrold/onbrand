@@ -37,10 +37,7 @@ And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("john-harrold/onbrand",
-              force           = TRUE,
-              build           = TRUE, 
-              build_vignettes = TRUE)
+devtools::install_github("john-harrold/onbrand")
 ```
 
 ## Getting Started

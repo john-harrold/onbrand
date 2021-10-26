@@ -45,8 +45,6 @@
 
 
 
-
-
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -57,18 +55,10 @@
 <![endif]-->
 
 
-<!-- dependencies from examples -->
-
-
-  
-
-  
 
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -82,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">onbrand</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -150,7 +140,7 @@
     <p>Creates a report slide and populates the content</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>report_add_slide</span><span class='op'>(</span><span class='va'>obnd</span>, template <span class='op'>=</span> <span class='cn'>NULL</span>, elements <span class='op'>=</span> <span class='cn'>NULL</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></code></pre></div>
+    <pre class="usage"><span class='fu'>report_add_slide</span><span class='op'>(</span><span class='va'>obnd</span>, template <span class='op'>=</span> <span class='cn'>NULL</span>, elements <span class='op'>=</span> <span class='cn'>NULL</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -187,7 +177,7 @@ to FALSE with any messages in the msgs field.</p>
     <p>For example consider the mapping information for the slide
 template <code>title_slide</code> with the two place holders <code>title</code> and
 <code>subtitle</code>.</p>
-<pre><code>
+<pre>
 rpptx:
  master: Office Theme
  templates:
@@ -202,10 +192,10 @@ rpptx:
        index:        1
        ph_label:     Subtitle 2
        content_type: text
-</code></pre>
+</pre>
 
 <p>This shows how to populate a title slide with text:</p>
-<pre class='sourceCode r'><code>
+<pre>
 <span class='va'>obnd</span> <span class='op'>=</span> <span class='fu'>report_add_slide</span><span class='op'>(</span><span class='va'>obnd</span>,
  template <span class='op'>=</span> <span class='st'>"title_slide"</span>,
  elements <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
@@ -213,7 +203,7 @@ rpptx:
                       type         <span class='op'>=</span> <span class='st'>"text"</span><span class='op'>)</span>,
     subtitle  <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span> content      <span class='op'>=</span> <span class='st'>"Subtitle"</span>,
                       type         <span class='op'>=</span> <span class='st'>"text"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
+</pre>
 
 <p>See the function <code><a href='add_pptx_ph_content.html'>add_pptx_ph_content</a></code> for a list of
 allowed values for <code>type</code>. Note that if mapping defines the
@@ -225,21 +215,21 @@ cannot use a <code>text</code> type.</p>
     <div class='dont-index'><p><code><a href='add_pptx_ph_content.html'>add_pptx_ph_content</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='va'>obnd</span> <span class='op'>=</span> <span class='fu'><a href='read_template.html'>read_template</a></span><span class='op'>(</span></span>
-<span class='r-in'>      template <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package<span class='op'>=</span><span class='st'>"onbrand"</span><span class='op'>)</span>, <span class='st'>"templates"</span>, <span class='st'>"report.pptx"</span><span class='op'>)</span>,</span>
-<span class='r-in'>      mapping  <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package<span class='op'>=</span><span class='st'>"onbrand"</span><span class='op'>)</span>, <span class='st'>"templates"</span>, <span class='st'>"report.yaml"</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-in'></span>
-<span class='r-in'><span class='va'>obnd</span> <span class='op'>=</span> <span class='fu'>report_add_slide</span><span class='op'>(</span><span class='va'>obnd</span>,</span>
-<span class='r-in'> template <span class='op'>=</span> <span class='st'>"content_text"</span>,</span>
-<span class='r-in'> elements <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span></span>
-<span class='r-in'>    title         <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span> content      <span class='op'>=</span> <span class='st'>"Text Example"</span>,</span>
-<span class='r-in'>                          type         <span class='op'>=</span> <span class='st'>"text"</span><span class='op'>)</span>,</span>
-<span class='r-in'>    sub_title     <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span> content      <span class='op'>=</span> <span class='st'>"Adding a slide with a block of text"</span>,</span>
-<span class='r-in'>                          type         <span class='op'>=</span> <span class='st'>"text"</span><span class='op'>)</span>,</span>
-<span class='r-in'>    content_body  <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span> content      <span class='op'>=</span> <span class='st'>"A block of text"</span>,</span>
-<span class='r-in'>                          type         <span class='op'>=</span> <span class='st'>"text"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-in'></span>
-</code></pre></div>
+    <pre class="examples"><div class='input'><span class='va'>obnd</span> <span class='op'>=</span> <span class='fu'><a href='read_template.html'>read_template</a></span><span class='op'>(</span>
+      template <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package<span class='op'>=</span><span class='st'>"onbrand"</span><span class='op'>)</span>, <span class='st'>"templates"</span>, <span class='st'>"report.pptx"</span><span class='op'>)</span>,
+      mapping  <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package<span class='op'>=</span><span class='st'>"onbrand"</span><span class='op'>)</span>, <span class='st'>"templates"</span>, <span class='st'>"report.yaml"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>obnd</span> <span class='op'>=</span> <span class='fu'>report_add_slide</span><span class='op'>(</span><span class='va'>obnd</span>,
+ template <span class='op'>=</span> <span class='st'>"content_text"</span>,
+ elements <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+    title         <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span> content      <span class='op'>=</span> <span class='st'>"Text Example"</span>,
+                          type         <span class='op'>=</span> <span class='st'>"text"</span><span class='op'>)</span>,
+    sub_title     <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span> content      <span class='op'>=</span> <span class='st'>"Adding a slide with a block of text"</span>,
+                          type         <span class='op'>=</span> <span class='st'>"text"</span><span class='op'>)</span>,
+    content_body  <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span> content      <span class='op'>=</span> <span class='st'>"A block of text"</span>,
+                          type         <span class='op'>=</span> <span class='st'>"text"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -251,11 +241,11 @@ cannot use a <code>text</code> type.</p>
 
       <footer>
       <div class="copyright">
-  <p><p>Developed by John Harrold, Bryan Smith.</p></p>
+  <p>Developed by John Harrold, Bryan Smith.</p>
 </div>
 
 <div class="pkgdown">
-  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
@@ -263,8 +253,6 @@ cannot use a <code>text</code> type.</p>
 
   
 
-
-  
 
   </body>
 </html>

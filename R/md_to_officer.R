@@ -11,6 +11,7 @@
 #'  \item color:       \code{"<color:red>red text</color>"}
 #'  \item shade:       \code{"<shade:#33ff33>shading</shade>"}
 #'  \item font family: \code{"<ff:symbol>symbol</ff>"}
+#'  \item reference:   \code{"<ref:key>"} Where \code{"key"} is the value  assigned when adding a table or figure
 #'}
 #'@param default_format  list containing the default format for elements not defined with markdown default values.
 #' \preformatted{
@@ -63,12 +64,22 @@ md_to_officer = function(str,
 pgraphs = unlist(base::strsplit(str, split="(\r\n|\r|\n){2,}"))
 
 
+# This is a list of the supported md elements
+# md_name is a short name for the markdown element
+# pattern is a regular expression to identify the markdown element in the text
+# start is the regular expression that begins the markdown chunk
+# end   is the regular expression that ends   the markdown chunk
+# ignore_inner indicates that other markdown between start and end should be ignored
+# prop is the property to be applied
+# Everythgin between start and end is the content
+
 md_info = data.frame(
-  md_name = c( "subscript",       "superscript",     "italic_us",  "italic_st",   "bold",              "color",                     "shading_color",                     "font_family"             ),
-  pattern = c( "~.+?~",           "\\^.+?\\^",       "_.+?_",      "\\*.+?\\*",   "\\%\\%.+?\\%\\%",   "<color:\\S+?>.+?</color>",  "<shade:\\S+?>.+?</shade>",          "<ff:\\S+?>.+?</ff>"      ),
-  start   = c( "~",               "\\^",             "_",          "\\*",         "\\%\\%",            "<color:\\S+?>",             "<shade:\\S+?>",                     "<ff:\\S+?>"              ),
-  end     = c( "~",               "\\^",             "_",          "\\*",         "\\%\\%",            "</color>",                  "</shade>",                          "</ff>"                   ),
-  prop    = c( "vertical.align",  "vertical.align",  "italic",     "italic",      "bold",              "color",                     "shading_color",                     "font.family"             ))
+  md_name      = c( "reference",       "subscript",       "superscript",     "italic_us",  "italic_st",   "bold",              "color",                     "shading_color",                     "font_family"             ),
+  pattern      = c( "<ref:.+?>",       "~.+?~",           "\\^.+?\\^",       "_.+?_",      "\\*.+?\\*",   "\\%\\%.+?\\%\\%",   "<color:\\S+?>.+?</color>",  "<shade:\\S+?>.+?</shade>",          "<ff:\\S+?>.+?</ff>"      ),
+  start        = c( "<ref:",           "~",               "\\^",             "_",          "\\*",         "\\%\\%",            "<color:\\S+?>",             "<shade:\\S+?>",                     "<ff:\\S+?>"              ),
+  end          = c( ">",               "~",               "\\^",             "_",          "\\*",         "\\%\\%",            "</color>",                  "</shade>",                          "</ff>"                   ),
+  ignore_inner = c( TRUE,              FALSE,             FALSE,             FALSE,        FALSE,         FALSE,               FALSE,                       FALSE,                               FALSE                      ),
+  prop         = c( "run_reference",   "vertical.align",  "vertical.align",  "italic",     "italic",      "bold",              "color",                     "shading_color",                     "font.family"             ))
 
 
 pos_start = c()
@@ -118,26 +129,43 @@ pgraphs_parse = list()
 
     # Finding the locations of the markdown elements
     for(md_idx  in 1:nrow(md_info)){
-      pattern = as.character(md_info[md_idx, ]$pattern)
-      md_name = as.character(md_info[md_idx, ]$md_name)
+      pattern      = as.character(md_info[md_idx, ]$pattern)
+      md_name      = as.character(md_info[md_idx, ]$md_name)
+      ignore_inner = md_info[md_idx, ]$ignore_inner
       tmplocs = stringr::str_locate_all(pgraph, pattern)[[1]]
       if(nrow(tmplocs) > 0){
         tmplocs = as.data.frame(tmplocs)
-        tmplocs$md_name = md_name
+        tmplocs$md_name      = md_name
+        tmplocs$ignore_inner = ignore_inner
         locs = rbind(locs, tmplocs)
       }
     }
 
 
+
     # if locs is NULL then no markdown elements were found in the current
-    # current paragraph so we just raap that up
+    # current paragraph so we just rap that up
     if(is.null(locs)){
       pele     = list()
       pele$p_1 = list(text      = pgraph,
+                      md_name   = "none",
                       props     = c(no_props_str),
                       props_cmd = paste("prop=", no_props_str, sep=""))
     } else {
       # If locs isn't NULL we start working trough the markdown elements:
+
+      # First we strip out any markdown detected within an element where
+      # ignore_inner is TRUE (locs_ii)
+      locs_ii = locs[locs[["ignore_inner"]],]
+      if(nrow(locs_ii > 0)){
+        # We walk through each of these where we need to ignore inner markdown
+        # text and strip out any rows in locs that start between the range for
+        # the locs_ii row
+        for(ii_idx in 1:nrow(locs_ii)){
+          locs = locs[!(locs$start > locs_ii[ii_idx, ]$start &
+                        locs$end   < locs_ii[ii_idx, ]$end), ]
+        }
+      }
 
       # We begin by grouping nested markdown elements
       locs =locs[order(locs$start), ]
@@ -154,6 +182,7 @@ pgraphs_parse = list()
         }
       }
 
+
       # Pulling out the separate paragraph elements
       pele     = list()
       pele_idx = 1
@@ -169,6 +198,7 @@ pgraphs_parse = list()
           #pele_tmp = list(text = pgraph)
           pele[[paste('p_', pele_idx, sep="")]] =
                list(text      = substr(pgraph, start=1, stop=(gr_md$start-1)),
+                    md_name   = "no_md",
                     props     = c(no_props_str),
                     props_cmd = paste("prop=", no_props_str, sep=""))
           pele_idx = pele_idx + 1
@@ -188,6 +218,7 @@ pgraphs_parse = list()
                        list(text      = substr(pgraph,
                                                start =(gr_md_prev[1, ]$end + 1),
                                                stop  =(gr_md[1, ]$start - 1)),
+                            md_name   = "no_md",
                             props     = c(no_props_str),
                             props_cmd = paste("prop=", no_props_str, sep=""))
             pele_idx = pele_idx + 1
@@ -200,8 +231,11 @@ pgraphs_parse = list()
                          start =gr_md[nrow(gr_md), ]$start,
                          stop  =gr_md[nrow(gr_md), ]$end)
 
+
         # now we strip off the beginning and ending of the markdown
         md_name  = gr_md[nrow(gr_md), ]$md_name
+
+
 
         # patterns to strip off the beginning and end
         md_start = paste("^", as.character(md_info[md_info$md_name == md_name, ]$start), sep="")
@@ -211,12 +245,16 @@ pgraphs_parse = list()
         md_text = sub(md_text, pattern=md_start, replacement="")
         md_text = sub(md_text, pattern=md_end, replacement="")
 
-        if(group == 4){
+        # For refrences we convert key (md_text) into an officer command
+        # to insert the reference
+        if(md_name == "reference"){
+          md_text = paste0('officer::run_reference("', md_text, '")')
         }
 
         # Now we save the text:
         pele[[paste('p_', pele_idx, sep="")]] =
                    list(text      = md_text,
+                        md_name   = md_name,
                         props     = no_props,
                         props_cmd = no_props)
 
@@ -315,6 +353,7 @@ pgraphs_parse = list()
         if("shading.color"    %in% names(tmp_def_props)){ tmp_props = c(tmp_props, paste( 'shading.color = "',  tmp_def_props[["shading.color"]], '"',  sep=""))}
 
         pele[[paste('p_', pele_idx, sep="")]]$props     = tmp_props
+        pele[[paste('p_', pele_idx, sep="")]]$md_name   = md_name
         pele[[paste('p_', pele_idx, sep="")]]$props_cmd = paste("prop=officer::fp_text(", paste(tmp_props, collapse=", "), ")", sep="")
 
         pele_idx = pele_idx + 1
@@ -329,6 +368,7 @@ pgraphs_parse = list()
           if(text_end != ""){
             pele[[paste('p_', pele_idx, sep="")]] =
                        list(text      = text_end,
+                            md_name   = md_name,
                             props     = c(no_props_str),
                             props_cmd = paste("prop=", no_props_str, sep=""))
             pele_idx = pele_idx + 1
@@ -351,15 +391,29 @@ pgraphs_parse = list()
   for(tmpele in pele){
     if(ftext_cmd != ""){
      ftext_cmd = paste(ftext_cmd, ',\n') }
-    ftext_cmd = paste(ftext_cmd, 'officer::ftext("', tmpele$text, '", ', tmpele$props_cmd, ')', sep="")
+    # If we're dealing with a reference then we use "text" directly since it
+    # will contain the run_reference command as a string
+    if(tmpele$md_name == "reference"){
+      ftext_cmd = paste(ftext_cmd, tmpele$text,sep="")
+    } else {
+       ftext_cmd = paste(ftext_cmd, 'officer::ftext("', tmpele$text, '", ', tmpele$props_cmd, ')', sep="")
+    }
   }
+
+
   fpar_cmd = paste("officer::fpar(", ftext_cmd, ")", sep="")
 
   as_paragraph_cmd = ""
   for(tmpele in pele){
     if(as_paragraph_cmd != ""){
      as_paragraph_cmd = paste(as_paragraph_cmd, ',\n') }
-    as_paragraph_cmd = paste(as_paragraph_cmd, 'flextable::as_chunk("', tmpele$text, '", ', tmpele$props_cmd, ')', sep="")
+    # If we're dealing with a reference then we use "text" directly since it
+    # will contain the run_reference command as a string
+    if(tmpele$md_name == "reference"){
+      as_paragraph_cmd = paste(as_paragraph_cmd, tmpele$text,sep="")
+    } else {
+     as_paragraph_cmd = paste(as_paragraph_cmd, 'flextable::as_chunk("', tmpele$text, '", ', tmpele$props_cmd, ')', sep="")
+    }
   }
   as_paragraph_cmd = paste("flextable::as_paragraph(", as_paragraph_cmd, ")", sep="")
 

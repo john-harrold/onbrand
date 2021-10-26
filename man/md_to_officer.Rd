@@ -22,6 +22,7 @@ md_to_officer(
  \item color:       \code{"<color:red>red text</color>"}
  \item shade:       \code{"<shade:#33ff33>shading</shade>"}
  \item font family: \code{"<ff:symbol>symbol</ff>"}
+ \item reference:   \code{"<ref:key>"} Where \code{"key"} is the value  assigned when adding a table or figure
 }}
 
 \item{default_format}{list containing the default format for elements not defined with markdown default values.

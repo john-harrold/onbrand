@@ -176,7 +176,8 @@ read_template = function(template    = file.path(system.file(package="onbrand"),
       req_doc_defs = list("Text"               = c("paragraph", "character"),
                           "Table"              = c("table"),
                           "Table_Caption"      = c("paragraph", "character"),
-                          "Figure_Caption"     = c("paragraph", "character"))
+                          "Figure_Caption"     = c("paragraph", "character"),
+                          "Notes"              = c("paragraph", "character"))
       if(isgood){
         # First we make sure that the expected defaults were specified:
         if(all(names(req_doc_defs) %in% names(meta[["rdocx"]][["doc_def"]]) )){
