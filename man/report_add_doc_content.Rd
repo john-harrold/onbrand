@@ -4,7 +4,14 @@
 \alias{report_add_doc_content}
 \title{Add Content to Body of a Word Document Report}
 \usage{
-report_add_doc_content(obnd, type = NULL, content = NULL, verbose = TRUE)
+report_add_doc_content(
+  obnd,
+  type = NULL,
+  content = NULL,
+  fig_start_at = NULL,
+  tab_start_at = NULL,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{obnd}{onbrand report object}
@@ -12,6 +19,14 @@ report_add_doc_content(obnd, type = NULL, content = NULL, verbose = TRUE)
 \item{type}{Type of content to add}
 
 \item{content}{Content to add}
+
+\item{fig_start_at}{Indicates that you want to restart figure numbering at
+the specified value (e.g. 1) after adding this content a value of \code{NULL} (default)
+will ignore this option.}
+
+\item{tab_start_at}{Indicates that you want to restart figure numbering at
+the specified value (e.g. 1) after adding this content a value of \code{NULL} (default)
+will ignore this option.}
 
 \item{verbose}{Boolean variable when set to TRUE (default) messages will be
 displayed on the terminal; Messages will be included in the returned onbrand
@@ -41,9 +56,10 @@ format (\code{?md_to_officer} for markdown details).
      \item \code{"location"} document location where the placeholder will be located (either \code{"header"}, \code{"footer"}, or \code{"body"})
    }
  \item \code{"toc"} generates the table of contents, and content is a list
+ that must contain __one__ of the following. 
   \itemize{
-     \item \code{"level"} number indicating the depth of the contents to display (\code{3})
-     \item \code{"style"} string containing the style to use (default \code{NULL} will use the \code{doc_def}, \code{Text} style)
+     \item \code{"level"} number indicating the depth of the contents to display (default: \code{3})
+     \item \code{"style"} string containing the onbrand style name to use to build the TOC
    }
  \item \code{"section"} formats the current document section
   \itemize{

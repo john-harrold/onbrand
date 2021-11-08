@@ -138,14 +138,43 @@
 <h1 class="page-header" data-toc-text="1.0.2">
 <a href="#onbrand-102" class="anchor"></a>onbrand 1.0.2<small> Unreleased </small>
 </h1>
-<div id="minor-improvements" class="section level2">
+<div id="changes-to-yaml-file-format" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-improvements" class="anchor"></a>Minor Improvements</h2>
+<a href="#changes-to-yaml-file-format" class="anchor"></a>Changes to yaml file format</h2>
 <ul>
 <li>Added notes option for tables and figures in Word reporting. This will requires the <code>Notes</code> document default be added to any <code>report.yaml</code> files:</li>
 </ul>
 <pre><code>doc_def:                     
   Notes: Notes</code></pre>
+<ul>
+<li>Added the formatting options for separator (regional configuration variable that seems to be different between Europe and the US), and several table and figure formatting options: order, sequence IDs, and how numbering will be done (allows Figure 1 or Figure 3-1 (for section 3), etc.)</li>
+</ul>
+<pre><code>formatting:
+  separator:                 ,
+  Table_Order:
+    - table
+    - notes
+    - caption
+  Figure_Order:
+    - figure
+    - notes
+    - caption
+        Figure_Seq_Id:             "Figure"
+  Figure_Number: |-
+    list(officer::run_autonum(pre_label  = "", 
+                              seq_id     = Caption_Seq_Id, 
+                              post_label = "", 
+                              start_at   = Caption_Start_At))
+  Table_Seq_Id:              "Table"
+  Table_Number: |-
+    list(officer::run_autonum(pre_label  = "", 
+                              seq_id     = Caption_Seq_Id, 
+                              post_label = "", 
+                              start_at   = Caption_Start_At))</code></pre>
+</div>
+<div id="minor-improvements" class="section level2">
+<h2 class="hasAnchor">
+<a href="#minor-improvements" class="anchor"></a>Minor Improvements</h2>
 <ul>
 <li><p>Created <code>ftext</code> formatting for captions and notes added to figures and tables.</p></li>
 <li><p>Support for multipage figures and tables (e.g. pagenated figures). By specifying the same key for a figure (or table) the first instance will be the figure and subsequent instances will be references to the first.</p></li>

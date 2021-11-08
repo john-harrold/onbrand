@@ -44,6 +44,14 @@ read_template = function(template    = file.path(system.file(package="onbrand"),
   rptobj  = fr[["rptobj"]]
   rptext  = fr[["rptext"]]
 
+  # For Word reports this defines both the default order and the allowed
+  # commands
+  def_tab_order  = c("table", "notes", "caption")
+  def_fig_order  = c("figure", "notes", "caption")
+  def_tab_seq_id = "Table"
+  def_fig_seq_id = "Figure"
+  def_tab_num    = 'list(officer::run_autonum(pre_label = "", seq_id = Caption_Seq_Id, post_label="", start_at=Caption_Start_At))'
+  def_fig_num    = 'list(officer::run_autonum(pre_label = "", seq_id = Caption_Seq_Id, post_label="", start_at=Caption_Start_At))'
 
   # these are required styles and their defaults
   required_styles = list(default = c(
@@ -211,9 +219,10 @@ read_template = function(template    = file.path(system.file(package="onbrand"),
           }
         } else {
           isgood = FALSE
+          defs_missing = names(req_doc_defs)[ !(names(req_doc_defs) %in% names(meta[["rdocx"]][["doc_def"]]))]
           msgs = c(msgs, "In doc_def you must specify default styles to be used.")
           msgs = c(msgs, "The following default styles were not specified:")
-          msgs = c(msgs, paste0("  ", paste(req_doc_defs[!(req_doc_defs %in% names(meta[["rdocx"]][["doc_def"]]))], collapse=", ")))
+          msgs = c(msgs, paste0("  ", paste0(defs_missing, collapse=", ")))
         }
         # Now we're checking all of the meta_styles to ensure there is a md_def
         # entry as well
@@ -223,6 +232,83 @@ read_template = function(template    = file.path(system.file(package="onbrand"),
           msgs = c(msgs, paste(
              names(meta[["rdocx"]][["styles"]])[!(names(meta[["rdocx"]][["styles"]])  %in% names(meta[["rdocx"]][["md_def"]]))],
              collapse=", "))
+          }
+
+
+          if(!("separator" %in% names(meta[["rdocx"]][["formatting"]]))){
+            isgood = FALSE
+            msgs = c(msgs, "Unable to find the separator formatting field")
+            msgs = c(msgs, 'In the US or Canada this should probably be "," while in Europe it should probably be ";".')
+          } else {
+            if(!(meta[["rdocx"]][["formatting"]][["separator"]] %in% c(",", ";"))){
+              isgood = FALSE
+              msgs = c(msgs, paste0("The separator formatting field provided >", meta[["rdocx"]][["formatting"]][["separator"]],"<"))
+              msgs = c(msgs, 'is invalid. It should be either ";" or "," ')
+
+            }
+          }
+
+          # Checking for depreciated things
+          if("Table_Caption_Location" %in% names(meta[["rdocx"]][["formatting"]])){
+            msgs = c(msgs, "Warning: Table_Caption_Location")
+            msgs = c(msgs, "  -> This formatting option has been depreciated use Table_Order now.")
+          }
+          if("Figure_Caption_Location" %in% names(meta[["rdocx"]][["formatting"]])){
+            msgs = c(msgs, "Warning: Figure_Caption_Location")
+            msgs = c(msgs, "  -> This formatting option has been depreciated use Figure_Order now.")
+          }
+          
+          # Now we're checking optional things 
+          # Figure and table order
+          if(!("Table_Order" %in% names(meta[["rdocx"]][["formatting"]]))){
+            meta[["rdocx"]][["formatting"]][["Table_Order"]] = def_tab_order
+            msgs = c(msgs, "Table_Order not specified using defaults:")
+            msgs = c(msgs, paste0("  -> ", paste(def_tab_order, collapse=", ")))
+          }
+          if(!("Figure_Order" %in% names(meta[["rdocx"]][["formatting"]]))){
+            meta[["rdocx"]][["formatting"]][["Figure_Order"]] = def_fig_order
+            msgs = c(msgs, "Figure_Order not specified using defaults:")
+            msgs = c(msgs, paste0("  -> ", paste(def_fig_order, collapse=", ")))
+          }
+
+          # Table and figure seq_ids 
+          if(!("Table_Seq_Id" %in% names(meta[["rdocx"]][["formatting"]]))){
+            meta[["rdocx"]][["formatting"]][["Table_Seq_Id"]] = def_tab_seq_id
+            msgs = c(msgs, "Table_Seq_Id not specified using defaults:")
+            msgs = c(msgs, paste0('  -> "', def_tab_seq_id, '"'))
+          }
+          if(!("Figure_Seq_Id" %in% names(meta[["rdocx"]][["formatting"]]))){
+            meta[["rdocx"]][["formatting"]][["Figure_Seq_Id"]] = def_fig_seq_id
+            msgs = c(msgs, "Figure_Seq_Id not specified using defaults:")
+            msgs = c(msgs, paste0('  -> "', def_fig_seq_id, '"'))
+          }
+          #Figure and table numbers
+          if(!("Table_Number" %in% names(meta[["rdocx"]][["formatting"]]))){
+            meta[["rdocx"]][["formatting"]][["Table_Number"]] = def_tab_num   
+            msgs = c(msgs, "Table_Number not specified using defaults:")
+            msgs = c(msgs, paste0('  -> "', def_tab_num, '"'))
+          }
+          if(!("Figure_Number" %in% names(meta[["rdocx"]][["formatting"]]))){
+            meta[["rdocx"]][["formatting"]][["Figure_Number"]] = def_fig_num   
+            msgs = c(msgs, "Figure_Number not specified using defaults:")
+            msgs = c(msgs, paste0('  -> "', def_fig_num, '"'))
+          }
+
+          # Checking the Table_Order and Figure_Order to make sure they only
+          # have the correct fields
+          if(!all((meta[["rdocx"]][["formatting"]][["Table_Order"]] %in% def_tab_order))){
+            isgood = FALSE
+            msgs = c(msgs, "Table_Order has the following unknown element(s):")
+            msgs = c(msgs, paste0("  -> ", paste(meta[["rdocx"]][["formatting"]][["Table_Order"]][!(meta[["rdocx"]][["formatting"]][["Table_Order"]] %in% def_tab_order)], collapse=", ")))
+            msgs = c(msgs, "Only the following are allowed:")
+            msgs = c(msgs, paste0("  -> ", paste0(def_tab_order, collapse=", ")))
+          }
+          if(!all((meta[["rdocx"]][["formatting"]][["Figure_Order"]] %in% def_fig_order))){
+            isgood = FALSE
+            msgs = c(msgs, "Figure_Order has the following unknown element(s):")
+            msgs = c(msgs, paste0("  -> ", paste(meta[["rdocx"]][["formatting"]][["Figure_Order"]][!(meta[["rdocx"]][["formatting"]][["Figure_Order"]] %in% def_fig_order)], collapse=", ")))
+            msgs = c(msgs, "Only the following are allowed:")
+            msgs = c(msgs, paste0("  -> ", paste0(def_fig_order, collapse=", ")))
           }
         }
       }
@@ -234,6 +320,10 @@ read_template = function(template    = file.path(system.file(package="onbrand"),
   # Dumping the messages if verbose is turned on:
   if(verbose & !is.null(msgs)){
     message(paste(msgs, collapse="\n"))
+  }
+
+  if(!isgood){
+    stop("Unable to read the template.")
   }
 
   res = list(isgood        = isgood,

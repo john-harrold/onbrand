@@ -19,7 +19,7 @@ rpptx:
         ph_label:     Content Placeholder 3
         content_type: text
   md_def:
-    default:      
+    default:
       color:                 black
       font.size:             12
       bold:                  TRUE
@@ -43,20 +43,39 @@ rdocx:
     Default_Table:            Normal Table
     Table_Caption:            Normal
     Figure_Caption:           Normal
-  doc_def:                     
-    Text:                     Plain_Text 
-    Table:                    Default_Table 
+  doc_def:
+    Text:                     Plain_Text
+    Table:                    Default_Table
     Table_Caption:            Table_Caption
     Figure_Caption:           Figure_Caption
   formatting:
-    Table_Caption_Location:    top
+    separator:                 ","
+    Table_Order:
+      - table
+      - notes
+      - caption
     Table_Caption_Label_Pre:   "Table "
     Table_Caption_Label_Post:  ". "
-    Figure_Caption_Location:   bottom
-    Figure_Caption_Label_Pre:  "Figure " 
+    Figure_Order:
+      - figure
+      - notes
+      - caption
+    Figure_Caption_Label_Pre:  "Figure "
     Figure_Caption_Label_Post: ". "
     Figure_Width:              6.0
     Figure_Height:             5.0
+    Figure_Seq_Id:             "Figure"
+    Figure_Number: |-
+      list(officer::run_autonum(pre_label  = "",
+                                seq_id     = Caption_Seq_Id,
+                                post_label = "",
+                                start_at   = Caption_Start_At))
+    Table_Seq_Id:              "Table"
+    Table_Number: |-
+      list(officer::run_autonum(pre_label  = "",
+                                seq_id     = Caption_Seq_Id,
+                                post_label = "",
+                                start_at   = Caption_Start_At))
   md_def:
     default:
       color:                  black

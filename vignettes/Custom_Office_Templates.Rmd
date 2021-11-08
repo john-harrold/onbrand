@@ -258,18 +258,53 @@ This section contains the default style mappings as key/value pairs. The keys ar
 
 #### `formatting`
 
-Basic document formatting is specified under this key in the ``yaml`` file. The `*_Caption_Location` keys indicate whether captions should be above (`top`) or below (`bottom`) the reporting element. The `*_Pre` and `*_Post` elements control how numbering is displayed in captions. For example the third table would look like: `Table 3.`. Lastly, the default figure width and height are specified here in inches. 
+Basic document formatting is specified under this key in the ``yaml`` file. The 
+default values are shown here:
 
 ```
   formatting:
-    Table_Caption_Location:    top
+    separator:                 ","
+    Table_Order:
+      - table
+      - notes
+      - caption
     Table_Caption_Label_Pre:   "Table "
     Table_Caption_Label_Post:  ". "
-    Figure_Caption_Location:   bottom
-    Figure_Caption_Label_Pre:  "Figure " 
+    Figure_Order:
+      - figure
+      - notes
+      - caption
+    Figure_Caption_Label_Pre:  "Figure "
     Figure_Caption_Label_Post: ". "
     Figure_Width:              6.0
     Figure_Height:             5.0
+    Figure_Seq_Id:             "Figure"
+    Figure_Number: |-
+      list(officer::run_autonum(pre_label  = "", 
+                                seq_id     = Caption_Seq_Id, 
+                                post_label = "", 
+                                start_at   = Caption_Start_At))
+    Table_Seq_Id:              "Table"
+    Table_Number: |-
+      list(officer::run_autonum(pre_label  = "", 
+                                seq_id     = Caption_Seq_Id, 
+                                post_label = "", 
+                                start_at   = Caption_Start_At))
+```
+
+The `separator` key is a region specific setting from experimentation it seems that in the US and Canada, this should be a comma, but in Europe it should be a semicolon. It mainly appears in the table of contents generation (list of figures or tables). If you try to generate a table of contents and you keep getting  **No table of contents entries found.** try changing the separator from ";" to "," or the reverse.   
+
+The `*_Order` keys indicate the order that the `figure` or `table`, `caption` and `notes` are displayed. The `*_Pre` and `*_Post` elements control what is displayed before (`Pre`) and after (`Post`) the caption number. For example the third table would look like: `Table 3.`. The default figure width and height are specified here in inches. You probably wont need to change the keys ending in `_Seq_Id` and `_Number`. The `*_Seq_Id` specifies the internal Word sequences used to group tables and figures. The `*_Number` keys specify how you want to number things. The default value, while appearing complicated, will just give you a single number. If you want to number your figures with the current section number (e.g. 3-2 for the second figure in the third section) you would do the following:
+
+```
+    Figure_Number: |-
+      list(
+      run_word_field("STYLEREF 1 \\s"),
+      ftext("-"),
+      officer::run_autonum(pre_label  = "", 
+                                seq_id     = Caption_Seq_Id, 
+                                post_label = "", 
+                                start_at   = Caption_Start_At))
 ```
 
 #### `md_def`

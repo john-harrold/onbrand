@@ -280,6 +280,40 @@ Word report content is added using the ``onbrand::report_add_doc_content()`` fun
 
 Similar to adding PowerPoint content, you must also supply a list containing the content and information about the content. Examples of each of these will be provided in the sections below. However you should see the help for  ``onbrand::report_add_doc_content()`` to get a detailed explanation of the format of ``content``.  
 
+### Table of contents
+
+A table of contents, list of figures, or list of tables is added using the content type `"toc"`. You can supply a level and/or an `onbrand` style. If you supply a level, the TOC will be generated down to that header level. If you supply an `onbrand` style, the TOC will include each element with that style. So if you wish to generate separate lists of tables and figures it is important that your `onbrand` styles for those point to different Word styles.
+
+This will add a typical TOC:
+
+```{r}
+obnd = report_add_doc_content(obnd,
+  type     = "toc",
+  content  = list(level=3))
+```
+
+While this should add the list of tables:
+
+```{r}
+obnd = report_add_doc_content(obnd,
+  type     = "toc",
+  content  = list(style="Table_Caption"))
+```
+
+And this should add a list of figures:
+
+```{r}
+obnd = report_add_doc_content(obnd,
+  type     = "toc",
+  content  = list(style="Figure_Caption"))
+```
+
+**Note:** If you try to update the TOCs and you get the following:
+
+**No table of contents entries found.**
+
+You may need to change the separator option in the `yaml` mapping file from: `,` to `;`.
+
 ### Text
 
 The content type ``"text"`` is the most straight forward way to add content to a Word document, and the ``content`` is a list that has three possible elements. The only one required is the ``text`` element. If you just want to add text in the default format (`doc_def` in the `yaml` mapping file), then this is all you need to do:
@@ -567,7 +601,8 @@ save_report(obnd, "vignette_report.docx")
 ```
 
 ```{r, eval=FALSE, echo=FALSE}
-save_report(obnd, tempfile(fileext=".docx"))
+of = tempfile(fileext=".docx")
+save_report(obnd, of)
 ```
 
 The output from the example above should look like this:
@@ -685,7 +720,7 @@ obnd = report_add_doc_content(obnd,
 
 ## Accessing the `officer` object directly
 
-Sometimes you need more control over creating a report, and you may want to use the officer commands directly. To do this you can use the function `fetch_officer_object()`` to pull out the officer object from the `onbrand` object:
+Sometimes you need more control over creating a report, and you may want to use the officer commands directly. To do this you can use the function `fetch_officer_object()` to pull out the officer object from the `onbrand` object:
 
 ```{r echo=FALSE}
 rpt = fetch_officer_object(obnd)$rpt

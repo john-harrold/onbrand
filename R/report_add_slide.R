@@ -166,7 +166,6 @@ report_add_slide = function (obnd,
   # object is set to false
   if(!isgood){
     obnd[["isgood"]] = FALSE
-    msgs = c(msgs, "Unable to add slide to presentation, see above for details.")
     msgs = c(msgs, paste0("mapping file: ", obnd[["mapping"]]))
     msgs = c(msgs, "onbrand::report_add_slide()")
   }
@@ -174,6 +173,10 @@ report_add_slide = function (obnd,
   # Dumping the messages if verbose is turned on:
   if(verbose & !is.null(msgs)){
     message(paste(msgs, collapse="\n"))
+  }
+
+  if(!isgood){
+    stop("Unable to add PowerPoint Slide. See the messages above for details.")
   }
 
   # Adding any messages to the report object
