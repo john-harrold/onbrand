@@ -150,7 +150,7 @@
 <li>Added the formatting options for separator (regional configuration variable that seems to be different between Europe and the US), and several table and figure formatting options: order, sequence IDs, and how numbering will be done (allows Figure 1 or Figure 3-1 (for section 3), etc.)</li>
 </ul>
 <pre><code>formatting:
-  separator:                 ,
+  separator:                 ","
   Table_Order:
     - table
     - notes
@@ -159,7 +159,7 @@
     - figure
     - notes
     - caption
-        Figure_Seq_Id:             "Figure"
+  Figure_Seq_Id:             "Figure"
   Figure_Number: |-
     list(officer::run_autonum(pre_label  = "", 
                               seq_id     = Caption_Seq_Id, 
@@ -171,6 +171,9 @@
                               seq_id     = Caption_Seq_Id, 
                               post_label = "", 
                               start_at   = Caption_Start_At))</code></pre>
+<ul>
+<li>Added <code>fig_start_at</code> and <code>tab_start_at</code> arguments to <code><a href="../reference/report_add_doc_content.html">report_add_doc_content()</a></code> to support this.</li>
+</ul>
 </div>
 <div id="minor-improvements" class="section level2">
 <h2 class="hasAnchor">

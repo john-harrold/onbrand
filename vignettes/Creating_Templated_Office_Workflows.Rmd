@@ -343,6 +343,8 @@ obnd = report_add_doc_content(obnd,
                   style = "Heading_3"))
 ```
 
+**Note:** If you want to use table and figure caption numbers that use section numbers (e.g. 1-1, 1-2, etc.) you may want/need to reset the figure counter for each major section. To do this you will need to use the `fig_start_at` and `tab_start_at` arguments to reset the counters for that section. 
+
 #### Formats
 
 The other element you may want to control is the format of the content. In the previous examples you just needed to provide character data, but there are three possible formats you can use:
@@ -556,7 +558,7 @@ obnd = report_add_doc_content(obnd,
   content  = list(section_type  ="portrait"))
 ```
 
-**Note that if you don't alter the page format/layout from the document default, then you do not need to add any section content.**
+**Note:** that if you don't alter the page format/layout from the document default, then you do not need to add any section content.
 
 ### Multi-page figures and tables
 

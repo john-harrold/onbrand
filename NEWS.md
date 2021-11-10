@@ -13,7 +13,7 @@ doc_def:
 
 ```
 formatting:
-  separator:                 ,
+  separator:                 ","
   Table_Order:
     - table
     - notes
@@ -22,7 +22,7 @@ formatting:
     - figure
     - notes
     - caption
-        Figure_Seq_Id:             "Figure"
+  Figure_Seq_Id:             "Figure"
   Figure_Number: |-
     list(officer::run_autonum(pre_label  = "", 
                               seq_id     = Caption_Seq_Id, 
@@ -35,6 +35,8 @@ formatting:
                               post_label = "", 
                               start_at   = Caption_Start_At))
 ```
+
+* Added `fig_start_at` and `tab_start_at` arguments to `report_add_doc_content()` to support this.
 
 ## Minor Improvements
 

@@ -307,6 +307,8 @@ The `*_Order` keys indicate the order that the `figure` or `table`, `caption` an
                                 start_at   = Caption_Start_At))
 ```
 
+**Note:** If you have figures or tables in multiple sections, you will also need to reset the figure counter for each major section that contains figures and tables. To do this you will need to use the `fig_start_at` and `tab_start_at` arguments to `report_add_doc_content()`.
+
 #### `md_def`
 
 These elements contain the default values used when markdown formatting is used. For this section, you will need entries for `default` and `Table_Labels` as well as an entry for each style defined in the `styles` section.  The `default` is used when rendering general markdown text. The `Table_Labels` is used when markdown is present in table elements like headers. 
