@@ -36,9 +36,21 @@ formatting:
                               start_at   = Caption_Start_At))
 ```
 
-* Added `fig_start_at` and `tab_start_at` arguments to `report_add_doc_content()` to support this.
+* Adding `post_processing` option for `rdocx` and `rpptx` sections. These can
+  be omitted or set to NULL and they will have no effect. Any R code here is
+  evaluated just before saving (when running `save_report()`) and you can
+  modify the object `rpt` (the officer report object from the `obnd` object).
+
+```
+rdocx:
+  post_processing: NULL
+rpptx:
+  post_processing: NULL
+```
 
 ## Minor Improvements
+
+* Added `fig_start_at` and `tab_start_at` arguments to `report_add_doc_content()` to support this.
 
 * Created `ftext` formatting for captions and notes added to figures and tables.
 

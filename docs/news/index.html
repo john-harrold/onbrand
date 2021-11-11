@@ -172,13 +172,18 @@
                               post_label = "", 
                               start_at   = Caption_Start_At))</code></pre>
 <ul>
-<li>Added <code>fig_start_at</code> and <code>tab_start_at</code> arguments to <code><a href="../reference/report_add_doc_content.html">report_add_doc_content()</a></code> to support this.</li>
+<li>Adding <code>post_processing</code> option for <code>rdocx</code> and <code>rpptx</code> sections. These can be omitted or set to NULL and they will have no effect. Any R code here is evaluated just before saving (when running <code><a href="../reference/save_report.html">save_report()</a></code>) and you can modify the object <code>rpt</code> (the officer report object from the <code>obnd</code> object).</li>
 </ul>
+<pre><code>rdocx:
+  post_processing: NULL
+rpptx:
+  post_processing: NULL</code></pre>
 </div>
 <div id="minor-improvements" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-improvements" class="anchor"></a>Minor Improvements</h2>
 <ul>
+<li><p>Added <code>fig_start_at</code> and <code>tab_start_at</code> arguments to <code><a href="../reference/report_add_doc_content.html">report_add_doc_content()</a></code> to support this.</p></li>
 <li><p>Created <code>ftext</code> formatting for captions and notes added to figures and tables.</p></li>
 <li><p>Support for multipage figures and tables (e.g. pagenated figures). By specifying the same key for a figure (or table) the first instance will be the figure and subsequent instances will be references to the first.</p></li>
 <li><p>Support for crossreferencing figures and tables with markdown.</p></li>

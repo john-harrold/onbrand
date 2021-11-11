@@ -227,19 +227,27 @@
       underlined:            FALSE
       font.family:           Helvetica
       vertical.align:        baseline
-      shading.color:         transparent</code></pre>
+      shading.color:         transparent
+  post_processing:           NULL</code></pre>
 <p>For PowerPoint templates you need to define the sections: <code>default</code> and <code>Table_Labels</code>. The <code>default</code> is used when rendering general markdown text. The <code>Table_Labels</code> is used when markdown is present in table elements like headers. For each of these you need to define the different aspects of fonts. If you’re unsure, just leave them with the defaults above.</p>
+</div>
+<div id="post-processing" class="section level3">
+<h3 class="hasAnchor">
+<a href="#post-processing" class="anchor"></a>Post Processing</h3>
+<pre><code>rpptx:
+  post_processing:           NULL</code></pre>
+<p>Sometimes you may wish to modify the underlying the <code>officer</code> object. When you <code><a href="../reference/save_report.html">save_report()</a></code>, just before writing the file, the function will look for the field <code>post_processing</code>. Here you can define R code to modify the <code>officer</code> object. Within the environment this code is run the object <code>rpt</code> will be available. You should modify this object to apply any changes you want made. A value of <code>NULL</code> and this element will be ignored.</p>
 </div>
 <div id="step-3-testing-and-previewing-your-template" class="section level3">
 <h3 class="hasAnchor">
 <a href="#step-3-testing-and-previewing-your-template" class="anchor"></a>Step 3: Testing and previewing your template</h3>
 <p>In R you can read your template by supplying the template and mapping file names:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"> <span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/read_template.html">read_template</a></span><span class="op">(</span>template <span class="op">=</span> <span class="st">"example.pptx"</span>, 
                       mapping  <span class="op">=</span> <span class="st">"example.yaml"</span><span class="op">)</span></code></pre></div>
 <p>When a template is read, <code>onbrand</code> will check for basic errors. Look for messages in the console to help you debug any issues you may have.</p>
 <p>After reading in the template, you can test the template using <code><a href="../reference/preview_template.html">onbrand::preview_template()</a></code>. <strong>Tip</strong> Save the <code>obnd</code> report to a file and view it to make sure the mappings are what you expect.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/preview_template.html">preview_template</a></span><span class="op">(</span><span class="va">obnd</span><span class="op">)</span>
 <span class="fu"><a href="../reference/save_report.html">save_report</a></span><span class="op">(</span><span class="va">obnd</span>, <span class="st">"example_preview.pptx"</span><span class="op">)</span></code></pre></div>
 <p>That’s it. You have completed the PowerPoint example and used <code>onbrand</code> to create an abstraction layer for use in your own efforts. Keep in mind, this is a very straightforward example. Depending on the complexity of the template the annotated slide deck generated using <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> will probably not look nearly as clean. All of the placeholders will be there; they may not be formatted as nicely. Expect to have to find the annotations you are interested in using in your mapping.</p>
@@ -257,7 +265,7 @@
 <p>Placeholder can be used in documents. For example, if you wanted to use this template for reports, and you wanted to have “Report NNNN”, where NNNN is the report number, in the right header. Then place a text placeholder, e.g., “Report ===RPTNUM===”, in the right header. This placeholder will be referenced in your code; the <em>Creating Templated Office Workflows Vignette</em> has more details.</p>
 <p><strong>Note:</strong> Do not type this placeholder text directly into the Word document. Cut and paste the text into the Word document from a text editor. Word is not a text editor, so while the text string may appear to be contiguous, it may not be so in the underlying XML code.</p>
 <p>To view all of the styles in the document you can use the <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> function here as well:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://onbrand.ubiquity.tools/">onbrand</a></span><span class="op">)</span>
 <span class="va">vlres</span> <span class="op">=</span> <span class="fu"><a href="../reference/view_layout.html">view_layout</a></span><span class="op">(</span>template    <span class="op">=</span> <span class="st">"example.docx"</span>, 
                     output_file <span class="op">=</span> <span class="st">"example_layout.docx"</span><span class="op">)</span></code></pre></div>
@@ -340,7 +348,7 @@
                                 seq_id     = Caption_Seq_Id, 
                                 post_label = "", 
                                 start_at   = Caption_Start_At))</code></pre>
-<p>The <code>separator</code> key is a region specific setting from experimentation it seems that in the US and Canada, this should be a comma, but in Europe it should be a semicolon. It mainly appears in the table of contents generation (list of figures or tables). If you try to generate a table of contents and you keep getting <strong>No table of contents entries found.</strong> try changing the separator from “;” to “,” or the reverse.</p>
+<p>The <code>separator</code> key is a region specific setting. From experimentation it seems that in the US and Canada, this should be a comma, and in Europe it should be a semicolon. It mainly appears in the table of contents generation (list of figures or tables). If you try to generate a table of contents and you keep getting <strong>No table of contents entries found.</strong> try changing the separator from “;” to “,” or the reverse.</p>
 <p>The <code>*_Order</code> keys indicate the order that the <code>figure</code> or <code>table</code>, <code>caption</code> and <code>notes</code> are displayed. The <code>*_Pre</code> and <code>*_Post</code> elements control what is displayed before (<code>Pre</code>) and after (<code>Post</code>) the caption number. For example the third table would look like: <code>Table 3.</code>. The default figure width and height are specified here in inches. You probably wont need to change the keys ending in <code>_Seq_Id</code> and <code>_Number</code>. The <code>*_Seq_Id</code> specifies the internal Word sequences used to group tables and figures. The <code>*_Number</code> keys specify how you want to number things. The default value, while appearing complicated, will just give you a single number. If you want to number your figures with the current section number (e.g. 3-2 for the second figure in the third section) you would do the following:</p>
 <pre><code>    Figure_Number: |-
       list(
@@ -357,18 +365,24 @@
 <a href="#md_def" class="anchor"></a><code>md_def</code>
 </h4>
 <p>These elements contain the default values used when markdown formatting is used. For this section, you will need entries for <code>default</code> and <code>Table_Labels</code> as well as an entry for each style defined in the <code>styles</code> section. The <code>default</code> is used when rendering general markdown text. The <code>Table_Labels</code> is used when markdown is present in table elements like headers.</p>
-<p><strong>Tip</strong> It’s a good idea to open up the styles in Word and make sure that each style element (fontsize, bold, etc) matches what is in your Word document.</p>
+<p><strong>Tip</strong> It’s a good idea to open up the styles in Word and make sure that each style element (font size, bold, etc) matches what is in your Word document.</p>
+</div>
+<div id="post_processing" class="section level4">
+<h4 class="hasAnchor">
+<a href="#post_processing" class="anchor"></a><code>post_processing</code>
+</h4>
+<p>Just like with PowerPoint templates you can define R code to post process your report as an <code>officer</code> object. You need to modify the object <code>rpt</code> defined in the post processing environment. If this element is missing or set to <code>NULL</code> it will be ignored.</p>
 </div>
 </div>
 <div id="step-3-testing-and-previewing-your-template-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#step-3-testing-and-previewing-your-template-1" class="anchor"></a>Step 3: Testing and previewing your template</h3>
 <p>Once you’re done creating your abstraction layer (i.e., mapping), you can test the template. In R you can read your template by supplying the template and mapping file names:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/read_template.html">read_template</a></span><span class="op">(</span>template <span class="op">=</span> <span class="st">"example.docx"</span>, 
                      mapping  <span class="op">=</span> <span class="st">"example.yaml"</span><span class="op">)</span></code></pre></div>
 <p>If there are no problems you can use <code><a href="../reference/preview_template.html">onbrand::preview_template()</a></code> create an annotated file showing the <code>onbrand</code> names mapped to the Word names with the style applied. <strong>Tip</strong> Save the <code>obnd</code> report to a file and view it to make sure the mappings are what you expect.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/preview_template.html">preview_template</a></span><span class="op">(</span><span class="va">obnd</span><span class="op">)</span>
 <span class="fu"><a href="../reference/save_report.html">save_report</a></span><span class="op">(</span><span class="va">obnd</span>, <span class="st">"example_preview.docx"</span><span class="op">)</span></code></pre></div>
 <p>Once again, that’s it. You have completed the Word example and used <code>onbrand</code> to create an abstraction layer for use in your own efforts. Again, this is a very straightforward example. Word templates can also become fairly complex, fairly quickly. Luckily, you only have to do it once per template now!</p>
@@ -454,6 +468,7 @@
       font.family:           Helvetica
       vertical.align:        baseline
       shading.color:         transparent
+  post_processing:           NULL
 rdocx:
   styles:
     Plain_Text:               Normal
@@ -547,7 +562,8 @@ rdocx:
       underlined:            FALSE
       font.family:           Cambria (Body)
       vertical.align:        baseline
-      shading.color:         transparent</code></pre>
+      shading.color:         transparent
+  post_processing:           NULL</code></pre>
 </div>
 </div>
   </div>

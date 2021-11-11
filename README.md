@@ -27,13 +27,14 @@ easier and, thus, makes the world a little better place.
 ## Installation
 
 You can install the released version of `onbrand` from
-[CRAN](https://CRAN.R-project.org) with:
+[CRAN](https://cran.r-project.org/package=onbrand) with:
 
 ``` r
 install.packages("onbrand")
 ```
 
-And the development version from [GitHub](https://github.com/) with:
+And the development version from
+[GitHub](https://github.com/john-harrold/onbrand) with:
 
 ``` r
 # install.packages("devtools")

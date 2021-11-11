@@ -107,12 +107,70 @@ save_report  = function (obnd,
                  )
           }
         }
-      #-------
-      # JMH Cross-referencing substitution should go here
-      #-------
       }
 
+      # Checking for post processing code
+      if("post_processing" %in% names(obnd[["meta"]][["rdocx"]])){
+        if(!is.null(obnd[["meta"]][["rdocx"]][["post_processing"]])){
+          # pulling out the officer object
+          rpt = fetch_officer_object(obnd=obnd, verbose=FALSE)
+          tcres =
+            tryCatch(
+              {
+               # Evaulating the post processing code
+                eval(parse(text=obnd[["meta"]][["rdocx"]][["post_processing"]]))
+              list(isgood=TRUE, rpt = rpt)},
+             error = function(e) {
+              list(isgood=FALSE, error=e)})
+      
+      
+          # putting the object back, but only if the
+          # code executed successfully
+          if(tcres[["isgood"]]){
+            obnd = set_officer_object(obnd=obnd, rpt=tcres[["rpt"]], verbose=FALSE)
+          } else {
+            #if the user defined code failed, then we generate an error
+            isgood = FALSE
+            msgs = c(msgs, "Failed to evaluate the following user defined code:")
+            msgs = c(msgs, obnd[["meta"]][["rdocx"]][["post_processing"]])
+            msgs = c(msgs, "The following error was encountered")
+            msgs = c(msgs, tcres$e$message)
+          }
+        }
+      }
     }
+
+    if(rpttype == "PowerPoint"){
+      # Checking for post processing code
+      if("post_processing" %in% names(obnd[["meta"]][["rpptx"]])){
+        if(!is.null(obnd[["meta"]][["rpptx"]][["post_processing"]])){
+          # pulling out the officer object
+          rpt = fetch_officer_object(obnd=obnd, verbose=FALSE)
+          tcres =
+            tryCatch(
+              {
+               # Evaulating the post processing code
+                eval(parse(text=obnd[["meta"]][["rpptx"]][["post_processing"]]))
+              list(isgood=TRUE, rpt = rpt)},
+             error = function(e) {
+              list(isgood=FALSE, error=e)})
+          # putting the object back, but only if the
+          # code executed successfully
+          if(tcres[["isgood"]]){
+            obnd = set_officer_object(obnd=obnd, rpt=tcres[["rpt"]], verbose=FALSE)
+          } else {
+            #if the user defined code failed, then we generate an error
+            isgood = FALSE
+            msgs = c(msgs, "Failed to evaluate the following user defined code:")
+            msgs = c(msgs, obnd[["meta"]][["rpptx"]][["post_processing"]])
+            msgs = c(msgs, "The following error was encountered")
+            msgs = c(msgs, tcres$e$message)
+          }
+        }
+      }
+    }
+
+
     #-------
     print(obnd[["rpt"]], output_file)
   }
@@ -127,6 +185,11 @@ save_report  = function (obnd,
   # Dumping the messages if verbose is turned on:
   if(verbose & !is.null(msgs)){
     message(paste(msgs, collapse="\n"))
+  }
+
+  # Stopping
+  if(!isgood){
+    stop()
   }
 
 

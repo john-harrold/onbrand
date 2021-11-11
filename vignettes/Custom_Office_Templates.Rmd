@@ -166,9 +166,18 @@ rpptx:
       font.family:           Helvetica
       vertical.align:        baseline
       shading.color:         transparent
+  post_processing:           NULL
 ```
 
 For PowerPoint templates you need to define the sections: `default` and `Table_Labels`. The `default` is used when rendering general markdown text. The `Table_Labels` is used when markdown is present in table elements like headers. For each of these you need to define the different aspects of fonts. If you're unsure, just leave them with the defaults above. 
+
+### Post Processing 
+```
+rpptx:
+  post_processing:           NULL
+```
+
+Sometimes you may wish to modify the underlying the `officer` object. When you `save_report()`, just before writing the file, the function will look for the field `post_processing`. Here you can define R code to modify the `officer` object. Within the environment this code is run the object `rpt` will be available. You should modify this object to apply any changes you want made. A value of `NULL` and this element will be ignored. 
 
 ### Step 3: Testing and previewing your template
 
@@ -292,7 +301,7 @@ default values are shown here:
                                 start_at   = Caption_Start_At))
 ```
 
-The `separator` key is a region specific setting from experimentation it seems that in the US and Canada, this should be a comma, but in Europe it should be a semicolon. It mainly appears in the table of contents generation (list of figures or tables). If you try to generate a table of contents and you keep getting  **No table of contents entries found.** try changing the separator from ";" to "," or the reverse.   
+The `separator` key is a region specific setting. From experimentation it seems that in the US and Canada, this should be a comma, and in Europe it should be a semicolon. It mainly appears in the table of contents generation (list of figures or tables). If you try to generate a table of contents and you keep getting  **No table of contents entries found.** try changing the separator from ";" to "," or the reverse.   
 
 The `*_Order` keys indicate the order that the `figure` or `table`, `caption` and `notes` are displayed. The `*_Pre` and `*_Post` elements control what is displayed before (`Pre`) and after (`Post`) the caption number. For example the third table would look like: `Table 3.`. The default figure width and height are specified here in inches. You probably wont need to change the keys ending in `_Seq_Id` and `_Number`. The `*_Seq_Id` specifies the internal Word sequences used to group tables and figures. The `*_Number` keys specify how you want to number things. The default value, while appearing complicated, will just give you a single number. If you want to number your figures with the current section number (e.g. 3-2 for the second figure in the third section) you would do the following:
 
@@ -313,7 +322,11 @@ The `*_Order` keys indicate the order that the `figure` or `table`, `caption` an
 
 These elements contain the default values used when markdown formatting is used. For this section, you will need entries for `default` and `Table_Labels` as well as an entry for each style defined in the `styles` section.  The `default` is used when rendering general markdown text. The `Table_Labels` is used when markdown is present in table elements like headers. 
 
-**Tip** It's a good idea to open up the styles in Word and make sure that each style element (fontsize, bold, etc) matches what is in your Word document. 
+**Tip** It's a good idea to open up the styles in Word and make sure that each style element (font size, bold, etc) matches what is in your Word document. 
+
+#### `post_processing`
+
+Just like with PowerPoint templates you can define R code to post process your report as an `officer` object. You need to modify the object `rpt` defined in the post processing environment. If this element is missing or set to `NULL` it will be ignored. 
 
 ### Step 3: Testing and previewing your template
 

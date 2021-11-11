@@ -122,6 +122,7 @@ rpptx:
       font.family:           Helvetica
       vertical.align:        baseline
       shading.color:         transparent
+  post_processing:           NULL
 rdocx:
   styles:
     Normal:                    Normal
@@ -279,3 +280,4 @@ rdocx:
       font.family:           Cambria (Body)
       vertical.align:        baseline
       shading.color:         transparent
+  post_processing:           NULL  
