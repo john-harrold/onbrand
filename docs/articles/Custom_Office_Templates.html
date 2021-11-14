@@ -233,10 +233,10 @@
 </div>
 <div id="post-processing" class="section level3">
 <h3 class="hasAnchor">
-<a href="#post-processing" class="anchor"></a>Post Processing</h3>
+<a href="#post-processing" class="anchor"></a>Post-processing</h3>
 <pre><code>rpptx:
   post_processing:           NULL</code></pre>
-<p>Sometimes you may wish to modify the underlying the <code>officer</code> object. When you <code><a href="../reference/save_report.html">save_report()</a></code>, just before writing the file, the function will look for the field <code>post_processing</code>. Here you can define R code to modify the <code>officer</code> object. Within the environment this code is run the object <code>rpt</code> will be available. You should modify this object to apply any changes you want made. A value of <code>NULL</code> and this element will be ignored.</p>
+<p>Sometimes you may wish to modify the underlying the <code>officer</code> object. When you call <code><a href="../reference/save_report.html">save_report()</a></code>, just before writing the file, the function will look for the field <code>post_processing</code>. Here you can define R code to modify the <code>officer</code> object. Within the post-processing environment the officer object <code>rpt</code> containing your report will be available. You should modify this object to apply any changes you want made. If the post_processing element is missing or has a value of <code>NULL</code> the post-processing step will be skipped.</p>
 </div>
 <div id="step-3-testing-and-previewing-your-template" class="section level3">
 <h3 class="hasAnchor">
@@ -371,7 +371,7 @@
 <h4 class="hasAnchor">
 <a href="#post_processing" class="anchor"></a><code>post_processing</code>
 </h4>
-<p>Just like with PowerPoint templates you can define R code to post process your report as an <code>officer</code> object. You need to modify the object <code>rpt</code> defined in the post processing environment. If this element is missing or set to <code>NULL</code> it will be ignored.</p>
+<p>Just like with PowerPoint templates you can define R code to post-process your report as an <code>officer</code> object. You need to modify the object <code>rpt</code> defined in the post-processing environment. If this element is missing or set to <code>NULL</code> it will be ignored.</p>
 </div>
 </div>
 <div id="step-3-testing-and-previewing-your-template-1" class="section level3">

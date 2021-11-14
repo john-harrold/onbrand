@@ -171,13 +171,13 @@ rpptx:
 
 For PowerPoint templates you need to define the sections: `default` and `Table_Labels`. The `default` is used when rendering general markdown text. The `Table_Labels` is used when markdown is present in table elements like headers. For each of these you need to define the different aspects of fonts. If you're unsure, just leave them with the defaults above. 
 
-### Post Processing 
+### Post-processing 
 ```
 rpptx:
   post_processing:           NULL
 ```
 
-Sometimes you may wish to modify the underlying the `officer` object. When you `save_report()`, just before writing the file, the function will look for the field `post_processing`. Here you can define R code to modify the `officer` object. Within the environment this code is run the object `rpt` will be available. You should modify this object to apply any changes you want made. A value of `NULL` and this element will be ignored. 
+Sometimes you may wish to modify the underlying the `officer` object. When you call `save_report()`, just before writing the file, the function will look for the field `post_processing`. Here you can define R code to modify the `officer` object. Within the post-processing environment the officer object `rpt` containing your report will be available. You should modify this object to apply any changes you want made. If the post_processing element is missing or has a value of `NULL` the post-processing step will be skipped. 
 
 ### Step 3: Testing and previewing your template
 
@@ -326,7 +326,7 @@ These elements contain the default values used when markdown formatting is used.
 
 #### `post_processing`
 
-Just like with PowerPoint templates you can define R code to post process your report as an `officer` object. You need to modify the object `rpt` defined in the post processing environment. If this element is missing or set to `NULL` it will be ignored. 
+Just like with PowerPoint templates you can define R code to post-process your report as an `officer` object. You need to modify the object `rpt` defined in the post-processing environment. If this element is missing or set to `NULL` it will be ignored. 
 
 ### Step 3: Testing and previewing your template
 
