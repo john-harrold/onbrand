@@ -2,7 +2,7 @@
 
 ## Changes to yaml file format
 
-* Added notes option for tables and figures in Word reporting. This will requires the `Notes` document default be added to any `report.yaml` files:
+* The addition of notes option for tables and figures in Word reporting requires the `Notes` document default be added to any `report.yaml` files:
 
 ```
 doc_def:                     
@@ -51,6 +51,8 @@ rpptx:
 ## Minor Improvements
 
 * Added `fig_start_at` and `tab_start_at` arguments to `report_add_doc_content()` to support this.
+
+* Added notes option for tables and figures in Word reporting.
 
 * Created `ftext` formatting for captions and notes added to figures and tables.
 

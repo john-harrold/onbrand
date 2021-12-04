@@ -87,7 +87,7 @@
 
       
 
-      </header><script src="Custom_Office_Templates_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Custom Templates</h1>
@@ -160,7 +160,7 @@
 <p>This section provides a detailed walk-through for each of the three steps in the Introduction. We recommend everyone walk through this process at least once.</p>
 <p>A quick note about terminology. A slide master is the top slide in a hierarchy of slides that stores information about the theme and slide layouts of a presentation, including the background, color, fonts, effects, placeholder sizes, and positioning. The slide master is the largest slide image at the top of the slide thumbnail list.</p>
 <div class="figure">
-<img src="example_layout_pptx_master.png" width="400" alt=""><p class="caption">PowerPoint Slide Master Hierarchy.</p>
+<img src="example_layout_pptx_master.png" alt="PowerPoint Slide Master Hierarchy." width="400"><p class="caption">PowerPoint Slide Master Hierarchy.</p>
 </div>
 <div id="step-1-read-the-powerpoint-template" class="section level3">
 <h3 class="hasAnchor">
@@ -200,7 +200,7 @@
 <p>In the <code>yaml</code>, each placeholder will have two value pairs below it. For example, the placeholder <code>sub_title</code> in slide layout <code>title</code> has both <code>ph_label</code> and <code>content_type</code>. The <code>ph_label</code> maps to the <em>ph_label</em> from the annotated layout (in the <code>example_layout.pptx</code>). The <code>content_type</code> should be either <code>text</code> or <code>list</code> depending on whether the placeholder contains text or list data.</p>
 <p>The figure below shows how the annotated layout relates to the <code>yaml</code> mapping file.</p>
 <div class="figure">
-<img src="example_layout_yaml_pptx.png" width="600" alt=""><p class="caption">Relationship between slide master names, placeholders, and content type and yaml mapping elements.</p>
+<img src="example_layout_yaml_pptx.png" alt="Relationship between slide master names, placeholders, and content type and yaml mapping elements." width="600"><p class="caption">Relationship between slide master names, placeholders, and content type and yaml mapping elements.</p>
 </div>
 <p><strong>Note:</strong> You only have to define mapping information for the slide layouts under a master you want to access in R. You can have as many masters defined in the template as you want and only use a subset in R.</p>
 </div>
@@ -271,7 +271,7 @@
                     output_file <span class="op">=</span> <span class="st">"example_layout.docx"</span><span class="op">)</span></code></pre></div>
 <p>This will produce a word document, <code>example_layout.docx</code> that looks something like this:</p>
 <div class="figure">
-<img src="example_layout_docx.png" width="600" alt=""><p class="caption">Word layout example.</p>
+<img src="example_layout_docx.png" alt="Word layout example." width="600"><p class="caption">Word layout example.</p>
 </div>
 </div>
 <div id="step-2-create-the-word-mapping" class="section level3">
@@ -371,7 +371,7 @@
 <h4 class="hasAnchor">
 <a href="#post_processing" class="anchor"></a><code>post_processing</code>
 </h4>
-<p>Just like with PowerPoint templates you can define R code to post-process your report as an <code>officer</code> object. You need to modify the object <code>rpt</code> defined in the post-processing environment. If this element is missing or set to <code>NULL</code> it will be ignored.</p>
+<p>Just like with PowerPoint templates you can define R code to post-process your report as an <code>officer</code> object. You need to modify the object <code>rpt</code> defined in the post-processing environment. If the <code>post_processing</code> element is missing from the yaml file or set to <code>NULL</code> it will be ignored.</p>
 </div>
 </div>
 <div id="step-3-testing-and-previewing-your-template-1" class="section level3">

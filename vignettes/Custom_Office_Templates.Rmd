@@ -326,7 +326,7 @@ These elements contain the default values used when markdown formatting is used.
 
 #### `post_processing`
 
-Just like with PowerPoint templates you can define R code to post-process your report as an `officer` object. You need to modify the object `rpt` defined in the post-processing environment. If this element is missing or set to `NULL` it will be ignored. 
+Just like with PowerPoint templates you can define R code to post-process your report as an `officer` object. You need to modify the object `rpt` defined in the post-processing environment. If the `post_processing` element is missing from the yaml file or set to `NULL` it will be ignored. 
 
 ### Step 3: Testing and previewing your template
 
