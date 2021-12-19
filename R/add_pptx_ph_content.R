@@ -4,7 +4,7 @@
 #'
 #'@param obnd onbrand report object
 #'@param content_type string indicating the content type 
-#'@param content   content
+#'@param content   content (see details below)
 #'@param ph_label  placeholder location (text)
 #'@param verbose Boolean variable when set to TRUE (default) messages will be
 #'displayed on the terminal; Messages will be included in the returned onbrand
