@@ -1,15 +1,18 @@
 #'@export
 #'@title Show Template Details for `onbrand` Object
 #'@description  Takes an onbrand object with a loaded template and displays
-#'details about the template. For PowerPoint this contains the template names
-#'and elements present for that template. For Word it will contain defined
-#'text and table styles. This information can be displayed in the console,
-#'returned as text or formatted for use in RMarkdown documentation.
+#'relevant details about the template. 
 #'
-#'@param obnd onbrand report object
+#'@param obnd    onbrand report object
 #'@param verbose Boolean variable when set to TRUE (default) messages will be
 #'displayed on the terminal; Messages will be included in the returned results
 #'object.
+#'
+#'@details Provides relevant details about an onbrand object.  For PowerPoint 
+#'this contains the template names and elements present for that template. For 
+#'Word it will contain defined text and table styles. This information can be 
+#'displayed in the console, returned as text or formatted for use in RMarkdown 
+#'documentation.
 #'
 #'@return list with the following elements:
 #' \itemize{
