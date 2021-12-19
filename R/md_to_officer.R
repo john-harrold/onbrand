@@ -1,6 +1,7 @@
 #'@export
 #'@title Parse Markdown for Officer
 #'@description Parses text in Markdown format and returns fpar and as_paragraph command strings to be used with officer
+#'
 #'@param str     string containing Markdown can contain the following elements:
 #' \itemize{
 #'  \item paragraph:   two or more new lines creates a paragraph
@@ -25,10 +26,9 @@
 #'       vertical.align = "baseline",
 #'       shading.color  = "transparent")
 #' }
-#'@return list with parsed paragraph elements ubiquity system object with the
-#' content added to the body, each paragraph can be found in a numbered list
-#' element (e.g. \code{pgraph_1}, \code{pgraph_2}, etc) each with the following
-#' elements:
+#'@return list with parsed paragraph elements with the content added to the body, 
+#' each paragraph can be found in a numbered list element (e.g. \code{pgraph_1},
+#' \code{pgraph_2}, etc) each with the following elements:
 #' \itemize{
 #'  \item{locs}: Dataframe showing the locations of markdown elements in the current paragraph
 #'  \item{pele}: These are the individual parsed paragraph elements
