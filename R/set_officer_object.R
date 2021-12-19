@@ -3,8 +3,8 @@
 #'@description After modifying a report object manually, you can return it to
 #'the onbrand object using this function.
 #'
-#'@param obnd onbrand report object
-#'@param rpt officer object        
+#'@param obnd    onbrand report object
+#'@param rpt     officer object        
 #'@param verbose Boolean variable when set to TRUE (default) messages will be
 #'displayed on the terminal; Messages will be included in the returned onbrand
 #'object.
