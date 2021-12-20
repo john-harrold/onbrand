@@ -41,9 +41,9 @@ ex_yaml_read = yaml::read_yaml(ex_yaml_tmpfile)
 
 # Introduction <img src="onbrand_hex.png" align="right" height="138.5" border="0px" />
 
-The ``officer`` package is used to generate all of the underlying PowerPoint and Word documents. The purpose of `onbrand` is to provide an abstraction layer (or mapping) for the functions in ``officer`` in order to allow the same reporting workflow to be used with different template documents. This involves providing a consistent customizable method to interact with templates as well as a form of markdown to control the formatting of text. 
+The `officer` package is used to generate all of the underlying PowerPoint and Word documents. The purpose of `onbrand` is to provide an abstraction layer (or mapping) for the functions in `officer` in order to allow the same reporting workflow to be used with different template documents. This involves providing a consistent customizable method to interact with templates as well as a form of markdown to control the formatting of text. 
 
-If you want to use your own Office templates, we recommend you see the _Custom Office Templates Vignette_. This vignette focuses on how to construct workflows using templates. Here we will use the internal templates embedded in ``onbrand``. If you want to copy them locally you can use the following commands:
+If you want to use your own Office templates, we recommend you see the _Custom Office Templates Vignette_. This vignette focuses on how to construct workflows using templates. Here we will use the internal templates embedded in `onbrand`. If you want to copy them locally you can use the following commands:
 
 ``` r
 file.copy(system.file(package="onbrand", "templates", "report.pptx"), "report.pptx")
@@ -54,7 +54,7 @@ file.copy(system.file(package="onbrand", "templates", "report.yaml"), "report.ya
 
 ### Loading your presentation template
 
-To create a new ``onbrand`` object for a PowerPoint document you need to use ``onbrand::read_template()``. This requires that you supply the path to your PowerPoint document and the ``yaml`` mapping files as follows:
+To create a new `onbrand` object for a PowerPoint document you need to use `onbrand::read_template()`. This requires that you supply the path to your PowerPoint document and the `yaml` mapping files as follows:
 ```{r}
 obnd = read_template(
        template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
@@ -63,12 +63,12 @@ obnd = read_template(
 
 ### Adding content
 
-The mapping file (printed at the bottom of this document) uses descriptive names for slide masters and placeholders. Here is a snippet from our report ``yaml``.
+The mapping file (printed at the bottom of this document) uses descriptive names for slide masters and placeholders. Here is a snippet from our report `yaml`.
 ```{r echo=FALSE, comment='', message=TRUE, eval=TRUE}
 cat(readLines(ex_yaml_tmpfile) , sep="\n")
 ```
 
-To add content, use ``onbrand::report_add_slide()``. The following will add a slide using the templated ``title_slide`` layout. Provide the ``elements`` argument with a list of placeholder names - each containing a list of values for both ``content`` and ``type``. For each placeholder name listed you need to specify the content and the type of content in its own list: 
+To add content, use `onbrand::report_add_slide()`. The following will add a slide using the templated `title_slide` layout. Provide the `elements` argument with a list of placeholder names - each containing a list of values for both `content` and `type`. For each placeholder name listed you need to specify the content and the type of content in its own list: 
 
 ```{r}
 obnd = report_add_slide(obnd,
@@ -80,7 +80,7 @@ obnd = report_add_slide(obnd,
                        type    = "text")))
 ```
 
-For a detailed description of the different types of content and the expected format see the help for the ``onbrand::add_pptx_ph_content()`` function. Briefly, you can specify the following content types:
+For a detailed description of the different types of content and the expected format see the help for the `onbrand::add_pptx_ph_content()` function. Briefly, you can specify the following content types:
 
 - `"text"` - a string of text (only possible when the type in the mapping file is _text_)
 - `"list"` - list of information (only possible when the type in the mapping file is _list_)
@@ -132,7 +132,7 @@ imgfile = tempfile(pattern="image", fileext=".png")
 ggsave(filename=imgfile, plot=p, height=5.15, width=9, units="in")
 ```
 
-Now that the object ``p`` contains the ggplot object and ``imgfile`` points to a png file containing that image, we can add the content to our ``two_content_header_text`` slide template: 
+Now that the object `p` contains the ggplot object and `imgfile` points to a png file containing that image, we can add the content to our `two_content_header_text` slide template: 
 
 ```{r}
 obnd = report_add_slide(obnd,
@@ -154,19 +154,19 @@ obnd = report_add_slide(obnd,
 
 Tables can be supplied in three different ways, each providing increasing level of control over the output:
 
-- ``table`` - Expects a list with the tabular data and other attributes. It uses the underlying tables in PowerPoint to make the tables. 
-- ``flextable`` - Expects a list similar to the `table` above, but instead of using the PowerPoint tables, the table is created using the ``flextable`` package.
+- `table` - Expects a list with the tabular data and other attributes. It uses the underlying tables in PowerPoint to make the tables. 
+- `flextable` - Expects a list similar to the `table` above, but instead of using the PowerPoint tables, the table is created using the `flextable` package.
 - `flextable_object` - This allows you to create a flextable on your own and use it directly. The ultimate level of control.
 
 Lets start by creating a simple data frame:
 
 ```{r}
-tdf =    data.frame(Parameters = c("Length", "Width", "Height"),
-                    Values     = 1:3,
-                    Units      = c("m", "m", "m") )
+tdf = data.frame(Parameters = c("Length", "Width", "Height"),
+                 Values     = 1:3,
+                 Units      = c("m", "m", "m") )
 ```
 
-To create a PowerPoint table, use the `table` content type.  Construct a named list with a single element, ``table``,  containing the data frame; ``tab_cont = list(table = tdf)``. You can add list elements to display header information as well. See the help for ``onbrand::add_pptx_ph_content()`` for details.
+To create a PowerPoint table, use the `table` content type.  Construct a named list with a single element, `table`,  containing the data frame; `tab_cont = list(table = tdf)`. You can add list elements to display header information as well. See the help for `onbrand::add_pptx_ph_content()` for details.
 
 ```{r}
 tab_cont = list(table = tdf)
@@ -181,7 +181,7 @@ obnd = report_add_slide(obnd,
                            type         = "table")))
 ```
 
-Sometimes you may want to have a little more control over the tabular output. The `flextable` type allows you to supply the data and information about the flextable to be created and ``onbrand`` will then use them to create the flextable for you. 
+Sometimes you may want to have a little more control over the tabular output. The `flextable` type allows you to supply the data and information about the flextable to be created and `onbrand` will then use them to create the flextable for you. 
 
 ```{r}
 tab_ft = list(table         = tdf,
@@ -194,7 +194,7 @@ tab_ft = list(table         = tdf,
               table_theme   = "theme_zebra")
 ```
 
-Here we are specifying that we want the header format of the table to be rendered as markdown `"md"` and we are specfying that the top header (there can be top, middle and bottom) should be overwritten (for more on formatting with markdown see the markdown section below). Next we specify some other details like the column width. Again reference the help for ``onbrand::add_pptx_ph_content()``.  It covers the details of the list elements that can be supplied.
+Here we are specifying that we want the header format of the table to be rendered as markdown `"md"` and we are specifying that the top header (there can be top, middle and bottom) should be overwritten (for more on formatting with markdown see the markdown section below). Next we specify some other details like the column width. Again reference the help for `onbrand::add_pptx_ph_content()`.  It covers the details of the list elements that can be supplied.
 
 Alternatively, you can create a flextable object directly using the `flextable` package. There is an enormous amount of flexibility in the `flextable` package. Some of these can be seen in the Word examples below, but you should see the documentation for that package to get a feel for what is possible.  
 
@@ -255,7 +255,7 @@ ph = fph(obnd, "two_content_header_text", "content_left_header")$pl
 
 ### Loading your Word template
 
-The ``onbrand::read_template()`` function is also used to create a new `onbrand` object for a Word report. Just as before, you need to supply the path to your Word template and the mapping file. This example points to files within the `onbrand` package:
+The `onbrand::read_template()` function is also used to create a new `onbrand` object for a Word report. Just as before, you need to supply the path to your Word template and the mapping file. This example points to files within the `onbrand` package:
 
 
 ```{r}
@@ -266,7 +266,7 @@ obnd = read_template(
 
 ### Adding content
 
-Word report content is added using the ``onbrand::report_add_doc_content()`` function. This expects the user to identify the ``type`` of content being supplied. At a high level the following types of content can be added:
+Word report content is added using the `onbrand::report_add_doc_content()` function. This expects the user to identify the `type` of content being supplied. At a high level the following types of content can be added:
 
 - `"break"` - page break
 - `"toc"` - table of contents
@@ -278,7 +278,7 @@ Word report content is added using the ``onbrand::report_add_doc_content()`` fun
 - `"flextable"` - list containing flextable content and other options
 - `"flextable_object"` - user-defined flextable object
 
-Similar to adding PowerPoint content, you must also supply a list containing the content and information about the content. Examples of each of these will be provided in the sections below. However you should see the help for  ``onbrand::report_add_doc_content()`` to get a detailed explanation of the format of ``content``.  
+Similar to adding PowerPoint content, you must also supply a list containing the content and information about the content. Examples of each of these will be provided in the sections below. However you should see the help for  `onbrand::report_add_doc_content()` to get a detailed explanation of the format of `content`.  
 
 ### Table of contents
 
@@ -316,7 +316,7 @@ You may need to change the separator option in the `yaml` mapping file from: `,`
 
 ### Text
 
-The content type ``"text"`` is the most straight forward way to add content to a Word document, and the ``content`` is a list that has three possible elements. The only one required is the ``text`` element. If you just want to add text in the default format (`doc_def` in the `yaml` mapping file), then this is all you need to do:
+The content type `"text"` is the most straight forward way to add content to a Word document, and the `content` is a list that has three possible elements. The only one required is the `text` element. If you just want to add text in the default format (`doc_def` in the `yaml` mapping file), then this is all you need to do:
 
 ```{r}
 obnd = report_add_doc_content(obnd,
@@ -326,7 +326,7 @@ obnd = report_add_doc_content(obnd,
 
 #### Styles
 
-Alternatively you can specify any style defined in the `yaml` mapping file by adding a ``style`` element to the content list. This shows how to create multi-level headers:
+Alternatively you can specify any style defined in the `yaml` mapping file by adding a `style` element to the content list. This shows how to create multi-level headers:
 
 ```{r}
 obnd = report_add_doc_content(obnd,
@@ -349,12 +349,12 @@ obnd = report_add_doc_content(obnd,
 
 The other element you may want to control is the format of the content. In the previous examples you just needed to provide character data, but there are three possible formats you can use:
 
-- ``"text"`` - character string (previous examples)
-- ``"md"`` - character string with markdown to be rendered (see the section on markdown below)
-- ``"fpar"`` - `officer::fpar()` object from ``officer`` (used with paragraph text)
-- ``"ftext"`` - list of `officer::ftext()` objects  ``officer`` (used with captions and notes for figures and tables)
+- `"text"` - character string (previous examples)
+- `"md"` - character string with markdown to be rendered (see the section on markdown below)
+- `"fpar"` - `officer::fpar()` object from `officer` (used with paragraph text)
+- `"ftext"` - list of `officer::ftext()` objects  `officer` (used with captions and notes for figures and tables)
 
-The following provide example ``"fpar"`` and ``"md"`` formats
+The following provide example `"fpar"` and `"md"` formats
 
 ```{r}
 library(officer)
@@ -423,7 +423,7 @@ obnd = report_add_doc_content(obnd,
   content  = tab_cont)
 ```
 
-Flextables can be used with the `flextable` type and information like headers, header formatting, etc can be passed along. ``onbrand`` will then construct the flextable for you. 
+Flextables can be used with the `flextable` type and information like headers, header formatting, etc can be passed along. `onbrand` will then construct the flextable for you. 
 
 ```{r}
 tab_ft = list(table         = tdf,
@@ -452,7 +452,7 @@ obnd = report_add_doc_content(obnd,
 
 ### Formatting sections
 
-Section formatting, changing the page orientation and/or the number of columns, is controlled using the ``"section"`` content type. It may seem a bit counter intuitive but sections apply to the content added **since the last** section type specification. So now lets try the following:
+Section formatting, changing the page orientation and/or the number of columns, is controlled using the `"section"` content type. It may seem a bit counter intuitive but sections apply to the content added **since the last** section type specification. So now lets try the following:
 
 - Add a landscape figure
 - Add two column text   
@@ -518,9 +518,9 @@ obnd = report_add_doc_content(obnd,
 
 ### Placeholder text
 
-When generating reporting workflows it can be helpful to have placeholder text in the report that is populated based on the specifics of that report. To add placeholders you can use the `"ph"` content type. This content type will not appear in the ``yaml`` file, it is unique to ``onbrand``.  A placeholder is a unique string of text surrounded on both sides by ``===`` (_three equal signs_). If the placeholder is in your template document, it may not work correctly if you type the text into Word. This is because while a string may appear to be a contiguous in Word, it may not be so in the underlying XML code. To ensure the string is contiguous you should type the placeholder text into a text editor, then copy and paste it into the Word template. 
+When generating reporting workflows it can be helpful to have placeholder text in the report that is populated based on the specifics of that report. To add placeholders you can use the `"ph"` content type. This content type will not appear in the `yaml` file, it is unique to `onbrand`.  A placeholder is a unique string of text surrounded on both sides by `===` (_three equal signs_). If the placeholder is in your template document, it may not work correctly if you type the text into Word. This is because while a string may appear to be a contiguous in Word, it may not be so in the underlying XML code. To ensure the string is contiguous you should type the placeholder text into a text editor, then copy and paste it into the Word template. 
 
-The placeholder can be in the document template itself (in the footer or header sections) or in the text you generate and add as part of your workflow. In this example, the text `===BODY-TEXT-EXAMPLE===` was added into the text content we added in the first step above. That placeholder will be replaced with the text ``Swaps the placeholder with this Text``. 
+The placeholder can be in the document template itself (in the footer or header sections) or in the text you generate and add as part of your workflow. In this example, the text `===BODY-TEXT-EXAMPLE===` was added into the text content we added in the first step above. That placeholder will be replaced with the text `Swaps the placeholder with this Text`. 
 
 
 ```{r}
@@ -531,7 +531,7 @@ obnd = report_add_doc_content(obnd,
                   location = "body"))
 ```
 
-You can have the placeholders in the body as in the previous example and also in the headers and footers of the document. Again, these will not appear in the ``yaml`` mapping (or abstraction layer).  In these examples the `===FOOTERLEFT===` and `===HEADERLEFT===` placeholders are found in the template itself.  There is another placeholder `===HEADERRIGHT===` which we have not used so that you can see it in the final output.  
+You can have the placeholders in the body as in the previous example and also in the headers and footers of the document. Again, these will not appear in the `yaml` mapping (or abstraction layer).  In these examples the `===FOOTERLEFT===` and `===HEADERLEFT===` placeholders are found in the template itself.  There is another placeholder `===HEADERRIGHT===` which we have not used so that you can see it in the final output.  
 
 ```{r}
 obnd = report_add_doc_content(obnd,
@@ -546,7 +546,7 @@ obnd = report_add_doc_content(obnd,
                   location = "header"))
 ```
 
-Headers are applied when the document is saved and can be added at any time to the ``onbrand`` report object.
+Headers are applied when the document is saved and can be added at any time to the `onbrand` report object.
 
 ### Formatting sections (again)
 
@@ -596,7 +596,7 @@ JMH
 
 ### Saving the Word report 
 
-Once you are done adding content you can save the report to a file with the ``save_report()`` function as well:
+Once you are done adding content you can save the report to a file with the `save_report()`` function as well:
 
 ``` r
 save_report(obnd, "vignette_report.docx")
@@ -633,14 +633,14 @@ dff = st$dff
 
 In `officer` you can change formatting in text using `fpar` and `as_pargraph`. There are situations where this is less than ideal. For example if you want to take formatted user input from a Shiny app, it may not be practical to have them supply code this way. 
 
-To make formatting a little easier, ``onbrand`` provides the ability to use markdown. This can be seen above in flextable objects for PowerPoint content and with text, captions in Word. For a list of allowed markdown formatting see the help for ``onbrand::md_to_officer()``. 
+To make formatting a little easier, `onbrand` provides the ability to use markdown. This can be seen above in flextable objects for PowerPoint content and with text, captions in Word. For a list of allowed markdown formatting see the help for `onbrand::md_to_officer()``. 
 
-If you want to use the markdown functionality outside of ``onbrand`` you can use the two functions:
+If you want to use the markdown functionality outside of `onbrand` you can use the two functions:
 
-- ``onbrand::md_to_officer`` - This function will take the markdown text and convert that into strings of text containing officer commands in `fpar` and `as_paragraph` commands. You simply need to use the `eval` command to execute them.
-- ``onbrand::md_to_oo`` - A function that wraps around `md_to_officer` and returns the `as_paragraph` result.
+- `onbrand::md_to_officer` - This function will take the markdown text and convert that into strings of text containing officer commands in `fpar` and `as_paragraph` commands. You simply need to use the `eval` command to execute them.
+- `onbrand::md_to_oo` - A function that wraps around `md_to_officer` and returns the `as_paragraph` result.
 
-### Using ``onbrand::md_to_oo`` to format 
+### Using `onbrand::md_to_oo` to format 
 
 First lets start with data. Here we have dimensional data listed as a mean and variance:
 
@@ -676,14 +676,14 @@ htmltools_value(ft)
 
 Now, lets customize some things. For example, suppose we want to use exponents on the units and represent the mean and variance with $\mu$ and $\sigma^2$. 
 
-First, we need to create lists with the default value for the table labels (i.e. the header) and the table body. The markdown will create deviations from these defaults. You can look at the help for ``onbrand::md_to_oo`` to get the appropriate list format. Here we're just pulling them out of the ``onbrand`` object using ``onbrand::fetch_md_def()``.
+First, we need to create lists with the default value for the table labels (i.e. the header) and the table body. The markdown will create deviations from these defaults. You can look at the help for `onbrand::md_to_oo` to get the appropriate list format. Here we're just pulling them out of the `onbrand` object using `onbrand::fetch_md_def()`.
 
 ```{r}
 dft      = fetch_md_def(obnd, style="Table_Labels")$md_def
 dft_body = fetch_md_def(obnd, style="Table")$md_def
 ```
 
-Now we can use the ``flextable::compose`` function to walk through the table and overwrite the defaults that were set when the flextable was created:
+Now we can use the `flextable::compose` function to walk through the table and overwrite the defaults that were set when the flextable was created:
 
 ```{r}
 ft = ft %>%
@@ -711,9 +711,9 @@ htmltools_value(ft)
 
 **Note that the Greek symbols are not rendered correctly here but will be rendered correctly in the document.**
 
-To include the newly formatted table in the ``onbrand`` object, you use the same method as before:
+To include the newly formatted table in the `onbrand` object, you use the same method as before:
 
-``` r
+```{r}
 obnd = report_add_doc_content(obnd,
   type     = "flextable_object",
   content  = list(ft=tab_fto,
@@ -734,7 +734,7 @@ Now you can use any officer command you wish on the `rpt` object. And when you'r
 obnd = set_officer_object(obnd, rpt)
 ```
 
-## Maping file
+## Mapping file
 ```{r echo=FALSE, comment='', message=TRUE, eval=TRUE}
 cat(readLines(file.path(system.file(package="onbrand"), "templates", "report.yaml")) , sep="\n")
 ```

@@ -5,12 +5,13 @@
 #' md_to_officer, evals the as_paragraph field from the first paragraph
 #' returned, evals that result and returns the object from the as_paragraph
 #' command.
+#' 
 #'@param strs    vector of strings containing Markdown can contain the following elements:
 #'@param default_format  list containing the default format for elements not defined with markdown default values (format the same as \code{\link{md_to_officer}}, default is \code{NULL})
 #'@return list with the following elements
 #' \itemize{
 #'  \item{isgood}:    Boolean value indicating the result of the function call
-#'  \item{msgs}:      sequence of strings contianing a description of any problems
+#'  \item{msgs}:      sequence of strings containing a description of any problems
 #'  \item{as_par_cmd}:as_paragraph generated code from md_to_officer
 #'  \item{oo}:        as_paragraph officer object resulting from running the as_par_cmd code
 #'}

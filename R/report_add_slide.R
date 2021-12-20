@@ -5,15 +5,16 @@
 #'@param obnd onbrand report object
 #'@param template Name of slide template to use (name from templates in yaml mapping file)
 #'@param elements Content and type for each placeholder you wish to fill for
-#'this slide: This is a list with names set to palceholders for the specified
-#'tempalte. Each placeholder is a list and should have a content element and a
+#'this slide: This is a list with names set to placeholders for the specified
+#'template. Each placeholder is a list and should have a content element and a
 #'type element (see Details below).
 #'@param verbose Boolean variable when set to TRUE (default) messages will be
 #'displayed on the terminal; Messages will be included in the returned onbrand
 #'object.
 #'
 #'@return onbrand report object with either the content added or isgood set
-#'to FALSE with any messages in the msgs field.
+#'to FALSE with any messages in the msgs field. The isgood value is a Boolean variable
+#'indicating the current state of the object.
 #'
 #'@details
 #'For example consider the mapping information for the slide
