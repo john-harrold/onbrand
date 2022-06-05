@@ -16,7 +16,8 @@ for(htd in htds){
 
   # For some reason it's doing this weird relative path thing, so I'm stripping that out here:
   #trim_txt = "../../../../../Google%20Drive/Ubiquity/github/ubiquity/vignettes/"
-  trim_txt = "../../../../../Google%20Drive/onbrand/github/onbrand/vignettes/"
+  #trim_txt = "../../../../../Google%20Drive/onbrand/github/onbrand/vignettes/"
+  trim_txt = "../../../../../../My%20Drive/projects/onbrand/github/onbrand/articles/"
   htd_lines = gsub(trim_txt, "", htd_lines)
 
   write(htd_lines, file=fn, append=FALSE)

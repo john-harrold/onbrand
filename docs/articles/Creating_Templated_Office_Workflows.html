@@ -105,7 +105,7 @@
     
     
 <div class="section level1">
-<h1 id="introduction">Introduction <img src="../../../../../../My%20Drive/projects/onbrand/github/onbrand/articles/onbrand_hex.png" align="right" height="138.5" border="0px"><a class="anchor" aria-label="anchor" href="#introduction"></a>
+<h1 id="introduction">Introduction <img src="onbrand_hex.png" align="right" height="138.5" border="0px"><a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h1>
 <p>The <code>officer</code> package is used to generate all of the underlying PowerPoint and Word documents. The purpose of <code>onbrand</code> is to provide an abstraction layer (or mapping) for the functions in <code>officer</code> in order to allow the same reporting workflow to be used with different template documents. This involves providing a consistent customizable method to interact with templates as well as a form of markdown to control the formatting of text.</p>
 <p>If you want to use your own Office templates, we recommend you see the <em>Custom Office Templates Vignette</em>. This vignette focuses on how to construct workflows using templates. Here we will use the internal templates embedded in <code>onbrand</code>. If you want to copy them locally you can use the following commands:</p>
@@ -285,7 +285,7 @@
 <p>Once you are done adding content you can save the presentation to a file:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/save_report.html">save_report</a></span><span class="op">(</span><span class="va">obnd</span>, <span class="st">"vignette_presentation.pptx"</span><span class="op">)</span></code></pre></div>
-<p>Which should look something like this: <img src="../../../../../../My%20Drive/projects/onbrand/github/onbrand/articles/ppt_workflow_output.png" width="600" alt="Example PowerPoint output for workflow above."></p>
+<p>Which should look something like this: <img src="ppt_workflow_output.png" width="600" alt="Example PowerPoint output for workflow above."></p>
 </div>
 <div class="section level3">
 <h3 id="accessing-the-powerpoint-mapping-information">Accessing the PowerPoint mapping information<a class="anchor" aria-label="anchor" href="#accessing-the-powerpoint-mapping-information"></a>
@@ -293,7 +293,7 @@
 <p>Sometimes it can be difficult to remember the template and placeholder names from the mapping file. You and use the <code><a href="../reference/template_details.html">onbrand::template_details</a></code> function to show this information for the current <code>onbrand</code> object.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">details</span> <span class="op">=</span> <span class="fu"><a href="../reference/template_details.html">template_details</a></span><span class="op">(</span><span class="va">obnd</span><span class="op">)</span> </code></pre></div>
-<pre><code><span class="co">## Mapping:     /private/var/folders/xs/3gst8jln2q3c_01y4cg1rqp00000gn/T/RtmpTdlUmp/temp_libpathd4d163dd1a99/onbrand/templates/report.yaml</span>
+<pre><code><span class="co">## Mapping:     /private/var/folders/xs/3gst8jln2q3c_01y4cg1rqp00000gn/T/RtmpZw97IS/temp_libpath63a37301be44/onbrand/templates/report.yaml</span>
 <span class="co">## Report Type: PowerPoint</span>
 <span class="co">## title_slide (master/template)</span>
 <span class="co">##   &gt; title (text)</span>
@@ -645,7 +645,7 @@
 <code class="sourceCode R"><span class="fu"><a href="../reference/save_report.html">save_report</a></span><span class="op">(</span><span class="va">obnd</span>, <span class="st">"vignette_report.docx"</span><span class="op">)</span></code></pre></div>
 <p>The output from the example above should look like this:</p>
 <div class="figure">
-<img src="../../../../../../My%20Drive/projects/onbrand/github/onbrand/articles/doc_workflow_output.png" width="700" alt=""><p class="caption">Example Word output for workflow above.</p>
+<img src="doc_workflow_output.png" width="700" alt=""><p class="caption">Example Word output for workflow above.</p>
 </div>
 </div>
 <div class="section level3">
@@ -654,7 +654,7 @@
 <p>It can also be useful to quickly access the <code>onbrand</code> style names. You can use the same <code><a href="../reference/template_details.html">onbrand::template_details</a></code> function to display the current styles available to you:</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">details</span> <span class="op">=</span> <span class="fu"><a href="../reference/template_details.html">template_details</a></span><span class="op">(</span><span class="va">obnd</span><span class="op">)</span> </code></pre></div>
-<pre><code><span class="co">## Mapping:     /private/var/folders/xs/3gst8jln2q3c_01y4cg1rqp00000gn/T/RtmpTdlUmp/temp_libpathd4d163dd1a99/onbrand/templates/report.yaml</span>
+<pre><code><span class="co">## Mapping:     /private/var/folders/xs/3gst8jln2q3c_01y4cg1rqp00000gn/T/RtmpZw97IS/temp_libpath63a37301be44/onbrand/templates/report.yaml</span>
 <span class="co">## Report Type: Word</span>
 <span class="co">##   onbrand style (word style, style type)</span>
 <span class="co">##   --------------------------------------</span>
@@ -712,7 +712,7 @@
      <span class="fu">flextable</span><span class="fu">::</span><span class="fu"><a href="https://davidgohel.github.io/flextable/reference/add_header.html" class="external-link">add_header</a></span><span class="op">(</span>values <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="va">header</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
      <span class="fu">flextable</span><span class="fu">::</span><span class="fu"><a href="https://davidgohel.github.io/flextable/reference/theme_zebra.html" class="external-link">theme_zebra</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>That flextable currently looks like this:</p>
-<template id="40145582-054d-46b4-b0b9-8830ab29cf72"><style>
+<template id="3e090842-9f5c-4b92-b2c5-4ec238ed2050"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -748,45 +748,45 @@ background-color: transparent;
 }
 </style>
 <div class="tabwid">
-<style>.cl-1586a8ce{}.cl-158137cc{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-158137e0{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-15814c1c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-15814c26{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-15817c00{width:54pt;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-15817c01{width:54pt;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-15817c0a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-15817c0b{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-15817c0c{width:54pt;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-15817c0d{width:54pt;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-15817c14{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-15817c15{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table class="table cl-1586a8ce">
+<style>.cl-b954dc04{}.cl-b95012d2{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b95012dc{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b95023f8{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b9502402{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b9504ca2{width:54pt;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9504ca3{width:54pt;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9504cac{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9504cad{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9504cae{width:54pt;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9504caf{width:54pt;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9504cb6{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9504cb7{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table class="table cl-b954dc04">
 <thead>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-15817c0c"><p class="cl-15814c1c"><span class="cl-158137cc"></span></p></td>
-<td class="cl-15817c0d"><p class="cl-15814c26"><span class="cl-158137cc">Length</span></p></td>
-<td class="cl-15817c0d"><p class="cl-15814c26"><span class="cl-158137cc">Wdith</span></p></td>
-<td class="cl-15817c0d"><p class="cl-15814c26"><span class="cl-158137cc">Area</span></p></td>
-<td class="cl-15817c0d"><p class="cl-15814c26"><span class="cl-158137cc">Volume</span></p></td>
+<td class="cl-b9504cae"><p class="cl-b95023f8"><span class="cl-b95012d2"></span></p></td>
+<td class="cl-b9504caf"><p class="cl-b9502402"><span class="cl-b95012d2">Length</span></p></td>
+<td class="cl-b9504caf"><p class="cl-b9502402"><span class="cl-b95012d2">Wdith</span></p></td>
+<td class="cl-b9504caf"><p class="cl-b9502402"><span class="cl-b95012d2">Area</span></p></td>
+<td class="cl-b9504caf"><p class="cl-b9502402"><span class="cl-b95012d2">Volume</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-15817c15"><p class="cl-15814c1c"><span class="cl-158137cc"></span></p></td>
-<td class="cl-15817c14"><p class="cl-15814c26"><span class="cl-158137cc">cm</span></p></td>
-<td class="cl-15817c14"><p class="cl-15814c26"><span class="cl-158137cc">cm</span></p></td>
-<td class="cl-15817c14"><p class="cl-15814c26"><span class="cl-158137cc">cm2</span></p></td>
-<td class="cl-15817c14"><p class="cl-15814c26"><span class="cl-158137cc">cm3</span></p></td>
+<td class="cl-b9504cb7"><p class="cl-b95023f8"><span class="cl-b95012d2"></span></p></td>
+<td class="cl-b9504cb6"><p class="cl-b9502402"><span class="cl-b95012d2">cm</span></p></td>
+<td class="cl-b9504cb6"><p class="cl-b9502402"><span class="cl-b95012d2">cm</span></p></td>
+<td class="cl-b9504cb6"><p class="cl-b9502402"><span class="cl-b95012d2">cm2</span></p></td>
+<td class="cl-b9504cb6"><p class="cl-b9502402"><span class="cl-b95012d2">cm3</span></p></td>
 </tr>
 </thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-15817c01"><p class="cl-15814c1c"><span class="cl-158137e0">mean</span></p></td>
-<td class="cl-15817c00"><p class="cl-15814c26"><span class="cl-158137e0">200.00</span></p></td>
-<td class="cl-15817c00"><p class="cl-15814c26"><span class="cl-158137e0">12.00</span></p></td>
-<td class="cl-15817c00"><p class="cl-15814c26"><span class="cl-158137e0">240.00</span></p></td>
-<td class="cl-15817c00"><p class="cl-15814c26"><span class="cl-158137e0">1,200.00</span></p></td>
+<td class="cl-b9504ca3"><p class="cl-b95023f8"><span class="cl-b95012dc">mean</span></p></td>
+<td class="cl-b9504ca2"><p class="cl-b9502402"><span class="cl-b95012dc">200.00</span></p></td>
+<td class="cl-b9504ca2"><p class="cl-b9502402"><span class="cl-b95012dc">12.00</span></p></td>
+<td class="cl-b9504ca2"><p class="cl-b9502402"><span class="cl-b95012dc">240.00</span></p></td>
+<td class="cl-b9504ca2"><p class="cl-b9502402"><span class="cl-b95012dc">1,200.00</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-15817c0b"><p class="cl-15814c1c"><span class="cl-158137e0">variance</span></p></td>
-<td class="cl-15817c0a"><p class="cl-15814c26"><span class="cl-158137e0">0.13</span></p></td>
-<td class="cl-15817c0a"><p class="cl-15814c26"><span class="cl-158137e0">0.05</span></p></td>
-<td class="cl-15817c0a"><p class="cl-15814c26"><span class="cl-158137e0">0.11</span></p></td>
-<td class="cl-15817c0a"><p class="cl-15814c26"><span class="cl-158137e0">0.32</span></p></td>
+<td class="cl-b9504cad"><p class="cl-b95023f8"><span class="cl-b95012dc">variance</span></p></td>
+<td class="cl-b9504cac"><p class="cl-b9502402"><span class="cl-b95012dc">0.13</span></p></td>
+<td class="cl-b9504cac"><p class="cl-b9502402"><span class="cl-b95012dc">0.05</span></p></td>
+<td class="cl-b9504cac"><p class="cl-b9502402"><span class="cl-b95012dc">0.11</span></p></td>
+<td class="cl-b9504cac"><p class="cl-b9502402"><span class="cl-b95012dc">0.32</span></p></td>
 </tr>
 </tbody>
 </table>
-</div></template><div class="flextable-shadow-host" id="20fd2294-56a5-44fb-b026-ea5dbeb1e9ac"></div>
+</div></template><div class="flextable-shadow-host" id="f13b4e04-fed2-4971-a435-0ed22f9f6c1e"></div>
 <script>
-var dest = document.getElementById("20fd2294-56a5-44fb-b026-ea5dbeb1e9ac");
-var template = document.getElementById("40145582-054d-46b4-b0b9-8830ab29cf72");
+var dest = document.getElementById("f13b4e04-fed2-4971-a435-0ed22f9f6c1e");
+var template = document.getElementById("3e090842-9f5c-4b92-b2c5-4ec238ed2050");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -820,7 +820,7 @@ fantome.appendChild(templateContent);
           part  <span class="op">=</span> <span class="st">"body"</span>,                                                     
           value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/md_to_oo.html">md_to_oo</a></span><span class="op">(</span><span class="st">"**&lt;ff:symbol&gt;s&lt;/ff&gt;**^**2**^"</span>, <span class="va">dft_body</span><span class="op">)</span><span class="op">$</span><span class="va">oo</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Now the flextable object looks like this:</p>
-<template id="6083ae6c-1132-43cc-a59b-a914031f21bd"><style>
+<template id="077ded69-eb91-46d4-aa2e-1ba237707828"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -856,45 +856,45 @@ background-color: transparent;
 }
 </style>
 <div class="tabwid">
-<style>.cl-15b3a39c{}.cl-15af13d6{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-15af13e0{font-family:'Helvetica';font-size:12pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-15af13e1{font-family:'Helvetica';font-size:7.2pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.6pt;}.cl-15af13ea{font-family:'symbol';font-size:12pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-15af13eb{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-15af20a6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-15af20b0{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-15af49a0{width:54pt;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-15af49aa{width:54pt;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-15af49ab{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-15af49ac{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-15af49ad{width:54pt;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-15af49b4{width:54pt;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-15af49b5{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-15af49b6{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table class="table cl-15b3a39c">
+<style>.cl-b983b0ba{}.cl-b97ec8c0{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b97ec8ca{font-family:'Helvetica';font-size:12pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b97ec8cb{font-family:'Helvetica';font-size:7.2pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.6pt;}.cl-b97ec8cc{font-family:'symbol';font-size:12pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b97ec8d4{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b97ed6b2{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b97ed6bc{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b97f01d2{width:54pt;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b97f01dc{width:54pt;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b97f01dd{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b97f01e6{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b97f01e7{width:54pt;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b97f01e8{width:54pt;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b97f01e9{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b97f01ea{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table class="table cl-b983b0ba">
 <thead>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-15af49ad"><p class="cl-15af20a6"><span class="cl-15af13d6"></span></p></td>
-<td class="cl-15af49b4"><p class="cl-15af20b0"><span class="cl-15af13d6">Length</span></p></td>
-<td class="cl-15af49b4"><p class="cl-15af20b0"><span class="cl-15af13d6">Wdith</span></p></td>
-<td class="cl-15af49b4"><p class="cl-15af20b0"><span class="cl-15af13e0">Area</span></p></td>
-<td class="cl-15af49b4"><p class="cl-15af20b0"><span class="cl-15af13e0">Volume</span></p></td>
+<td class="cl-b97f01e7"><p class="cl-b97ed6b2"><span class="cl-b97ec8c0"></span></p></td>
+<td class="cl-b97f01e8"><p class="cl-b97ed6bc"><span class="cl-b97ec8c0">Length</span></p></td>
+<td class="cl-b97f01e8"><p class="cl-b97ed6bc"><span class="cl-b97ec8c0">Wdith</span></p></td>
+<td class="cl-b97f01e8"><p class="cl-b97ed6bc"><span class="cl-b97ec8ca">Area</span></p></td>
+<td class="cl-b97f01e8"><p class="cl-b97ed6bc"><span class="cl-b97ec8ca">Volume</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-15af49b6"><p class="cl-15af20a6"><span class="cl-15af13d6"></span></p></td>
-<td class="cl-15af49b5"><p class="cl-15af20b0"><span class="cl-15af13d6">cm</span></p></td>
-<td class="cl-15af49b5"><p class="cl-15af20b0"><span class="cl-15af13d6">cm</span></p></td>
-<td class="cl-15af49b5"><p class="cl-15af20b0"><span class="cl-15af13e0">cm</span><span class="cl-15af13e1">2</span></p></td>
-<td class="cl-15af49b5"><p class="cl-15af20b0"><span class="cl-15af13e0">cm</span><span class="cl-15af13e1">3</span></p></td>
+<td class="cl-b97f01ea"><p class="cl-b97ed6b2"><span class="cl-b97ec8c0"></span></p></td>
+<td class="cl-b97f01e9"><p class="cl-b97ed6bc"><span class="cl-b97ec8c0">cm</span></p></td>
+<td class="cl-b97f01e9"><p class="cl-b97ed6bc"><span class="cl-b97ec8c0">cm</span></p></td>
+<td class="cl-b97f01e9"><p class="cl-b97ed6bc"><span class="cl-b97ec8ca">cm</span><span class="cl-b97ec8cb">2</span></p></td>
+<td class="cl-b97f01e9"><p class="cl-b97ed6bc"><span class="cl-b97ec8ca">cm</span><span class="cl-b97ec8cb">3</span></p></td>
 </tr>
 </thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-15af49aa"><p class="cl-15af20a6"><span class="cl-15af13ea">m</span></p></td>
-<td class="cl-15af49a0"><p class="cl-15af20b0"><span class="cl-15af13eb">200.00</span></p></td>
-<td class="cl-15af49a0"><p class="cl-15af20b0"><span class="cl-15af13eb">12.00</span></p></td>
-<td class="cl-15af49a0"><p class="cl-15af20b0"><span class="cl-15af13eb">240.00</span></p></td>
-<td class="cl-15af49a0"><p class="cl-15af20b0"><span class="cl-15af13eb">1,200.00</span></p></td>
+<td class="cl-b97f01dc"><p class="cl-b97ed6b2"><span class="cl-b97ec8cc">m</span></p></td>
+<td class="cl-b97f01d2"><p class="cl-b97ed6bc"><span class="cl-b97ec8d4">200.00</span></p></td>
+<td class="cl-b97f01d2"><p class="cl-b97ed6bc"><span class="cl-b97ec8d4">12.00</span></p></td>
+<td class="cl-b97f01d2"><p class="cl-b97ed6bc"><span class="cl-b97ec8d4">240.00</span></p></td>
+<td class="cl-b97f01d2"><p class="cl-b97ed6bc"><span class="cl-b97ec8d4">1,200.00</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-15af49ac"><p class="cl-15af20a6"><span class="cl-15af13ea">s</span><span class="cl-15af13e1">2</span></p></td>
-<td class="cl-15af49ab"><p class="cl-15af20b0"><span class="cl-15af13eb">0.13</span></p></td>
-<td class="cl-15af49ab"><p class="cl-15af20b0"><span class="cl-15af13eb">0.05</span></p></td>
-<td class="cl-15af49ab"><p class="cl-15af20b0"><span class="cl-15af13eb">0.11</span></p></td>
-<td class="cl-15af49ab"><p class="cl-15af20b0"><span class="cl-15af13eb">0.32</span></p></td>
+<td class="cl-b97f01e6"><p class="cl-b97ed6b2"><span class="cl-b97ec8cc">s</span><span class="cl-b97ec8cb">2</span></p></td>
+<td class="cl-b97f01dd"><p class="cl-b97ed6bc"><span class="cl-b97ec8d4">0.13</span></p></td>
+<td class="cl-b97f01dd"><p class="cl-b97ed6bc"><span class="cl-b97ec8d4">0.05</span></p></td>
+<td class="cl-b97f01dd"><p class="cl-b97ed6bc"><span class="cl-b97ec8d4">0.11</span></p></td>
+<td class="cl-b97f01dd"><p class="cl-b97ed6bc"><span class="cl-b97ec8d4">0.32</span></p></td>
 </tr>
 </tbody>
 </table>
-</div></template><div class="flextable-shadow-host" id="3547b468-f148-4524-8333-2a84285160ce"></div>
+</div></template><div class="flextable-shadow-host" id="23431fca-fb39-4df1-b374-00a7518dd0d3"></div>
 <script>
-var dest = document.getElementById("3547b468-f148-4524-8333-2a84285160ce");
-var template = document.getElementById("6083ae6c-1132-43cc-a59b-a914031f21bd");
+var dest = document.getElementById("23431fca-fb39-4df1-b374-00a7518dd0d3");
+var template = document.getElementById("077ded69-eb91-46d4-aa2e-1ba237707828");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
