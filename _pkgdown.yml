@@ -41,6 +41,7 @@ reference:
 - title: "Miscellanious"
   desc: "Other useful functions"
 - contents:
+  - onbrand
   - fetch_rpttype
   - fetch_report_format
 navbar:

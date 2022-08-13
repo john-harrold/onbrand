@@ -23,7 +23,7 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-chalkboard-teacher"></span>
      
     Tutorials
@@ -77,29 +77,39 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">report_add_slide</span><span class="op">(</span><span class="va">obnd</span>, template <span class="op">=</span> <span class="cn">NULL</span>, elements <span class="op">=</span> <span class="cn">NULL</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">report_add_slide</span><span class="op">(</span><span class="va">obnd</span>, template <span class="op">=</span> <span class="cn">NULL</span>, elements <span class="op">=</span> <span class="cn">NULL</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>obnd</dt>
 <dd><p>onbrand report object</p></dd>
+
+
 <dt>template</dt>
 <dd><p>Name of slide template to use (name from templates in yaml mapping file)</p></dd>
+
+
 <dt>elements</dt>
 <dd><p>Content and type for each placeholder you wish to fill for
-this slide: This is a list with names set to palceholders for the specified
-tempalte. Each placeholder is a list and should have a content element and a
+this slide: This is a list with names set to placeholders for the specified
+template. Each placeholder is a list and should have a content element and a
 type element (see Details below).</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Boolean variable when set to TRUE (default) messages will be
 displayed on the terminal; Messages will be included in the returned onbrand
 object.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>onbrand report object with either the content added or isgood set
-to FALSE with any messages in the msgs field.</p>
+    
+
+<p>onbrand report object with either the content added or isgood set
+to FALSE with any messages in the msgs field. The isgood value is a Boolean variable
+indicating the current state of the object.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -124,13 +134,14 @@ rpptx:
 </code></pre></div>
 
 <p>This shows how to populate a title slide with text:</p>
-<div class="sourceCode"><pre><code><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_slide.html">report_add_slide</a></span><span class="op">(</span><span class="va">obnd</span>,
- template <span class="op">=</span> <span class="st">"title_slide"</span>,
- elements <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
-    title     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> content      <span class="op">=</span> <span class="st">"Slide Title"</span>,
-                      type         <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span>,
-    subtitle  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> content      <span class="op">=</span> <span class="st">"Subtitle"</span>,
-                      type         <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode"><pre><code><span></span>
+<span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_slide.html">report_add_slide</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
+<span> template <span class="op">=</span> <span class="st">"title_slide"</span>,</span>
+<span> elements <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    title     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> content      <span class="op">=</span> <span class="st">"Slide Title"</span>,</span>
+<span>                      type         <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span>,</span>
+<span>    subtitle  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> content      <span class="op">=</span> <span class="st">"Subtitle"</span>,</span>
+<span>                      type         <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 
 <p>See the function <code><a href="add_pptx_ph_content.html">add_pptx_ph_content</a></code> for a list of
 allowed values for <code>type</code>. Note that if mapping defines the
@@ -145,20 +156,20 @@ cannot use a <code>text</code> type.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="read_template.html">read_template</a></span><span class="op">(</span></span>
-<span class="r-in">      template <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span><span class="op">)</span>, <span class="st">"templates"</span>, <span class="st">"report.pptx"</span><span class="op">)</span>,</span>
-<span class="r-in">      mapping  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span><span class="op">)</span>, <span class="st">"templates"</span>, <span class="st">"report.yaml"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">obnd</span> <span class="op">=</span> <span class="fu">report_add_slide</span><span class="op">(</span><span class="va">obnd</span>,</span>
-<span class="r-in"> template <span class="op">=</span> <span class="st">"content_text"</span>,</span>
-<span class="r-in"> elements <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span class="r-in">    title         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> content      <span class="op">=</span> <span class="st">"Text Example"</span>,</span>
-<span class="r-in">                          type         <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span>,</span>
-<span class="r-in">    sub_title     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> content      <span class="op">=</span> <span class="st">"Adding a slide with a block of text"</span>,</span>
-<span class="r-in">                          type         <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span>,</span>
-<span class="r-in">    content_body  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> content      <span class="op">=</span> <span class="st">"A block of text"</span>,</span>
-<span class="r-in">                          type         <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="read_template.html">read_template</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      template <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span><span class="op">)</span>, <span class="st">"templates"</span>, <span class="st">"report.pptx"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      mapping  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span><span class="op">)</span>, <span class="st">"templates"</span>, <span class="st">"report.yaml"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu">report_add_slide</span><span class="op">(</span><span class="va">obnd</span>,</span></span>
+<span class="r-in"><span> template <span class="op">=</span> <span class="st">"content_text"</span>,</span></span>
+<span class="r-in"><span> elements <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    title         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> content      <span class="op">=</span> <span class="st">"Text Example"</span>,</span></span>
+<span class="r-in"><span>                          type         <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    sub_title     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> content      <span class="op">=</span> <span class="st">"Adding a slide with a block of text"</span>,</span></span>
+<span class="r-in"><span>                          type         <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    content_body  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> content      <span class="op">=</span> <span class="st">"A block of text"</span>,</span></span>
+<span class="r-in"><span>                          type         <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -173,7 +184,7 @@ cannot use a <code>text</code> type.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

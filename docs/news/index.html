@@ -23,7 +23,7 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-chalkboard-teacher"></span>
      
     Tutorials
@@ -76,8 +76,8 @@
 <div class="section level3">
 <h3 id="changes-to-yaml-file-format-1-0-2">Changes to yaml file format<a class="anchor" aria-label="anchor" href="#changes-to-yaml-file-format-1-0-2"></a></h3>
 <ul><li>The addition of notes option for tables and figures in Word reporting requires the <code>Notes</code> document default be added to any <code>report.yaml</code> files:</li>
-</ul><pre><code><span class="va">doc_def</span><span class="op">:</span>                     
-  <span class="va">Notes</span><span class="op">:</span> <span class="va">Notes</span></code></pre>
+</ul><pre><code><span><span class="va">doc_def</span><span class="op">:</span>                     </span>
+<span>  <span class="va">Notes</span><span class="op">:</span> <span class="va">Notes</span></span></code></pre>
 <ul><li>Added the formatting options for separator (regional configuration variable that seems to be different between Europe and the US), and several table and figure formatting options: order, sequence IDs, and how numbering will be done (allows Figure 1 or Figure 3-1 (for section 3), etc.)</li>
 </ul><pre><code>formatting:
   separator:                 ","
@@ -102,10 +102,10 @@
                               post_label = "", 
                               start_at   = Caption_Start_At))</code></pre>
 <ul><li>Adding <code>post_processing</code> option for <code>rdocx</code> and <code>rpptx</code> sections. These can be omitted or set to NULL and they will have no effect. Any R code here is evaluated just before saving (when running <code><a href="../reference/save_report.html">save_report()</a></code>) and you can modify the object <code>rpt</code> (the officer report object from the <code>obnd</code> object).</li>
-</ul><pre><code><span class="va">rdocx</span><span class="op">:</span>
-  <span class="va">post_processing</span><span class="op">:</span> <span class="cn">NULL</span>
-<span class="va">rpptx</span><span class="op">:</span>
-  <span class="va">post_processing</span><span class="op">:</span> <span class="cn">NULL</span></code></pre>
+</ul><pre><code><span><span class="va">rdocx</span><span class="op">:</span></span>
+<span>  <span class="va">post_processing</span><span class="op">:</span> <span class="cn">NULL</span></span>
+<span><span class="va">rpptx</span><span class="op">:</span></span>
+<span>  <span class="va">post_processing</span><span class="op">:</span> <span class="cn">NULL</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="minor-improvements-1-0-2">Minor Improvements<a class="anchor" aria-label="anchor" href="#minor-improvements-1-0-2"></a></h3>
@@ -148,7 +148,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

@@ -26,10 +26,14 @@ list with the following elements:
 }
 \description{
 Takes an onbrand object with a loaded template and displays
-details about the template. For PowerPoint this contains the template names
-and elements present for that template. For Word it will contain defined
-text and table styles. This information can be displayed in the console,
-returned as text or formatted for use in RMarkdown documentation.
+relevant details about the template.
+}
+\details{
+Provides relevant details about an onbrand object.  For PowerPoint 
+this contains the template names and elements present for that template. For 
+Word it will contain defined text and table styles. This information can be 
+displayed in the console, returned as text or formatted for use in RMarkdown 
+documentation.
 }
 \examples{
 obnd = read_template(

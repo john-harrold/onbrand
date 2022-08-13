@@ -15,7 +15,7 @@ md_to_oo(strs, default_format = NULL)
 list with the following elements
 \itemize{
  \item{isgood}:    Boolean value indicating the result of the function call
- \item{msgs}:      sequence of strings contianing a description of any problems
+ \item{msgs}:      sequence of strings containing a description of any problems
  \item{as_par_cmd}:as_paragraph generated code from md_to_officer
  \item{oo}:        as_paragraph officer object resulting from running the as_par_cmd code
 }

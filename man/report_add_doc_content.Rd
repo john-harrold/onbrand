@@ -34,7 +34,8 @@ object.}
 }
 \value{
 onbrand object with the content added to the body or isgood set
-to FALSE with any messages in the msgs field.
+to FALSE with any messages in the msgs field. The isgood value is a Boolean variable
+indicating the current state of the object.
 }
 \description{
 Appends content to the body of a Word document
@@ -43,7 +44,7 @@ Appends content to the body of a Word document
 For each \code{content} types listed below the different \code{content} outlined is expected. Text
 can be specified in different formats: \code{"text"} indicates plain text,
 \code{"fpar"} is formatted text defined by the \code{fpar} command from the
-\code{officer} package, \code{"ftext"} is alist of formatted text defined
+\code{officer} package, \code{"ftext"} is a list of formatted text defined
 by the \code{ftext} command, and \code{"md"} is text formatted in markdown
 format (\code{?md_to_officer} for markdown details).
 

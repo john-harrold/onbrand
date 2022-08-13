@@ -39,10 +39,9 @@ md_to_officer(
 }}
 }
 \value{
-list with parsed paragraph elements ubiquity system object with the
-content added to the body, each paragraph can be found in a numbered list
-element (e.g. \code{pgraph_1}, \code{pgraph_2}, etc) each with the following
-elements:
+list with parsed paragraph elements with the content added to the body, 
+each paragraph can be found in a numbered list element (e.g. \code{pgraph_1},
+\code{pgraph_2}, etc) each with the following elements:
 \itemize{
  \item{locs}: Dataframe showing the locations of markdown elements in the current paragraph
  \item{pele}: These are the individual parsed paragraph elements

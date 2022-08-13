@@ -592,8 +592,6 @@ obnd = report_add_doc_content(obnd,
 
 When figures and tables are created above each content list has an optional key. In the example from the last section we created the key `"ex_fig_text"`. To reference in the word document you have two options. You can construct your content using onbrand markdown. Then you simply need to use the `ref` tag: `<ref:ex_fig_text>` and the figure number will be replaced when the document is built. You can also use the `officer::fpar()` function to construct content. Then you would use the officer command `officer::run_reference()` and the figure key to insert the figure number. 
 
-JMH
-
 ### Saving the Word report 
 
 Once you are done adding content you can save the report to a file with the `save_report()`` function as well:

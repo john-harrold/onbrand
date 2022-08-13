@@ -23,7 +23,7 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-chalkboard-teacher"></span>
      
     Tutorials
@@ -77,20 +77,25 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fetch_rpttype</span><span class="op">(</span>template <span class="op">=</span> <span class="cn">NULL</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">fetch_rpttype</span><span class="op">(</span>template <span class="op">=</span> <span class="cn">NULL</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>template</dt>
 <dd><p>Name of PowerPoint or Word file</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Boolean variable when set to TRUE (default) messages will be
 displayed on the terminal; Messages will be included in the returned list.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>List with the following elements</p><ul><li><p>rpttype: Either Word, PowerPoint or Unknown</p></li>
+    
+
+<p>List with the following elements</p><ul><li><p>rpttype: Either Word, PowerPoint or Unknown</p></li>
 <li><p>rptext: Either docx, pptx, or Unknown</p></li>
 <li><p>rptobj: Either rdocx, rpptx, or Unknown</p></li>
 <li><p>isgood: Boolean variable indicating success or failure</p></li>
@@ -99,9 +104,9 @@ displayed on the terminal; Messages will be included in the returned list.</p></
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">rpttype</span> <span class="op">=</span> <span class="fu">fetch_rpttype</span><span class="op">(</span>template<span class="op">=</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span><span class="op">)</span>, <span class="st">"templates"</span>, <span class="st">"report.pptx"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">rpttype</span> <span class="op">=</span> <span class="fu">fetch_rpttype</span><span class="op">(</span>template<span class="op">=</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span><span class="op">)</span>, <span class="st">"templates"</span>, <span class="st">"report.pptx"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -116,7 +121,7 @@ displayed on the terminal; Messages will be included in the returned list.</p></
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

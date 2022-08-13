@@ -12,8 +12,8 @@ report_add_slide(obnd, template = NULL, elements = NULL, verbose = TRUE)
 \item{template}{Name of slide template to use (name from templates in yaml mapping file)}
 
 \item{elements}{Content and type for each placeholder you wish to fill for
-this slide: This is a list with names set to palceholders for the specified
-tempalte. Each placeholder is a list and should have a content element and a
+this slide: This is a list with names set to placeholders for the specified
+template. Each placeholder is a list and should have a content element and a
 type element (see Details below).}
 
 \item{verbose}{Boolean variable when set to TRUE (default) messages will be
@@ -22,7 +22,8 @@ object.}
 }
 \value{
 onbrand report object with either the content added or isgood set
-to FALSE with any messages in the msgs field.
+to FALSE with any messages in the msgs field. The isgood value is a Boolean variable
+indicating the current state of the object.
 }
 \description{
 Creates a report slide and populates the content

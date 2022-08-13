@@ -23,7 +23,7 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-chalkboard-teacher"></span>
      
     Tutorials
@@ -77,12 +77,12 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">md_to_officer</span><span class="op">(</span>
-  <span class="va">str</span>,
-  default_format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span>, font.size <span class="op">=</span> <span class="fl">12</span>, bold <span class="op">=</span> <span class="cn">FALSE</span>, italic <span class="op">=</span> <span class="cn">FALSE</span>,
-    underlined <span class="op">=</span> <span class="cn">FALSE</span>, font.family <span class="op">=</span> <span class="st">"Cambria (Body)"</span>, vertical.align <span class="op">=</span> <span class="st">"baseline"</span>,
-    shading.color <span class="op">=</span> <span class="st">"transparent"</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">md_to_officer</span><span class="op">(</span></span>
+<span>  <span class="va">str</span>,</span>
+<span>  default_format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span>, font.size <span class="op">=</span> <span class="fl">12</span>, bold <span class="op">=</span> <span class="cn">FALSE</span>, italic <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    underlined <span class="op">=</span> <span class="cn">FALSE</span>, font.family <span class="op">=</span> <span class="st">"Cambria (Body)"</span>, vertical.align <span class="op">=</span> <span class="st">"baseline"</span>,</span>
+<span>    shading.color <span class="op">=</span> <span class="st">"transparent"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -98,35 +98,44 @@
 <li><p>font family: <code>"&lt;ff:symbol&gt;symbol&lt;/ff&gt;"</code></p></li>
 <li><p>reference:   <code>"&lt;ref:key&gt;"</code> Where <code>"key"</code> is the value  assigned when adding a table or figure</p></li>
 </ul></dd>
+
+
 <dt>default_format</dt>
-<dd><p>list containing the default format for elements not defined with markdown default values.</p><div class="sourceCode"><pre><code><span class="va">default_format</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
-      color          <span class="op">=</span> <span class="st">"black"</span>,
-      font.size      <span class="op">=</span> <span class="fl">12</span>,
-      bold           <span class="op">=</span> <span class="cn">FALSE</span>,
-      italic         <span class="op">=</span> <span class="cn">FALSE</span>,
-      underlined     <span class="op">=</span> <span class="cn">FALSE</span>,
-      font.family    <span class="op">=</span> <span class="st">"Cambria (Body)"</span>,
-      vertical.align <span class="op">=</span> <span class="st">"baseline"</span>,
-      shading.color  <span class="op">=</span> <span class="st">"transparent"</span><span class="op">)</span></code></pre></div></dd>
+<dd><p>list containing the default format for elements not defined with markdown default values.</p><div class="sourceCode"><pre><code><span></span>
+<span>   <span class="va">default_format</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>      color          <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>      font.size      <span class="op">=</span> <span class="fl">12</span>,</span>
+<span>      bold           <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>      italic         <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>      underlined     <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>      font.family    <span class="op">=</span> <span class="st">"Cambria (Body)"</span>,</span>
+<span>      vertical.align <span class="op">=</span> <span class="st">"baseline"</span>,</span>
+<span>      shading.color  <span class="op">=</span> <span class="st">"transparent"</span><span class="op">)</span></span></code></pre></div></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>list with parsed paragraph elements ubiquity system object with the
-content added to the body, each paragraph can be found in a numbered list
-element (e.g. <code>pgraph_1</code>, <code>pgraph_2</code>, etc) each with the following
-elements:</p><ul><li><p>locs: Dataframe showing the locations of markdown elements in the current paragraph</p></li>
+    
+
+<p>list with parsed paragraph elements with the content added to the body, 
+each paragraph can be found in a numbered list element (e.g. <code>pgraph_1</code>,
+<code>pgraph_2</code>, etc) each with the following elements:</p><ul><li><p>locs: Dataframe showing the locations of markdown elements in the current paragraph</p></li>
 <li><p>pele: These are the individual parsed paragraph elements</p></li>
 <li><p>ftext_cmd: String containing the ftext commands.</p></li>
 <li><p>fpar_cmd: String containing the fpar commands that can be run using
- <code>eval</code> to return the output of <code>fpar</code>. For example:</p><div class="sourceCode"><pre><code><span class="va">myfpar</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text<span class="op">=</span><span class="va">pgparse</span><span class="op">$</span><span class="va">pgraph_1</span><span class="op">$</span><span class="va">fpar_cmd</span><span class="op">)</span><span class="op">)</span></code></pre></div></li>
-<li><p>as_paragraph_cmd: String containing the as_paragraph_cmd that can be run using</p><div class="sourceCode"><pre><code><span class="va">myas_para</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text<span class="op">=</span><span class="va">pgparse</span><span class="op">$</span><span class="va">pgraph_1</span><span class="op">$</span><span class="va">as_paragraph_cmd</span><span class="op">)</span><span class="op">)</span></code></pre></div></li>
+ <code>eval</code> to return the output of <code>fpar</code>. For example:</p><div class="sourceCode"><pre><code><span></span>
+<span>  <span class="va">myfpar</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text<span class="op">=</span><span class="va">pgparse</span><span class="op">$</span><span class="va">pgraph_1</span><span class="op">$</span><span class="va">fpar_cmd</span><span class="op">)</span><span class="op">)</span></span>
+<span> </span></code></pre></div></li>
+<li><p>as_paragraph_cmd: String containing the as_paragraph_cmd that can be run using</p><div class="sourceCode"><pre><code><span></span>
+<span>  <span class="va">myas_para</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text<span class="op">=</span><span class="va">pgparse</span><span class="op">$</span><span class="va">pgraph_1</span><span class="op">$</span><span class="va">as_paragraph_cmd</span><span class="op">)</span><span class="op">)</span></span>
+<span> </span></code></pre></div></li>
 </ul></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">res</span>              <span class="op">=</span> <span class="fu">md_to_officer</span><span class="op">(</span><span class="st">"Be **bold**!"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">fpar_obj</span>         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text<span class="op">=</span><span class="va">res</span><span class="op">$</span><span class="va">pgraph_1</span><span class="op">$</span><span class="va">fpar_cmd</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">as_paragraph_obj</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text<span class="op">=</span><span class="va">res</span><span class="op">$</span><span class="va">pgraph_1</span><span class="op">$</span><span class="va">as_paragraph_cmd</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">res</span>              <span class="op">=</span> <span class="fu">md_to_officer</span><span class="op">(</span><span class="st">"Be **bold**!"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fpar_obj</span>         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text<span class="op">=</span><span class="va">res</span><span class="op">$</span><span class="va">pgraph_1</span><span class="op">$</span><span class="va">fpar_cmd</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">as_paragraph_obj</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text<span class="op">=</span><span class="va">res</span><span class="op">$</span><span class="va">pgraph_1</span><span class="op">$</span><span class="va">as_paragraph_cmd</span><span class="op">)</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -141,7 +150,7 @@ elements:</p><ul><li><p>locs: Dataframe showing the locations of markdown elemen
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

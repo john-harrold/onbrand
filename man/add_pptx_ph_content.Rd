@@ -11,7 +11,7 @@ add_pptx_ph_content(obnd, content_type, content, ph_label, verbose = TRUE)
 
 \item{content_type}{string indicating the content type}
 
-\item{content}{content}
+\item{content}{content (see details below)}
 
 \item{ph_label}{placeholder location (text)}
 

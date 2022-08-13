@@ -26,12 +26,15 @@ List with the following elements
 }
 }
 \description{
-Elements of slide masters are identified by placeholder labels.
-As PowerPoint masters are created the labels
-can be difficult to predict. Word documents are identified by style names.
-This function will create a layout file identifying all of the elements of
-each slide master for a PowerPoint template or each paragraph and table
-style for a Word template.
+Produces a report with each layout element labeled.
+}
+\details{
+Generates an Annotated report based on the template provided.  
+Elements of slide masters are identified by placeholder labels. As PowerPoint 
+masters are created the labels can be difficult to predict. Word documents are 
+identified by style names. This function will create a layout file identifying 
+all of the elements of each slide master for a PowerPoint template or each 
+paragraph and table style for a Word template.
 }
 \examples{
 lpptx = view_layout(

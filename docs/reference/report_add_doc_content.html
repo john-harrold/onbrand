@@ -23,7 +23,7 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-chalkboard-teacher"></span>
      
     Tutorials
@@ -77,48 +77,62 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">report_add_doc_content</span><span class="op">(</span>
-  <span class="va">obnd</span>,
-  type <span class="op">=</span> <span class="cn">NULL</span>,
-  content <span class="op">=</span> <span class="cn">NULL</span>,
-  fig_start_at <span class="op">=</span> <span class="cn">NULL</span>,
-  tab_start_at <span class="op">=</span> <span class="cn">NULL</span>,
-  verbose <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">report_add_doc_content</span><span class="op">(</span></span>
+<span>  <span class="va">obnd</span>,</span>
+<span>  type <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  content <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  fig_start_at <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  tab_start_at <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>obnd</dt>
 <dd><p>onbrand report object</p></dd>
+
+
 <dt>type</dt>
 <dd><p>Type of content to add</p></dd>
+
+
 <dt>content</dt>
 <dd><p>Content to add</p></dd>
+
+
 <dt>fig_start_at</dt>
 <dd><p>Indicates that you want to restart figure numbering at
 the specified value (e.g. 1) after adding this content a value of <code>NULL</code> (default)
 will ignore this option.</p></dd>
+
+
 <dt>tab_start_at</dt>
 <dd><p>Indicates that you want to restart figure numbering at
 the specified value (e.g. 1) after adding this content a value of <code>NULL</code> (default)
 will ignore this option.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Boolean variable when set to TRUE (default) messages will be
 displayed on the terminal; Messages will be included in the returned onbrand
 object.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>onbrand object with the content added to the body or isgood set
-to FALSE with any messages in the msgs field.</p>
+    
+
+<p>onbrand object with the content added to the body or isgood set
+to FALSE with any messages in the msgs field. The isgood value is a Boolean variable
+indicating the current state of the object.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
     <p>For each <code>content</code> types listed below the different <code>content</code> outlined is expected. Text
 can be specified in different formats: <code>"text"</code> indicates plain text,
 <code>"fpar"</code> is formatted text defined by the <code>fpar</code> command from the
-<code>officer</code> package, <code>"ftext"</code> is alist of formatted text defined
+<code>officer</code> package, <code>"ftext"</code> is a list of formatted text defined
 by the <code>ftext</code> command, and <code>"md"</code> is text formatted in markdown
 format (<code><a href="md_to_officer.html">?md_to_officer</a></code> for markdown details).</p>
 <ul><li><p><code>"break"</code> page break, content is (<code>NULL</code>) and a page break will be inserted here</p></li>
@@ -193,98 +207,98 @@ format (<code><a href="md_to_officer.html">?md_to_officer</a></code> for markdow
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="co"># Read  Word template into an onbrand object</span></span>
-<span class="r-in"><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="read_template.html">read_template</a></span><span class="op">(</span></span>
-<span class="r-in"> template <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span><span class="op">)</span>, <span class="st">"templates"</span>, <span class="st">"report.docx"</span><span class="op">)</span>,</span>
-<span class="r-in"> mapping  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span><span class="op">)</span>, <span class="st">"templates"</span>, <span class="st">"report.yaml"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># The examples below use the following packages</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ardata-fr.github.io/flextable-book/" class="external-link">flextable</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ardata-fr.github.io/officeverse/" class="external-link">officer</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Adding text</span></span>
-<span class="r-in"><span class="va">obnd</span> <span class="op">=</span> <span class="fu">report_add_doc_content</span><span class="op">(</span><span class="va">obnd</span>,</span>
-<span class="r-in">  type     <span class="op">=</span> <span class="st">"text"</span>,</span>
-<span class="r-in">  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>text<span class="op">=</span><span class="st">"Text with no style specified will use the doc_def text format."</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Text formatted with fpar</span></span>
-<span class="r-in"><span class="va">fpartext</span> <span class="op">=</span> <span class="fu"><a href="https://davidgohel.github.io/officer/reference/fpar.html" class="external-link">fpar</a></span><span class="op">(</span></span>
-<span class="r-in"><span class="fu"><a href="https://davidgohel.github.io/officer/reference/ftext.html" class="external-link">ftext</a></span><span class="op">(</span><span class="st">"Formatted text can be created using the "</span>, prop<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span>,</span>
-<span class="r-in"><span class="fu"><a href="https://davidgohel.github.io/officer/reference/ftext.html" class="external-link">ftext</a></span><span class="op">(</span><span class="st">"fpar "</span>, prop<span class="op">=</span><span class="fu"><a href="https://davidgohel.github.io/officer/reference/fp_text.html" class="external-link">fp_text</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"green"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in"><span class="fu"><a href="https://davidgohel.github.io/officer/reference/ftext.html" class="external-link">ftext</a></span><span class="op">(</span><span class="st">"command from the officer package."</span>, prop<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">obnd</span> <span class="op">=</span> <span class="fu">report_add_doc_content</span><span class="op">(</span><span class="va">obnd</span>,</span>
-<span class="r-in"> type     <span class="op">=</span> <span class="st">"text"</span>,</span>
-<span class="r-in"> content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>text   <span class="op">=</span> <span class="va">fpartext</span>,</span>
-<span class="r-in">                 format <span class="op">=</span> <span class="st">"fpar"</span>,</span>
-<span class="r-in">                 style  <span class="op">=</span> <span class="st">"Normal"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Text formatted with markdown</span></span>
-<span class="r-in"><span class="va">mdtext</span> <span class="op">=</span> <span class="st">"Formatted text can be created using</span>
-<span class="r-in">**&lt;color:green&gt;markdown&lt;/color&gt;** formatting"</span></span>
-<span class="r-in"><span class="va">obnd</span> <span class="op">=</span> <span class="fu">report_add_doc_content</span><span class="op">(</span><span class="va">obnd</span>,</span>
-<span class="r-in"> type     <span class="op">=</span> <span class="st">"text"</span>,</span>
-<span class="r-in"> content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>text   <span class="op">=</span> <span class="va">mdtext</span>,</span>
-<span class="r-in">                 format <span class="op">=</span> <span class="st">"md"</span>,</span>
-<span class="r-in">                 style  <span class="op">=</span> <span class="st">"Normal"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Adding figures</span></span>
-<span class="r-in"><span class="va">p</span> <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="external-link">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x<span class="op">=</span><span class="fl">0</span>, y<span class="op">=</span><span class="fl">0</span>, label <span class="op">=</span> <span class="st">"picture example"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">imgfile</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern<span class="op">=</span><span class="st">"image"</span>, fileext<span class="op">=</span><span class="st">".png"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggsave</a></span><span class="op">(</span>filename<span class="op">=</span><span class="va">imgfile</span>, plot<span class="op">=</span><span class="va">p</span>, height<span class="op">=</span><span class="fl">5.15</span>, width<span class="op">=</span><span class="fl">9</span>, units<span class="op">=</span><span class="st">"in"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># From an image file:</span></span>
-<span class="r-in"><span class="va">obnd</span> <span class="op">=</span> <span class="fu">report_add_doc_content</span><span class="op">(</span><span class="va">obnd</span>,</span>
-<span class="r-in">type     <span class="op">=</span> <span class="st">"imagefile"</span>,</span>
-<span class="r-in">content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>image   <span class="op">=</span> <span class="va">imgfile</span>,</span>
-<span class="r-in">               caption <span class="op">=</span> <span class="st">"This is an example of an image from a file."</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># From a ggplot object</span></span>
-<span class="r-in"><span class="va">obnd</span> <span class="op">=</span> <span class="fu">report_add_doc_content</span><span class="op">(</span><span class="va">obnd</span>,</span>
-<span class="r-in">type     <span class="op">=</span> <span class="st">"imagefile"</span>,</span>
-<span class="r-in">content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>image   <span class="op">=</span> <span class="va">imgfile</span>,</span>
-<span class="r-in">               caption <span class="op">=</span> <span class="st">"This is an example of an image from a file."</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">#Adding tables</span></span>
-<span class="r-in"><span class="va">tdf</span> <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Parameters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Length"</span>, <span class="st">"Width"</span>, <span class="st">"Height"</span><span class="op">)</span>,</span>
-<span class="r-in">                Values     <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,</span>
-<span class="r-in">                Units      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"m"</span>, <span class="st">"m"</span>, <span class="st">"m"</span><span class="op">)</span> <span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Word table</span></span>
-<span class="r-in"><span class="va">tab_cont</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>table   <span class="op">=</span> <span class="va">tdf</span>,</span>
-<span class="r-in">               caption <span class="op">=</span> <span class="st">"Word Table."</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">obnd</span> <span class="op">=</span> <span class="fu">report_add_doc_content</span><span class="op">(</span><span class="va">obnd</span>,</span>
-<span class="r-in"> type     <span class="op">=</span> <span class="st">"table"</span>,</span>
-<span class="r-in"> content  <span class="op">=</span> <span class="va">tab_cont</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># onbrand flextable abstraction:</span></span>
-<span class="r-in"><span class="va">tab_cont</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>table   <span class="op">=</span> <span class="va">tdf</span>,</span>
-<span class="r-in">               caption <span class="op">=</span> <span class="st">"Word Table."</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">obnd</span> <span class="op">=</span> <span class="fu">report_add_doc_content</span><span class="op">(</span><span class="va">obnd</span>,</span>
-<span class="r-in">type     <span class="op">=</span> <span class="st">"table"</span>,</span>
-<span class="r-in">content  <span class="op">=</span> <span class="va">tab_cont</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># flextable object</span></span>
-<span class="r-in"><span class="va">tab_fto</span> <span class="op">=</span> <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/flextable.html" class="external-link">flextable</a></span><span class="op">(</span><span class="va">tdf</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">obnd</span> <span class="op">=</span> <span class="fu">report_add_doc_content</span><span class="op">(</span><span class="va">obnd</span>,</span>
-<span class="r-in"> type     <span class="op">=</span> <span class="st">"flextable_object"</span>,</span>
-<span class="r-in"> content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ft<span class="op">=</span><span class="va">tab_fto</span>,</span>
-<span class="r-in">                 caption  <span class="op">=</span> <span class="st">"Flextable object created by the user."</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Saving the report output</span></span>
-<span class="r-in"><span class="fu"><a href="save_report.html">save_report</a></span><span class="op">(</span><span class="va">obnd</span>, <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".docx"</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Read  Word template into an onbrand object</span></span></span>
+<span class="r-in"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="read_template.html">read_template</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span> template <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span><span class="op">)</span>, <span class="st">"templates"</span>, <span class="st">"report.docx"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> mapping  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span><span class="op">)</span>, <span class="st">"templates"</span>, <span class="st">"report.yaml"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># The examples below use the following packages</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ardata-fr.github.io/flextable-book/" class="external-link">flextable</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ardata-fr.github.io/officeverse/" class="external-link">officer</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Adding text</span></span></span>
+<span class="r-in"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu">report_add_doc_content</span><span class="op">(</span><span class="va">obnd</span>,</span></span>
+<span class="r-in"><span>  type     <span class="op">=</span> <span class="st">"text"</span>,</span></span>
+<span class="r-in"><span>  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>text<span class="op">=</span><span class="st">"Text with no style specified will use the doc_def text format."</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Text formatted with fpar</span></span></span>
+<span class="r-in"><span><span class="va">fpartext</span> <span class="op">=</span> <span class="fu"><a href="https://davidgohel.github.io/officer/reference/fpar.html" class="external-link">fpar</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://davidgohel.github.io/officer/reference/ftext.html" class="external-link">ftext</a></span><span class="op">(</span><span class="st">"Formatted text can be created using the "</span>, prop<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://davidgohel.github.io/officer/reference/ftext.html" class="external-link">ftext</a></span><span class="op">(</span><span class="st">"fpar "</span>, prop<span class="op">=</span><span class="fu"><a href="https://davidgohel.github.io/officer/reference/fp_text.html" class="external-link">fp_text</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"green"</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://davidgohel.github.io/officer/reference/ftext.html" class="external-link">ftext</a></span><span class="op">(</span><span class="st">"command from the officer package."</span>, prop<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu">report_add_doc_content</span><span class="op">(</span><span class="va">obnd</span>,</span></span>
+<span class="r-in"><span> type     <span class="op">=</span> <span class="st">"text"</span>,</span></span>
+<span class="r-in"><span> content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>text   <span class="op">=</span> <span class="va">fpartext</span>,</span></span>
+<span class="r-in"><span>                 format <span class="op">=</span> <span class="st">"fpar"</span>,</span></span>
+<span class="r-in"><span>                 style  <span class="op">=</span> <span class="st">"Normal"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Text formatted with markdown</span></span></span>
+<span class="r-in"><span><span class="va">mdtext</span> <span class="op">=</span> <span class="st">"Formatted text can be created using</span></span></span>
+<span class="r-in"><span><span class="st">**&lt;color:green&gt;markdown&lt;/color&gt;** formatting"</span></span></span>
+<span class="r-in"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu">report_add_doc_content</span><span class="op">(</span><span class="va">obnd</span>,</span></span>
+<span class="r-in"><span> type     <span class="op">=</span> <span class="st">"text"</span>,</span></span>
+<span class="r-in"><span> content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>text   <span class="op">=</span> <span class="va">mdtext</span>,</span></span>
+<span class="r-in"><span>                 format <span class="op">=</span> <span class="st">"md"</span>,</span></span>
+<span class="r-in"><span>                 style  <span class="op">=</span> <span class="st">"Normal"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Adding figures</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="external-link">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x<span class="op">=</span><span class="fl">0</span>, y<span class="op">=</span><span class="fl">0</span>, label <span class="op">=</span> <span class="st">"picture example"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">imgfile</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern<span class="op">=</span><span class="st">"image"</span>, fileext<span class="op">=</span><span class="st">".png"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggsave</a></span><span class="op">(</span>filename<span class="op">=</span><span class="va">imgfile</span>, plot<span class="op">=</span><span class="va">p</span>, height<span class="op">=</span><span class="fl">5.15</span>, width<span class="op">=</span><span class="fl">9</span>, units<span class="op">=</span><span class="st">"in"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># From an image file:</span></span></span>
+<span class="r-in"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu">report_add_doc_content</span><span class="op">(</span><span class="va">obnd</span>,</span></span>
+<span class="r-in"><span>type     <span class="op">=</span> <span class="st">"imagefile"</span>,</span></span>
+<span class="r-in"><span>content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>image   <span class="op">=</span> <span class="va">imgfile</span>,</span></span>
+<span class="r-in"><span>               caption <span class="op">=</span> <span class="st">"This is an example of an image from a file."</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># From a ggplot object</span></span></span>
+<span class="r-in"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu">report_add_doc_content</span><span class="op">(</span><span class="va">obnd</span>,</span></span>
+<span class="r-in"><span>type     <span class="op">=</span> <span class="st">"imagefile"</span>,</span></span>
+<span class="r-in"><span>content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>image   <span class="op">=</span> <span class="va">imgfile</span>,</span></span>
+<span class="r-in"><span>               caption <span class="op">=</span> <span class="st">"This is an example of an image from a file."</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#Adding tables</span></span></span>
+<span class="r-in"><span><span class="va">tdf</span> <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Parameters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Length"</span>, <span class="st">"Width"</span>, <span class="st">"Height"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                Values     <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,</span></span>
+<span class="r-in"><span>                Units      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"m"</span>, <span class="st">"m"</span>, <span class="st">"m"</span><span class="op">)</span> <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Word table</span></span></span>
+<span class="r-in"><span><span class="va">tab_cont</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>table   <span class="op">=</span> <span class="va">tdf</span>,</span></span>
+<span class="r-in"><span>               caption <span class="op">=</span> <span class="st">"Word Table."</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu">report_add_doc_content</span><span class="op">(</span><span class="va">obnd</span>,</span></span>
+<span class="r-in"><span> type     <span class="op">=</span> <span class="st">"table"</span>,</span></span>
+<span class="r-in"><span> content  <span class="op">=</span> <span class="va">tab_cont</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># onbrand flextable abstraction:</span></span></span>
+<span class="r-in"><span><span class="va">tab_cont</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>table   <span class="op">=</span> <span class="va">tdf</span>,</span></span>
+<span class="r-in"><span>               caption <span class="op">=</span> <span class="st">"Word Table."</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu">report_add_doc_content</span><span class="op">(</span><span class="va">obnd</span>,</span></span>
+<span class="r-in"><span>type     <span class="op">=</span> <span class="st">"table"</span>,</span></span>
+<span class="r-in"><span>content  <span class="op">=</span> <span class="va">tab_cont</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># flextable object</span></span></span>
+<span class="r-in"><span><span class="va">tab_fto</span> <span class="op">=</span> <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/flextable.html" class="external-link">flextable</a></span><span class="op">(</span><span class="va">tdf</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu">report_add_doc_content</span><span class="op">(</span><span class="va">obnd</span>,</span></span>
+<span class="r-in"><span> type     <span class="op">=</span> <span class="st">"flextable_object"</span>,</span></span>
+<span class="r-in"><span> content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ft<span class="op">=</span><span class="va">tab_fto</span>,</span></span>
+<span class="r-in"><span>                 caption  <span class="op">=</span> <span class="st">"Flextable object created by the user."</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Saving the report output</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="save_report.html">save_report</a></span><span class="op">(</span><span class="va">obnd</span>, <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".docx"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $isgood</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $msgs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -299,7 +313,7 @@ format (<code><a href="md_to_officer.html">?md_to_officer</a></code> for markdow
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

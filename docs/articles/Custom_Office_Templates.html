@@ -40,7 +40,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-chalkboard-teacher"></span>
      
     Tutorials
@@ -103,23 +103,35 @@
 
     
     
-<div class="section level1">
-<h1 id="introduction">Introduction <img src="onbrand_hex.png" align="right" height="138.5" border="0px"><a class="anchor" aria-label="anchor" href="#introduction"></a>
-</h1>
-<p>The main purpose of <code>onbrand</code> is to create an abstraction layer that allows for the same reporting workflow to be used with different document templates. In order to do this, the abstraction information (or mapping) needs to be provided in a <code>yaml</code> configuration file. The process will be detailed below, but at a high level it involves the following steps:</p>
+<div class="section level2">
+<h2 id="introduction">Introduction
+<img src="onbrand_hex.png" align="right" height="138.5" border="0px"><a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p>The main purpose of <code>onbrand</code> is to create an abstraction
+layer that allows for the same reporting workflow to be used with
+different document templates. In order to do this, the abstraction
+information (or mapping) needs to be provided in a <code>yaml</code>
+configuration file. The process will be detailed below, but at a high
+level it involves the following steps:</p>
 <ol style="list-style-type: decimal">
-<li>Read in a template using the function: <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code><br>
+<li>Read in a template using the function:
+<code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code><br>
 </li>
-<li>Use the resulting files to create the mapping (saved as a <code>.yaml</code>)</li>
-<li>Test the mapping for accuracy using the function: <code><a href="../reference/preview_template.html">onbrand::preview_template()</a></code>
+<li>Use the resulting files to create the mapping (saved as a
+<code>.yaml</code>)</li>
+<li>Test the mapping for accuracy using the function:
+<code><a href="../reference/preview_template.html">onbrand::preview_template()</a></code>
 </li>
 </ol>
-<p>The following sections describe this process in detail for both Word and PowerPoint documents. Before you get started, copy the provided examples into your current working directory. To do so, use the following code:</p>
+<p>The following sections describe this process in detail for both Word
+and PowerPoint documents. Before you get started, copy the provided
+examples into your current working directory. To do so, use the
+following code:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://onbrand.ubiquity.tools/" class="external-link">onbrand</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.copy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span>,<span class="st">"examples"</span>,<span class="st">"example.pptx"</span><span class="op">)</span>, <span class="st">"."</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.copy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span>,<span class="st">"examples"</span>,<span class="st">"example.docx"</span><span class="op">)</span>, <span class="st">"."</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.copy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span>,<span class="st">"examples"</span>,<span class="st">"example.yaml"</span><span class="op">)</span>, <span class="st">"."</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://onbrand.ubiquity.tools/" class="external-link">onbrand</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.copy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span>,<span class="st">"examples"</span>,<span class="st">"example.pptx"</span><span class="op">)</span>, <span class="st">"."</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.copy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span>,<span class="st">"examples"</span>,<span class="st">"example.docx"</span><span class="op">)</span>, <span class="st">"."</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.copy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span>,<span class="st">"examples"</span>,<span class="st">"example.yaml"</span><span class="op">)</span>, <span class="st">"."</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>This will create the following files:</p>
 <ul>
 <li>
@@ -127,13 +139,21 @@
 <li>
 <code>example.docx</code> - example Word template</li>
 <li>
-<code>example.yaml</code> - example <code>yaml</code> mapping file (shown at the bottom)</li>
+<code>example.yaml</code> - example <code>yaml</code> mapping file
+(shown at the bottom)</li>
 </ul>
-<div class="section level3">
-<h3 id="mapping-and-the-yaml-file-format">Mapping and the <code>yaml</code> file format<a class="anchor" aria-label="anchor" href="#mapping-and-the-yaml-file-format"></a>
-</h3>
-<p>Before we start discussing how to create templates we need to talk a little bit about the <code>yaml</code> file format (and it’s recursive nature). If you already understand this, feel free to skip ahead to the relevant section below.</p>
-<p><code>onbrand</code> utilizes the <code>yaml</code> file as a method for describing information in a hierarchical manner using key/value pairs. To help understand this better, consider the following example where the colors of the different parts a tree are listed in a hierarchy based on where the parts are located on the tree:</p>
+<div class="section level4">
+<h4 id="mapping-and-the-yaml-file-format">Mapping and the <code>yaml</code> file format<a class="anchor" aria-label="anchor" href="#mapping-and-the-yaml-file-format"></a>
+</h4>
+<p>Before we start discussing how to create templates we need to talk a
+little bit about the <code>yaml</code> file format (and it’s recursive
+nature). If you already understand this, feel free to skip ahead to the
+relevant section below.</p>
+<p><code>onbrand</code> utilizes the <code>yaml</code> file as a method
+for describing information in a hierarchical manner using key/value
+pairs. To help understand this better, consider the following example
+where the colors of the different parts a tree are listed in a hierarchy
+based on where the parts are located on the tree:</p>
 <pre><code>tree colors:
   roots:
     - white 
@@ -144,184 +164,346 @@
     branches:
       leaves:  green
       flowers: red</code></pre>
-<p>This example lays out <code>key: value</code> pairs based on the formatting of the file. The key is followed by both a colon and a space (<code>:</code>) which are, in turn, followed by the value.</p>
+<p>This example lays out <code>key: value</code> pairs based on the
+formatting of the file. The key is followed by both a colon and a space
+(<code>:</code>) which are, in turn, followed by the value.</p>
 <ul>
-<li>If you have multiple values you can list those below the key (see below about spacing).<br>
+<li>If you have multiple values you can list those below the key (see
+below about spacing).<br>
 </li>
-<li>If the value also has a colon then it’s a key for a nested value.</li>
+<li>If the value also has a colon then it’s a key for a nested
+value.</li>
 </ul>
-<p>The main key in the example above is <code>tree colors</code>. This key has three values: <code>roots</code>, <code>trunk</code>, and <code>crown</code>. One for each section of a tree. The hierarchy comes from the indentation. Each of the main sections of a tree are indented two spaces. Each of these values (<code>roots</code>, <code>trunk</code>, and <code>crown</code>) are also keys themselves because they end with both a colon and a space - and are followed by still more values.</p>
-<p>The color values associated with roots are <code>white</code> and <code>brown</code>. The <code>root</code> hierarchy is complete.</p>
-<p>The <code>trunk</code> has value <code>bark</code>. But, because <code>bark</code> is also indented two spaces and is followed by both a colon and a space, it is also a key with value <code>brown</code>. Which completes the <code>trunk</code> hierarchy.</p>
-<p>The value <code>crown</code> is indented two spaces and followed by both a colon and a space. Hence, <code>crown</code> is a key with value <code>branches</code>. Again, <code>branches</code> is indented and followed by both a colon and a space. Then, <code>branches</code> is also a key with values: <code>leaves</code> and <code>flowers</code>. Each of these are also indented and followed by by both a colon and a space. So the key <code>leaves</code> has value <code>green</code>. Similarly, key <code>flowers</code> has value <code>red</code>. This completes the <code>crown</code> hierarchy.</p>
-<p>There is more that can go into a <code>yaml</code> file, but this should be enough to help you understand how to create mapping files for <code>onbrand</code>. For more details see (yaml.org)[yaml.org].</p>
+<p>The main key in the example above is <code>tree colors</code>. This
+key has three values: <code>roots</code>, <code>trunk</code>, and
+<code>crown</code>. One for each section of a tree. The hierarchy comes
+from the indentation. Each of the main sections of a tree are indented
+two spaces. Each of these values (<code>roots</code>,
+<code>trunk</code>, and <code>crown</code>) are also keys themselves
+because they end with both a colon and a space - and are followed by
+still more values.</p>
+<p>The color values associated with roots are <code>white</code> and
+<code>brown</code>. The <code>root</code> hierarchy is complete.</p>
+<p>The <code>trunk</code> has value <code>bark</code>. But, because
+<code>bark</code> is also indented two spaces and is followed by both a
+colon and a space, it is also a key with value <code>brown</code>. Which
+completes the <code>trunk</code> hierarchy.</p>
+<p>The value <code>crown</code> is indented two spaces and followed by
+both a colon and a space. Hence, <code>crown</code> is a key with value
+<code>branches</code>. Again, <code>branches</code> is indented and
+followed by both a colon and a space. Then, <code>branches</code> is
+also a key with values: <code>leaves</code> and <code>flowers</code>.
+Each of these are also indented and followed by by both a colon and a
+space. So the key <code>leaves</code> has value <code>green</code>.
+Similarly, key <code>flowers</code> has value <code>red</code>. This
+completes the <code>crown</code> hierarchy.</p>
+<p>There is more that can go into a <code>yaml</code> file, but this
+should be enough to help you understand how to create mapping files for
+<code>onbrand</code>. For more details see (yaml.org)[yaml.org].</p>
 </div>
-<div class="section level2">
-<h2 id="powerpoint">PowerPoint<a class="anchor" aria-label="anchor" href="#powerpoint"></a>
-</h2>
-<p>This section provides a detailed walk-through for each of the three steps in the Introduction. We recommend everyone walk through this process at least once.</p>
-<p>A quick note about terminology. A slide master is the top slide in a hierarchy of slides that stores information about the theme and slide layouts of a presentation, including the background, color, fonts, effects, placeholder sizes, and positioning. The slide master is the largest slide image at the top of the slide thumbnail list.</p>
+<div class="section level3">
+<h3 id="powerpoint">PowerPoint<a class="anchor" aria-label="anchor" href="#powerpoint"></a>
+</h3>
+<p>This section provides a detailed walk-through for each of the three
+steps in the Introduction. We recommend everyone walk through this
+process at least once.</p>
+<p>A quick note about terminology. A slide master is the top slide in a
+hierarchy of slides that stores information about the theme and slide
+layouts of a presentation, including the background, color, fonts,
+effects, placeholder sizes, and positioning. The slide master is the
+largest slide image at the top of the slide thumbnail list.</p>
 <div class="figure">
 <img src="example_layout_pptx_master.png" width="400" alt=""><p class="caption">PowerPoint Slide Master Hierarchy.</p>
 </div>
-<div class="section level3">
-<h3 id="step-1-read-the-powerpoint-template">Step 1: Read the PowerPoint template<a class="anchor" aria-label="anchor" href="#step-1-read-the-powerpoint-template"></a>
-</h3>
-<p>To create your custom abstraction layer for PowerPoint, you start by reading in your master template. If you don’t already have one, create a PowerPoint template master slide with slide layouts for each of the different layouts you want to use. In this example, we have the <code>Office Theme</code> Master Slide with two slide layouts:</p>
+<div class="section level4">
+<h4 id="step-1-read-the-powerpoint-template">Step 1: Read the PowerPoint template<a class="anchor" aria-label="anchor" href="#step-1-read-the-powerpoint-template"></a>
+</h4>
+<p>To create your custom abstraction layer for PowerPoint, you start by
+reading in your master template. If you don’t already have one, create a
+PowerPoint template master slide with slide layouts for each of the
+different layouts you want to use. In this example, we have the
+<code>Office Theme</code> Master Slide with two slide layouts:</p>
 <ol style="list-style-type: decimal">
 <li>a title slide named: <code>title</code>
 </li>
-<li>a content slide with two columns of information named: <code>two_col</code>
+<li>a content slide with two columns of information named:
+<code>two_col</code>
 </li>
 </ol>
-<p><strong>Tip</strong> When you make slide layouts under a master, give each of them a descriptive name that will be easy to use when you are coding later. These names will be used to refer to them within scripts.</p>
-<p>PowerPoint assigns read-only names to every placeholder within each slide layout. To reveal those read-only names, create an annotated slide deck using the <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> function:</p>
+<p><strong>Tip</strong> When you make slide layouts under a master, give
+each of them a descriptive name that will be easy to use when you are
+coding later. These names will be used to refer to them within
+scripts.</p>
+<p>PowerPoint assigns read-only names to every placeholder within each
+slide layout. To reveal those read-only names, create an annotated slide
+deck using the <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> function:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://onbrand.ubiquity.tools/" class="external-link">onbrand</a></span><span class="op">)</span>
-<span class="va">vlres</span> <span class="op">=</span> <span class="fu"><a href="../reference/view_layout.html">view_layout</a></span><span class="op">(</span>template    <span class="op">=</span> <span class="st">"example.pptx"</span>, 
-                    output_file <span class="op">=</span> <span class="st">"example_layout.pptx"</span><span class="op">)</span></code></pre></div>
-<p>This will create the file <code>example_layout.pptx</code>. It contains a slide for each slide layout (<code>title</code> &amp; <code>two_col</code>) under the master (<code>Office Theme</code>) in the input template file (<code>example.pptx</code>). On each slide, the names of both the slide layout and slide master will be indicated in the upper right corner. Each placeholder within the slide layout will be shown and is identified by the placeholder label (<code>ph_label</code>). For each placeholder within each slide layout under a slide master, <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> produces three pieces of information: <code>ph_label</code>, <code>type</code>, and <code>index</code>. Notice, there are plenty of duplicate placeholder names.</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://onbrand.ubiquity.tools/" class="external-link">onbrand</a></span><span class="op">)</span></span>
+<span><span class="va">vlres</span> <span class="op">=</span> <span class="fu"><a href="../reference/view_layout.html">view_layout</a></span><span class="op">(</span>template    <span class="op">=</span> <span class="st">"example.pptx"</span>, </span>
+<span>                    output_file <span class="op">=</span> <span class="st">"example_layout.pptx"</span><span class="op">)</span></span></code></pre></div>
+<p>This will create the file <code>example_layout.pptx</code>. It
+contains a slide for each slide layout (<code>title</code> &amp;
+<code>two_col</code>) under the master (<code>Office Theme</code>) in
+the input template file (<code>example.pptx</code>). On each slide, the
+names of both the slide layout and slide master will be indicated in the
+upper right corner. Each placeholder within the slide layout will be
+shown and is identified by the placeholder label
+(<code>ph_label</code>). For each placeholder within each slide layout
+under a slide master, <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> produces three
+pieces of information: <code>ph_label</code>, <code>type</code>, and
+<code>index</code>. Notice, there are plenty of duplicate placeholder
+names.</p>
 </div>
-<div class="section level3">
-<h3 id="step-2-create-the-powerpoint-mapping">Step 2: Create the PowerPoint mapping<a class="anchor" aria-label="anchor" href="#step-2-create-the-powerpoint-mapping"></a>
-</h3>
-<p>Before we get to the mapping, take a moment to locate and open the <code>example.yaml</code> file we copied over at the start of this vignette. In the yaml file there will be a key for mapping PowerPoint templates (rows 1-39 in the file). This key is called <code>rpptx</code> and it will have three values (<em>which are also keys</em>):</p>
+<div class="section level4">
+<h4 id="step-2-create-the-powerpoint-mapping">Step 2: Create the PowerPoint mapping<a class="anchor" aria-label="anchor" href="#step-2-create-the-powerpoint-mapping"></a>
+</h4>
+<p>Before we get to the mapping, take a moment to locate and open the
+<code>example.yaml</code> file we copied over at the start of this
+vignette. In the yaml file there will be a key for mapping PowerPoint
+templates (rows 1-39 in the file). This key is called <code>rpptx</code>
+and it will have three values (<em>which are also keys</em>):</p>
 <ul>
 <li>
 <code>master</code> - Holds the name of the master slide</li>
 <li>
-<code>templates</code> - Has an element for each slide layout you want to use in the template</li>
+<code>templates</code> - Has an element for each slide layout you
+want to use in the template</li>
 <li>
-<code>md_def</code> - Default formatting for when markdown formatting is being used</li>
+<code>md_def</code> - Default formatting for when markdown
+formatting is being used</li>
 </ul>
-<p>Within the hierarchy of <code>rpptx: templates:</code> there is a value for each slide layout: <code>title</code> and <code>two_col</code>.</p>
+<p>Within the hierarchy of <code>rpptx: templates:</code> there is a
+value for each slide layout: <code>title</code> and
+<code>two_col</code>.</p>
 <blockquote>
-<p><em>Remember the tip in Step 1 about names? The name you provided becomes the key value in the <code>yaml</code>. It’s used to reference the placeholders on the slide in your code.</em></p>
+<p><em>Remember the tip in Step 1 about names? The name you provided
+becomes the key value in the <code>yaml</code>. It’s used to reference
+the placeholders on the slide in your code.</em></p>
 </blockquote>
-<p>Notice, the <code>example.yaml</code> doesn’t contain all of the placeholders for either slide in the <code>example_layout.pptx</code>. This is because those elements were inherited from the master slide and are not unique to either of the slide layouts.</p>
-<p>In the <code>yaml</code>, each placeholder will have two value pairs below it. For example, the placeholder <code>sub_title</code> in slide layout <code>title</code> has both <code>ph_label</code> and <code>content_type</code>. The <code>ph_label</code> maps to the <em>ph_label</em> from the annotated layout (in the <code>example_layout.pptx</code>). The <code>content_type</code> should be either <code>text</code> or <code>list</code> depending on whether the placeholder contains text or list data.</p>
-<p>The figure below shows how the annotated layout relates to the <code>yaml</code> mapping file.</p>
+<p>Notice, the <code>example.yaml</code> doesn’t contain all of the
+placeholders for either slide in the <code>example_layout.pptx</code>.
+This is because those elements were inherited from the master slide and
+are not unique to either of the slide layouts.</p>
+<p>In the <code>yaml</code>, each placeholder will have two value pairs
+below it. For example, the placeholder <code>sub_title</code> in slide
+layout <code>title</code> has both <code>ph_label</code> and
+<code>content_type</code>. The <code>ph_label</code> maps to the
+<em>ph_label</em> from the annotated layout (in the
+<code>example_layout.pptx</code>). The <code>content_type</code> should
+be either <code>text</code> or <code>list</code> depending on whether
+the placeholder contains text or list data.</p>
+<p>The figure below shows how the annotated layout relates to the
+<code>yaml</code> mapping file.</p>
 <div class="figure">
-<img src="example_layout_yaml_pptx.png" width="600" alt=""><p class="caption">Relationship between slide master names, placeholders, and content type and yaml mapping elements.</p>
+<img src="example_layout_yaml_pptx.png" width="600" alt=""><p class="caption">Relationship between slide master names,
+placeholders, and content type and yaml mapping elements.</p>
 </div>
-<p><strong>Note:</strong> You only have to define mapping information for the slide layouts under a master you want to access in R. You can have as many masters defined in the template as you want and only use a subset in R.</p>
+<p><strong>Note:</strong> You only have to define mapping information
+for the slide layouts under a master you want to access in R. You can
+have as many masters defined in the template as you want and only use a
+subset in R.</p>
 </div>
-<div class="section level3">
-<h3 id="defining-markdown-defaults">Defining markdown defaults<a class="anchor" aria-label="anchor" href="#defining-markdown-defaults"></a>
-</h3>
-<p>Now you need to define the defaults for rendering components with markdown (see the Workflow vignette for more information on how this is used). For this you need to create elements in the following hierarchy:</p>
-<pre><code><span class="va">rpptx</span><span class="op">:</span>
-  <span class="va">md_def</span><span class="op">:</span>
-    <span class="va">default</span><span class="op">:</span>      
-      <span class="va">color</span><span class="op">:</span>                 <span class="va">black</span>
-      <span class="va">font.size</span><span class="op">:</span>             <span class="fl">12</span>
-      <span class="va">bold</span><span class="op">:</span>                  <span class="cn">TRUE</span>
-      <span class="va">italic</span><span class="op">:</span>                <span class="cn">FALSE</span>
-      <span class="va">underlined</span><span class="op">:</span>            <span class="cn">FALSE</span>
-      <span class="va">font.family</span><span class="op">:</span>           <span class="va">Helvetica</span>
-      <span class="va">vertical.align</span><span class="op">:</span>        <span class="va">baseline</span>
-      <span class="va">shading.color</span><span class="op">:</span>         <span class="va">transparent</span>
-    <span class="va">Table_Labels</span><span class="op">:</span>
-      <span class="va">color</span><span class="op">:</span>                 <span class="va">black</span>
-      <span class="va">font.size</span><span class="op">:</span>             <span class="fl">12</span>
-      <span class="va">bold</span><span class="op">:</span>                  <span class="cn">TRUE</span>
-      <span class="va">italic</span><span class="op">:</span>                <span class="cn">FALSE</span>
-      <span class="va">underlined</span><span class="op">:</span>            <span class="cn">FALSE</span>
-      <span class="va">font.family</span><span class="op">:</span>           <span class="va">Helvetica</span>
-      <span class="va">vertical.align</span><span class="op">:</span>        <span class="va">baseline</span>
-      <span class="va">shading.color</span><span class="op">:</span>         <span class="va">transparent</span>
-  <span class="va">post_processing</span><span class="op">:</span>           <span class="cn">NULL</span></code></pre>
-<p>For PowerPoint templates you need to define the sections: <code>default</code> and <code>Table_Labels</code>. The <code>default</code> is used when rendering general markdown text. The <code>Table_Labels</code> is used when markdown is present in table elements like headers. For each of these you need to define the different aspects of fonts. If you’re unsure, just leave them with the defaults above.</p>
+<div class="section level4">
+<h4 id="defining-markdown-defaults">Defining markdown defaults<a class="anchor" aria-label="anchor" href="#defining-markdown-defaults"></a>
+</h4>
+<p>Now you need to define the defaults for rendering components with
+markdown (see the Workflow vignette for more information on how this is
+used). For this you need to create elements in the following
+hierarchy:</p>
+<pre><code><span><span class="va">rpptx</span><span class="op">:</span></span>
+<span>  <span class="va">md_def</span><span class="op">:</span></span>
+<span>    <span class="va">default</span><span class="op">:</span>      </span>
+<span>      <span class="va">color</span><span class="op">:</span>                 <span class="va">black</span></span>
+<span>      <span class="va">font.size</span><span class="op">:</span>             <span class="fl">12</span></span>
+<span>      <span class="va">bold</span><span class="op">:</span>                  <span class="cn">TRUE</span></span>
+<span>      <span class="va">italic</span><span class="op">:</span>                <span class="cn">FALSE</span></span>
+<span>      <span class="va">underlined</span><span class="op">:</span>            <span class="cn">FALSE</span></span>
+<span>      <span class="va">font.family</span><span class="op">:</span>           <span class="va">Helvetica</span></span>
+<span>      <span class="va">vertical.align</span><span class="op">:</span>        <span class="va">baseline</span></span>
+<span>      <span class="va">shading.color</span><span class="op">:</span>         <span class="va">transparent</span></span>
+<span>    <span class="va">Table_Labels</span><span class="op">:</span></span>
+<span>      <span class="va">color</span><span class="op">:</span>                 <span class="va">black</span></span>
+<span>      <span class="va">font.size</span><span class="op">:</span>             <span class="fl">12</span></span>
+<span>      <span class="va">bold</span><span class="op">:</span>                  <span class="cn">TRUE</span></span>
+<span>      <span class="va">italic</span><span class="op">:</span>                <span class="cn">FALSE</span></span>
+<span>      <span class="va">underlined</span><span class="op">:</span>            <span class="cn">FALSE</span></span>
+<span>      <span class="va">font.family</span><span class="op">:</span>           <span class="va">Helvetica</span></span>
+<span>      <span class="va">vertical.align</span><span class="op">:</span>        <span class="va">baseline</span></span>
+<span>      <span class="va">shading.color</span><span class="op">:</span>         <span class="va">transparent</span></span>
+<span>  <span class="va">post_processing</span><span class="op">:</span>           <span class="cn">NULL</span></span></code></pre>
+<p>For PowerPoint templates you need to define the sections:
+<code>default</code> and <code>Table_Labels</code>. The
+<code>default</code> is used when rendering general markdown text. The
+<code>Table_Labels</code> is used when markdown is present in table
+elements like headers. For each of these you need to define the
+different aspects of fonts. If you’re unsure, just leave them with the
+defaults above.</p>
 </div>
-<div class="section level3">
-<h3 id="post-processing">Post-processing<a class="anchor" aria-label="anchor" href="#post-processing"></a>
-</h3>
-<pre><code><span class="va">rpptx</span><span class="op">:</span>
-  <span class="va">post_processing</span><span class="op">:</span>           <span class="cn">NULL</span></code></pre>
-<p>Sometimes you may wish to modify the underlying <code>officer</code> object. When you call <code><a href="../reference/save_report.html">save_report()</a></code>, just before writing the file, the function will look for the field <code>post_processing</code>. Here you can define R code to modify the <code>officer</code> object. Within the post-processing environment the officer object <code>rpt</code> containing your report will be available. You should modify this object to apply any changes you want made. If the <code>post_processing</code> element is missing or has a value of <code>NULL</code> the post-processing step will be skipped.</p>
+<div class="section level4">
+<h4 id="post-processing">Post-processing<a class="anchor" aria-label="anchor" href="#post-processing"></a>
+</h4>
+<pre><code><span><span class="va">rpptx</span><span class="op">:</span></span>
+<span>  <span class="va">post_processing</span><span class="op">:</span>           <span class="cn">NULL</span></span></code></pre>
+<p>Sometimes you may wish to modify the underlying <code>officer</code>
+object. When you call <code><a href="../reference/save_report.html">save_report()</a></code>, just before writing
+the file, the function will look for the field
+<code>post_processing</code>. Here you can define R code to modify the
+<code>officer</code> object. Within the post-processing environment the
+officer object <code>rpt</code> containing your report will be
+available. You should modify this object to apply any changes you want
+made. If the <code>post_processing</code> element is missing or has a
+value of <code>NULL</code> the post-processing step will be skipped.</p>
 </div>
-<div class="section level3">
-<h3 id="step-3-testing-and-previewing-your-template">Step 3: Testing and previewing your template<a class="anchor" aria-label="anchor" href="#step-3-testing-and-previewing-your-template"></a>
-</h3>
-<p>In R you can read your template by supplying the template and mapping file names:</p>
+<div class="section level4">
+<h4 id="step-3-testing-and-previewing-your-template">Step 3: Testing and previewing your template<a class="anchor" aria-label="anchor" href="#step-3-testing-and-previewing-your-template"></a>
+</h4>
+<p>In R you can read your template by supplying the template and mapping
+file names:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"> <span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/read_template.html">read_template</a></span><span class="op">(</span>template <span class="op">=</span> <span class="st">"example.pptx"</span>, 
-                      mapping  <span class="op">=</span> <span class="st">"example.yaml"</span><span class="op">)</span></code></pre></div>
-<p>When a template is read, <code>onbrand</code> will check for basic errors. Look for messages in the console to help you debug any issues you may have.</p>
-<p>After reading in the template, you can test the template using <code><a href="../reference/preview_template.html">onbrand::preview_template()</a></code>. <strong>Tip</strong> Save the <code>obnd</code> report to a file and view it to make sure the mappings are what you expect.</p>
+<code class="sourceCode R"><span> <span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/read_template.html">read_template</a></span><span class="op">(</span>template <span class="op">=</span> <span class="st">"example.pptx"</span>, </span>
+<span>                      mapping  <span class="op">=</span> <span class="st">"example.yaml"</span><span class="op">)</span></span></code></pre></div>
+<p>When a template is read, <code>onbrand</code> will check for basic
+errors. Look for messages in the console to help you debug any issues
+you may have.</p>
+<p>After reading in the template, you can test the template using
+<code><a href="../reference/preview_template.html">onbrand::preview_template()</a></code>. <strong>Tip</strong> Save the
+<code>obnd</code> report to a file and view it to make sure the mappings
+are what you expect.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/preview_template.html">preview_template</a></span><span class="op">(</span><span class="va">obnd</span><span class="op">)</span>
-<span class="fu"><a href="../reference/save_report.html">save_report</a></span><span class="op">(</span><span class="va">obnd</span>, <span class="st">"example_preview.pptx"</span><span class="op">)</span></code></pre></div>
-<p>That’s it. You have completed the PowerPoint example and used <code>onbrand</code> to create an abstraction layer for use in your own efforts. Keep in mind, this is a very straightforward example. Depending on the complexity of the template the annotated slide deck generated using <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> will probably not look nearly as clean. All of the placeholders will be there; they may not be formatted as nicely. Expect to have to find the annotations you are interested in using in your mapping.</p>
+<code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/preview_template.html">preview_template</a></span><span class="op">(</span><span class="va">obnd</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/save_report.html">save_report</a></span><span class="op">(</span><span class="va">obnd</span>, <span class="st">"example_preview.pptx"</span><span class="op">)</span></span></code></pre></div>
+<p>That’s it. You have completed the PowerPoint example and used
+<code>onbrand</code> to create an abstraction layer for use in your own
+efforts. Keep in mind, this is a very straightforward example. Depending
+on the complexity of the template the annotated slide deck generated
+using <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> will probably not look nearly
+as clean. All of the placeholders will be there; they may not be
+formatted as nicely. Expect to have to find the annotations you are
+interested in using in your mapping.</p>
 </div>
 </div>
-<div class="section level2">
-<h2 id="word">Word<a class="anchor" aria-label="anchor" href="#word"></a>
-</h2>
-<p>This section provides a detailed walk-through for each of the three steps in the Introduction. Once again, we recommend everyone walk through this process at least once. In fact, we assume you have already worked through the PowerPoint section. If you have not and don’t feel very comfortable with abstraction layers and yaml syntax, then you might want to walk through that section first.</p>
-<p>Another quick note about terminology. All Word documents, even a blank document, start from a template. Where PowerPoint templates are more closely tied to specific slide layouts, Word templates are files that help you design documents. They contain content and design elements (referred to as <em>content blocks</em> or <em>styles</em>) to use as a starting point when creating a document. All the formatting is complete; you simply add what you want to them.</p>
 <div class="section level3">
-<h3 id="step-1-read-the-word-document">Step 1: Read the Word document<a class="anchor" aria-label="anchor" href="#step-1-read-the-word-document"></a>
+<h3 id="word">Word<a class="anchor" aria-label="anchor" href="#word"></a>
 </h3>
-<p>To create your custom abstraction layer for Word, you start by reading in a Word document saved from the template you are using. This Word document should have all the styles defined and contain all the placeholders you want to use. In the <code>example.docx</code> there is one paragraph style and one table style.</p>
-<p>Placeholder can be used in documents. For example, if you wanted to use this template for reports, and you wanted to have “Report NNNN”, where NNNN is the report number, in the right header. Then place a text placeholder, e.g., “Report ===RPTNUM===”, in the right header. This placeholder will be referenced in your code; the <em>Creating Templated Office Workflows Vignette</em> has more details.</p>
-<p><strong>Note:</strong> Do not type this placeholder text directly into the Word document. Cut and paste the text into the Word document from a text editor. Word is not a text editor, so while the text string may appear to be contiguous, it may not be so in the underlying XML code.</p>
-<p>To view all of the styles in the document you can use the <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> function here as well:</p>
+<p>This section provides a detailed walk-through for each of the three
+steps in the Introduction. Once again, we recommend everyone walk
+through this process at least once. In fact, we assume you have already
+worked through the PowerPoint section. If you have not and don’t feel
+very comfortable with abstraction layers and yaml syntax, then you might
+want to walk through that section first.</p>
+<p>Another quick note about terminology. All Word documents, even a
+blank document, start from a template. Where PowerPoint templates are
+more closely tied to specific slide layouts, Word templates are files
+that help you design documents. They contain content and design elements
+(referred to as <em>content blocks</em> or <em>styles</em>) to use as a
+starting point when creating a document. All the formatting is complete;
+you simply add what you want to them.</p>
+<div class="section level4">
+<h4 id="step-1-read-the-word-document">Step 1: Read the Word document<a class="anchor" aria-label="anchor" href="#step-1-read-the-word-document"></a>
+</h4>
+<p>To create your custom abstraction layer for Word, you start by
+reading in a Word document saved from the template you are using. This
+Word document should have all the styles defined and contain all the
+placeholders you want to use. In the <code>example.docx</code> there is
+one paragraph style and one table style.</p>
+<p>Placeholder can be used in documents. For example, if you wanted to
+use this template for reports, and you wanted to have “Report NNNN”,
+where NNNN is the report number, in the right header. Then place a text
+placeholder, e.g., “Report ===RPTNUM===”, in the right header. This
+placeholder will be referenced in your code; the <em>Creating Templated
+Office Workflows Vignette</em> has more details.</p>
+<p><strong>Note:</strong> Do not type this placeholder text directly
+into the Word document. Cut and paste the text into the Word document
+from a text editor. Word is not a text editor, so while the text string
+may appear to be contiguous, it may not be so in the underlying XML
+code.</p>
+<p>To view all of the styles in the document you can use the
+<code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> function here as well:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://onbrand.ubiquity.tools/" class="external-link">onbrand</a></span><span class="op">)</span>
-<span class="va">vlres</span> <span class="op">=</span> <span class="fu"><a href="../reference/view_layout.html">view_layout</a></span><span class="op">(</span>template    <span class="op">=</span> <span class="st">"example.docx"</span>, 
-                    output_file <span class="op">=</span> <span class="st">"example_layout.docx"</span><span class="op">)</span></code></pre></div>
-<p>This will produce a word document, <code>example_layout.docx</code> that looks something like this:</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://onbrand.ubiquity.tools/" class="external-link">onbrand</a></span><span class="op">)</span></span>
+<span><span class="va">vlres</span> <span class="op">=</span> <span class="fu"><a href="../reference/view_layout.html">view_layout</a></span><span class="op">(</span>template    <span class="op">=</span> <span class="st">"example.docx"</span>, </span>
+<span>                    output_file <span class="op">=</span> <span class="st">"example_layout.docx"</span><span class="op">)</span></span></code></pre></div>
+<p>This will produce a word document, <code>example_layout.docx</code>
+that looks something like this:</p>
 <div class="figure">
 <img src="example_layout_docx.png" width="600" alt=""><p class="caption">Word layout example.</p>
 </div>
 </div>
-<div class="section level3">
-<h3 id="step-2-create-the-word-mapping">Step 2: Create the Word mapping<a class="anchor" aria-label="anchor" href="#step-2-create-the-word-mapping"></a>
-</h3>
-<p>For each paragraph, character, and table style, <code>example_layout.docx</code> displays the name and what that style looks like. You can use this when you define elements in your <code>yaml</code> mapping file. The process is very similar to that in the PowerPoint section above so we will not go into as much detail this time.</p>
-<p>In the <code>example.yaml</code> file copied over from earlier, there will be a key for mapping Word templates. That key is called <code>rdocx</code> and will have the following values:</p>
+<div class="section level4">
+<h4 id="step-2-create-the-word-mapping">Step 2: Create the Word mapping<a class="anchor" aria-label="anchor" href="#step-2-create-the-word-mapping"></a>
+</h4>
+<p>For each paragraph, character, and table style,
+<code>example_layout.docx</code> displays the name and what that style
+looks like. You can use this when you define elements in your
+<code>yaml</code> mapping file. The process is very similar to that in
+the PowerPoint section above so we will not go into as much detail this
+time.</p>
+<p>In the <code>example.yaml</code> file copied over from earlier, there
+will be a key for mapping Word templates. That key is called
+<code>rdocx</code> and will have the following values:</p>
 <ul>
 <li>
-<code>styles</code> - maps user-generated (<em>keys</em>) for each content block to their respective Word style_name (<em>values</em>)</li>
+<code>styles</code> - maps user-generated (<em>keys</em>) for each
+content block to their respective Word style_name (<em>values</em>)</li>
 <li>
-<code>doc_def</code> - maps the <em>keys</em> defined in the <code>styles</code> section to their default values for the report</li>
+<code>doc_def</code> - maps the <em>keys</em> defined in the
+<code>styles</code> section to their default values for the report</li>
 <li>
-<code>formatting</code> - general formatting options for the document</li>
+<code>formatting</code> - general formatting options for the
+document</li>
 <li>
-<code>md_def</code> - default formatting for styles when markdown is being used</li>
+<code>md_def</code> - default formatting for styles when markdown is
+being used</li>
 </ul>
-<p>The following sections will walk you through each of these elements in the <code>example.yaml</code> mapping file.</p>
-<div class="section level4">
-<h4 id="styles">
+<p>The following sections will walk you through each of these elements
+in the <code>example.yaml</code> mapping file.</p>
+<div class="section level5">
+<h5 id="styles">
 <code>styles</code><a class="anchor" aria-label="anchor" href="#styles"></a>
-</h4>
-<p>This section contains <code>onbrand</code> to Word mappings as key/value pairs. The keys represent the name of the content block you want to use in your R code. The values, generated by <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> and found in <code>example_layout.docx</code>, represent the style name used by Word. In our example, we have the following styles defined:</p>
+</h5>
+<p>This section contains <code>onbrand</code> to Word mappings as
+key/value pairs. The keys represent the name of the content block you
+want to use in your R code. The values, generated by
+<code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> and found in
+<code>example_layout.docx</code>, represent the style name used by Word.
+In our example, we have the following styles defined:</p>
 <pre><code>  styles:
     Plain_Text:               Normal
     Default_Table:            Normal Table
     Table_Caption:            Normal        
     Figure_Caption:           Normal
     Notes:                    Normal</code></pre>
-<p>So, for example, the <code>Normal</code> style is defined in Word, but I’m going to call it <code>Plain_Text</code> in the workflows I develop. <strong>Note:</strong> The functions of <code>onbrand</code> require you define at least two styles: one paragraph style and one table style.</p>
+<p>So, for example, the <code>Normal</code> style is defined in Word,
+but I’m going to call it <code>Plain_Text</code> in the workflows I
+develop. <strong>Note:</strong> The functions of <code>onbrand</code>
+require you define at least two styles: one paragraph style and one
+table style.</p>
 </div>
-<div class="section level4">
-<h4 id="doc_def">
+<div class="section level5">
+<h5 id="doc_def">
 <code>doc_def</code><a class="anchor" aria-label="anchor" href="#doc_def"></a>
-</h4>
-<p>This section contains the default style mappings as key/value pairs. The keys are required by <code>onbrand</code>, so you have to have an entry for each of them. The values are the user-generated (<em>keys</em>) from the <code>styles</code> section. So, in this example if you want to insert a Word table (<code>Table</code>) in the document you are going to generate, the table will be formatted according to the <code>onbrand</code> style name <code>Default_Table</code>.</p>
-<pre><code><span class="va">doc_def</span><span class="op">:</span>                     
-    <span class="va">Text</span><span class="op">:</span>                     <span class="va">Plain_Text</span> 
-    <span class="va">Table</span><span class="op">:</span>                    <span class="va">Default_Table</span> 
-    <span class="va">Table_Caption</span><span class="op">:</span>            <span class="va">Table_Caption</span>
-    <span class="va">Figure_Caption</span><span class="op">:</span>           <span class="va">Figure_Caption</span>
-    <span class="va">Notes</span><span class="op">:</span>                    <span class="va">Notes</span></code></pre>
+</h5>
+<p>This section contains the default style mappings as key/value pairs.
+The keys are required by <code>onbrand</code>, so you have to have an
+entry for each of them. The values are the user-generated
+(<em>keys</em>) from the <code>styles</code> section. So, in this
+example if you want to insert a Word table (<code>Table</code>) in the
+document you are going to generate, the table will be formatted
+according to the <code>onbrand</code> style name
+<code>Default_Table</code>.</p>
+<pre><code><span>  <span class="va">doc_def</span><span class="op">:</span>                     </span>
+<span>    <span class="va">Text</span><span class="op">:</span>                     <span class="va">Plain_Text</span> </span>
+<span>    <span class="va">Table</span><span class="op">:</span>                    <span class="va">Default_Table</span> </span>
+<span>    <span class="va">Table_Caption</span><span class="op">:</span>            <span class="va">Table_Caption</span></span>
+<span>    <span class="va">Figure_Caption</span><span class="op">:</span>           <span class="va">Figure_Caption</span></span>
+<span>    <span class="va">Notes</span><span class="op">:</span>                    <span class="va">Notes</span></span></code></pre>
 </div>
-<div class="section level4">
-<h4 id="formatting">
+<div class="section level5">
+<h5 id="formatting">
 <code>formatting</code><a class="anchor" aria-label="anchor" href="#formatting"></a>
-</h4>
-<p>Basic document formatting is specified under this key in the <code>yaml</code> file. The default values are shown here:</p>
+</h5>
+<p>Basic document formatting is specified under this key in the
+<code>yaml</code> file. The default values are shown here:</p>
 <pre><code>  formatting:
     separator:                 ","
     Table_Order:
@@ -350,8 +532,28 @@
                                 seq_id     = Caption_Seq_Id, 
                                 post_label = "", 
                                 start_at   = Caption_Start_At))</code></pre>
-<p>The <code>separator</code> key is a region specific setting. From experimentation it seems that in the US and Canada, this should be a comma, and in Europe it should be a semicolon. It mainly appears in the table of contents generation (list of figures or tables). If you try to generate a table of contents and you keep getting <strong>No table of contents entries found.</strong> try changing the separator from “;” to “,” or the reverse.</p>
-<p>The <code>*_Order</code> keys indicate the order that the <code>figure</code> or <code>table</code>, <code>caption</code> and <code>notes</code> are displayed. The <code>*_Pre</code> and <code>*_Post</code> elements control what is displayed before (<code>Pre</code>) and after (<code>Post</code>) the caption number. For example the third table would look like: <code>Table 3.</code>. The default figure width and height are specified here in inches. You probably wont need to change the keys ending in <code>_Seq_Id</code> and <code>_Number</code>. The <code>*_Seq_Id</code> specifies the internal Word sequences used to group tables and figures. The <code>*_Number</code> keys specify how you want to number things. The default value, while appearing complicated, will just give you a single number. If you want to number your figures with the current section number (e.g. 3-2 for the second figure in the third section) you would do the following:</p>
+<p>The <code>separator</code> key is a region specific setting. From
+experimentation it seems that in the US and Canada, this should be a
+comma, and in Europe it should be a semicolon. It mainly appears in the
+table of contents generation (list of figures or tables). If you try to
+generate a table of contents and you keep getting <strong>No table of
+contents entries found.</strong> try changing the separator from “;” to
+“,” or the reverse.</p>
+<p>The <code>*_Order</code> keys indicate the order that the
+<code>figure</code> or <code>table</code>, <code>caption</code> and
+<code>notes</code> are displayed. The <code>*_Pre</code> and
+<code>*_Post</code> elements control what is displayed before
+(<code>Pre</code>) and after (<code>Post</code>) the caption number. For
+example the third table would look like: <code>Table 3.</code>. The
+default figure width and height are specified here in inches. You
+probably wont need to change the keys ending in <code>_Seq_Id</code> and
+<code>_Number</code>. The <code>*_Seq_Id</code> specifies the internal
+Word sequences used to group tables and figures. The
+<code>*_Number</code> keys specify how you want to number things. The
+default value, while appearing complicated, will just give you a single
+number. If you want to number your figures with the current section
+number (e.g. 3-2 for the second figure in the third section) you would
+do the following:</p>
 <pre><code>    Figure_Number: |-
       list(
       run_word_field("STYLEREF 1 \\s"),
@@ -360,77 +562,135 @@
                                 seq_id     = Caption_Seq_Id, 
                                 post_label = "", 
                                 start_at   = Caption_Start_At))</code></pre>
-<p><strong>Note:</strong> If you have figures or tables in multiple sections, you will also need to reset the figure counter for each major section that contains figures and tables. To do this you will need to use the <code>fig_start_at</code> and <code>tab_start_at</code> arguments to <code><a href="../reference/report_add_doc_content.html">report_add_doc_content()</a></code>.</p>
+<p><strong>Note:</strong> If you have figures or tables in multiple
+sections, you will also need to reset the figure counter for each major
+section that contains figures and tables. To do this you will need to
+use the <code>fig_start_at</code> and <code>tab_start_at</code>
+arguments to <code><a href="../reference/report_add_doc_content.html">report_add_doc_content()</a></code>.</p>
 </div>
-<div class="section level4">
-<h4 id="md_def">
+<div class="section level5">
+<h5 id="md_def">
 <code>md_def</code><a class="anchor" aria-label="anchor" href="#md_def"></a>
-</h4>
-<p>These elements contain the default values used when markdown formatting is used. For this section, you will need entries for <code>default</code> and <code>Table_Labels</code> as well as an entry for each style defined in the <code>styles</code> section. The <code>default</code> is used when rendering general markdown text. The <code>Table_Labels</code> is used when markdown is present in table elements like headers.</p>
-<p><strong>Tip</strong> It’s a good idea to open up the styles in Word and make sure that each style element (font size, bold, etc) matches what is in your Word document.</p>
+</h5>
+<p>These elements contain the default values used when markdown
+formatting is used. For this section, you will need entries for
+<code>default</code> and <code>Table_Labels</code> as well as an entry
+for each style defined in the <code>styles</code> section. The
+<code>default</code> is used when rendering general markdown text. The
+<code>Table_Labels</code> is used when markdown is present in table
+elements like headers.</p>
+<p><strong>Tip</strong> It’s a good idea to open up the styles in Word
+and make sure that each style element (font size, bold, etc) matches
+what is in your Word document.</p>
+</div>
+<div class="section level5">
+<h5 id="post_processing">
+<code>post_processing</code><a class="anchor" aria-label="anchor" href="#post_processing"></a>
+</h5>
+<p>Just like with PowerPoint templates you can define R code to
+post-process your report as an <code>officer</code> object. You need to
+modify the object <code>rpt</code> defined in the post-processing
+environment. If the <code>post_processing</code> element is missing from
+the yaml file or set to <code>NULL</code> it will be ignored.</p>
+</div>
 </div>
 <div class="section level4">
-<h4 id="post_processing">
-<code>post_processing</code><a class="anchor" aria-label="anchor" href="#post_processing"></a>
+<h4 id="step-3-testing-and-previewing-your-template-1">Step 3: Testing and previewing your template<a class="anchor" aria-label="anchor" href="#step-3-testing-and-previewing-your-template-1"></a>
 </h4>
-<p>Just like with PowerPoint templates you can define R code to post-process your report as an <code>officer</code> object. You need to modify the object <code>rpt</code> defined in the post-processing environment. If the <code>post_processing</code> element is missing from the yaml file or set to <code>NULL</code> it will be ignored.</p>
-</div>
-</div>
-<div class="section level3">
-<h3 id="step-3-testing-and-previewing-your-template-1">Step 3: Testing and previewing your template<a class="anchor" aria-label="anchor" href="#step-3-testing-and-previewing-your-template-1"></a>
-</h3>
-<p>Once you’re done creating your abstraction layer (i.e., mapping), you can test the template. In R you can read your template by supplying the template and mapping file names:</p>
+<p>Once you’re done creating your abstraction layer (i.e., mapping), you
+can test the template. In R you can read your template by supplying the
+template and mapping file names:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/read_template.html">read_template</a></span><span class="op">(</span>template <span class="op">=</span> <span class="st">"example.docx"</span>, 
-                     mapping  <span class="op">=</span> <span class="st">"example.yaml"</span><span class="op">)</span></code></pre></div>
-<p>If there are no problems you can use <code><a href="../reference/preview_template.html">onbrand::preview_template()</a></code> create an annotated file showing the <code>onbrand</code> names mapped to the Word names with the style applied. <strong>Tip</strong> Save the <code>obnd</code> report to a file and view it to make sure the mappings are what you expect.</p>
+<code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/read_template.html">read_template</a></span><span class="op">(</span>template <span class="op">=</span> <span class="st">"example.docx"</span>, </span>
+<span>                     mapping  <span class="op">=</span> <span class="st">"example.yaml"</span><span class="op">)</span></span></code></pre></div>
+<p>If there are no problems you can use
+<code><a href="../reference/preview_template.html">onbrand::preview_template()</a></code> create an annotated file
+showing the <code>onbrand</code> names mapped to the Word names with the
+style applied. <strong>Tip</strong> Save the <code>obnd</code> report to
+a file and view it to make sure the mappings are what you expect.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/preview_template.html">preview_template</a></span><span class="op">(</span><span class="va">obnd</span><span class="op">)</span>
-<span class="fu"><a href="../reference/save_report.html">save_report</a></span><span class="op">(</span><span class="va">obnd</span>, <span class="st">"example_preview.docx"</span><span class="op">)</span></code></pre></div>
-<p>Once again, that’s it. You have completed the Word example and used <code>onbrand</code> to create an abstraction layer for use in your own efforts. Again, this is a very straightforward example. Word templates can also become fairly complex, fairly quickly. Luckily, you only have to do it once per template now!</p>
-<p><strong>Tip</strong> Now that you have walked-through this example, the best way to learn about Word templates is to change something and walk through the steps again. In the example file, we are using the base word document template. After running through the steps below. You can add additional <em>styles</em> to the document by opening the styles pane, selecting the appropriate style, and saving (with a new name to easily see the difference). Similarly, You can also select a new <em>theme</em> and new style set in the design tab. Then rerun <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> and see what’s changed.</p>
+<code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/preview_template.html">preview_template</a></span><span class="op">(</span><span class="va">obnd</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/save_report.html">save_report</a></span><span class="op">(</span><span class="va">obnd</span>, <span class="st">"example_preview.docx"</span><span class="op">)</span></span></code></pre></div>
+<p>Once again, that’s it. You have completed the Word example and used
+<code>onbrand</code> to create an abstraction layer for use in your own
+efforts. Again, this is a very straightforward example. Word templates
+can also become fairly complex, fairly quickly. Luckily, you only have
+to do it once per template now!</p>
+<p><strong>Tip</strong> Now that you have walked-through this example,
+the best way to learn about Word templates is to change something and
+walk through the steps again. In the example file, we are using the base
+word document template. After running through the steps below. You can
+add additional <em>styles</em> to the document by opening the styles
+pane, selecting the appropriate style, and saving (with a new name to
+easily see the difference). Similarly, You can also select a new
+<em>theme</em> and new style set in the design tab. Then rerun
+<code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> and see what’s changed.</p>
 </div>
 </div>
-<div class="section level2">
-<h2 id="switching-templates">Switching templates<a class="anchor" aria-label="anchor" href="#switching-templates"></a>
-</h2>
-<p>The goal of <code>onbrand</code> is to allow users to easily switch between organizational document templates without changing the actual reporting workflow. This is accomplished through the <code>yaml</code> file (i.e., the abstraction layer).</p>
-<p>First, make a copy of your <code>yaml</code> file for the new templates. Then, modify the copy as described below:</p>
 <div class="section level3">
-<h3 id="powerpoint-1">PowerPoint<a class="anchor" aria-label="anchor" href="#powerpoint-1"></a>
+<h3 id="switching-templates">Switching templates<a class="anchor" aria-label="anchor" href="#switching-templates"></a>
 </h3>
-<p>If you want to change to a new PowerPoint template you need to do the following:</p>
+<p>The goal of <code>onbrand</code> is to allow users to easily switch
+between organizational document templates without changing the actual
+reporting workflow. This is accomplished through the <code>yaml</code>
+file (i.e., the abstraction layer).</p>
+<p>First, make a copy of your <code>yaml</code> file for the new
+templates. Then, modify the copy as described below:</p>
+<div class="section level4">
+<h4 id="powerpoint-1">PowerPoint<a class="anchor" aria-label="anchor" href="#powerpoint-1"></a>
+</h4>
+<p>If you want to change to a new PowerPoint template you need to do the
+following:</p>
 <ul>
 <li>Under the Master, create slide layouts with the same names</li>
-<li>Create the layouts with the same elements as your previous template</li>
-<li>Use <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> on the new template to get a mapping for the new placeholders</li>
-<li>Edit the new <code>yaml</code> file to update the master field, ph_label fields, and the md_def field.</li>
-<li>Confirm the new template is behaving as expected using <code><a href="../reference/preview_template.html">onbrand::preview_template()</a></code>
+<li>Create the layouts with the same elements as your previous
+template</li>
+<li>Use <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> on the new template to get a
+mapping for the new placeholders</li>
+<li>Edit the new <code>yaml</code> file to update the master field,
+ph_label fields, and the md_def field.</li>
+<li>Confirm the new template is behaving as expected using
+<code><a href="../reference/preview_template.html">onbrand::preview_template()</a></code>
 </li>
 </ul>
-<p><strong>Note</strong>: If you have a template where certain elements are missing you need to set the <code>ph_label</code> value to <code>NULL</code>. For example you are changing to a new template that does not have subtitles, but the workflow does have these specified, then for each slide with a subtitle you will need to set that value to <code>NULL</code>.</p>
+<p><strong>Note</strong>: If you have a template where certain elements
+are missing you need to set the <code>ph_label</code> value to
+<code>NULL</code>. For example you are changing to a new template that
+does not have subtitles, but the workflow does have these specified,
+then for each slide with a subtitle you will need to set that value to
+<code>NULL</code>.</p>
 </div>
-<div class="section level3">
-<h3 id="word-1">Word<a class="anchor" aria-label="anchor" href="#word-1"></a>
-</h3>
-<p>If you want to change to a new Word template you need to do the following:</p>
+<div class="section level4">
+<h4 id="word-1">Word<a class="anchor" aria-label="anchor" href="#word-1"></a>
+</h4>
+<p>If you want to change to a new Word template you need to do the
+following:</p>
 <ul>
-<li>Create a document with the same types of styles in your mapping file</li>
-<li>Use <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> on the new template to get a mapping for the new styles</li>
-<li>Edit the new <code>yaml</code> file to update the <code>styles</code> section to the new names used in Word (keeping the <code>onbrand</code> style names the same)</li>
-<li>Confirm the new template is behaving as expected using <code><a href="../reference/preview_template.html">onbrand::preview_template()</a></code>
+<li>Create a document with the same types of styles in your mapping
+file</li>
+<li>Use <code><a href="../reference/view_layout.html">onbrand::view_layout()</a></code> on the new template to get a
+mapping for the new styles</li>
+<li>Edit the new <code>yaml</code> file to update the
+<code>styles</code> section to the new names used in Word (keeping the
+<code>onbrand</code> style names the same)</li>
+<li>Confirm the new template is behaving as expected using
+<code><a href="../reference/preview_template.html">onbrand::preview_template()</a></code>
 </li>
 </ul>
 </div>
+<div class="section level4">
+<h4 id="using-your-new-template">Using your new template<a class="anchor" aria-label="anchor" href="#using-your-new-template"></a>
+</h4>
+<p>Once you have a new template and mapping file you can then use those
+at the top level of your reporting workflow when calling
+<code><a href="../reference/read_template.html">onbrand::read_template()</a></code> and that should be it. To learn
+more about reporting workflows, walk through the second vignette:
+<em>Creating Templated Office Workflows</em>.</p>
+</div>
+</div>
 <div class="section level3">
-<h3 id="using-your-new-template">Using your new template<a class="anchor" aria-label="anchor" href="#using-your-new-template"></a>
+<h3 id="mapping-file">Mapping file<a class="anchor" aria-label="anchor" href="#mapping-file"></a>
 </h3>
-<p>Once you have a new template and mapping file you can then use those at the top level of your reporting workflow when calling <code><a href="../reference/read_template.html">onbrand::read_template()</a></code> and that should be it. To learn more about reporting workflows, walk through the second vignette: <em>Creating Templated Office Workflows</em>.</p>
-</div>
-</div>
-<div class="section level2">
-<h2 id="mapping-file">Mapping file<a class="anchor" aria-label="anchor" href="#mapping-file"></a>
-</h2>
 <pre><code>rpptx:
   master: Office Theme
   templates:
@@ -587,7 +847,7 @@ rdocx:
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>

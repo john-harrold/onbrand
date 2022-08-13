@@ -18,6 +18,9 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/john-harrold/onbrand/workflows/R-CMD-check/badge.svg)](https://github.com/john-harrold/onbrand/actions)
 [![CRAN checks](https://cranchecks.info/badges/summary/onbrand)](https://cran.r-project.org/web/checks/check_results_onbrand.html)
+[![version](https://www.r-pkg.org/badges/version/formods)](https://CRAN.R-project.org/package=formods)
+![cranlogs](https://cranlogs.r-pkg.org/badges/formods) 
+![Active](https://www.repostatus.org/badges/latest/active.svg)
 <!-- badges: end -->
 
 The ``officer`` package provides extensive methods for accessing, creating, and modifying both Word and PowerPoint documents. These methods require obtaining document specific placeholder and style information. In order to switch between document templates, it is necessary to change these references within the reporting code.  The purpose of ``onbrand`` is to provide an abstraction layer where template details are mapped to human-readable names. 
