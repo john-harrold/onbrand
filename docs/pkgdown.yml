@@ -1,8 +1,8 @@
-pandoc: 2.17.1.1
+pandoc: '2.18'
 pkgdown: 2.0.5
 pkgdown_sha: ~
 articles:
   Creating_Templated_Office_Workflows: Creating_Templated_Office_Workflows.html
   Custom_Office_Templates: Custom_Office_Templates.html
-last_built: 2022-08-11T16:39Z
+last_built: 2022-08-22T01:54Z
 
