@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# onbrand <img src="man/figures/onbrand_logo.png" align="right" height="138.5" />
+# onbrand <img src="man/figures/logo.png" align="right" height="138.5" />
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/john-harrold/onbrand/workflows/R-CMD-check/badge.svg)](https://github.com/john-harrold/onbrand/actions)
