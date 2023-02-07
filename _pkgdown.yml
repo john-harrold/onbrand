@@ -34,6 +34,7 @@ reference:
   - fetch_md_def
   - md_to_officer
   - md_to_oo
+  - ft_apply_md
 - title: "Officer Objects"
   desc: "Using officer directly to modify reports"
 - contents:
@@ -42,9 +43,11 @@ reference:
 - title: "Miscellanious"
   desc: "Other useful functions"
 - contents:
-  - onbrand
+  - build_span
   - fetch_rpttype
   - fetch_report_format
+  - span_table
+  - onbrand
 navbar:
   left:
   - text: Tutorials

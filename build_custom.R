@@ -1,3 +1,12 @@
+repo_root = here::here()
+setwd(repo_root)
+
+devtools::load_all()
+
+# building documentation
+devtools::document(roclets = c('rd', 'collate', 'namespace', 'vignette'))
+
+
 # Rebuilding the pkgdown site
 pkgdown::build_site()
 
