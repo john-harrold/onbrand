@@ -31,7 +31,7 @@
 #' The way the data frames relate to each other are mapped out below. The
 #' dimensions of the different data frames are identified below (nrow x ncol)
 #'
-#' ```
+#'```
 #' #|-------------------------------------| ---
 #' #|                 |                   |  ^
 #' #|                 |                   |  |
@@ -49,7 +49,7 @@
 #' #
 #' #|<--------------->|<----------------->|
 #' #        n                   c
-#' ```
+#'```
 #'@return list with the following elements
 #' \itemize{
 #'   \item{isgood:}    Boolean indicating the exit status of the function.

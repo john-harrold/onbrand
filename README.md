@@ -40,8 +40,11 @@ And the development version from
 [GitHub](https://github.com/john-harrold/onbrand) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("john-harrold/onbrand")
+# Installing devtools if it's not already installed
+if(system.file(package="devtools") == ""){
+  install.packages("devtools") 
+}
+devtools::install_github("john-harrold/onbrand", dependencies=TRUE)
 ```
 
 ## Getting Started
