@@ -39,7 +39,7 @@ ex_yaml_read = yaml::read_yaml(ex_yaml_tmpfile)
 # b64_doc_workflow_output_png  = knitrdata::data_encode(if_doc_workflow_output_png , encoding="base64")
 ```
 
-# Introduction <img src="onbrand_hex.png" align="right" height="138.5" border="0px" />
+# Introduction
 
 The `officer` package is used to generate all of the underlying PowerPoint and Word documents. The purpose of `onbrand` is to provide an abstraction layer (or mapping) for the functions in `officer` in order to allow the same reporting workflow to be used with different template documents. This involves providing a consistent customizable method to interact with templates as well as a form of markdown to control the formatting of text. 
 
