@@ -230,10 +230,10 @@ dimensions of the different data frames are identified below (nrow x ncol)</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Here we create some example data which is a long/wide table. </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Here we create some example data which is a long/wide table.</span></span></span>
 <span class="r-in"><span><span class="va">trow</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">51</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">tcol</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">63</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">cht</span>  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="fl">20</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span><span class="va">cht</span>  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="fl">20</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>         <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="fl">20</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>         <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"C"</span>, <span class="fl">11</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -241,9 +241,11 @@ dimensions of the different data frames are identified below (nrow x ncol)</p>
 <span class="r-in"><span><span class="va">table_body</span> <span class="op">=</span> <span class="cn">NULL</span></span></span>
 <span class="r-in"><span><span class="kw">for</span><span class="op">(</span><span class="va">cn</span> <span class="kw">in</span> <span class="va">tcol</span><span class="op">)</span><span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">table_body</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="va">tmp_cmd</span> <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"table_body = data.frame(C_"</span>,<span class="va">cn</span>,<span class="st">"= paste0(trow, ',', cn))"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="va">tmp_cmd</span> <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"table_body = data.frame(C_"</span>,</span></span>
+<span class="r-in"><span>                      <span class="va">cn</span>,<span class="st">"= paste0(trow, ',', cn))"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="va">tmp_cmd</span> <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"table_body = cbind(table_body, data.frame(C_"</span>,<span class="va">cn</span>,<span class="st">"= paste0(trow, ',', cn)))"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="va">tmp_cmd</span> <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"table_body = cbind(table_body, data.frame(C_"</span>,</span></span>
+<span class="r-in"><span>                      <span class="va">cn</span>,<span class="st">"= paste0(trow, ',', cn)))"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text<span class="op">=</span><span class="va">tmp_cmd</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
@@ -269,7 +271,7 @@ dimensions of the different data frames are identified below (nrow x ncol)</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cidx</span> <span class="op">=</span> <span class="fl">1</span></span></span>
 <span class="r-in"><span><span class="kw">for</span><span class="op">(</span><span class="va">cn</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">table_body</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span></span>
-<span class="r-in"><span>  </span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">units</span> <span class="op">=</span> <span class="st">"units"</span></span></span>
 <span class="r-in"><span>  <span class="va">range</span> <span class="op">=</span> <span class="st">"range"</span></span></span>
 <span class="r-in"><span></span></span>
@@ -316,16 +318,18 @@ dimensions of the different data frames are identified below (nrow x ncol)</p>
 <span class="r-in"><span>  <span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">table_body_head</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="va">tmp_cmd</span> <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"table_body_head = data.frame("</span>,<span class="va">cn</span>,<span class="st">'= c("'</span>, <span class="va">cn</span>, <span class="st">'", units, range))'</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="va">tmp_cmd</span> <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"table_body_head = data.frame("</span>,</span></span>
+<span class="r-in"><span>                      <span class="va">cn</span>,<span class="st">'= c("'</span>, <span class="va">cn</span>, <span class="st">'", units, range))'</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="va">tmp_cmd</span> <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"table_body_head = cbind(table_body_head, data.frame("</span>,<span class="va">cn</span>,<span class="st">'= c("'</span>, <span class="va">cn</span>, <span class="st">'", units, range)))'</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="va">tmp_cmd</span> <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"table_body_head = cbind(table_body_head, data.frame("</span>,</span></span>
+<span class="r-in"><span>                      <span class="va">cn</span>,<span class="st">'= c("'</span>, <span class="va">cn</span>, <span class="st">'", units, range)))'</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text<span class="op">=</span><span class="va">tmp_cmd</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">cidx</span> <span class="op">=</span> <span class="va">cidx</span> <span class="op">+</span> <span class="fl">1</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">res</span> <span class="op">=</span> </span></span>
+<span class="r-in"><span><span class="va">res</span> <span class="op">=</span></span></span>
 <span class="r-in"><span><span class="fu">span_table</span><span class="op">(</span>table_body      <span class="op">=</span> <span class="va">table_body</span>,</span></span>
 <span class="r-in"><span>           row_common      <span class="op">=</span> <span class="va">row_common</span>,</span></span>
 <span class="r-in"><span>           table_body_head <span class="op">=</span> <span class="va">table_body_head</span>,</span></span>

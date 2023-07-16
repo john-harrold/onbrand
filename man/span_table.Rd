@@ -111,10 +111,10 @@ dimensions of the different data frames are identified below (nrow x ncol)
 ```
 }
 \examples{
-# Here we create some example data which is a long/wide table. 
+# Here we create some example data which is a long/wide table.
 trow = c(1:51)
 tcol = c(1:63)
-cht  = c(rep("A", 20), 
+cht  = c(rep("A", 20),
          rep("B", 20),
          rep("C", 11))
 
@@ -122,9 +122,11 @@ cht  = c(rep("A", 20),
 table_body = NULL
 for(cn in tcol){
   if(is.null(table_body)){
-    tmp_cmd =  paste0("table_body = data.frame(C_",cn,"= paste0(trow, ',', cn))")
+    tmp_cmd =  paste0("table_body = data.frame(C_",
+                      cn,"= paste0(trow, ',', cn))")
   } else {
-    tmp_cmd =  paste0("table_body = cbind(table_body, data.frame(C_",cn,"= paste0(trow, ',', cn)))")
+    tmp_cmd =  paste0("table_body = cbind(table_body, data.frame(C_",
+                      cn,"= paste0(trow, ',', cn)))")
   }
   eval(parse(text=tmp_cmd))
 }
@@ -150,7 +152,7 @@ table_body_head = NULL
 
 cidx = 1
 for(cn in names(table_body)){
-  
+
   units = "units"
   range = "range"
 
@@ -197,16 +199,18 @@ for(cn in names(table_body)){
   }
 
   if(is.null(table_body_head)){
-    tmp_cmd =  paste0("table_body_head = data.frame(",cn,'= c("', cn, '", units, range))')
+    tmp_cmd =  paste0("table_body_head = data.frame(",
+                      cn,'= c("', cn, '", units, range))')
   } else {
-    tmp_cmd =  paste0("table_body_head = cbind(table_body_head, data.frame(",cn,'= c("', cn, '", units, range)))')
+    tmp_cmd =  paste0("table_body_head = cbind(table_body_head, data.frame(",
+                      cn,'= c("', cn, '", units, range)))')
   }
 
   eval(parse(text=tmp_cmd))
   cidx = cidx + 1
 }
 
-res = 
+res =
 span_table(table_body      = table_body,
            row_common      = row_common,
            table_body_head = table_body_head,
