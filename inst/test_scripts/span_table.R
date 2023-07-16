@@ -1,4 +1,4 @@
-#' \donttest{
+if(interactive()){
 trow = c(1:51)
 tcol = c(1:63)
 cht  = c(rep("A", 20),
@@ -106,4 +106,4 @@ span_table(table_body      = table_body,
            max_col         = 10,
            notes_detect    = c("BQL", "NC"))
 
-#'}
+}

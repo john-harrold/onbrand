@@ -111,7 +111,7 @@ dimensions of the different data frames are identified below (nrow x ncol)
 ```
 }
 \examples{
-#' \donttest{
+if(interactive()){
 trow = c(1:51)
 tcol = c(1:63)
 cht  = c(rep("A", 20),
@@ -219,7 +219,7 @@ span_table(table_body      = table_body,
            max_col         = 10,
            notes_detect    = c("BQL", "NC"))
 
-#'}
+}
 }
 \seealso{
 \code{\link{build_span} for the relationship of inputs.}
