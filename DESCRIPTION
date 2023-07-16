@@ -1,7 +1,7 @@
 Package: onbrand
 Type: Package
 Title: Templated Reporting Workflows in Word and PowerPoint 
-Version: 1.0.2
+Version: 1.0.3
 Authors@R: c(person("John", "Harrold", 
                      role    = c("aut", "cre"),
                      email   = "john.m.harrold@gmail.com",

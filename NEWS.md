@@ -1,3 +1,11 @@
+# onbrand 1.0.3
+
+## Table formatting
+
+* Added functions to take a large table and create smaller tables to span across multiple pages in reports (`span_table()` and `build_span()`)
+
+* Render markdown in specified part of a flext table (`ft_apply_md()`)
+
 # onbrand 1.0.2
 
 ## Changes to yaml file format
