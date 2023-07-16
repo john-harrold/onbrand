@@ -354,7 +354,7 @@ res}
 #'@title Construct Table Span From Components
 #'@description Takes a large table, common rows, and header information and
 #'constructs a table that is a subset of those components using supplied
-#'ranges of rows and columns. 
+#'ranges of rows and columns.
 #'@param table_body                Data frame with the body of the large table.
 #'@param row_common                Data frame with the common rows.
 #'@param table_body_head           Data frame or matrix with headers for the table body.
