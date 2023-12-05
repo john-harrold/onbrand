@@ -229,20 +229,24 @@ If you want to place content in arbitrary locations on the slide you can use the
 ```{r}
 obnd = report_add_slide(obnd,
   template = "two_content_header_text",
+  elements = list(
+     title         = list( content      = "Full figure with table",
+                           type         = "text")),
   user_location = list(
-     text_example  = list( content      = "This is text",
-                           type         = "text",
-                           start        = c(.1,.02),
-                           stop         = c(.3,.15)),
      fig_example   = list( content      = p,
                            type         = "ggplot",
-                           start        = c(.5,0),
-                           stop         = c(1,.5)),
+                           start        = c(0,.25),
+                           stop         = c(1,1)),
      fto_example   = list( content      = tab_fto,
                            type         = "flextable_object",
-                           start        = c(0,.5),
-                           stop         = c(1,1))))
+                           start        = c(.70,0),
+                           stop         = c(1,.2))
+  )
+)
 ```
+
+Note that you can use both `elements` and `user_location` together. 
+
 
 ### Saving presentations 
 

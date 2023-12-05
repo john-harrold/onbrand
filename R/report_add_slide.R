@@ -237,12 +237,11 @@ report_add_slide = function (obnd,
         ystart =  user_location[[locname]][["start"]][2]
         xstop  =  user_location[[locname]][["stop"]][1]
         ystop  =  user_location[[locname]][["stop"]][2]
-        ystop  =  user_location[[locname]][["stop"]][2]
 
         left   = xstart*sw
         top    = ystart*sh
         width  = (xstop - xstart)*sw
-        height = (ystop - ystart)*sw
+        height = (ystop - ystart)*sh
 
         newlabel = digest::digest(user_location[[locname]], algo=c("md5"))
 
