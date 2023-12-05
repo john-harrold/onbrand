@@ -42,8 +42,7 @@ To add content based on placeholder names consider the mapping information for t
 template \code{title_slide} with the two place holders \code{title} and
 \code{subtitle}.
 
-\preformatted{
-rpptx:
+\preformatted{rpptx:
  master: Office Theme
  templates:
    title_slide:
@@ -56,20 +55,17 @@ rpptx:
        type:         subTitle
        index:        1
        ph_label:     Subtitle 2
-       content_type: text
-}
+       content_type: text}
 
 This shows how to populate a title slide with text:
 
-\preformatted{
-obnd = report_add_slide(obnd,
+\preformatted{obnd = report_add_slide(obnd,
  template = "title_slide",
  elements = list(
     title     = list( content      = "Slide Title",
                       type         = "text"),
     subtitle  = list( content      = "Subtitle",
-                      type         = "text")))
-}
+                      type         = "text")))}
 
 
 To add content based on user defined locations you need to supply a list
@@ -83,7 +79,7 @@ measured from the upper left. So the \code{start = c(0.5, 0)} below means
 the box holding that content would start at the middle of the slide width
 and the top of the slide.
 
-obnd = report_add_slide(obnd,
+\preformatted{ #'obnd = report_add_slide(obnd,
  template = "two_content_header_text",
  user_location = list(
     text_example  = list( content      = "This is text",
@@ -95,8 +91,7 @@ obnd = report_add_slide(obnd,
                           start        = c(.5,0),
                           stop         = c(1,.5))
  )
-)
-
+)}
 
 See the function \code{\link{add_pptx_ph_content}} for a list of
 allowed values for \code{type}. Note that if mapping defines the
@@ -127,10 +122,8 @@ obnd = report_add_slide(obnd,
     text_example  = list( content      = "This is text",
                           type         = "text",
                           start        = c(.01,.02),
-                          stop         = c(.3,.15))
-
-)
+                          stop         = c(.3,.15))))
 }
 \seealso{
-\code{\link{add_pptx_ph_content}}
+\code{\link{add_pptx_ph_content}} \code{\link{view_layout}}
 }
