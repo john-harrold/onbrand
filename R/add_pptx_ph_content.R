@@ -1,11 +1,13 @@
 #'@export
 #'@title Populate Placeholder In Officer Report
-#'@description Places content in a PowerPoint placeholder for a given officer document.
+#'@description Places content in a PowerPoint placeholder for a given officer document. 
 #'
 #'@param obnd onbrand report object
 #'@param content_type string indicating the content type 
 #'@param content   content (see details below)
-#'@param ph_label  placeholder location (text)
+#'@param ph_label  placeholder location (text, or NULL if user_location is used)
+#'@param user_location User specified location using ph_location() or NULL if ph_label
+#'is used.
 #'@param verbose Boolean variable when set to TRUE (default) messages will be
 #'displayed on the terminal; Messages will be included in the returned onbrand
 #'object. 
@@ -41,13 +43,27 @@
 #'  }
 #'
 #'@seealso \code{\link{view_layout}}
-add_pptx_ph_content = function(obnd,content_type, content, ph_label, verbose=TRUE){
+add_pptx_ph_content = function(obnd,content_type, 
+                               content, 
+                               ph_label        = NULL, 
+                               user_location = NULL, 
+                               verbose  = TRUE){
 
     # Pulling the report out to make accessing it easier
     rpt = obnd[["rpt"]]
 
+    ph_loc = NULL
+
+    if(!is.null(ph_label)){
+      ph_loc = officer::ph_location_label(ph_label=ph_label)
+    }else if(!is.null(user_location)){
+      ph_loc = user_location
+    }
+
     if(content_type == "text"){
-      rpt = officer::ph_with(x=rpt,  location=officer::ph_location_label(ph_label=ph_label), value=content) 
+      rpt = officer::ph_with(x=rpt,  
+            location = ph_loc,
+            value    = content) 
     }
     else if(content_type == "list"){
       mcontent = matrix(data = content, ncol=2, byrow=TRUE)
@@ -64,14 +80,18 @@ add_pptx_ph_content = function(obnd,content_type, content, ph_label, verbose=TRU
       ul = officer::unordered_list(level_list = level_list, str_list = str_list)
       # adding it to the report
       rpt = officer::ph_with(x  = rpt,  
-                             location  = officer::ph_location_label(ph_label=ph_label),
-                             value     = ul) 
+        location = ph_loc,
+        value     = ul) 
     }
     else if(content_type == "imagefile"){
-      rpt = officer::ph_with(x=rpt,  location=officer::ph_location_label(ph_label=ph_label), value=officer::external_img(src=content)) 
+      rpt = officer::ph_with(x=rpt,  
+        location = ph_loc,
+        value    = officer::external_img(src=content)) 
     }
     else if(content_type == "ggplot"){
-      rpt = officer::ph_with(x=rpt,  location=officer::ph_location_label(ph_label=ph_label), value=content) 
+      rpt = officer::ph_with(x=rpt,  
+        location = ph_loc,
+        value    = content) 
     }
     else if(content_type == "table"){
       if('header' %in% names(content)){
@@ -80,7 +100,9 @@ add_pptx_ph_content = function(obnd,content_type, content, ph_label, verbose=TRU
       if('first_row' %in% names(content)){
         first_row = content[["first_row"]]
       } else {first_row = TRUE}
-      rpt = officer::ph_with(x=rpt,  location=officer::ph_location_label(ph_label=ph_label), value=content[["table"]], header=header, first_row=first_row) 
+      rpt = officer::ph_with(x=rpt,  
+        location = ph_loc,
+        value    = content[["table"]], header=header, first_row=first_row) 
     }
     else if(content_type == "flextable"){
       # These are the default table options
@@ -185,11 +207,15 @@ add_pptx_ph_content = function(obnd,content_type, content, ph_label, verbose=TRU
      ft = flextable::align(ft, align=table_header_alignment, part="header")
      ft = flextable::align(ft, align=table_body_alignment,   part="body"  )
 
-    rpt = officer::ph_with(x=rpt,  location=officer::ph_location_label(ph_label=ph_label), value=ft) 
+    rpt = officer::ph_with(x=rpt,  
+      location = ph_loc,
+      value     = ft) 
 
     } 
     else if(content_type == "flextable_object"){
-      rpt = officer::ph_with(x=rpt,  location=officer::ph_location_label(ph_label=ph_label), value=content) 
+      rpt = officer::ph_with(x=rpt,  
+        location = ph_loc,
+        value    = content) 
     }
 
     # Pulling the report back in the obnd object

@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">onbrand</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,7 +70,14 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">add_pptx_ph_content</span><span class="op">(</span><span class="va">obnd</span>, <span class="va">content_type</span>, <span class="va">content</span>, <span class="va">ph_label</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">add_pptx_ph_content</span><span class="op">(</span></span>
+<span>  <span class="va">obnd</span>,</span>
+<span>  <span class="va">content_type</span>,</span>
+<span>  <span class="va">content</span>,</span>
+<span>  ph_label <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  user_location <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -88,7 +95,12 @@
 
 
 <dt>ph_label</dt>
-<dd><p>placeholder location (text)</p></dd>
+<dd><p>placeholder location (text, or NULL if user_location is used)</p></dd>
+
+
+<dt>user_location</dt>
+<dd><p>User specified location using ph_location() or NULL if ph_label
+is used.</p></dd>
 
 
 <dt>verbose</dt>

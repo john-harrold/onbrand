@@ -4,7 +4,13 @@
 \alias{report_add_slide}
 \title{Add Slide and Content}
 \usage{
-report_add_slide(obnd, template = NULL, elements = NULL, verbose = TRUE)
+report_add_slide(
+  obnd,
+  template = NULL,
+  elements = NULL,
+  user_location = NULL,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{obnd}{onbrand report object}
@@ -16,6 +22,8 @@ this slide: This is a list with names set to placeholders for the specified
 template. Each placeholder is a list and should have a content element and a
 type element (see Details below).}
 
+\item{user_location}{List with arbitrary element names (see Details below)}
+
 \item{verbose}{Boolean variable when set to TRUE (default) messages will be
 displayed on the terminal; Messages will be included in the returned onbrand
 object.}
@@ -26,10 +34,11 @@ to FALSE with any messages in the msgs field. The isgood value is a Boolean vari
 indicating the current state of the object.
 }
 \description{
-Creates a report slide and populates the content
+Creates a report slide and populates the content in
+placeholders and arbitrary locations.
 }
 \details{
-For example consider the mapping information for the slide
+To add content based on placeholder names consider the mapping information for the slide
 template \code{title_slide} with the two place holders \code{title} and
 \code{subtitle}.
 
@@ -62,6 +71,33 @@ obnd = report_add_slide(obnd,
                       type         = "text")))
 }
 
+
+To add content based on user defined locations you need to supply a list
+with the content, type, starting point and stopping point. You can use any
+template you wish, and you need to populate the \code{user_location} input.
+This consists of lists. The name of these lists can be arbitrary
+(text_example and fig_example below). Each list has a content and type, this
+is the same used in elements above. The start and stop each represent x and
+y coordinates. This is the fraction of the width and height of the slide
+measured from the upper left. So the \code{start = c(0.5, 0)} below means
+the box holding that content would start at the middle of the slide width
+and the top of the slide.
+
+obnd = report_add_slide(obnd,
+ template = "two_content_header_text",
+ user_location = list(
+    text_example  = list( content      = "This is text",
+                          type         = "text",
+                          start        = c(.01,.02),
+                          stop         = c(.3,.15)),
+    fig_example   = list( content      = ggplot2::ggplot(),
+                          type         = "ggplot",
+                          start        = c(.5,0),
+                          stop         = c(1,.5))
+ )
+)
+
+
 See the function \code{\link{add_pptx_ph_content}} for a list of
 allowed values for \code{type}. Note that if mapping defines the
 \code{content_type} as \code{text}, you cannot use a \code{list} type.
@@ -73,6 +109,7 @@ obnd = read_template(
       template = file.path(system.file(package="onbrand"), "templates", "report.pptx"),
       mapping  = file.path(system.file(package="onbrand"), "templates", "report.yaml"))
 
+# Adding content based on placeholder elements
 obnd = report_add_slide(obnd,
  template = "content_text",
  elements = list(
@@ -83,6 +120,16 @@ obnd = report_add_slide(obnd,
     content_body  = list( content      = "A block of text",
                           type         = "text")))
 
+# Adding content based on specified locations
+obnd = report_add_slide(obnd,
+ template = "two_content_header_text",
+ user_location = list(
+    text_example  = list( content      = "This is text",
+                          type         = "text",
+                          start        = c(.01,.02),
+                          stop         = c(.3,.15))
+
+)
 }
 \seealso{
 \code{\link{add_pptx_ph_content}}

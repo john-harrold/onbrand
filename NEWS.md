@@ -1,3 +1,7 @@
+# onbrand 1.0.4
+
+* Added the ability to place content in arbitrary locations on slides in PowerPoint.
+
 # onbrand 1.0.3
 
 ## Table formatting

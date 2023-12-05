@@ -4,7 +4,14 @@
 \alias{add_pptx_ph_content}
 \title{Populate Placeholder In Officer Report}
 \usage{
-add_pptx_ph_content(obnd, content_type, content, ph_label, verbose = TRUE)
+add_pptx_ph_content(
+  obnd,
+  content_type,
+  content,
+  ph_label = NULL,
+  user_location = NULL,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{obnd}{onbrand report object}
@@ -13,7 +20,10 @@ add_pptx_ph_content(obnd, content_type, content, ph_label, verbose = TRUE)
 
 \item{content}{content (see details below)}
 
-\item{ph_label}{placeholder location (text)}
+\item{ph_label}{placeholder location (text, or NULL if user_location is used)}
+
+\item{user_location}{User specified location using ph_location() or NULL if ph_label
+is used.}
 
 \item{verbose}{Boolean variable when set to TRUE (default) messages will be
 displayed on the terminal; Messages will be included in the returned onbrand
