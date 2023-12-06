@@ -80,7 +80,7 @@
 #'Similarly, if the \code{content_type} is defined as \code{list}, you
 #'cannot use a \code{text} type.
 #'
-#'@seealso \code{\link{add_pptx_ph_content}} \code{\link{view_layout}} 
+#'@seealso \code{\link{add_pptx_ph_content}} \code{\link{view_layout}}
 #'
 #'@examples
 #'obnd = read_template(
@@ -139,6 +139,7 @@ report_add_slide = function (obnd,
   # If we pass the basic tests then we start walking through the user supplied
   # information to make sure it makes sense in the context of the current
   # templates
+  td = NULL
   if(isgood){
     if(template %in% names(obnd[["meta"]][["rpptx"]][["templates"]])){
       # this holds the template details for the current layout:
@@ -163,7 +164,29 @@ report_add_slide = function (obnd,
         msgs = c(msgs, paste0("not found in the mapping file: "))
         msgs = c(msgs, paste0("  ",
           paste(names(elements)[!(names(elements) %in% names(td))], collapse =", ")))
+      }
 
+      # Checking content added by location
+      for(locname in names(user_location)){
+        if( length(user_location[[locname]][["start"]]) == 2 &
+            is.numeric(user_location[[locname]][["start"]])  &
+            length(user_location[[locname]][["start"]]) == 2 &
+            is.numeric(user_location[[locname]][["start"]])){
+          if(user_location[[locname]][["start"]][1] > user_location[[locname]][["stop"]][1]){
+            isgood = FALSE
+            msgs = c(msgs, paste0("Problem with user location >", locname, "<"))
+            msgs = c(msgs, paste0("x start is > x stop"))
+          }
+          if(user_location[[locname]][["start"]][2] > user_location[[locname]][["stop"]][2]){
+            isgood = FALSE
+            msgs = c(msgs, paste0("Problem with user location >", locname, "<"))
+            msgs = c(msgs, paste0("y start is > y stop"))
+          }
+        } else{
+          isgood = FALSE
+          msgs = c(msgs, paste0("Problem with user location >", locname, "< the start"))
+          msgs = c(msgs, paste0("and stop values must be numeric of length two."))
+        }
       }
     }  else {
       isgood = FALSE
@@ -171,28 +194,6 @@ report_add_slide = function (obnd,
       msgs = c(msgs, paste0("in the mapping file."))
     }
 
-    # Checking content added by location
-    for(locname in names(user_location)){
-      if( length(user_location[[locname]][["start"]]) == 2 &
-          is.numeric(user_location[[locname]][["start"]])  &
-          length(user_location[[locname]][["start"]]) == 2 &
-          is.numeric(user_location[[locname]][["start"]])){
-        if(user_location[[locname]][["start"]][1] > user_location[[locname]][["stop"]][1]){
-          isgood = FALSE
-          msgs = c(msgs, paste0("Problem with user location >", locname, "<"))
-          msgs = c(msgs, paste0("x start is > x stop"))
-        }
-        if(user_location[[locname]][["start"]][2] > user_location[[locname]][["stop"]][2]){
-          isgood = FALSE
-          msgs = c(msgs, paste0("Problem with user location >", locname, "<"))
-          msgs = c(msgs, paste0("y start is > y stop"))
-        }
-      } else{
-        isgood = FALSE
-        msgs = c(msgs, paste0("Problem with user location >", locname, "< the start"))
-        msgs = c(msgs, paste0("and stop values must be numeric of length two."))
-      }
-    }
   }
 
 

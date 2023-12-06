@@ -355,19 +355,31 @@ define the box where the content will be inserted. They represent
 fractions of the total slide width (x) and height (y):</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_slide.html">report_add_slide</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
-<span>  template <span class="op">=</span> <span class="st">"two_content_header_text"</span>,</span>
+<span>  template <span class="op">=</span> <span class="st">"two_content_header_list"</span>,</span>
 <span>  elements <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>     title         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> content      <span class="op">=</span> <span class="st">"Full figure with table"</span>,</span>
+<span>     title         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> content      <span class="op">=</span> <span class="st">"Combining elements, user defined locations, and formatting"</span>,</span>
 <span>                           type         <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  user_location <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>     fig_example   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> content      <span class="op">=</span> <span class="va">p</span>,</span>
-<span>                           type         <span class="op">=</span> <span class="st">"ggplot"</span>,</span>
-<span>                           start        <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">.25</span><span class="op">)</span>,</span>
-<span>                           stop         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>     fto_example   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> content      <span class="op">=</span> <span class="va">tab_fto</span>,</span>
-<span>                           type         <span class="op">=</span> <span class="st">"flextable_object"</span>,</span>
-<span>                           start        <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.70</span>,<span class="fl">0</span><span class="op">)</span>,</span>
-<span>                           stop         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">.2</span><span class="op">)</span><span class="op">)</span></span>
+<span>     txt_example   <span class="op">=</span></span>
+<span>       <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> content        <span class="op">=</span> <span class="fu"><a href="https://davidgohel.github.io/officer/reference/fpar.html" class="external-link">fpar</a></span><span class="op">(</span><span class="fu"><a href="https://davidgohel.github.io/officer/reference/ftext.html" class="external-link">ftext</a></span><span class="op">(</span><span class="st">"This is formatted text"</span>, <span class="fu"><a href="https://davidgohel.github.io/officer/reference/fp_text.html" class="external-link">fp_text</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"green"</span>, font.size<span class="op">=</span><span class="fl">24</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>             type           <span class="op">=</span> <span class="st">"text"</span>,</span>
+<span>             start          <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,  <span class="fl">.25</span><span class="op">)</span>,</span>
+<span>             stop           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.25</span>,<span class="fl">.35</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>     large_figure  <span class="op">=</span></span>
+<span>       <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> content        <span class="op">=</span> <span class="va">p</span>,</span>
+<span>             type           <span class="op">=</span> <span class="st">"ggplot"</span>,</span>
+<span>             start          <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.25</span>,<span class="fl">.25</span><span class="op">)</span>,</span>
+<span>             stop           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.99</span>,<span class="fl">.99</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>     flextable_obj  <span class="op">=</span></span>
+<span>       <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> content        <span class="op">=</span> <span class="va">tab_fto</span>,</span>
+<span>             type           <span class="op">=</span> <span class="st">"flextable_object"</span>,</span>
+<span>             start          <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">.75</span><span class="op">)</span>,</span>
+<span>             stop           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.25</span>,<span class="fl">.95</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>     small_figure  <span class="op">=</span></span>
+<span>       <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> content        <span class="op">=</span> <span class="va">p</span>,</span>
+<span>             type           <span class="op">=</span> <span class="st">"ggplot"</span>,</span>
+<span>             start          <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,  <span class="fl">.35</span><span class="op">)</span>,</span>
+<span>             stop           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.25</span>,<span class="fl">.74</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Note that you can use both <code>elements</code> and
@@ -391,7 +403,7 @@ placeholder names from the mapping file. You and use the
 for the current <code>onbrand</code> object.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">details</span> <span class="op">=</span> <span class="fu"><a href="../reference/template_details.html">template_details</a></span><span class="op">(</span><span class="va">obnd</span><span class="op">)</span> </span></code></pre></div>
-<pre><code>Mapping:     /private/var/folders/l9/6pm7xq5j1hn6l00zrs22j6mc0000gn/T/RtmprEolNe/temp_libpath111792124ebdf/onbrand/templates/report.yaml
+<pre><code>Mapping:     /private/var/folders/l9/6pm7xq5j1hn6l00zrs22j6mc0000gn/T/RtmprEolNe/temp_libpath1117932264de2/onbrand/templates/report.yaml
 Report Type: PowerPoint
 title_slide (master/template)
   &gt; title (text)
@@ -872,7 +884,7 @@ style names. You can use the same <code><a href="../reference/template_details.h
 function to display the current styles available to you:</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">details</span> <span class="op">=</span> <span class="fu"><a href="../reference/template_details.html">template_details</a></span><span class="op">(</span><span class="va">obnd</span><span class="op">)</span> </span></code></pre></div>
-<pre><code>Mapping:     /private/var/folders/l9/6pm7xq5j1hn6l00zrs22j6mc0000gn/T/RtmprEolNe/temp_libpath111792124ebdf/onbrand/templates/report.yaml
+<pre><code>Mapping:     /private/var/folders/l9/6pm7xq5j1hn6l00zrs22j6mc0000gn/T/RtmprEolNe/temp_libpath1117932264de2/onbrand/templates/report.yaml
 Report Type: Word
   onbrand style (word style, style type)
   --------------------------------------
@@ -954,38 +966,38 @@ property being reported on one line and the units on the line below:</p>
 <p>That flextable currently looks like this:</p>
 <style></style>
 <div class="tabwid">
-<style>.cl-fada418a{}.cl-fad7121c{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-fad71226{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-fad86004{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-fad8600e{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-fad867ca{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fad867cb{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fad867cc{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fad867d4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fad867d5{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fad867d6{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fad867de{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fad867df{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-fada418a">
+<style>.cl-fa5f09c2{}.cl-fa5ba19c{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-fa5ba1a6{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-fa5d097e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-fa5d097f{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-fa5d123e{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa5d1248{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa5d1249{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa5d124a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa5d1252{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa5d1253{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa5d125c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa5d125d{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-fa5f09c2">
 <thead>
 <tr style="overflow-wrap:break-word;">
-<th class="cl-fad867ca"><p class="cl-fad86004"><span class="cl-fad7121c"></span></p></th>
-<th class="cl-fad867cb"><p class="cl-fad8600e"><span class="cl-fad7121c">Length</span></p></th>
-<th class="cl-fad867cb"><p class="cl-fad8600e"><span class="cl-fad7121c">Wdith</span></p></th>
-<th class="cl-fad867cb"><p class="cl-fad8600e"><span class="cl-fad7121c">Area</span></p></th>
-<th class="cl-fad867cb"><p class="cl-fad8600e"><span class="cl-fad7121c">Volume</span></p></th>
+<th class="cl-fa5d123e"><p class="cl-fa5d097e"><span class="cl-fa5ba19c"></span></p></th>
+<th class="cl-fa5d1248"><p class="cl-fa5d097f"><span class="cl-fa5ba19c">Length</span></p></th>
+<th class="cl-fa5d1248"><p class="cl-fa5d097f"><span class="cl-fa5ba19c">Wdith</span></p></th>
+<th class="cl-fa5d1248"><p class="cl-fa5d097f"><span class="cl-fa5ba19c">Area</span></p></th>
+<th class="cl-fa5d1248"><p class="cl-fa5d097f"><span class="cl-fa5ba19c">Volume</span></p></th>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<th class="cl-fad867cc"><p class="cl-fad86004"><span class="cl-fad7121c"></span></p></th>
-<th class="cl-fad867d4"><p class="cl-fad8600e"><span class="cl-fad7121c">cm</span></p></th>
-<th class="cl-fad867d4"><p class="cl-fad8600e"><span class="cl-fad7121c">cm</span></p></th>
-<th class="cl-fad867d4"><p class="cl-fad8600e"><span class="cl-fad7121c">cm2</span></p></th>
-<th class="cl-fad867d4"><p class="cl-fad8600e"><span class="cl-fad7121c">cm3</span></p></th>
+<th class="cl-fa5d1249"><p class="cl-fa5d097e"><span class="cl-fa5ba19c"></span></p></th>
+<th class="cl-fa5d124a"><p class="cl-fa5d097f"><span class="cl-fa5ba19c">cm</span></p></th>
+<th class="cl-fa5d124a"><p class="cl-fa5d097f"><span class="cl-fa5ba19c">cm</span></p></th>
+<th class="cl-fa5d124a"><p class="cl-fa5d097f"><span class="cl-fa5ba19c">cm2</span></p></th>
+<th class="cl-fa5d124a"><p class="cl-fa5d097f"><span class="cl-fa5ba19c">cm3</span></p></th>
 </tr>
 </thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-fad867d5"><p class="cl-fad86004"><span class="cl-fad71226">mean</span></p></td>
-<td class="cl-fad867d6"><p class="cl-fad8600e"><span class="cl-fad71226">200.00</span></p></td>
-<td class="cl-fad867d6"><p class="cl-fad8600e"><span class="cl-fad71226">12.00</span></p></td>
-<td class="cl-fad867d6"><p class="cl-fad8600e"><span class="cl-fad71226">240.00</span></p></td>
-<td class="cl-fad867d6"><p class="cl-fad8600e"><span class="cl-fad71226">1,200.00</span></p></td>
+<td class="cl-fa5d1252"><p class="cl-fa5d097e"><span class="cl-fa5ba1a6">mean</span></p></td>
+<td class="cl-fa5d1253"><p class="cl-fa5d097f"><span class="cl-fa5ba1a6">200.00</span></p></td>
+<td class="cl-fa5d1253"><p class="cl-fa5d097f"><span class="cl-fa5ba1a6">12.00</span></p></td>
+<td class="cl-fa5d1253"><p class="cl-fa5d097f"><span class="cl-fa5ba1a6">240.00</span></p></td>
+<td class="cl-fa5d1253"><p class="cl-fa5d097f"><span class="cl-fa5ba1a6">1,200.00</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-fad867de"><p class="cl-fad86004"><span class="cl-fad71226">variance</span></p></td>
-<td class="cl-fad867df"><p class="cl-fad8600e"><span class="cl-fad71226">0.13</span></p></td>
-<td class="cl-fad867df"><p class="cl-fad8600e"><span class="cl-fad71226">0.05</span></p></td>
-<td class="cl-fad867df"><p class="cl-fad8600e"><span class="cl-fad71226">0.11</span></p></td>
-<td class="cl-fad867df"><p class="cl-fad8600e"><span class="cl-fad71226">0.32</span></p></td>
+<td class="cl-fa5d125c"><p class="cl-fa5d097e"><span class="cl-fa5ba1a6">variance</span></p></td>
+<td class="cl-fa5d125d"><p class="cl-fa5d097f"><span class="cl-fa5ba1a6">0.13</span></p></td>
+<td class="cl-fa5d125d"><p class="cl-fa5d097f"><span class="cl-fa5ba1a6">0.05</span></p></td>
+<td class="cl-fa5d125d"><p class="cl-fa5d097f"><span class="cl-fa5ba1a6">0.11</span></p></td>
+<td class="cl-fa5d125d"><p class="cl-fa5d097f"><span class="cl-fa5ba1a6">0.32</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -1023,38 +1035,38 @@ flextable was created:</p>
 <p>Now the flextable object looks like this:</p>
 <style></style>
 <div class="tabwid">
-<style>.cl-faf9304a{}.cl-faf5eaa2{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-faf5eaac{font-family:'Helvetica';font-size:12pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-faf5eaad{font-family:'Helvetica';font-size:7.2pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.6pt;}.cl-faf5eaae{font-family:'symbol';font-size:12pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-faf5eab6{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-faf79226{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-faf79230{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-faf799ba{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-faf799c4{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-faf799c5{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-faf799ce{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-faf799cf{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-faf799d0{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-faf799d1{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-faf799d8{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-faf9304a">
+<style>.cl-fa7dcd08{}.cl-fa7a9386{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-fa7a9390{font-family:'Helvetica';font-size:12pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-fa7a9391{font-family:'Helvetica';font-size:7.2pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.6pt;}.cl-fa7a939a{font-family:'symbol';font-size:12pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-fa7a939b{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-fa7c2e76{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-fa7c2e80{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-fa7c35d8{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa7c35e2{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa7c35e3{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa7c35e4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa7c35e5{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa7c35e6{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa7c35ec{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa7c35ed{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-fa7dcd08">
 <thead>
 <tr style="overflow-wrap:break-word;">
-<th class="cl-faf799ba"><p class="cl-faf79226"><span class="cl-faf5eaa2"></span></p></th>
-<th class="cl-faf799c4"><p class="cl-faf79230"><span class="cl-faf5eaa2">Length</span></p></th>
-<th class="cl-faf799c4"><p class="cl-faf79230"><span class="cl-faf5eaa2">Wdith</span></p></th>
-<th class="cl-faf799c4"><p class="cl-faf79230"><span class="cl-faf5eaac">Area</span></p></th>
-<th class="cl-faf799c4"><p class="cl-faf79230"><span class="cl-faf5eaac">Volume</span></p></th>
+<th class="cl-fa7c35d8"><p class="cl-fa7c2e76"><span class="cl-fa7a9386"></span></p></th>
+<th class="cl-fa7c35e2"><p class="cl-fa7c2e80"><span class="cl-fa7a9386">Length</span></p></th>
+<th class="cl-fa7c35e2"><p class="cl-fa7c2e80"><span class="cl-fa7a9386">Wdith</span></p></th>
+<th class="cl-fa7c35e2"><p class="cl-fa7c2e80"><span class="cl-fa7a9390">Area</span></p></th>
+<th class="cl-fa7c35e2"><p class="cl-fa7c2e80"><span class="cl-fa7a9390">Volume</span></p></th>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<th class="cl-faf799c5"><p class="cl-faf79226"><span class="cl-faf5eaa2"></span></p></th>
-<th class="cl-faf799ce"><p class="cl-faf79230"><span class="cl-faf5eaa2">cm</span></p></th>
-<th class="cl-faf799ce"><p class="cl-faf79230"><span class="cl-faf5eaa2">cm</span></p></th>
-<th class="cl-faf799ce"><p class="cl-faf79230"><span class="cl-faf5eaac">cm</span><span class="cl-faf5eaad">2</span></p></th>
-<th class="cl-faf799ce"><p class="cl-faf79230"><span class="cl-faf5eaac">cm</span><span class="cl-faf5eaad">3</span></p></th>
+<th class="cl-fa7c35e3"><p class="cl-fa7c2e76"><span class="cl-fa7a9386"></span></p></th>
+<th class="cl-fa7c35e4"><p class="cl-fa7c2e80"><span class="cl-fa7a9386">cm</span></p></th>
+<th class="cl-fa7c35e4"><p class="cl-fa7c2e80"><span class="cl-fa7a9386">cm</span></p></th>
+<th class="cl-fa7c35e4"><p class="cl-fa7c2e80"><span class="cl-fa7a9390">cm</span><span class="cl-fa7a9391">2</span></p></th>
+<th class="cl-fa7c35e4"><p class="cl-fa7c2e80"><span class="cl-fa7a9390">cm</span><span class="cl-fa7a9391">3</span></p></th>
 </tr>
 </thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-faf799cf"><p class="cl-faf79226"><span class="cl-faf5eaae">m</span></p></td>
-<td class="cl-faf799d0"><p class="cl-faf79230"><span class="cl-faf5eab6">200.00</span></p></td>
-<td class="cl-faf799d0"><p class="cl-faf79230"><span class="cl-faf5eab6">12.00</span></p></td>
-<td class="cl-faf799d0"><p class="cl-faf79230"><span class="cl-faf5eab6">240.00</span></p></td>
-<td class="cl-faf799d0"><p class="cl-faf79230"><span class="cl-faf5eab6">1,200.00</span></p></td>
+<td class="cl-fa7c35e5"><p class="cl-fa7c2e76"><span class="cl-fa7a939a">m</span></p></td>
+<td class="cl-fa7c35e6"><p class="cl-fa7c2e80"><span class="cl-fa7a939b">200.00</span></p></td>
+<td class="cl-fa7c35e6"><p class="cl-fa7c2e80"><span class="cl-fa7a939b">12.00</span></p></td>
+<td class="cl-fa7c35e6"><p class="cl-fa7c2e80"><span class="cl-fa7a939b">240.00</span></p></td>
+<td class="cl-fa7c35e6"><p class="cl-fa7c2e80"><span class="cl-fa7a939b">1,200.00</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-faf799d1"><p class="cl-faf79226"><span class="cl-faf5eaae">s</span><span class="cl-faf5eaad">2</span></p></td>
-<td class="cl-faf799d8"><p class="cl-faf79230"><span class="cl-faf5eab6">0.13</span></p></td>
-<td class="cl-faf799d8"><p class="cl-faf79230"><span class="cl-faf5eab6">0.05</span></p></td>
-<td class="cl-faf799d8"><p class="cl-faf79230"><span class="cl-faf5eab6">0.11</span></p></td>
-<td class="cl-faf799d8"><p class="cl-faf79230"><span class="cl-faf5eab6">0.32</span></p></td>
+<td class="cl-fa7c35ec"><p class="cl-fa7c2e76"><span class="cl-fa7a939a">s</span><span class="cl-fa7a9391">2</span></p></td>
+<td class="cl-fa7c35ed"><p class="cl-fa7c2e80"><span class="cl-fa7a939b">0.13</span></p></td>
+<td class="cl-fa7c35ed"><p class="cl-fa7c2e80"><span class="cl-fa7a939b">0.05</span></p></td>
+<td class="cl-fa7c35ed"><p class="cl-fa7c2e80"><span class="cl-fa7a939b">0.11</span></p></td>
+<td class="cl-fa7c35ed"><p class="cl-fa7c2e80"><span class="cl-fa7a939b">0.32</span></p></td>
 </tr>
 </tbody>
 </table>

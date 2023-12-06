@@ -42,7 +42,7 @@
 #'  \item \code{"flextable_object"} user defined flextable object 
 #'  }
 #'
-#'@seealso \code{\link{view_layout}}
+#'@seealso \code{\link{view_layout}} \code{\link{report_add_slide}}
 add_pptx_ph_content = function(obnd,content_type, 
                                content, 
                                ph_label        = NULL, 

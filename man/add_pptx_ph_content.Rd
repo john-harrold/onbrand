@@ -63,5 +63,5 @@ For each content type listed below the following content is expected:
  }
 }
 \seealso{
-\code{\link{view_layout}}
+\code{\link{view_layout}} \code{\link{report_add_slide}}
 }
