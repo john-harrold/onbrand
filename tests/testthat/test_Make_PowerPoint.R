@@ -125,3 +125,33 @@ tmp_obnd = report_add_slide(obnd,
                            type         = "flextable")))
 expect_true(tmp_obnd[["isgood"]]) })
 
+test_that("PowerPoint: Adding flextable Using onbrand Interface",{
+ tmp_obnd = report_add_slide(obnd,
+                          template = "content_text",
+                          elements = list(
+                            title         = list( content      = "Combining elements, user defined locations, and formatting",
+                                                  type         = "text")),
+                          user_location = list(
+                            txt_example   =
+                              list( content        = officer::fpar(officer::ftext("This is formatted text", officer::fp_text(color="green", font.size=24))),
+                                    type           = "text",
+                                    start          = c(0,  .25),
+                                    stop           = c(.25,.35)),
+                            large_figure  =
+                              list( content        = p,
+                                    type           = "ggplot",
+                                    start          = c(.25,.25),
+                                    stop           = c(.99,.99)),
+                            flextable_obj =
+                              list( content        = tab_fto,
+                                    type           = "flextable_object",
+                                    start          = c(0,.75),
+                                    stop           = c(.25,.95)),
+                            small_figure  =
+                              list( content        = p,
+                                    type           = "ggplot",
+                                    start          = c(0,  .35),
+                                    stop           = c(.25,.74))
+                          )
+  )
+expect_true(tmp_obnd[["isgood"]]) })
