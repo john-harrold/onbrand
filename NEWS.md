@@ -1,3 +1,5 @@
+# onbrand 1.0.5 (development version)
+
 # onbrand 1.0.4
 
 * Added the ability to place content in arbitrary locations on slides in PowerPoint.
