@@ -31,25 +31,25 @@
 #' The way the data frames relate to each other are mapped out below. The
 #' dimensions of the different data frames are identified below (nrow x ncol)
 #'
-#'```
-#' #|-------------------------------------| ---
-#' #|                 |                   |  ^
-#' #|                 |                   |  |
-#' #| row_common_head |  table_body_head  |  | m
-#' #|      m x n      |       m x c       |  |
-#' #|                 |                   |  v
-#' #|-------------------------------------| ---
-#' #|                 |                   |  ^
-#' #|                 |                   |  |
-#' #|    row_common   |    table_body     |  | r
-#' #|      r x n      |      r x c        |  |
-#' #|                 |                   |  |
-#' #|                 |                   |  v
-#' #|-------------------------------------| ---
-#' #
-#' #|<--------------->|<----------------->|
-#' #        n                   c
-#'```
+#'\preformatted{
+#'  |-------------------------------------| ---
+#'  |                 |                   |  ^
+#'  |                 |                   |  |
+#'  | row_common_head |  table_body_head  |  | m
+#'  |      m x n      |       m x c       |  |
+#'  |                 |                   |  v
+#'  |-------------------------------------| ---
+#'  |                 |                   |  ^
+#'  |                 |                   |  |
+#'  |    row_common   |    table_body     |  | r
+#'  |      r x n      |      r x c        |  |
+#'  |                 |                   |  |
+#'  |                 |                   |  v
+#'  |-------------------------------------| ---
+#'
+#'  |<--------------->|<----------------->|
+#'          n                   c
+#'}
 #'@return list with the following elements
 #' \itemize{
 #'   \item{isgood:}    Boolean indicating the exit status of the function.
@@ -378,42 +378,43 @@ res}
 #' dimensions of the different data frames are identified below (nrow x ncol)
 #'
 #'
-#' ```
-#' #                            col_sel
-#' #                      |<--------------->|
-#' #
-#' #|--------------------------------------------| ---
-#' #|                 |   .                 .    |  ^
-#' #|                 |   .                 .    |  |
-#' #| row_common_head |   . table_body_head .    |  | m
-#' #|      m x n      |   .      m x c      .    |  |
-#' #|                 |   .                 .    |  v
-#' #|--------------------------------------------| ---
-#' #|                 |   .                 .    |  ^
-#' #|                 |   .                 .    |  |
-#' #|    row_common   |   .   table_body    .    |  |
-#' #|      r x n      |   .     r x c       .    |  |
-#' #|                 |   .                 .    |  |
-#' #|.................|..........................|  |     -
-#' #|                 |   ./  /  /  /  /  / .    |  |     ^
-#' #|                 |   .  /  /  /  /  /  .    |  | r   |
-#' #|                 |   . /  /  /  /  /  /.    |  |     | row_sel
-#' #|                 |   ./  /  /  /  /  / .    |  |     |
-#' #|                 |   .  /  /  /  /  /  .    |  |     v
-#' #|.................|...../../../../../../.... |  |     -
-#' #|                 |   .                 .    |  |
-#' #|                 |   .                 .    |  v
-#' #|--------------------------------------------| ---
-#' #
-#' #|<--------------->|<------------------------>|
-#' #        n                    c
-#' ```
+#' \preformatted{
+#'                             col_sel
+#'                       |<--------------->|
+#'
+#' |--------------------------------------------| ---
+#' |                 |   .                 .    |  ^
+#' |                 |   .                 .    |  |
+#' | row_common_head |   . table_body_head .    |  | m
+#' |      m x n      |   .      m x c      .    |  |
+#' |                 |   .                 .    |  v
+#' |--------------------------------------------| ---
+#' |                 |   .                 .    |  ^
+#' |                 |   .                 .    |  |
+#' |    row_common   |   .   table_body    .    |  |
+#' |      r x n      |   .     r x c       .    |  |
+#' |                 |   .                 .    |  |
+#' |.................|..........................|  |     -
+#' |                 |   ./  /  /  /  /  / .    |  |     ^
+#' |                 |   .  /  /  /  /  /  .    |  | r   |
+#' |                 |   . /  /  /  /  /  /.    |  |     | row_sel
+#' |                 |   ./  /  /  /  /  / .    |  |     |
+#' |                 |   .  /  /  /  /  /  .    |  |     v
+#' |.................|...../../../../../../.... |  |     -
+#' |                 |   .                 .    |  |
+#' |                 |   .                 .    |  v
+#' |--------------------------------------------| ---
+#'
+#' |<--------------->|<------------------------>|
+#'         n                    c
+#' }
 #'@return list with the following elements
 #' \itemize{
 #'   \item{df:}     Data frame with the built table.
 #'   \item{ft:}     The data frame as a flextable object.
 #'   \item{notes:}  Note placeholders found in the table.
 #'}
+#'@example inst/test_scripts/span_table.R
 build_span  = function(table_body                = NULL,
                        row_common                = NULL,
                        table_body_head           = NULL,

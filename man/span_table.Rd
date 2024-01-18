@@ -90,25 +90,25 @@ less than or equal to both max_row and max_height.
 The way the data frames relate to each other are mapped out below. The
 dimensions of the different data frames are identified below (nrow x ncol)
 
-```
-#|-------------------------------------| ---
-#|                 |                   |  ^
-#|                 |                   |  |
-#| row_common_head |  table_body_head  |  | m
-#|      m x n      |       m x c       |  |
-#|                 |                   |  v
-#|-------------------------------------| ---
-#|                 |                   |  ^
-#|                 |                   |  |
-#|    row_common   |    table_body     |  | r
-#|      r x n      |      r x c        |  |
-#|                 |                   |  |
-#|                 |                   |  v
-#|-------------------------------------| ---
-#
-#|<--------------->|<----------------->|
-#        n                   c
-```
+\preformatted{
+ |-------------------------------------| ---
+ |                 |                   |  ^
+ |                 |                   |  |
+ | row_common_head |  table_body_head  |  | m
+ |      m x n      |       m x c       |  |
+ |                 |                   |  v
+ |-------------------------------------| ---
+ |                 |                   |  ^
+ |                 |                   |  |
+ |    row_common   |    table_body     |  | r
+ |      r x n      |      r x c        |  |
+ |                 |                   |  |
+ |                 |                   |  v
+ |-------------------------------------| ---
+
+ |<--------------->|<----------------->|
+         n                   c
+}
 }
 \examples{
 if(interactive()){
@@ -219,7 +219,17 @@ span_table(table_body      = table_body,
            max_col         = 10,
            notes_detect    = c("BQL", "NC"))
 
+# Notes detected in the first table:
+res[["tables"]][["Table 1"]][["notes"]]
+
+# First table as a data frame:
+res[["tables"]][["Table 1"]][["df"]]
+
+# First table as a flextable:
+res[["tables"]][["Table 1"]][["ft"]]
+
 }
+
 }
 \seealso{
 \code{\link{build_span} for the relationship of inputs.}

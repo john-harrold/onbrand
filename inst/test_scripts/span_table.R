@@ -106,4 +106,14 @@ span_table(table_body      = table_body,
            max_col         = 10,
            notes_detect    = c("BQL", "NC"))
 
+# Notes detected in the first table:
+res[["tables"]][["Table 1"]][["notes"]]
+
+# First table as a data frame:
+res[["tables"]][["Table 1"]][["df"]]
+
+# First table as a flextable:
+res[["tables"]][["Table 1"]][["ft"]]
+
 }
+

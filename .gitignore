@@ -1,9 +1,0 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-.Rbuildignore
-onbrand.Rproj
-tmp/
-vignettes/*.R
-vignettes/*.html
