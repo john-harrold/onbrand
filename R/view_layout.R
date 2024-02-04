@@ -7,7 +7,7 @@
 #'@importFrom officer body_add_table body_add_toc body_bookmark body_end_section_continuous
 #'@importFrom officer body_end_section_landscape body_end_section_portrait body_replace_all_text external_img
 #'@importFrom officer footers_replace_all_text fpar ftext headers_replace_all_text layout_properties layout_summary ph_location_type
-#'@importFrom officer ph_location_label ph_with read_pptx read_docx shortcuts  slip_in_seqfield slip_in_text
+#'@importFrom officer ph_location_label ph_with read_pptx read_docx shortcuts
 #'@importFrom officer run_autonum run_bookmark run_reference styles_info unordered_list
 #'@importFrom stringr str_locate_all
 #'@importFrom dplyr filter
