@@ -1,5 +1,8 @@
 # onbrand 1.0.5 (development version)
 
+* Stripped out the slip_in_seqfield and slip_in_text functions
+* Updated default PowerPoint tempalte with a wider slide. 
+
 # onbrand 1.0.4
 
 * Added the ability to place content in arbitrary locations on slides in PowerPoint.

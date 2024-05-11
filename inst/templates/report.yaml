@@ -24,7 +24,7 @@ rpptx:
         ph_label:     Title 1
         content_type: text
       sub_title:
-        ph_label:     Content Placeholder 10
+        ph_label:     Subtitle 2
         content_type: text
       content_body:
         ph_label:     Content Placeholder 2
@@ -34,7 +34,7 @@ rpptx:
         ph_label:     Title 1
         content_type: text
       sub_title:
-        ph_label:     Content Placeholder 10
+        ph_label:     Subtitle 2 
         content_type: text
       content_body:
         ph_label:     Content Placeholder 2
@@ -44,45 +44,45 @@ rpptx:
         ph_label:     Title 1
         content_type: text
       sub_title:
-        ph_label:     Content Placeholder 10
+        ph_label:     Subtitle 2
         content_type: text
       content_left_header:
         ph_label:     Text Placeholder 2
         content_type: text
       content_left:
-        ph_label:     Content Placeholder 2
+        ph_label:     Content Placeholder 3
         content_type: list
       content_right_header:
         ph_label:     Text Placeholder 4
         content_type: text
       content_right:
-        ph_label:     Content Placeholder 3
+        ph_label:     Content Placeholder 5
         content_type: list
     two_content_header_text:
       title:
         ph_label:     Title 1
         content_type: text
       sub_title:
-        ph_label:     Content Placeholder 10
+        ph_label:     Subtitle 2 
         content_type: text
       content_left_header:
         ph_label:     Text Placeholder 2
         content_type: text
       content_left:
-        ph_label:     Content Placeholder 2
+        ph_label:     Content Placeholder 3
         content_type: text
       content_right_header:
         ph_label:     Text Placeholder 4
         content_type: text
       content_right:
-        ph_label:     Content Placeholder 3
+        ph_label:     Content Placeholder 5
         content_type: text
     two_content_list:
       title:
         ph_label:     Title 1
         content_type: text
       sub_title:
-        ph_label:     Content Placeholder 10
+        ph_label:     Subtitle 2 
         content_type: text
       content_left:
         ph_label:     Content Placeholder 2
@@ -95,7 +95,7 @@ rpptx:
         ph_label:     Title 1
         content_type: text
       sub_title:
-        ph_label:     Content Placeholder 10
+        ph_label:     Subtitle 2 
         content_type: text
       content_left:
         ph_label:     Content Placeholder 2

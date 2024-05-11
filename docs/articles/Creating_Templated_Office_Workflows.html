@@ -17,7 +17,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Templated Workflows">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Templated Workflows">
 <meta property="og:description" content="onbrand">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -231,15 +231,17 @@ mapping file:</p>
 size according to the dimensions of the placeholder. First lets create
 some images:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="va">p</span> <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="external-link">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x<span class="op">=</span><span class="fl">0</span>, y<span class="op">=</span><span class="fl">0</span>, label <span class="op">=</span> <span class="st">"picture example"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></code></pre></div>
+<pre><code>Warning: package 'ggplot2' was built under R version 4.2.3</code></pre>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p</span> <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="external-link">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x<span class="op">=</span><span class="fl">0</span>, y<span class="op">=</span><span class="fl">0</span>, label <span class="op">=</span> <span class="st">"picture example"</span><span class="op">)</span></span>
 <span><span class="va">imgfile</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern<span class="op">=</span><span class="st">"image"</span>, fileext<span class="op">=</span><span class="st">".png"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggsave</a></span><span class="op">(</span>filename<span class="op">=</span><span class="va">imgfile</span>, plot<span class="op">=</span><span class="va">p</span>, height<span class="op">=</span><span class="fl">5.15</span>, width<span class="op">=</span><span class="fl">9</span>, units<span class="op">=</span><span class="st">"in"</span><span class="op">)</span></span></code></pre></div>
 <p>Now that the object <code>p</code> contains the ggplot object and
 <code>imgfile</code> points to a png file containing that image, we can
 add the content to our <code>two_content_header_text</code> slide
 template:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_slide.html">report_add_slide</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  template <span class="op">=</span> <span class="st">"two_content_header_text"</span>,</span>
 <span>  elements <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
@@ -274,7 +276,7 @@ flextable on your own and use it directly. The ultimate level of
 control.</li>
 </ul>
 <p>Lets start by creating a simple data frame:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tdf</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Parameters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Length"</span>, <span class="st">"Width"</span>, <span class="st">"Height"</span><span class="op">)</span>,</span>
 <span>                 Values     <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,</span>
 <span>                 Units      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"m"</span>, <span class="st">"m"</span>, <span class="st">"m"</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div>
@@ -283,7 +285,7 @@ type. Construct a named list with a single element, <code>table</code>,
 containing the data frame; <code>tab_cont = list(table = tdf)</code>.
 You can add list elements to display header information as well. See the
 help for <code><a href="../reference/add_pptx_ph_content.html">onbrand::add_pptx_ph_content()</a></code> for details.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tab_cont</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>table <span class="op">=</span> <span class="va">tdf</span><span class="op">)</span></span>
 <span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_slide.html">report_add_slide</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  template <span class="op">=</span> <span class="st">"content_text"</span>, </span>
@@ -299,7 +301,7 @@ output. The <code>flextable</code> type allows you to supply the data
 and information about the flextable to be created and
 <code>onbrand</code> will then use them to create the flextable for
 you.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tab_ft</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>table         <span class="op">=</span> <span class="va">tdf</span>,</span>
 <span>              header_format <span class="op">=</span> <span class="st">"md"</span>,</span>
 <span>              header_top    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Parameters <span class="op">=</span> <span class="st">"Name^2^"</span>,</span>
@@ -320,12 +322,12 @@ covers the details of the list elements that can be supplied.</p>
 flexibility in the <code>flextable</code> package. Some of these can be
 seen in the Word examples below, but you should see the documentation
 for that package to get a feel for what is possible.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tab_fto</span> <span class="op">=</span> <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/flextable.html" class="external-link">flextable</a></span><span class="op">(</span><span class="va">tdf</span><span class="op">)</span>                      </span></code></pre></div>
 <p>You can then add these (flextable list: <code>tab_ft</code>,
 flextable object: <code>tab_fto</code>) to any of the placeholders on a
 slide:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_slide.html">report_add_slide</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  template <span class="op">=</span> <span class="st">"two_content_header_text"</span>,</span>
 <span>  elements <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
@@ -353,7 +355,7 @@ above. You also need to supply a start and stop point. These are x-y
 coordinates as measured from the upper left point on the slide and they
 define the box where the content will be inserted. They represent
 fractions of the total slide width (x) and height (y):</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_slide.html">report_add_slide</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  template <span class="op">=</span> <span class="st">"two_content_header_list"</span>,</span>
 <span>  elements <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
@@ -390,7 +392,7 @@ fractions of the total slide width (x) and height (y):</p>
 </h4>
 <p>Once you are done adding content you can save the presentation to a
 file:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/save_report.html">save_report</a></span><span class="op">(</span><span class="va">obnd</span>, <span class="st">"vignette_presentation.pptx"</span><span class="op">)</span></span></code></pre></div>
 <p>Which should look something like this: <img src="ppt_workflow_output.png" width="600" alt="Example PowerPoint output for workflow above."></p>
 </div>
@@ -401,9 +403,9 @@ file:</p>
 placeholder names from the mapping file. You and use the
 <code><a href="../reference/template_details.html">onbrand::template_details</a></code> function to show this information
 for the current <code>onbrand</code> object.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">details</span> <span class="op">=</span> <span class="fu"><a href="../reference/template_details.html">template_details</a></span><span class="op">(</span><span class="va">obnd</span><span class="op">)</span> </span></code></pre></div>
-<pre><code>Mapping:     /private/var/folders/l9/6pm7xq5j1hn6l00zrs22j6mc0000gn/T/RtmpS0xRdW/temp_libpath1236157a24ce7/onbrand/templates/report.yaml
+<pre><code>Mapping:     /private/var/folders/l9/6pm7xq5j1hn6l00zrs22j6mc0000gn/T/Rtmpv8vlxX/temp_libpath114aa30ee6668/onbrand/templates/report.yaml
 Report Type: PowerPoint
 title_slide (master/template)
   &gt; title (text)
@@ -455,7 +457,7 @@ in the yaml mapping file. For example if we wanted the placeholder label
 for the <code>content_left_header</code> in the
 <code>two_content_header_text</code> layout we would use the
 following:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ph</span> <span class="op">=</span> <span class="fu"><a href="../reference/fph.html">fph</a></span><span class="op">(</span><span class="va">obnd</span>, <span class="st">"two_content_header_text"</span>, <span class="st">"content_left_header"</span><span class="op">)</span><span class="op">$</span><span class="va">pl</span></span></code></pre></div>
 </div>
 </div>
@@ -470,7 +472,7 @@ create a new <code>onbrand</code> object for a Word report. Just as
 before, you need to supply the path to your Word template and the
 mapping file. This example points to files within the
 <code>onbrand</code> package:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/read_template.html">read_template</a></span><span class="op">(</span></span>
 <span>  template <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span><span class="op">)</span>, <span class="st">"templates"</span>, <span class="st">"report.docx"</span><span class="op">)</span>,</span>
 <span>  mapping  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"onbrand"</span><span class="op">)</span>, <span class="st">"templates"</span>, <span class="st">"report.yaml"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -525,17 +527,17 @@ style. So if you wish to generate separate lists of tables and figures
 it is important that your <code>onbrand</code> styles for those point to
 different Word styles.</p>
 <p>This will add a typical TOC:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type     <span class="op">=</span> <span class="st">"toc"</span>,</span>
 <span>  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>level<span class="op">=</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>While this should add the list of tables:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type     <span class="op">=</span> <span class="st">"toc"</span>,</span>
 <span>  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>style<span class="op">=</span><span class="st">"Table_Caption"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>And this should add a list of figures:</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type     <span class="op">=</span> <span class="st">"toc"</span>,</span>
 <span>  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>style<span class="op">=</span><span class="st">"Figure_Caption"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -554,7 +556,7 @@ list that has three possible elements. The only one required is the
 <code>text</code> element. If you just want to add text in the default
 format (<code>doc_def</code> in the <code>yaml</code> mapping file),
 then this is all you need to do:</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type     <span class="op">=</span> <span class="st">"text"</span>,</span>
 <span>  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>text<span class="op">=</span><span class="st">"Text with no style specified will use the doc_def text format. This is a 'ph' placehoder for text: ===BODY-TEXT-EXAMPLE=== [see Placeholder text section below]"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -564,7 +566,7 @@ then this is all you need to do:</p>
 <p>Alternatively you can specify any style defined in the
 <code>yaml</code> mapping file by adding a <code>style</code> element to
 the content list. This shows how to create multi-level headers:</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type     <span class="op">=</span> <span class="st">"text"</span>,</span>
 <span>  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>text  <span class="op">=</span><span class="st">"First level header"</span>,</span>
@@ -605,7 +607,7 @@ tables)</li>
 </ul>
 <p>The following provide example <code>"fpar"</code> and
 <code>"md"</code> formats</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ardata-fr.github.io/officeverse/" class="external-link">officer</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">fpartext</span> <span class="op">=</span> <span class="fu"><a href="https://davidgohel.github.io/officer/reference/fpar.html" class="external-link">fpar</a></span><span class="op">(</span></span>
@@ -633,19 +635,19 @@ tables)</li>
 <p>Similar to the PowerPoint example above we’re going to create some
 figures. Both an image file (<code>imgfile</code>) and a ggplot object
 (<code>p</code>):</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="external-link">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x<span class="op">=</span><span class="fl">0</span>, y<span class="op">=</span><span class="fl">0</span>, label <span class="op">=</span> <span class="st">"picture example"</span><span class="op">)</span></span>
 <span><span class="va">imgfile</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern<span class="op">=</span><span class="st">"image"</span>, fileext<span class="op">=</span><span class="st">".png"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggsave</a></span><span class="op">(</span>filename<span class="op">=</span><span class="va">imgfile</span>, plot<span class="op">=</span><span class="va">p</span>, height<span class="op">=</span><span class="fl">5.15</span>, width<span class="op">=</span><span class="fl">9</span>, units<span class="op">=</span><span class="st">"in"</span><span class="op">)</span></span></code></pre></div>
 <p>We can add these by specifying the appropriate content type. The
 content list can contain different information. Typically you would
 either specify the image file or ggplot object as well as a caption:</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type     <span class="op">=</span> <span class="st">"imagefile"</span>,</span>
 <span>  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>image   <span class="op">=</span> <span class="va">imgfile</span>,</span>
 <span>                  caption <span class="op">=</span> <span class="st">"This is an example of an image from a file."</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type     <span class="op">=</span> <span class="st">"ggplot"</span>,</span>
 <span>  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>image   <span class="op">=</span> <span class="va">p</span>,</span>
@@ -658,7 +660,7 @@ either specify the image file or ggplot object as well as a caption:</p>
 type can be either <code>table</code>, <code>flextable</code>, or
 <code>flextable_object</code>. Lets look at this data frame to see how
 to use each of these:</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tdf</span> <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Parameters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Length"</span>, <span class="st">"Width"</span>, <span class="st">"Height"</span><span class="op">)</span>,</span>
 <span>                    Values     <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,</span>
 <span>                    Units      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"m"</span>, <span class="st">"m"</span>, <span class="st">"m"</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div>
@@ -666,7 +668,7 @@ to use each of these:</p>
 type and the content is just a list with an element named
 <code>table</code> that has the value of a dataframe. As with figures,
 the content list can have an optional caption as well.</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tab_cont</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>table   <span class="op">=</span> <span class="va">tdf</span>,</span>
 <span>                caption <span class="op">=</span> <span class="st">"Word Table."</span><span class="op">)</span></span>
 <span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
@@ -675,7 +677,7 @@ the content list can have an optional caption as well.</p>
 <p>Flextables can be used with the <code>flextable</code> type and
 information like headers, header formatting, etc can be passed along.
 <code>onbrand</code> will then construct the flextable for you.</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tab_ft</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>table         <span class="op">=</span> <span class="va">tdf</span>,</span>
 <span>              header_format <span class="op">=</span> <span class="st">"md"</span>,</span>
 <span>              header_top    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Parameters <span class="op">=</span> <span class="st">"Name^2^"</span>,</span>
@@ -690,7 +692,7 @@ information like headers, header formatting, etc can be passed along.
 <span>  content  <span class="op">=</span> <span class="va">tab_ft</span><span class="op">)</span>   </span></code></pre></div>
 <p>Lastly, to have the most control over the table you can construct a
 flextable yourself and pass that along in the content.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tab_fto</span> <span class="op">=</span> <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/flextable.html" class="external-link">flextable</a></span><span class="op">(</span><span class="va">tdf</span><span class="op">)</span>                      </span>
 <span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type     <span class="op">=</span> <span class="st">"flextable_object"</span>,</span>
@@ -713,12 +715,12 @@ lets try the following:</p>
 </ul>
 <p>To change formatting we need to close out the current section by
 inserting a portrait section type:</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>     type     <span class="op">=</span> <span class="st">"section"</span>,</span>
 <span>     content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>section_type  <span class="op">=</span><span class="st">"portrait"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Then we add the content we want in landscape mode:</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type     <span class="op">=</span> <span class="st">"ggplot"</span>,</span>
 <span>  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>image   <span class="op">=</span> <span class="va">p</span>,</span>
@@ -727,28 +729,28 @@ inserting a portrait section type:</p>
 <span>                  caption <span class="op">=</span> <span class="st">"This is a landscape figure."</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Now we tell the underlying report to apply landscape formatting to
 everything that has been added since the portrait section type:</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type     <span class="op">=</span> <span class="st">"section"</span>,</span>
 <span>  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>section_type  <span class="op">=</span><span class="st">"landscape"</span>,</span>
 <span>                  height        <span class="op">=</span> <span class="fl">8</span>,</span>
 <span>                  width         <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Now we want to add the text for the two column format:</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type     <span class="op">=</span> <span class="st">"text"</span>,</span>
 <span>  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>text    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Some two column text."</span>, <span class="fl">200</span><span class="op">)</span>, collapse<span class="op">=</span><span class="st">" "</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Now we insert a section indicating that we want to change the section
 to multiple columns. The number of columns is inferred from the number
 of elements in the <code>widths</code> argument:</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type     <span class="op">=</span> <span class="st">"section"</span>,</span>
 <span>  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>section_type  <span class="op">=</span><span class="st">"columns"</span>,</span>
 <span>                  widths        <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>We can now add content but don’t forget to set the insert a portrait
 section at the end just before you save the document.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type          <span class="op">=</span> <span class="st">"text"</span>,</span>
 <span>  content       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>text    <span class="op">=</span> <span class="st">"Back to regular portrait"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -774,7 +776,7 @@ workflow. In this example, the text <code>===BODY-TEXT-EXAMPLE===</code>
 was added into the text content we added in the first step above. That
 placeholder will be replaced with the text
 <code>Swaps the placeholder with this Text</code>.</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type     <span class="op">=</span> <span class="st">"ph"</span>,</span>
 <span>  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>name     <span class="op">=</span> <span class="st">"BODY-TEXT-EXAMPLE"</span>,</span>
@@ -787,7 +789,7 @@ these examples the <code>===FOOTERLEFT===</code> and
 <code>===HEADERLEFT===</code> placeholders are found in the template
 itself. There is another placeholder <code>===HEADERRIGHT===</code>
 which we have not used so that you can see it in the final output.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type     <span class="op">=</span> <span class="st">"ph"</span>,</span>
 <span>  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>name     <span class="op">=</span> <span class="st">"FOOTERLEFT"</span>,</span>
@@ -808,7 +810,7 @@ any time to the <code>onbrand</code> report object.</p>
 wanted to return to the default portrait single column format. We added
 text but before we save the file we need to tell the document to apply
 the new section type:</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type     <span class="op">=</span> <span class="st">"section"</span>,</span>
 <span>  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>section_type  <span class="op">=</span><span class="st">"portrait"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -827,7 +829,7 @@ create a separate figure for each page. For each figure you will need to
 provide the <em>same</em> key value. The first figure with that key will
 be assigned a figure number and the other figures with that key will
 have the same number that references the first.</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type     <span class="op">=</span> <span class="st">"ggplot"</span>,</span>
 <span>  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>image           <span class="op">=</span> <span class="va">p</span>,</span>
@@ -869,7 +871,7 @@ the figure key to insert the figure number.</p>
 </h4>
 <p>Once you are done adding content you can save the report to a file
 with the `save_report()`` function as well:</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/save_report.html">save_report</a></span><span class="op">(</span><span class="va">obnd</span>, <span class="st">"vignette_report.docx"</span><span class="op">)</span></span></code></pre></div>
 <p>The output from the example above should look like this:</p>
 <div class="float">
@@ -882,9 +884,9 @@ with the `save_report()`` function as well:</p>
 <p>It can also be useful to quickly access the <code>onbrand</code>
 style names. You can use the same <code><a href="../reference/template_details.html">onbrand::template_details</a></code>
 function to display the current styles available to you:</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">details</span> <span class="op">=</span> <span class="fu"><a href="../reference/template_details.html">template_details</a></span><span class="op">(</span><span class="va">obnd</span><span class="op">)</span> </span></code></pre></div>
-<pre><code>Mapping:     /private/var/folders/l9/6pm7xq5j1hn6l00zrs22j6mc0000gn/T/RtmpS0xRdW/temp_libpath1236157a24ce7/onbrand/templates/report.yaml
+<pre><code>Mapping:     /private/var/folders/l9/6pm7xq5j1hn6l00zrs22j6mc0000gn/T/Rtmpv8vlxX/temp_libpath114aa30ee6668/onbrand/templates/report.yaml
 Report Type: Word
   onbrand style (word style, style type)
   --------------------------------------
@@ -904,7 +906,7 @@ With the <code>onbrand</code> objected loaded (<code>obnd</code>) you
 can supply an <code>onbrand</code> style name and pull out the Word
 style name (<code>wsn</code>) and the default font format
 (<code>dff</code>):</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">st</span> <span class="op">=</span> <span class="fu"><a href="../reference/fst.html">fst</a></span><span class="op">(</span><span class="va">obnd</span>, <span class="st">"Heading_3"</span><span class="op">)</span></span>
 <span><span class="co">#Word style name</span></span>
 <span><span class="va">wsn</span> <span class="op">=</span> <span class="va">st</span><span class="op">$</span><span class="va">wsn</span></span>
@@ -944,7 +946,7 @@ result.</li>
 </h4>
 <p>First lets start with data. Here we have dimensional data listed as a
 mean and variance:</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>property <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mean"</span>,   <span class="st">"variance"</span><span class="op">)</span>,</span>
 <span>                  length     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">200</span>,      <span class="fl">0.13</span><span class="op">)</span>,</span>
 <span>                  width      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">12</span>,       <span class="fl">0.05</span><span class="op">)</span>,</span>
@@ -952,7 +954,7 @@ mean and variance:</p>
 <span>                  volume     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1200</span>,     <span class="fl">0.32</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Now lets create a flextable object with a header that shows the
 property being reported on one line and the units on the line below:</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">header</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>property <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>,             <span class="st">""</span><span class="op">)</span>,</span>
 <span>              length   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Length"</span>,       <span class="st">"cm"</span><span class="op">)</span>,</span>
 <span>              width    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Wdith"</span>,        <span class="st">"cm"</span><span class="op">)</span>,</span>
@@ -966,38 +968,38 @@ property being reported on one line and the units on the line below:</p>
 <p>That flextable currently looks like this:</p>
 <style></style>
 <div class="tabwid">
-<style>.cl-3fc1332e{}.cl-3fbe3d04{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3fbe3d0e{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3fbf8844{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3fbf884e{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3fbf8f6a{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3fbf8f74{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3fbf8f75{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3fbf8f76{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3fbf8f7e{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3fbf8f7f{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3fbf8f80{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3fbf8f88{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-3fc1332e">
+<style>.cl-3d0bc1fe{}.cl-3d08d4a8{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3d08d4b2{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3d09f5cc{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3d09f5cd{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3d09fdb0{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d09fdb1{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d09fdb2{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d09fdb3{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d09fdba{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d09fdbb{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d09fdbc{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d09fdbd{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-3d0bc1fe">
 <thead>
 <tr style="overflow-wrap:break-word;">
-<th class="cl-3fbf8f6a"><p class="cl-3fbf8844"><span class="cl-3fbe3d04"></span></p></th>
-<th class="cl-3fbf8f74"><p class="cl-3fbf884e"><span class="cl-3fbe3d04">Length</span></p></th>
-<th class="cl-3fbf8f74"><p class="cl-3fbf884e"><span class="cl-3fbe3d04">Wdith</span></p></th>
-<th class="cl-3fbf8f74"><p class="cl-3fbf884e"><span class="cl-3fbe3d04">Area</span></p></th>
-<th class="cl-3fbf8f74"><p class="cl-3fbf884e"><span class="cl-3fbe3d04">Volume</span></p></th>
+<th class="cl-3d09fdb0"><p class="cl-3d09f5cc"><span class="cl-3d08d4a8"></span></p></th>
+<th class="cl-3d09fdb1"><p class="cl-3d09f5cd"><span class="cl-3d08d4a8">Length</span></p></th>
+<th class="cl-3d09fdb1"><p class="cl-3d09f5cd"><span class="cl-3d08d4a8">Wdith</span></p></th>
+<th class="cl-3d09fdb1"><p class="cl-3d09f5cd"><span class="cl-3d08d4a8">Area</span></p></th>
+<th class="cl-3d09fdb1"><p class="cl-3d09f5cd"><span class="cl-3d08d4a8">Volume</span></p></th>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<th class="cl-3fbf8f75"><p class="cl-3fbf8844"><span class="cl-3fbe3d04"></span></p></th>
-<th class="cl-3fbf8f76"><p class="cl-3fbf884e"><span class="cl-3fbe3d04">cm</span></p></th>
-<th class="cl-3fbf8f76"><p class="cl-3fbf884e"><span class="cl-3fbe3d04">cm</span></p></th>
-<th class="cl-3fbf8f76"><p class="cl-3fbf884e"><span class="cl-3fbe3d04">cm2</span></p></th>
-<th class="cl-3fbf8f76"><p class="cl-3fbf884e"><span class="cl-3fbe3d04">cm3</span></p></th>
+<th class="cl-3d09fdb2"><p class="cl-3d09f5cc"><span class="cl-3d08d4a8"></span></p></th>
+<th class="cl-3d09fdb3"><p class="cl-3d09f5cd"><span class="cl-3d08d4a8">cm</span></p></th>
+<th class="cl-3d09fdb3"><p class="cl-3d09f5cd"><span class="cl-3d08d4a8">cm</span></p></th>
+<th class="cl-3d09fdb3"><p class="cl-3d09f5cd"><span class="cl-3d08d4a8">cm2</span></p></th>
+<th class="cl-3d09fdb3"><p class="cl-3d09f5cd"><span class="cl-3d08d4a8">cm3</span></p></th>
 </tr>
 </thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-3fbf8f7e"><p class="cl-3fbf8844"><span class="cl-3fbe3d0e">mean</span></p></td>
-<td class="cl-3fbf8f7f"><p class="cl-3fbf884e"><span class="cl-3fbe3d0e">200.00</span></p></td>
-<td class="cl-3fbf8f7f"><p class="cl-3fbf884e"><span class="cl-3fbe3d0e">12.00</span></p></td>
-<td class="cl-3fbf8f7f"><p class="cl-3fbf884e"><span class="cl-3fbe3d0e">240.00</span></p></td>
-<td class="cl-3fbf8f7f"><p class="cl-3fbf884e"><span class="cl-3fbe3d0e">1,200.00</span></p></td>
+<td class="cl-3d09fdba"><p class="cl-3d09f5cc"><span class="cl-3d08d4b2">mean</span></p></td>
+<td class="cl-3d09fdbb"><p class="cl-3d09f5cd"><span class="cl-3d08d4b2">200.00</span></p></td>
+<td class="cl-3d09fdbb"><p class="cl-3d09f5cd"><span class="cl-3d08d4b2">12.00</span></p></td>
+<td class="cl-3d09fdbb"><p class="cl-3d09f5cd"><span class="cl-3d08d4b2">240.00</span></p></td>
+<td class="cl-3d09fdbb"><p class="cl-3d09f5cd"><span class="cl-3d08d4b2">1,200.00</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-3fbf8f80"><p class="cl-3fbf8844"><span class="cl-3fbe3d0e">variance</span></p></td>
-<td class="cl-3fbf8f88"><p class="cl-3fbf884e"><span class="cl-3fbe3d0e">0.13</span></p></td>
-<td class="cl-3fbf8f88"><p class="cl-3fbf884e"><span class="cl-3fbe3d0e">0.05</span></p></td>
-<td class="cl-3fbf8f88"><p class="cl-3fbf884e"><span class="cl-3fbe3d0e">0.11</span></p></td>
-<td class="cl-3fbf8f88"><p class="cl-3fbf884e"><span class="cl-3fbe3d0e">0.32</span></p></td>
+<td class="cl-3d09fdbc"><p class="cl-3d09f5cc"><span class="cl-3d08d4b2">variance</span></p></td>
+<td class="cl-3d09fdbd"><p class="cl-3d09f5cd"><span class="cl-3d08d4b2">0.13</span></p></td>
+<td class="cl-3d09fdbd"><p class="cl-3d09f5cd"><span class="cl-3d08d4b2">0.05</span></p></td>
+<td class="cl-3d09fdbd"><p class="cl-3d09f5cd"><span class="cl-3d08d4b2">0.11</span></p></td>
+<td class="cl-3d09fdbd"><p class="cl-3d09f5cd"><span class="cl-3d08d4b2">0.32</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -1010,13 +1012,13 @@ deviations from these defaults. You can look at the help for
 <code><a href="../reference/md_to_oo.html">onbrand::md_to_oo</a></code> to get the appropriate list format. Here
 we’re just pulling them out of the <code>onbrand</code> object using
 <code><a href="../reference/fetch_md_def.html">onbrand::fetch_md_def()</a></code>.</p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dft</span>      <span class="op">=</span> <span class="fu"><a href="../reference/fetch_md_def.html">fetch_md_def</a></span><span class="op">(</span><span class="va">obnd</span>, style<span class="op">=</span><span class="st">"Table_Labels"</span><span class="op">)</span><span class="op">$</span><span class="va">md_def</span></span>
 <span><span class="va">dft_body</span> <span class="op">=</span> <span class="fu"><a href="../reference/fetch_md_def.html">fetch_md_def</a></span><span class="op">(</span><span class="va">obnd</span>, style<span class="op">=</span><span class="st">"Table"</span><span class="op">)</span><span class="op">$</span><span class="va">md_def</span></span></code></pre></div>
 <p>Now we can use the <code><a href="https://davidgohel.github.io/flextable/reference/compose.html" class="external-link">flextable::compose</a></code> function to walk
 through the table and overwrite the defaults that were set when the
 flextable was created:</p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ft</span> <span class="op">=</span> <span class="va">ft</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">flextable</span><span class="fu">::</span><span class="fu"><a href="https://davidgohel.github.io/flextable/reference/compose.html" class="external-link">compose</a></span><span class="op">(</span>j     <span class="op">=</span> <span class="st">"area"</span>,</span>
 <span>          part  <span class="op">=</span> <span class="st">"header"</span>, </span>
@@ -1035,38 +1037,38 @@ flextable was created:</p>
 <p>Now the flextable object looks like this:</p>
 <style></style>
 <div class="tabwid">
-<style>.cl-3fdffebc{}.cl-3fdcb5fe{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3fdcb608{font-family:'Helvetica';font-size:12pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3fdcb609{font-family:'Helvetica';font-size:7.2pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.6pt;}.cl-3fdcb612{font-family:'symbol';font-size:12pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3fdcb61c{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3fde5e18{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3fde5e19{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3fde653e{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3fde653f{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3fde6548{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3fde6549{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3fde654a{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3fde654b{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3fde6552{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3fde6553{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-3fdffebc">
+<style>.cl-3d2a478c{}.cl-3d27013a{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3d270144{font-family:'Helvetica';font-size:12pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3d27014e{font-family:'Helvetica';font-size:7.2pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.6pt;}.cl-3d27014f{font-family:'symbol';font-size:12pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3d270150{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3d281d2c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3d281d2d{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3d28256a{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d28256b{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d282574{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d282575{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d282576{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d28257e{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d28257f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d282588{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-3d2a478c">
 <thead>
 <tr style="overflow-wrap:break-word;">
-<th class="cl-3fde653e"><p class="cl-3fde5e18"><span class="cl-3fdcb5fe"></span></p></th>
-<th class="cl-3fde653f"><p class="cl-3fde5e19"><span class="cl-3fdcb5fe">Length</span></p></th>
-<th class="cl-3fde653f"><p class="cl-3fde5e19"><span class="cl-3fdcb5fe">Wdith</span></p></th>
-<th class="cl-3fde653f"><p class="cl-3fde5e19"><span class="cl-3fdcb608">Area</span></p></th>
-<th class="cl-3fde653f"><p class="cl-3fde5e19"><span class="cl-3fdcb608">Volume</span></p></th>
+<th class="cl-3d28256a"><p class="cl-3d281d2c"><span class="cl-3d27013a"></span></p></th>
+<th class="cl-3d28256b"><p class="cl-3d281d2d"><span class="cl-3d27013a">Length</span></p></th>
+<th class="cl-3d28256b"><p class="cl-3d281d2d"><span class="cl-3d27013a">Wdith</span></p></th>
+<th class="cl-3d28256b"><p class="cl-3d281d2d"><span class="cl-3d270144">Area</span></p></th>
+<th class="cl-3d28256b"><p class="cl-3d281d2d"><span class="cl-3d270144">Volume</span></p></th>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<th class="cl-3fde6548"><p class="cl-3fde5e18"><span class="cl-3fdcb5fe"></span></p></th>
-<th class="cl-3fde6549"><p class="cl-3fde5e19"><span class="cl-3fdcb5fe">cm</span></p></th>
-<th class="cl-3fde6549"><p class="cl-3fde5e19"><span class="cl-3fdcb5fe">cm</span></p></th>
-<th class="cl-3fde6549"><p class="cl-3fde5e19"><span class="cl-3fdcb608">cm</span><span class="cl-3fdcb609">2</span></p></th>
-<th class="cl-3fde6549"><p class="cl-3fde5e19"><span class="cl-3fdcb608">cm</span><span class="cl-3fdcb609">3</span></p></th>
+<th class="cl-3d282574"><p class="cl-3d281d2c"><span class="cl-3d27013a"></span></p></th>
+<th class="cl-3d282575"><p class="cl-3d281d2d"><span class="cl-3d27013a">cm</span></p></th>
+<th class="cl-3d282575"><p class="cl-3d281d2d"><span class="cl-3d27013a">cm</span></p></th>
+<th class="cl-3d282575"><p class="cl-3d281d2d"><span class="cl-3d270144">cm</span><span class="cl-3d27014e">2</span></p></th>
+<th class="cl-3d282575"><p class="cl-3d281d2d"><span class="cl-3d270144">cm</span><span class="cl-3d27014e">3</span></p></th>
 </tr>
 </thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-3fde654a"><p class="cl-3fde5e18"><span class="cl-3fdcb612">m</span></p></td>
-<td class="cl-3fde654b"><p class="cl-3fde5e19"><span class="cl-3fdcb61c">200.00</span></p></td>
-<td class="cl-3fde654b"><p class="cl-3fde5e19"><span class="cl-3fdcb61c">12.00</span></p></td>
-<td class="cl-3fde654b"><p class="cl-3fde5e19"><span class="cl-3fdcb61c">240.00</span></p></td>
-<td class="cl-3fde654b"><p class="cl-3fde5e19"><span class="cl-3fdcb61c">1,200.00</span></p></td>
+<td class="cl-3d282576"><p class="cl-3d281d2c"><span class="cl-3d27014f">m</span></p></td>
+<td class="cl-3d28257e"><p class="cl-3d281d2d"><span class="cl-3d270150">200.00</span></p></td>
+<td class="cl-3d28257e"><p class="cl-3d281d2d"><span class="cl-3d270150">12.00</span></p></td>
+<td class="cl-3d28257e"><p class="cl-3d281d2d"><span class="cl-3d270150">240.00</span></p></td>
+<td class="cl-3d28257e"><p class="cl-3d281d2d"><span class="cl-3d270150">1,200.00</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-3fde6552"><p class="cl-3fde5e18"><span class="cl-3fdcb612">s</span><span class="cl-3fdcb609">2</span></p></td>
-<td class="cl-3fde6553"><p class="cl-3fde5e19"><span class="cl-3fdcb61c">0.13</span></p></td>
-<td class="cl-3fde6553"><p class="cl-3fde5e19"><span class="cl-3fdcb61c">0.05</span></p></td>
-<td class="cl-3fde6553"><p class="cl-3fde5e19"><span class="cl-3fdcb61c">0.11</span></p></td>
-<td class="cl-3fde6553"><p class="cl-3fde5e19"><span class="cl-3fdcb61c">0.32</span></p></td>
+<td class="cl-3d28257f"><p class="cl-3d281d2c"><span class="cl-3d27014f">s</span><span class="cl-3d27014e">2</span></p></td>
+<td class="cl-3d282588"><p class="cl-3d281d2d"><span class="cl-3d270150">0.13</span></p></td>
+<td class="cl-3d282588"><p class="cl-3d281d2d"><span class="cl-3d270150">0.05</span></p></td>
+<td class="cl-3d282588"><p class="cl-3d281d2d"><span class="cl-3d270150">0.11</span></p></td>
+<td class="cl-3d282588"><p class="cl-3d281d2d"><span class="cl-3d270150">0.32</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -1075,7 +1077,7 @@ flextable was created:</p>
 but will be rendered correctly in the document.</strong></p>
 <p>To include the newly formatted table in the <code>onbrand</code>
 object, you use the same method as before:</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type     <span class="op">=</span> <span class="st">"flextable_object"</span>,</span>
 <span>  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ft<span class="op">=</span><span class="va">tab_fto</span>,</span>
@@ -1122,7 +1124,7 @@ object. And when you’re done you can put the object back into the
         ph_label:     Title 1
         content_type: text
       sub_title:
-        ph_label:     Content Placeholder 10
+        ph_label:     Subtitle 2
         content_type: text
       content_body:
         ph_label:     Content Placeholder 2
@@ -1132,7 +1134,7 @@ object. And when you’re done you can put the object back into the
         ph_label:     Title 1
         content_type: text
       sub_title:
-        ph_label:     Content Placeholder 10
+        ph_label:     Subtitle 2 
         content_type: text
       content_body:
         ph_label:     Content Placeholder 2
@@ -1142,45 +1144,45 @@ object. And when you’re done you can put the object back into the
         ph_label:     Title 1
         content_type: text
       sub_title:
-        ph_label:     Content Placeholder 10
+        ph_label:     Subtitle 2
         content_type: text
       content_left_header:
         ph_label:     Text Placeholder 2
         content_type: text
       content_left:
-        ph_label:     Content Placeholder 2
+        ph_label:     Content Placeholder 3
         content_type: list
       content_right_header:
         ph_label:     Text Placeholder 4
         content_type: text
       content_right:
-        ph_label:     Content Placeholder 3
+        ph_label:     Content Placeholder 5
         content_type: list
     two_content_header_text:
       title:
         ph_label:     Title 1
         content_type: text
       sub_title:
-        ph_label:     Content Placeholder 10
+        ph_label:     Subtitle 2 
         content_type: text
       content_left_header:
         ph_label:     Text Placeholder 2
         content_type: text
       content_left:
-        ph_label:     Content Placeholder 2
+        ph_label:     Content Placeholder 3
         content_type: text
       content_right_header:
         ph_label:     Text Placeholder 4
         content_type: text
       content_right:
-        ph_label:     Content Placeholder 3
+        ph_label:     Content Placeholder 5
         content_type: text
     two_content_list:
       title:
         ph_label:     Title 1
         content_type: text
       sub_title:
-        ph_label:     Content Placeholder 10
+        ph_label:     Subtitle 2 
         content_type: text
       content_left:
         ph_label:     Content Placeholder 2
@@ -1193,7 +1195,7 @@ object. And when you’re done you can put the object back into the
         ph_label:     Title 1
         content_type: text
       sub_title:
-        ph_label:     Content Placeholder 10
+        ph_label:     Subtitle 2 
         content_type: text
       content_left:
         ph_label:     Content Placeholder 2
@@ -1394,7 +1396,7 @@ rdocx:
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>
