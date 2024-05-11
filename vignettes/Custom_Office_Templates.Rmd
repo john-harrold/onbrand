@@ -90,7 +90,7 @@ The `trunk` has value `bark`.  But, because `bark` is also indented two spaces a
 
 The value `crown` is indented two spaces and followed by both a colon and a space.  Hence, `crown` is a key with value `branches`.  Again, `branches` is indented and followed by both a colon and a space.  Then, `branches` is also a key with values: `leaves` and `flowers`.  Each of these are also indented and followed by by both a colon and a space.  So the key `leaves` has value `green`. Similarly, key `flowers` has value `red`.  This completes the `crown` hierarchy. 
 
-There is more that can go into a `yaml` file, but this should be enough to help you understand how to create mapping files for `onbrand`.  For more details see [yaml.org](http://yaml.org).
+There is more that can go into a `yaml` file, but this should be enough to help you understand how to create mapping files for `onbrand`.  For more details see [yaml.org](https://yaml.org/).
 
 ## PowerPoint
 
