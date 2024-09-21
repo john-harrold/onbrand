@@ -15,8 +15,8 @@ URL: https://onbrand.ubiquity.tools/
 BugReports: https://github.com/john-harrold/onbrand/issues
 License: BSD_2_clause + file LICENSE
 Encoding: UTF-8
-LazyData: FALSE 
-RoxygenNote: 7.3.1
+LazyData: TRUE
+RoxygenNote: 7.3.2
 VignetteBuilder: knitr
 Imports:
   digest,

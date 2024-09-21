@@ -18,7 +18,7 @@ reporting work flows across Word and PowerPoint templates.
 
 Authors:
 \itemize{
-  \item Bryan Smith \email{r.bryan.smith@gmail.com }
+  \item Bryan Smith \email{r.bryan.smith@gmail.com}
 }
 
 }

@@ -1,8 +1,10 @@
-pandoc: 3.1.1
-pkgdown: 2.0.6
+pandoc: '3.4'
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   Creating_Templated_Office_Workflows: Creating_Templated_Office_Workflows.html
   Custom_Office_Templates: Custom_Office_Templates.html
-last_built: 2024-05-11T14:11Z
-
+last_built: 2024-09-21T17:09Z
+urls:
+  reference: https:://onbrand.ubiquity.tools/reference
+  article: https:://onbrand.ubiquity.tools/articles

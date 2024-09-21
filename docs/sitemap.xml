@@ -1,93 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/articles/Creating_Templated_Office_Workflows.html</loc>
-  </url>
-  <url>
-    <loc>/articles/Custom_Office_Templates.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/add_pptx_ph_content.html</loc>
-  </url>
-  <url>
-    <loc>/reference/build_span.html</loc>
-  </url>
-  <url>
-    <loc>/reference/fetch_md_def.html</loc>
-  </url>
-  <url>
-    <loc>/reference/fetch_officer_object.html</loc>
-  </url>
-  <url>
-    <loc>/reference/fetch_report_format.html</loc>
-  </url>
-  <url>
-    <loc>/reference/fetch_rpttype.html</loc>
-  </url>
-  <url>
-    <loc>/reference/fph.html</loc>
-  </url>
-  <url>
-    <loc>/reference/fst.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ft_apply_md.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/md_to_officer.html</loc>
-  </url>
-  <url>
-    <loc>/reference/md_to_oo.html</loc>
-  </url>
-  <url>
-    <loc>/reference/onbrand.html</loc>
-  </url>
-  <url>
-    <loc>/reference/preview_template.html</loc>
-  </url>
-  <url>
-    <loc>/reference/read_template.html</loc>
-  </url>
-  <url>
-    <loc>/reference/report_add_doc_content.html</loc>
-  </url>
-  <url>
-    <loc>/reference/report_add_slide.html</loc>
-  </url>
-  <url>
-    <loc>/reference/save_report.html</loc>
-  </url>
-  <url>
-    <loc>/reference/set_officer_object.html</loc>
-  </url>
-  <url>
-    <loc>/reference/span_table.html</loc>
-  </url>
-  <url>
-    <loc>/reference/template_details.html</loc>
-  </url>
-  <url>
-    <loc>/reference/view_layout.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https:://onbrand.ubiquity.tools/404.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/LICENSE-text.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/articles/Creating_Templated_Office_Workflows.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/articles/Custom_Office_Templates.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/articles/index.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/authors.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/index.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/news/index.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/add_pptx_ph_content.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/build_span.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/fetch_md_def.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/fetch_officer_object.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/fetch_report_format.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/fetch_rpttype.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/fph.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/fst.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/ft_apply_md.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/index.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/md_to_officer.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/md_to_oo.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/onbrand.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/preview_template.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/read_template.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/report_add_doc_content.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/report_add_slide.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/save_report.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/set_officer_object.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/span_table.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/template_details.html</loc></url>
+<url><loc>https:://onbrand.ubiquity.tools/reference/view_layout.html</loc></url>
 </urlset>
+

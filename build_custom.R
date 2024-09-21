@@ -1,7 +1,13 @@
-repo_root = here::here()
-setwd(repo_root)
+setwd(here::here())
 
+# Rebuilding the test data
+source(file.path(here::here(), "inst", "test_scripts", "mk_multipage_table.R"))
+rm(list=ls())
+
+
+repo_root = here::here()
 devtools::load_all()
+
 
 # building documentation
 devtools::document(roclets = c('rd', 'collate', 'namespace', 'vignette'))
