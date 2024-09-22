@@ -113,11 +113,13 @@ dimensions of the different data frames are identified below (nrow x ncol)
 \examples{
 if(interactive()){
 
+tbl_res = mk_lg_tbl()
+
 res =
-span_table(table_body      = lg_tbl_body,
-           row_common      = lg_tbl_row_common,
-           table_body_head = lg_tbl_body_head,
-           row_common_head = lg_tbl_row_common_head,
+span_table(table_body      = tbl_res$lg_tbl_body,
+           row_common      = tbl_res$lg_tbl_row_common,
+           table_body_head = tbl_res$lg_tbl_body_head,
+           row_common_head = tbl_res$lg_tbl_row_common_head,
            max_row         = 20,
            max_col         = 10,
            notes_detect    = c("BQL", "NC"))

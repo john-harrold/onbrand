@@ -47,6 +47,7 @@ reference:
   - build_span
   - fetch_rpttype
   - fetch_report_format
+  - mk_lg_tbl
   - span_table
   - onbrand
 navbar:
