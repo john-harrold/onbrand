@@ -22,6 +22,3 @@ It is used for testing \code{span_table()}.
 \examples{
 res =  mk_lg_tbl()
 }
-\seealso{
-
-}

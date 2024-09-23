@@ -1,7 +1,7 @@
 # onbrand 1.0.6 (development version)
 
 * Updated default PowerPoint template with a wider slide. 
-* Added datasets for demonstrating/testing span_table
+* Added function `mk_lg_tbl()` to create example datasets for demonstrating/testing span_table
 
 # onbrand 1.0.5 
 
