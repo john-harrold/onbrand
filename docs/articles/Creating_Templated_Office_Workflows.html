@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Templated Workflows">
 </head>
 <body>
@@ -375,7 +375,7 @@ placeholder names from the mapping file. You and use the
 for the current <code>onbrand</code> object.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">details</span> <span class="op">=</span> <span class="fu"><a href="../reference/template_details.html">template_details</a></span><span class="op">(</span><span class="va">obnd</span><span class="op">)</span> </span></code></pre></div>
-<pre><code>Mapping:     /private/var/folders/pq/7srbf_fx3rd3k706hgxkg61r0000gp/T/RtmpbqJJ5c/temp_libpath78f636cc7423/onbrand/templates/report.yaml
+<pre><code>Mapping:     /private/var/folders/pq/7srbf_fx3rd3k706hgxkg61r0000gp/T/Rtmp2jVsOG/temp_libpath17bb52f3f550d/onbrand/templates/report.yaml
 Report Type: PowerPoint
 title_slide (master/template)
   &gt; title (text)
@@ -856,7 +856,7 @@ style names. You can use the same <code><a href="../reference/template_details.h
 function to display the current styles available to you:</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">details</span> <span class="op">=</span> <span class="fu"><a href="../reference/template_details.html">template_details</a></span><span class="op">(</span><span class="va">obnd</span><span class="op">)</span> </span></code></pre></div>
-<pre><code>Mapping:     /private/var/folders/pq/7srbf_fx3rd3k706hgxkg61r0000gp/T/RtmpbqJJ5c/temp_libpath78f636cc7423/onbrand/templates/report.yaml
+<pre><code>Mapping:     /private/var/folders/pq/7srbf_fx3rd3k706hgxkg61r0000gp/T/Rtmp2jVsOG/temp_libpath17bb52f3f550d/onbrand/templates/report.yaml
 Report Type: Word
   onbrand style (word style, style type)
   --------------------------------------
@@ -901,6 +901,10 @@ allowed markdown formatting see the help for
 <code>onbrand</code> you can use the two functions:</p>
 <ul>
 <li>
+<code><a href="../reference/ft_apply_md.html">onbrand::ft_apply_md</a></code> - This function will take a
+flextable object an apply markdown to the portions of the table you
+specify.</li>
+<li>
 <code><a href="../reference/md_to_officer.html">onbrand::md_to_officer</a></code> - This function will take the
 markdown text and convert that into strings of text containing officer
 commands in <code>fpar</code> and <code>as_paragraph</code> commands.
@@ -912,12 +916,12 @@ them.</li>
 result.</li>
 </ul>
 <div class="section level4">
-<h4 id="using-onbrandmd_to_oo-to-format">Using <code>onbrand::md_to_oo</code> to format<a class="anchor" aria-label="anchor" href="#using-onbrandmd_to_oo-to-format"></a>
+<h4 id="using-onbrandft_apply_md-to-format-tables">Using <code>onbrand::ft_apply_md</code> to format tables<a class="anchor" aria-label="anchor" href="#using-onbrandft_apply_md-to-format-tables"></a>
 </h4>
 <p>First lets start with data. Here we have dimensional data listed as a
 mean and variance:</p>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>property <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mean"</span>,   <span class="st">"variance"</span><span class="op">)</span>,</span>
+<code class="sourceCode R"><span><span class="va">data</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>property <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"**&lt;ff:symbol&gt;m&lt;/ff&gt;**"</span>,   <span class="st">"**&lt;ff:symbol&gt;s&lt;/ff&gt;**^**2**^"</span><span class="op">)</span>,</span>
 <span>                  length     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">200</span>,      <span class="fl">0.13</span><span class="op">)</span>,</span>
 <span>                  width      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">12</span>,       <span class="fl">0.05</span><span class="op">)</span>,</span>
 <span>                  area       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">240</span>,      <span class="fl">0.11</span><span class="op">)</span>,</span>
@@ -926,10 +930,10 @@ mean and variance:</p>
 property being reported on one line and the units on the line below:</p>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">header</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>property <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>,             <span class="st">""</span><span class="op">)</span>,</span>
-<span>              length   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Length"</span>,       <span class="st">"cm"</span><span class="op">)</span>,</span>
-<span>              width    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Wdith"</span>,        <span class="st">"cm"</span><span class="op">)</span>,</span>
-<span>              area     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Area"</span>,         <span class="st">"cm2"</span><span class="op">)</span>,</span>
-<span>              volume   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Volume"</span>,       <span class="st">"cm3"</span><span class="op">)</span><span class="op">)</span></span>
+<span>              length   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Length"</span>,       <span class="st">"**cm**"</span><span class="op">)</span>,</span>
+<span>              width    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Wdith"</span>,        <span class="st">"**cm**"</span><span class="op">)</span>,</span>
+<span>              area     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Area"</span>,         <span class="st">"**cm**^**2**^"</span><span class="op">)</span>,</span>
+<span>              volume   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Volume"</span>,       <span class="st">"**cm**^**3**^"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">ft</span> <span class="op">=</span> <span class="fu">flextable</span><span class="fu">::</span><span class="fu"><a href="https://davidgohel.github.io/flextable/reference/flextable.html" class="external-link">flextable</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>                     <span class="op">%&gt;%</span> </span>
 <span>     <span class="fu">flextable</span><span class="fu">::</span><span class="fu"><a href="https://davidgohel.github.io/flextable/reference/delete_part.html" class="external-link">delete_part</a></span><span class="op">(</span>part <span class="op">=</span> <span class="st">"header"</span><span class="op">)</span>        <span class="op">%&gt;%</span></span>
@@ -938,110 +942,82 @@ property being reported on one line and the units on the line below:</p>
 <p>That flextable currently looks like this:</p>
 <style></style>
 <div class="tabwid">
-<style>.cl-afb300ce{}.cl-afafff6e{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-afafff78{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-afb134d8{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-afb134d9{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-afb1409a{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-afb1409b{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-afb140a4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-afb140a5{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-afb140a6{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-afb140a7{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-afb140ae{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-afb140af{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-afb300ce">
+<style>.cl-ff9d8f70{}.cl-ff99b300{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-ff99b30a{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-ff9b0304{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-ff9b0318{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-ff9b0fb6{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ff9b0fb7{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ff9b0fc0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ff9b0fc1{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ff9b0fca{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ff9b0fcb{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ff9b0fcc{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ff9b0fd4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-ff9d8f70">
 <thead>
 <tr style="overflow-wrap:break-word;">
-<th class="cl-afb1409a"><p class="cl-afb134d8"><span class="cl-afafff6e"></span></p></th>
-<th class="cl-afb1409b"><p class="cl-afb134d9"><span class="cl-afafff6e">Length</span></p></th>
-<th class="cl-afb1409b"><p class="cl-afb134d9"><span class="cl-afafff6e">Wdith</span></p></th>
-<th class="cl-afb1409b"><p class="cl-afb134d9"><span class="cl-afafff6e">Area</span></p></th>
-<th class="cl-afb1409b"><p class="cl-afb134d9"><span class="cl-afafff6e">Volume</span></p></th>
+<th class="cl-ff9b0fb6"><p class="cl-ff9b0304"><span class="cl-ff99b300"></span></p></th>
+<th class="cl-ff9b0fb7"><p class="cl-ff9b0318"><span class="cl-ff99b300">Length</span></p></th>
+<th class="cl-ff9b0fb7"><p class="cl-ff9b0318"><span class="cl-ff99b300">Wdith</span></p></th>
+<th class="cl-ff9b0fb7"><p class="cl-ff9b0318"><span class="cl-ff99b300">Area</span></p></th>
+<th class="cl-ff9b0fb7"><p class="cl-ff9b0318"><span class="cl-ff99b300">Volume</span></p></th>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<th class="cl-afb140a4"><p class="cl-afb134d8"><span class="cl-afafff6e"></span></p></th>
-<th class="cl-afb140a5"><p class="cl-afb134d9"><span class="cl-afafff6e">cm</span></p></th>
-<th class="cl-afb140a5"><p class="cl-afb134d9"><span class="cl-afafff6e">cm</span></p></th>
-<th class="cl-afb140a5"><p class="cl-afb134d9"><span class="cl-afafff6e">cm2</span></p></th>
-<th class="cl-afb140a5"><p class="cl-afb134d9"><span class="cl-afafff6e">cm3</span></p></th>
+<th class="cl-ff9b0fc0"><p class="cl-ff9b0304"><span class="cl-ff99b300"></span></p></th>
+<th class="cl-ff9b0fc1"><p class="cl-ff9b0318"><span class="cl-ff99b300">**cm**</span></p></th>
+<th class="cl-ff9b0fc1"><p class="cl-ff9b0318"><span class="cl-ff99b300">**cm**</span></p></th>
+<th class="cl-ff9b0fc1"><p class="cl-ff9b0318"><span class="cl-ff99b300">**cm**^**2**^</span></p></th>
+<th class="cl-ff9b0fc1"><p class="cl-ff9b0318"><span class="cl-ff99b300">**cm**^**3**^</span></p></th>
 </tr>
 </thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-afb140a6"><p class="cl-afb134d8"><span class="cl-afafff78">mean</span></p></td>
-<td class="cl-afb140a7"><p class="cl-afb134d9"><span class="cl-afafff78">200.00</span></p></td>
-<td class="cl-afb140a7"><p class="cl-afb134d9"><span class="cl-afafff78">12.00</span></p></td>
-<td class="cl-afb140a7"><p class="cl-afb134d9"><span class="cl-afafff78">240.00</span></p></td>
-<td class="cl-afb140a7"><p class="cl-afb134d9"><span class="cl-afafff78">1,200.00</span></p></td>
+<td class="cl-ff9b0fca"><p class="cl-ff9b0304"><span class="cl-ff99b30a">**&lt;ff:symbol&gt;m&lt;/ff&gt;**</span></p></td>
+<td class="cl-ff9b0fcb"><p class="cl-ff9b0318"><span class="cl-ff99b30a">200.00</span></p></td>
+<td class="cl-ff9b0fcb"><p class="cl-ff9b0318"><span class="cl-ff99b30a">12.00</span></p></td>
+<td class="cl-ff9b0fcb"><p class="cl-ff9b0318"><span class="cl-ff99b30a">240.00</span></p></td>
+<td class="cl-ff9b0fcb"><p class="cl-ff9b0318"><span class="cl-ff99b30a">1,200.00</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-afb140ae"><p class="cl-afb134d8"><span class="cl-afafff78">variance</span></p></td>
-<td class="cl-afb140af"><p class="cl-afb134d9"><span class="cl-afafff78">0.13</span></p></td>
-<td class="cl-afb140af"><p class="cl-afb134d9"><span class="cl-afafff78">0.05</span></p></td>
-<td class="cl-afb140af"><p class="cl-afb134d9"><span class="cl-afafff78">0.11</span></p></td>
-<td class="cl-afb140af"><p class="cl-afb134d9"><span class="cl-afafff78">0.32</span></p></td>
+<td class="cl-ff9b0fcc"><p class="cl-ff9b0304"><span class="cl-ff99b30a">**&lt;ff:symbol&gt;s&lt;/ff&gt;**^**2**^</span></p></td>
+<td class="cl-ff9b0fd4"><p class="cl-ff9b0318"><span class="cl-ff99b30a">0.13</span></p></td>
+<td class="cl-ff9b0fd4"><p class="cl-ff9b0318"><span class="cl-ff99b30a">0.05</span></p></td>
+<td class="cl-ff9b0fd4"><p class="cl-ff9b0318"><span class="cl-ff99b30a">0.11</span></p></td>
+<td class="cl-ff9b0fd4"><p class="cl-ff9b0318"><span class="cl-ff99b30a">0.32</span></p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Now, lets customize some things. For example, suppose we want to use
-exponents on the units and represent the mean and variance with
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>σ</mi><mn>2</mn></msup><annotation encoding="application/x-tex">\sigma^2</annotation></semantics></math>.</p>
-<p>First, we need to create lists with the default value for the table
-labels (i.e. the header) and the table body. The markdown will create
-deviations from these defaults. You can look at the help for
-<code><a href="../reference/md_to_oo.html">onbrand::md_to_oo</a></code> to get the appropriate list format. Here
-we’re just pulling them out of the <code>onbrand</code> object using
-<code><a href="../reference/fetch_md_def.html">onbrand::fetch_md_def()</a></code>.</p>
+<p>Now we want to render the markdown. We can use
+<code><a href="../reference/ft_apply_md.html">ft_apply_md()</a></code> to the header and the first column:</p>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dft</span>      <span class="op">=</span> <span class="fu"><a href="../reference/fetch_md_def.html">fetch_md_def</a></span><span class="op">(</span><span class="va">obnd</span>, style<span class="op">=</span><span class="st">"Table_Labels"</span><span class="op">)</span><span class="op">$</span><span class="va">md_def</span></span>
-<span><span class="va">dft_body</span> <span class="op">=</span> <span class="fu"><a href="../reference/fetch_md_def.html">fetch_md_def</a></span><span class="op">(</span><span class="va">obnd</span>, style<span class="op">=</span><span class="st">"Table"</span><span class="op">)</span><span class="op">$</span><span class="va">md_def</span></span></code></pre></div>
-<p>Now we can use the <code><a href="https://davidgohel.github.io/flextable/reference/compose.html" class="external-link">flextable::compose</a></code> function to walk
-through the table and overwrite the defaults that were set when the
-flextable was created:</p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ft</span> <span class="op">=</span> <span class="va">ft</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">flextable</span><span class="fu">::</span><span class="fu"><a href="https://davidgohel.github.io/flextable/reference/compose.html" class="external-link">compose</a></span><span class="op">(</span>j     <span class="op">=</span> <span class="st">"area"</span>,</span>
-<span>          part  <span class="op">=</span> <span class="st">"header"</span>, </span>
-<span>          value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/md_to_oo.html">md_to_oo</a></span><span class="op">(</span><span class="st">"Area"</span>, <span class="va">dft</span><span class="op">)</span><span class="op">$</span><span class="va">oo</span>, <span class="fu"><a href="../reference/md_to_oo.html">md_to_oo</a></span><span class="op">(</span><span class="st">"cm^2^"</span>, <span class="va">dft</span><span class="op">)</span><span class="op">$</span><span class="va">oo</span><span class="op">)</span><span class="op">)</span>   <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">flextable</span><span class="fu">::</span><span class="fu"><a href="https://davidgohel.github.io/flextable/reference/compose.html" class="external-link">compose</a></span><span class="op">(</span>j     <span class="op">=</span> <span class="st">"volume"</span>, </span>
-<span>          part  <span class="op">=</span> <span class="st">"header"</span>,</span>
-<span>          value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/md_to_oo.html">md_to_oo</a></span><span class="op">(</span><span class="st">"Volume"</span>, <span class="va">dft</span><span class="op">)</span><span class="op">$</span><span class="va">oo</span>, <span class="fu"><a href="../reference/md_to_oo.html">md_to_oo</a></span><span class="op">(</span><span class="st">"cm^3^"</span>, <span class="va">dft</span><span class="op">)</span><span class="op">$</span><span class="va">oo</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">flextable</span><span class="fu">::</span><span class="fu"><a href="https://davidgohel.github.io/flextable/reference/compose.html" class="external-link">compose</a></span><span class="op">(</span>j     <span class="op">=</span> <span class="st">"property"</span>, </span>
-<span>          i     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="st">"mean"</span>, <span class="va">data</span><span class="op">$</span><span class="va">property</span><span class="op">)</span>,                        </span>
-<span>          part  <span class="op">=</span> <span class="st">"body"</span>,  </span>
-<span>          value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/md_to_oo.html">md_to_oo</a></span><span class="op">(</span><span class="st">"**&lt;ff:symbol&gt;m&lt;/ff&gt;**"</span>, <span class="va">dft_body</span><span class="op">)</span><span class="op">$</span><span class="va">oo</span><span class="op">)</span><span class="op">)</span>    <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">flextable</span><span class="fu">::</span><span class="fu"><a href="https://davidgohel.github.io/flextable/reference/compose.html" class="external-link">compose</a></span><span class="op">(</span>j     <span class="op">=</span> <span class="st">"property"</span>,</span>
-<span>          i     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="st">"variance"</span>, <span class="va">data</span><span class="op">$</span><span class="va">property</span><span class="op">)</span>, </span>
-<span>          part  <span class="op">=</span> <span class="st">"body"</span>,                                                     </span>
-<span>          value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/md_to_oo.html">md_to_oo</a></span><span class="op">(</span><span class="st">"**&lt;ff:symbol&gt;s&lt;/ff&gt;**^**2**^"</span>, <span class="va">dft_body</span><span class="op">)</span><span class="op">$</span><span class="va">oo</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tab_fto</span> <span class="op">=</span> <span class="fu"><a href="../reference/ft_apply_md.html">ft_apply_md</a></span><span class="op">(</span>ft<span class="op">=</span><span class="va">ft</span>, obnd<span class="op">=</span><span class="va">obnd</span>, part <span class="op">=</span> <span class="st">"header"</span><span class="op">)</span></span>
+<span><span class="va">tab_fto</span> <span class="op">=</span> <span class="fu"><a href="../reference/ft_apply_md.html">ft_apply_md</a></span><span class="op">(</span>ft<span class="op">=</span><span class="va">tab_fto</span>, obnd<span class="op">=</span><span class="va">obnd</span>, part <span class="op">=</span> <span class="st">"body"</span>, pcols <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <p>Now the flextable object looks like this:</p>
 <style></style>
 <div class="tabwid">
-<style>.cl-afd13d3c{}.cl-afce676a{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-afce6774{font-family:'Helvetica';font-size:12pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-afce6775{font-family:'Helvetica';font-size:7.2pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.6pt;}.cl-afce677e{font-family:'symbol';font-size:12pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-afce677f{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-afcf9022{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-afcf902c{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-afcf9ba8{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-afcf9bb2{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-afcf9bb3{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-afcf9bb4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-afcf9bbc{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-afcf9bbd{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-afcf9bbe{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-afcf9bc6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-afd13d3c">
+<style>.cl-ffc7adbe{}.cl-ffc460c8{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-ffc460d2{font-family:'Cambria (Body)';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-ffc460d3{font-family:'Cambria (Body)';font-size:12pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-ffc460dc{font-family:'Cambria (Body)';font-size:7.2pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.6pt;}.cl-ffc460dd{font-family:'symbol';font-size:12pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-ffc460de{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-ffc5a87a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-ffc5a884{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-ffc5b8ce{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ffc5b8d8{width:0.75in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ffc5b8e2{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ffc5b8e3{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ffc5b8ec{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ffc5b8ed{width:0.75in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ffc5b8ee{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ffc5b8f6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-ffc7adbe">
 <thead>
 <tr style="overflow-wrap:break-word;">
-<th class="cl-afcf9ba8"><p class="cl-afcf9022"><span class="cl-afce676a"></span></p></th>
-<th class="cl-afcf9bb2"><p class="cl-afcf902c"><span class="cl-afce676a">Length</span></p></th>
-<th class="cl-afcf9bb2"><p class="cl-afcf902c"><span class="cl-afce676a">Wdith</span></p></th>
-<th class="cl-afcf9bb2"><p class="cl-afcf902c"><span class="cl-afce6774">Area</span></p></th>
-<th class="cl-afcf9bb2"><p class="cl-afcf902c"><span class="cl-afce6774">Volume</span></p></th>
+<th class="cl-ffc5b8ce"><p class="cl-ffc5a87a"><span class="cl-ffc460c8"></span></p></th>
+<th class="cl-ffc5b8d8"><p class="cl-ffc5a884"><span class="cl-ffc460d2">Length</span></p></th>
+<th class="cl-ffc5b8d8"><p class="cl-ffc5a884"><span class="cl-ffc460d2">Wdith</span></p></th>
+<th class="cl-ffc5b8d8"><p class="cl-ffc5a884"><span class="cl-ffc460d2">Area</span></p></th>
+<th class="cl-ffc5b8d8"><p class="cl-ffc5a884"><span class="cl-ffc460d2">Volume</span></p></th>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<th class="cl-afcf9bb3"><p class="cl-afcf9022"><span class="cl-afce676a"></span></p></th>
-<th class="cl-afcf9bb4"><p class="cl-afcf902c"><span class="cl-afce676a">cm</span></p></th>
-<th class="cl-afcf9bb4"><p class="cl-afcf902c"><span class="cl-afce676a">cm</span></p></th>
-<th class="cl-afcf9bb4"><p class="cl-afcf902c"><span class="cl-afce6774">cm</span><span class="cl-afce6775">2</span></p></th>
-<th class="cl-afcf9bb4"><p class="cl-afcf902c"><span class="cl-afce6774">cm</span><span class="cl-afce6775">3</span></p></th>
+<th class="cl-ffc5b8e2"><p class="cl-ffc5a87a"><span class="cl-ffc460c8"></span></p></th>
+<th class="cl-ffc5b8e3"><p class="cl-ffc5a884"><span class="cl-ffc460d3">cm</span></p></th>
+<th class="cl-ffc5b8e3"><p class="cl-ffc5a884"><span class="cl-ffc460d3">cm</span></p></th>
+<th class="cl-ffc5b8e3"><p class="cl-ffc5a884"><span class="cl-ffc460d3">cm</span><span class="cl-ffc460dc">2</span></p></th>
+<th class="cl-ffc5b8e3"><p class="cl-ffc5a884"><span class="cl-ffc460d3">cm</span><span class="cl-ffc460dc">3</span></p></th>
 </tr>
 </thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-afcf9bbc"><p class="cl-afcf9022"><span class="cl-afce677e">m</span></p></td>
-<td class="cl-afcf9bbd"><p class="cl-afcf902c"><span class="cl-afce677f">200.00</span></p></td>
-<td class="cl-afcf9bbd"><p class="cl-afcf902c"><span class="cl-afce677f">12.00</span></p></td>
-<td class="cl-afcf9bbd"><p class="cl-afcf902c"><span class="cl-afce677f">240.00</span></p></td>
-<td class="cl-afcf9bbd"><p class="cl-afcf902c"><span class="cl-afce677f">1,200.00</span></p></td>
+<td class="cl-ffc5b8ec"><p class="cl-ffc5a87a"><span class="cl-ffc460dd">m</span></p></td>
+<td class="cl-ffc5b8ed"><p class="cl-ffc5a884"><span class="cl-ffc460de">200.00</span></p></td>
+<td class="cl-ffc5b8ed"><p class="cl-ffc5a884"><span class="cl-ffc460de">12.00</span></p></td>
+<td class="cl-ffc5b8ed"><p class="cl-ffc5a884"><span class="cl-ffc460de">240.00</span></p></td>
+<td class="cl-ffc5b8ed"><p class="cl-ffc5a884"><span class="cl-ffc460de">1,200.00</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-afcf9bbe"><p class="cl-afcf9022"><span class="cl-afce677e">s</span><span class="cl-afce6775">2</span></p></td>
-<td class="cl-afcf9bc6"><p class="cl-afcf902c"><span class="cl-afce677f">0.13</span></p></td>
-<td class="cl-afcf9bc6"><p class="cl-afcf902c"><span class="cl-afce677f">0.05</span></p></td>
-<td class="cl-afcf9bc6"><p class="cl-afcf902c"><span class="cl-afce677f">0.11</span></p></td>
-<td class="cl-afcf9bc6"><p class="cl-afcf902c"><span class="cl-afce677f">0.32</span></p></td>
+<td class="cl-ffc5b8ee"><p class="cl-ffc5a87a"><span class="cl-ffc460dd">s</span><span class="cl-ffc460dc">2</span></p></td>
+<td class="cl-ffc5b8f6"><p class="cl-ffc5a884"><span class="cl-ffc460de">0.13</span></p></td>
+<td class="cl-ffc5b8f6"><p class="cl-ffc5a884"><span class="cl-ffc460de">0.05</span></p></td>
+<td class="cl-ffc5b8f6"><p class="cl-ffc5a884"><span class="cl-ffc460de">0.11</span></p></td>
+<td class="cl-ffc5b8f6"><p class="cl-ffc5a884"><span class="cl-ffc460de">0.32</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -1050,7 +1026,7 @@ flextable was created:</p>
 but will be rendered correctly in the document.</strong></p>
 <p>To include the newly formatted table in the <code>onbrand</code>
 object, you use the same method as before:</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obnd</span> <span class="op">=</span> <span class="fu"><a href="../reference/report_add_doc_content.html">report_add_doc_content</a></span><span class="op">(</span><span class="va">obnd</span>,</span>
 <span>  type     <span class="op">=</span> <span class="st">"flextable_object"</span>,</span>
 <span>  content  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ft<span class="op">=</span><span class="va">tab_fto</span>,</span>

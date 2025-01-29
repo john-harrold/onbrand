@@ -1,5 +1,7 @@
 # onbrand 1.0.7 (development version)
 
+* Added the ability to specify the rows (prows) and columns (pcols) when calling ft_apply_md()
+
 
 # onbrand 1.0.6 
 

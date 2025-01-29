@@ -673,15 +673,16 @@ To make formatting a little easier, `onbrand` provides the ability to use markdo
 
 If you want to use the markdown functionality outside of `onbrand` you can use the two functions:
 
+- `onbrand::ft_apply_md` - This function will take a flextable object an apply markdown to the portions of the table you specify.
 - `onbrand::md_to_officer` - This function will take the markdown text and convert that into strings of text containing officer commands in `fpar` and `as_paragraph` commands. You simply need to use the `eval` command to execute them.
 - `onbrand::md_to_oo` - A function that wraps around `md_to_officer` and returns the `as_paragraph` result.
 
-### Using `onbrand::md_to_oo` to format 
+### Using `onbrand::ft_apply_md` to format tables
 
 First lets start with data. Here we have dimensional data listed as a mean and variance:
 
 ```{r}
-data = data.frame(property = c("mean",   "variance"),
+data = data.frame(property = c("**<ff:symbol>m</ff>**",   "**<ff:symbol>s</ff>**^**2**^"),
                   length     = c(200,      0.13),
                   width      = c(12,       0.05),
                   area       = c(240,      0.11),
@@ -693,10 +694,10 @@ Now lets create a flextable object with a header that shows the property being r
 
 ```{r}
 header = list(property = c("",             ""),
-              length   = c("Length",       "cm"),
-              width    = c("Wdith",        "cm"),
-              area     = c("Area",         "cm2"),
-              volume   = c("Volume",       "cm3"))
+              length   = c("Length",       "**cm**"),
+              width    = c("Wdith",        "**cm**"),
+              area     = c("Area",         "**cm**^**2**^"),
+              volume   = c("Volume",       "**cm**^**3**^"))
 
 ft = flextable::flextable(data)                     %>% 
      flextable::delete_part(part = "header")        %>%
@@ -710,39 +711,16 @@ That flextable currently looks like this:
 htmltools_value(ft)
 ```
 
-Now, lets customize some things. For example, suppose we want to use exponents on the units and represent the mean and variance with $\mu$ and $\sigma^2$. 
-
-First, we need to create lists with the default value for the table labels (i.e. the header) and the table body. The markdown will create deviations from these defaults. You can look at the help for `onbrand::md_to_oo` to get the appropriate list format. Here we're just pulling them out of the `onbrand` object using `onbrand::fetch_md_def()`.
-
-```{r}
-dft      = fetch_md_def(obnd, style="Table_Labels")$md_def
-dft_body = fetch_md_def(obnd, style="Table")$md_def
-```
-
-Now we can use the `flextable::compose` function to walk through the table and overwrite the defaults that were set when the flextable was created:
-
-```{r}
-ft = ft %>%
-  flextable::compose(j     = "area",
-          part  = "header", 
-          value = c(md_to_oo("Area", dft)$oo, md_to_oo("cm^2^", dft)$oo))   %>%
-  flextable::compose(j     = "volume", 
-          part  = "header",
-          value = c(md_to_oo("Volume", dft)$oo, md_to_oo("cm^3^", dft)$oo)) %>%
-  flextable::compose(j     = "property", 
-          i     = match("mean", data$property),                        
-          part  = "body",  
-          value = c(md_to_oo("**<ff:symbol>m</ff>**", dft_body)$oo))    %>%
-  flextable::compose(j     = "property",
-          i     = match("variance", data$property), 
-          part  = "body",                                                     
-          value = c(md_to_oo("**<ff:symbol>s</ff>**^**2**^", dft_body)$oo))
+Now we want to render the markdown. We can use `ft_apply_md()` to the header and the first column: 
+```{r echo=TRUE}
+tab_fto = ft_apply_md(ft=ft, obnd=obnd, part = "header")
+tab_fto = ft_apply_md(ft=tab_fto, obnd=obnd, part = "body", pcols = 1)
 ```
 
 Now the flextable object looks like this:
 
 ```{r echo=FALSE}
-htmltools_value(ft)
+htmltools_value(tab_fto)
 ```
 
 **Note that the Greek symbols are not rendered correctly here but will be rendered correctly in the document.**

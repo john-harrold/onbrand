@@ -4,9 +4,11 @@
 #'specified part.
 #'@param ft                        Flextable object.
 #'@param obnd                      Optional onbrand object used to format markdown. The default \code{NULL} value will use default formatting.
-#'@param part                      Part of the table can be one of \code{"all"}, \code{"body"} (default), \code{"header"}, or \code{"footer"}
+#'@param part                      Part of the table can be one of \code{"all"}, \code{"body"} (default), \code{"header"}, or \code{"footer"}.
+#'@param prows                     Optional rows of the part to process. Set to \code{NULL} (default) to process all rows.
+#'@param pcols                     Optional columns of the part to process. Set to \code{NULL} (default) to process all columns.
 #'@return flextable with markdown applied
-ft_apply_md = function(ft, obnd=NULL, part = "body"){
+ft_apply_md = function(ft, obnd=NULL, part = "body", prows = NULL, pcols = NULL){
 
   # This defines the defatul format for the header:
   if(is.null(obnd)){
@@ -21,6 +23,8 @@ ft_apply_md = function(ft, obnd=NULL, part = "body"){
     parts = part
   }
 
+  isgood = TRUE 
+
   for(tmppart in parts){
     part_data = ft[[tmppart]]$data
 
@@ -28,10 +32,32 @@ ft_apply_md = function(ft, obnd=NULL, part = "body"){
     # all is selected and there is no footer present
     if(nrow(part_data) > 0){
 
+      if(is.null(prows)){
+        prows = 1:nrow(part_data)
+      } else {
+        if(!all(prows %in% 1:nrow(part_data))){
+          message(paste0("The following rows were specified but are beyond the bounds of the ", tmppart, ": "))
+          message(paste0("  >", paste(prows[!(prows %in% 1:nrow(part_data))], collapse=", ")))
+          isgood = FALSE
+        }
+      }
+      if(is.null(pcols)){
+        pcols = 1:ncol(part_data)
+      } else {
+        if(!all(pcols %in% 1:ncol(part_data))){
+          message(paste0("The following columns were specified but are beyond the bounds of the ", tmppart, ": "))
+          message(paste0("  >", paste( pcols[!(pcols %in% 1:ncol(part_data))], collapse=", ")))
+          isgood = FALSE
+        }
+      }
+      if(!isgood){
+        stop("ft_apply_md() failed see above for details")
+      }
+
       # Now we walk through each element of the current table part and apply
       # markdown to that element:
-      for(hcol in 1:ncol(part_data)){
-        for(hrow in 1:nrow(part_data)){
+      for(hcol in pcols){
+        for(hrow in prows){
           # To have markdown there has to be at least 3 characters and we only
           # apply it to character data
           if(is.character(part_data[hrow,hcol])){
@@ -54,5 +80,8 @@ ft_apply_md = function(ft, obnd=NULL, part = "body"){
       }
     }
   }
+
+
+
 ft}
 

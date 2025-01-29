@@ -11,7 +11,7 @@ Authors@R: c(person("John", "Harrold",
                      email   = "r.bryan.smith@gmail.com "))
 Maintainer: John Harrold <john.m.harrold@gmail.com> 
 Description: Automated reporting in Word and PowerPoint can require customization for each organizational template. This package works around this by adding standard reporting functions and an abstraction layer to facilitate automated reporting workflows that can be replicated across different organizational templates.
-URL: https://onbrand.ubiquity.tools/
+URL: https://onbrand.ubiquity.tools
 BugReports: https://github.com/john-harrold/onbrand/issues
 License: BSD_2_clause + file LICENSE
 Encoding: UTF-8

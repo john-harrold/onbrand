@@ -4,14 +4,18 @@
 \alias{ft_apply_md}
 \title{Render Markdown in flextable Object}
 \usage{
-ft_apply_md(ft, obnd = NULL, part = "body")
+ft_apply_md(ft, obnd = NULL, part = "body", prows = NULL, pcols = NULL)
 }
 \arguments{
 \item{ft}{Flextable object.}
 
 \item{obnd}{Optional onbrand object used to format markdown. The default \code{NULL} value will use default formatting.}
 
-\item{part}{Part of the table can be one of \code{"all"}, \code{"body"} (default), \code{"header"}, or \code{"footer"}}
+\item{part}{Part of the table can be one of \code{"all"}, \code{"body"} (default), \code{"header"}, or \code{"footer"}.}
+
+\item{prows}{Optional rows of the part to process. Set to \code{NULL} (default) to process all rows.}
+
+\item{pcols}{Optional columns of the part to process. Set to \code{NULL} (default) to process all columns.}
 }
 \value{
 flextable with markdown applied
