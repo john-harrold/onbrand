@@ -20,7 +20,6 @@ cht  = c(rep("A", 20),
          rep("B", 20),
          rep("C", 11))
 
-
 table_body = NULL
 for(cn in tcol){
   if(is.null(table_body)){

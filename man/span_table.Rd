@@ -90,6 +90,7 @@ less than or equal to both max_row and max_height.
 The way the data frames relate to each other are mapped out below. The
 dimensions of the different data frames are identified below (nrow x ncol)
 
+
 \preformatted{
  |-------------------------------------| ---
  |                 |                   |  ^

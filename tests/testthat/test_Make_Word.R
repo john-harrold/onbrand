@@ -207,9 +207,9 @@ header = list(property = c("",             ""),
               area     = c("Area",         "cm2"),
               volume   = c("Volume",       "cm3"))
 
-ft = flextable::flextable(data)                     %>%
-     flextable::delete_part(part = "header")        %>%
-     flextable::add_header(values =as.list(header)) %>%
+ft = flextable::flextable(data)                     |> 
+     flextable::delete_part(part = "header")        |> 
+     flextable::add_header(values =as.list(header)) |> 
      flextable::theme_zebra()
 
 
@@ -217,17 +217,17 @@ dft      = fetch_md_def(obnd, style="Table_Labels")$md_def
 dft_body = fetch_md_def(obnd, style="Table")$md_def
 
 
-ft = ft %>%
+ft = ft |>  
   flextable::compose(j     = "area",
                      part  = "header",
-                     value = c(md_to_oo("Area", dft)$oo, md_to_oo("cm^2^", dft)$oo))   %>%
+                     value = c(md_to_oo("Area", dft)$oo, md_to_oo("cm^2^", dft)$oo))   |> 
   flextable::compose(j     = "volume",
                      part  = "header",
-                     value = c(md_to_oo("Volume", dft)$oo, md_to_oo("cm^3^", dft)$oo)) %>%
+                     value = c(md_to_oo("Volume", dft)$oo, md_to_oo("cm^3^", dft)$oo)) |> 
   flextable::compose(j     = "property",
                      i     = match("mean", data$property),
                      part  = "body",
-                     value = c(md_to_oo("**<ff:symbol>m</ff>**", dft_body)$oo))    %>%
+                     value = c(md_to_oo("**<ff:symbol>m</ff>**", dft_body)$oo))    |> 
   flextable::compose(j     = "property",
                      i     = match("variance", data$property),
                      part  = "body",

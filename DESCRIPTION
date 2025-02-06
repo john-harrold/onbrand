@@ -23,7 +23,6 @@ Imports:
   dplyr,
   flextable,
   ggplot2,
-  magrittr,
   officer (>= 0.3.7),
   stringr,
   rlang,

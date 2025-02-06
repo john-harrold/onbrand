@@ -2,7 +2,6 @@
 #'@importFrom flextable add_header add_footer align as_chunk as_paragraph autofit body_add_flextable delete_part merge_h
 #'@importFrom flextable regulartable set_header_labels theme_alafoli theme_box theme_tron_legacy
 #'@importFrom flextable theme_vanilla theme_booktabs theme_tron theme_vader theme_zebra
-#'@importFrom magrittr "%>%"
 #'@importFrom officer add_slide annotate_base body_add_break block_caption body_add_caption body_add_fpar body_add_par body_add_gg body_add_img
 #'@importFrom officer body_add_table body_add_toc body_bookmark body_end_section_continuous
 #'@importFrom officer body_end_section_landscape body_end_section_portrait body_replace_all_text external_img
@@ -13,7 +12,7 @@
 #'@importFrom dplyr filter
 #'@importFrom yaml read_yaml
 #'@importFrom rlang .data
-
+ 
 #'@export
 #'@title Generate Annotated Layout for Report Templates
 #'@description Produces a report with each layout element labeled.  

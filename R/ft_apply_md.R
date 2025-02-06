@@ -5,9 +5,26 @@
 #'@param ft                        Flextable object.
 #'@param obnd                      Optional onbrand object used to format markdown. The default \code{NULL} value will use default formatting.
 #'@param part                      Part of the table can be one of \code{"all"}, \code{"body"} (default), \code{"header"}, or \code{"footer"}.
-#'@param prows                     Optional rows of the part to process. Set to \code{NULL} (default) to process all rows.
-#'@param pcols                     Optional columns of the part to process. Set to \code{NULL} (default) to process all columns.
+#'@param prows                     Optional rows of the part to process, ignored when \code{part = "all"}. Set to \code{NULL} (default) to process all rows.
+#'@param pcols                     Optional columns of the part to process, ignored when \code{part = "all"}. Set to \code{NULL} (default) to process all columns.
 #'@return flextable with markdown applied
+#'@examples
+#' library(onbrand)
+#' library(flextable)
+#'
+#' df = data.frame(
+#'  A = c("e^x^",      "text"),
+#'  B = c("sin(x~y~)", "**<ff:symbol>S</ff>**~x~"))
+#' 
+#' ft = flextable(df) |>
+#'      delete_part(part="header") |>
+#'      add_header(values = 
+#'        list(A= "*Italics*", 
+#'             B= "**Bold**") )    |>
+#'      theme_vanilla()            |>
+#'      ft_apply_md(part="all")
+#'
+#' ft
 ft_apply_md = function(ft, obnd=NULL, part = "body", prows = NULL, pcols = NULL){
 
   # This defines the defatul format for the header:
@@ -32,7 +49,7 @@ ft_apply_md = function(ft, obnd=NULL, part = "body", prows = NULL, pcols = NULL)
     # all is selected and there is no footer present
     if(nrow(part_data) > 0){
 
-      if(is.null(prows)){
+      if(is.null(prows) | part == "all" ){
         prows = 1:nrow(part_data)
       } else {
         if(!all(prows %in% 1:nrow(part_data))){
@@ -41,7 +58,7 @@ ft_apply_md = function(ft, obnd=NULL, part = "body", prows = NULL, pcols = NULL)
           isgood = FALSE
         }
       }
-      if(is.null(pcols)){
+      if(is.null(pcols) | part == "all"){
         pcols = 1:ncol(part_data)
       } else {
         if(!all(pcols %in% 1:ncol(part_data))){
