@@ -30,11 +30,11 @@ fetch_rpttype = function(template= NULL, verbose=TRUE){
     isgood = FALSE
     msgs = c(msgs, "You must supply a file name")
   } else {
-    if(grepl(pattern="pptx$", template)){
+    if(grepl(pattern="potx$", template) | grepl(pattern="pptx$", template)){
       rpttype = "PowerPoint"
       rptext  = "pptx"
       rptobj  = "rpptx"
-    }else if(grepl(pattern="docx$", template)){
+    }else if(grepl(pattern="dotx$", template) | grepl(pattern="docx$", template)){
       rpttype = "Word"
       rptext  = "docx"
       rptobj  = "rdocx"

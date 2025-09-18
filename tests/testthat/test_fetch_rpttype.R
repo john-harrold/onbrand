@@ -1,0 +1,6 @@
+library(onbrand)
+expect_true( fetch_rpttype(template="file.pptx",  verbose=FALSE)$isgood)
+expect_true( fetch_rpttype(template="file.potx",  verbose=FALSE)$isgood)
+expect_true( fetch_rpttype(template="file.docx",  verbose=FALSE)$isgood)
+expect_true( fetch_rpttype(template="file.dotx",  verbose=FALSE)$isgood)
+expect_false(fetch_rpttype(template="file.other", verbose=FALSE)$isgood)

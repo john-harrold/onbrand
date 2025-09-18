@@ -383,7 +383,7 @@ report_add_doc_content = function(obnd,
           }
         }
         if(type == "ggplot"){
-          if(!ggplot2::is.ggplot(content[["image"]])){
+          if(!ggplot2::is_ggplot(content[["image"]])){
             msgs = c(msgs, paste("The image data found in >content$image< is not a ggplot object",sep=""))
             isgood = FALSE
           }
