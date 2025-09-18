@@ -30,7 +30,6 @@ set_officer_object  = function (obnd, rpt = NULL, verbose=TRUE){
 
   isgood = TRUE
   msgs = c()
-  rpt = NULL
 
   if(obnd[["isgood"]]){
     rpt = obnd[["rpt"]]
@@ -64,6 +63,5 @@ set_officer_object  = function (obnd, rpt = NULL, verbose=TRUE){
   if(!isgood & obnd[["isgood"]]){
     obnd[["isgood"]] = FALSE
   }
-
 
 obnd}
