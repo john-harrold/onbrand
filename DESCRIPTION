@@ -17,6 +17,7 @@ License: BSD_2_clause + file LICENSE
 Encoding: UTF-8
 LazyData: TRUE
 RoxygenNote: 7.3.2
+Depends: R (>= 4.1.0)
 VignetteBuilder: knitr
 Imports:
   digest,
@@ -29,7 +30,6 @@ Imports:
   yaml
 Suggests: 
   knitr, 
-  knitrdata,
   markdown,
   rmarkdown,
   testthat

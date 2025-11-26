@@ -2,7 +2,7 @@
 #'@title Determines Type of Report Template
 #'@description  Based on the file extension for a template
 #'
-#'@param template Name of PowerPoint or Word file
+#'@param template Name of PowerPoint (pptx or potx) or Word (docx or dotx) file
 #'@param verbose Boolean variable when set to TRUE (default) messages will be
 #'displayed on the terminal; Messages will be included in the returned list.
 #'
