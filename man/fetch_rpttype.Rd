@@ -7,7 +7,7 @@
 fetch_rpttype(template = NULL, verbose = TRUE)
 }
 \arguments{
-\item{template}{Name of PowerPoint or Word file}
+\item{template}{Name of PowerPoint (pptx or potx) or Word (docx or dotx) file}
 
 \item{verbose}{Boolean variable when set to TRUE (default) messages will be
 displayed on the terminal; Messages will be included in the returned list.}
