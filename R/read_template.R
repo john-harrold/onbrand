@@ -113,7 +113,7 @@ read_template = function(template    = file.path(system.file(package="onbrand"),
       # Checking to see if any layouts specified in the mapping file are
       # missing
       lay_meta = names(meta[["rpptx"]][["templates"]])
-      if(any(!(lay_meta %in% lay_sum[["layout"]]))){
+      if(any(!(lay_meta %in% lay_sum[["layout"]]), na.rm=TRUE)){
         isgood = FALSE
         msgs = c(msgs, "The following template layouts were specified in the mapping file but were not found in the supplied template:")
         msgs = c(msgs, paste(lay_meta[!(lay_meta %in% lay_sum[["layout"]])], collapse=", "))

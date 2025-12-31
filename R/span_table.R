@@ -443,7 +443,7 @@ build_span  = function(table_body                = NULL,
   notes = c()
   if(!is.null(notes_detect)){
     for(note in notes_detect){
-      if(any(note == df)){
+      if(any(note == df, na.rm=TRUE)){
         notes = c(notes, note)
       }
     }

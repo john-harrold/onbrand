@@ -1,5 +1,7 @@
 # onbrand 1.0.8 (development version)
 
+* fixed use of `any()` where `NA` values were breaking things (e.g. `span_table()`)
+
 # onbrand 1.0.7 
 
 * Added the ability to specify the rows (prows) and columns (pcols) when calling `ft_apply_md()`.
