@@ -1,4 +1,6 @@
-# onbrand 1.0.8 (development version)
+# onbrand 1.0.9 (development version)
+
+# onbrand 1.0.8
 
 * fixed use of `any()` where `NA` values were breaking things (e.g. `span_table()`)
 
