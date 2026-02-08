@@ -39,7 +39,7 @@ md_to_officer(
 }}
 }
 \value{
-list with parsed paragraph elements with the content added to the body, 
+list with parsed paragraph elements with the content added to the body,
 each paragraph can be found in a numbered list element (e.g. \code{pgraph_1},
 \code{pgraph_2}, etc) each with the following elements:
 \itemize{
