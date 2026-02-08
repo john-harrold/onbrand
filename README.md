@@ -11,6 +11,7 @@ checks](https://badges.cranchecks.info/worst/onbrand.svg)](https://cran.r-projec
 [![version](https://www.r-pkg.org/badges/version/onbrand)](https://CRAN.R-project.org/package=onbrand)
 ![cranlogs](https://cranlogs.r-pkg.org/badges/onbrand)
 ![Active](https://www.repostatus.org/badges/latest/active.svg)
+[![codecov](https://codecov.io/gh/john-harrold/onbrand/branch/main/graph/badge.svg)](https://codecov.io/gh/john-harrold/onbrand)
 <!-- badges: end -->
 
 The `officer` package provides extensive methods for accessing,
